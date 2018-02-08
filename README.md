@@ -6,7 +6,7 @@
 
 ``` bash
 npm install    //安装依赖 | install dependencies
-npm run dev    //服务器运行&热更新 | serve with y reload at localhost:8080
+npm run dev    //服务器运行&热更新 | serve with y reload at localhost:5000
 npm run build  //项目打包 | build for production with minification
 ```
 
