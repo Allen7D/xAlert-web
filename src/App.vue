@@ -9,5 +9,8 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-
+  html
+      height: 100%
+  body
+      height: 100% !important
 </style>
