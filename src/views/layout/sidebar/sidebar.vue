@@ -52,7 +52,7 @@
       </el-menu-item>
     </el-menu>
     <button class="button" @click="isCollapse = !isCollapse">
-      <i :class="iconDbArrow"></i>
+      <i :class="isCollapse ? 'icon-dbArrowR' : 'icon-dbArrowL'"></i>
     </button>
   </nav>
 </template>
@@ -61,8 +61,7 @@
   export default {
     data() {
       return {
-        isCollapse: true,
-        iconDbArrow: 'icon-dbArrowL'
+        isCollapse: true
       }
     },
     methods: {
@@ -80,6 +79,7 @@
   @import "~common/stylus/variable"
   .sidebar-warpper
     position: relative
+    height: 100%
     background: rgba(6, 6, 123, 1)
     border-right: solid 1px #4676ff
     .top

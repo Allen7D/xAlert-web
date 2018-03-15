@@ -53,6 +53,7 @@ export default {
     dashboard: 'Dashboard',
     github: 'Github',
     screenfull: 'screenfull',
+    localtime: 'localtime',
     theme: 'theme'
   },
   login: {

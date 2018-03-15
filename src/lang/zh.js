@@ -53,6 +53,7 @@ export default {
     dashboard: '首页',
     github: '项目地址',
     screenfull: '全屏',
+    localtime: '当前时间',
     theme: '换肤'
   },
   login: {

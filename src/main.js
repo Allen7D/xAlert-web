@@ -5,10 +5,13 @@ import App from './App'
 import router from './router'
 import 'common/stylus/index.styl'
 
+import echarts from 'echarts'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 import i18n from './lang'
+
+Vue.prototype.$echarts = echarts
 
 Vue.use(ElementUI, {
   size: 'medium', // set element-ui default size

@@ -3,7 +3,7 @@
     <breadcrumb class="breadcrumb-container"></breadcrumb>
 
     <div class="right-menu">
-      <el-tooltip effect="dark" :content="$t('navbar.screenfull')" placement="bottom">
+      <el-tooltip effect="dark" :content="$t('localtime')" placement="bottom">
         <clock class="clock right-menu-item"></clock>
       </el-tooltip>
 
@@ -19,7 +19,7 @@
         <el-dropdown-menu slot="dropdown">
           <router-link to="/">
             <el-dropdown-item>
-              {{$t('navbar.dashboard')}}
+              {{$t('系统设置')}}
             </el-dropdown-item>
           </router-link>
           <a target='_blank' href="https://github.com/bodanli159951/xAlert-web">
@@ -54,9 +54,6 @@
       }
     },
     methods: {
-      toggleSideBar() {
-        this.$store.dispatch('toggleSideBar')
-      },
       logout() {
         this.$store.dispatch('LogOut').then(() => {
           location.reload()// In order to re-instantiate the vue-router object to avoid bugs
