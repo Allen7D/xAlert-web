@@ -1,7 +1,5 @@
 <template>
-  <keep-alive>
-    <router-view></router-view>
-  </keep-alive>
+  <div>flows</div>
 </template>
 
 <script type="text/ecmascript-6">

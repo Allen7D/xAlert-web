@@ -1,7 +1,5 @@
 <template>
-  <keep-alive>
-    <router-view></router-view>
-  </keep-alive>
+  <div>events</div>
 </template>
 
 <script type="text/ecmascript-6">

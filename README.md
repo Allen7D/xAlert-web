@@ -20,7 +20,7 @@ npm run build  //项目打包 | build for production with minification
 	网络资产 / assets
 	事件监测 / events
 	流量监测 / flows
-	漏洞监测 / vulnerability
+	漏洞监测 / vulnerabilityf
 
 2、业务监控 / customMonitor
 

@@ -13,7 +13,7 @@
 
       <el-dropdown class="avatar-container right-menu-item" trigger="click">
         <div class="avatar-wrapper">
-          <img class="user-avatar" src="./log.jpg">
+          <img class="user-avatar" :src="log">
           <i class="el-icon-caret-bottom"></i>
         </div>
         <el-dropdown-menu slot="dropdown">
@@ -41,6 +41,8 @@
   import Screenfull from 'components/screenfull/screenfull'
   import Clock from 'components/clock/clock'
 
+  import log from './log.jpg'
+
   export default {
     components: {
       Breadcrumb,
@@ -50,7 +52,8 @@
     data() {
       return {
         name: '',
-        avata: ''
+        avata: '',
+        log
       }
     },
     methods: {
@@ -72,6 +75,8 @@
     border: 0
     .breadcrumb-container
       float: left
+      margin: 27px 0 0 60px
+      font-size: 20px
     .errLog-container
       display: inline-block
       vertical-align: top

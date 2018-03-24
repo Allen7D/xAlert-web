@@ -1,7 +1,7 @@
 <template>
   <div class="clock">
     <span>当前时间:</span>
-    <span class="time">{{date}} {{time}}</span>
+    <strong class="time">{{date}} {{time}}</strong>
   </div>
 </template>
 
@@ -28,10 +28,9 @@
     methods: {
       updateTime() {
         var self = this
-        var week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
         setInterval(function () {
           var ctime = new Date()
-          self.date = zeroPadding(ctime.getFullYear(), 4) + '年' + zeroPadding(ctime.getMonth() + 1, 2) + '月' + zeroPadding(ctime.getDate(), 2) + '日 ' + week[ctime.getDay()]
+          self.date = zeroPadding(ctime.getFullYear(), 4) + '年' + zeroPadding(ctime.getMonth() + 1, 2) + '月' + zeroPadding(ctime.getDate(), 2) + '日'
           self.time = zeroPadding(ctime.getHours(), 2) + ':' + zeroPadding(ctime.getMinutes(), 2) + ':' + zeroPadding(ctime.getSeconds(), 2)
         }, 1000)
       }

@@ -3,7 +3,7 @@
     <el-menu default-active="1-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
              :collapse="isCollapse">
       <div class="top" v-show="!isCollapse">
-        <img class="logo" src="./logo_w_s.jpg" alt="北京立思辰">
+        <img class="logo" :src="logo_w_s" alt="北京立思辰">
         <div class="title">
           <i class="icon icon-menu"></i>
           <span>网络安全监控平台</span>
@@ -15,11 +15,11 @@
           <span slot="title" class="h1">综合监控</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="1-1">安全总览</el-menu-item>
-          <el-menu-item index="1-2">网络资产</el-menu-item>
-          <el-menu-item index="1-3">事件监测</el-menu-item>
-          <el-menu-item index="1-4">流量监测</el-menu-item>
-          <el-menu-item index="1-5">漏洞监测</el-menu-item>
+          <router-link to="/integrate-monitor/overview"><el-menu-item index="1-1">安全总览</el-menu-item></router-link>
+          <router-link to="/integrate-monitor/assets"><el-menu-item index="1-2">网络资产</el-menu-item></router-link>
+          <router-link to="/integrate-monitor/events"><el-menu-item index="1-3">事件监测</el-menu-item></router-link>
+          <router-link to="/integrate-monitor/flows"><el-menu-item index="1-4">流量监测</el-menu-item></router-link>
+          <router-link to="/integrate-monitor/vulnerability"><el-menu-item index="1-5">漏洞监测</el-menu-item></router-link>
         </el-menu-item-group>
       </el-submenu>
       <el-menu-item index="2">
@@ -58,10 +58,13 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import logo_w_s from './logo_w_s.jpg'
   export default {
+    name: 'SidebarItem',
     data() {
       return {
-        isCollapse: true
+        isCollapse: true,
+        logo_w_s
       }
     },
     methods: {
