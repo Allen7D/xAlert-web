@@ -51,7 +51,7 @@
         <span slot="title">系统配置</span>
       </el-menu-item>
     </el-menu>
-    <button class="button" @click="isCollapse = !isCollapse">
+    <button :class="isCollapse ? 'button-r' : 'button-l'" @click="isCollapse = !isCollapse">
       <i :class="isCollapse ? 'icon-dbArrowR' : 'icon-dbArrowL'"></i>
     </button>
   </nav>
@@ -114,9 +114,10 @@
     .el-menu-item
       color: #4676FF
       font-size: $font-size-large
-    .button
+    .button-r
+    .button-l
       position: absolute
-      right: -30px
+      right: 0
       top: 50%
       z-index: 999
       width: 30px
@@ -125,4 +126,6 @@
       font-size: 30px
       background: #4676FF
       border: solid 0 #4676FF
+    .button-l
+      right: -30px
 </style>

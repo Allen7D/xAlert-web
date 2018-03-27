@@ -4,11 +4,15 @@
     <div class="main">
       <navbar></navbar>
       <div class="main-warpper">
-        <keep-alive>
-          <router-view></router-view>
-        </keep-alive>
+        <section class="app-main" style="min-height: 100%">
+          <transition name="fade" mode="out-in">
+            <keep-alive>
+              <router-view></router-view>
+            </keep-alive>
+          </transition>
+        </section>
       </div>
-      <x-footer></x-footer>
+      <!--<x-footer></x-footer>-->
     </div>
   </div>
 </template>
@@ -18,8 +22,6 @@
 
   import Screenfull from 'components/screenfull/screenfull'
   import XFooter from 'components/footer/footer'
-  import IMonitor from 'components/integrate-monitor/integrate-monitor'
-  import CMonitor from 'components/custom-monitor/custom-monitor'
   import Analysis from 'components/analysis/analysis'
   import SystemStatus from 'components/system-status/system-status'
   import Log from 'components/log/log'
@@ -31,8 +33,6 @@
       Navbar,
       Screenfull,
       XFooter,
-      IMonitor,
-      CMonitor,
       Analysis,
       SystemStatus,
       Log,
@@ -50,6 +50,7 @@
     height: 100%
     .main
       flex: 1
+      width: 100%
       height: 100%
     .main-warpper
       position: relative

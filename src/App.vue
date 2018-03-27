@@ -10,7 +10,8 @@
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   html
-      height: 100%
+    height: 100%
+    box-sizing: border-box;
   body
-      height: 100% !important
+    height: 100% !important
 </style>

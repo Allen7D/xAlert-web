@@ -1,7 +1,5 @@
 <template>
   <div class="bg">
-    <i class="icon-analysis"></i>
-    登录界面
     <div class="login">
       <div class="logo"><img src="./login-logo.png" alt="logo"></div>
       <div class="container">
@@ -26,7 +24,6 @@
 <script type="text/ecmascript-6">
   import XFooter from 'components/footer/footer'
   import {mapState} from 'vuex'
-  // import axios from 'axios'
   export default {
     components: {
       XFooter
@@ -80,26 +77,6 @@
             this.$router.push('/login')
           }
         })
-        // axios.post('http://localhost:8080', postData, {
-        //     header: {
-        //         'Content-Type': 'application/x-www-form-urlencoded'
-        //     }
-        // }).then((res) => {
-        //     this.$store.commit('updateUserInfo', res.data.name)
-        //     this.$store.commit('switchLogin', true)
-        //     localStorage['username'] = res.data.name
-        //     localStorage['level'] = res.data.level
-        //     localStorage['id'] = res.data._id
-        //     localStorage['isLogin'] = true
-        //     this.$router.push('/')
-        // }).catch((err) => {
-        //     console.log(err)
-        //     this.$notify.error({
-        //       title: '错误',
-        //       message: '账号密码错误'
-        //     })
-        //     this.$router.push('/login')
-        // })
       }
     }
   }
