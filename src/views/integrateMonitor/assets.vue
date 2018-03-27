@@ -57,47 +57,60 @@
         </div>
       </div>
     </div>
-    <div class="chart chart-up">
+    <div class="chart-wraper chart-up">
       <div class="item">
         <div class="header">
           <span>资产统计</span>
         </div>
-        <div id="myChart1" :style="{width: '734px', height: '280px'}">123</div>
+        <pieChart id="assetsOnline" :style="{height:'280px', width:'100%'}"></pieChart>
       </div>
       <div class="item">
         <div class="header">
           <span>资产趋势</span>
         </div>
-        <div id="myChart2" :style="{width: '734px', height: '280px'}"></div>
+        <lineChart id="assetTrend" :style="{height:'280px', width:'100%'}"></lineChart>
       </div>
     </div>
     <div class="list">
-      <div class="item activity-assets">实时活动资产</div>
+      <div class="item">
+        <div class="header">
+          <span>实时活动资产</span>
+        </div>
+        <div class="activity-assets"></div>
+      </div>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  export default {}
+  import pieChart from 'components/charts/assetsOnline'
+  import lineChart from 'components/charts/assetsTrend'
+
+  export default {
+    components: {
+      pieChart,
+      lineChart
+    }
+  }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
   @import "~common/stylus/mixin"
   .data-index
-  .chart
+  .chart-wraper
   .list
     display: flex
     .item
       flex: 1
       align-items: space-around
-      /*margin-right: 90px*/
+      margin-right: 75px
       position: relative
       .title
         position: absolute
         top: -13px
         left: 27px
-        width: 127px
+        width: 128px
         height: 26px
         beveled-corners($color-theme, 5px)
         color: $color-theme-r
@@ -116,15 +129,30 @@
         .item-data
           color: $color-theme-d
           font-size: 28px
-  .chart
+  .chart-wraper
     margin-top: 58px
     .item
       height: 330px
       border: 1px solid $color-theme-d
-      /*background-size: 50% 100% !important*/
       .header
         padding-left: 16px
         height: 50px
         line-height: 50px
-        border: 1px 1px 2px 8px solid $color-theme-d
+        border-top: 1px solid $color-theme-d
+        border-right: 1px solid $color-theme-d
+        border-left: 8px solid  $color-theme-d
+        border-bottom: 2px solid  $color-theme-d
+  .list
+    margin-top: 65px
+    .item
+      border: 1px solid  $color-theme-d
+      height: 400px
+      .header
+        padding-left: 16px
+        height: 50px
+        line-height: 50px
+        border-top: 1px solid $color-theme-d
+        border-right: 1px solid $color-theme-d
+        border-left: 8px solid  $color-theme-d
+        border-bottom: 2px solid  $color-theme-d
 </style>

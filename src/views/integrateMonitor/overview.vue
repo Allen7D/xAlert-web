@@ -74,6 +74,7 @@
         <div class="header">
           <span>漏洞分布</span>
         </div>
+        <barChart id="overviewVulnerability" :style="{width: '100%', height: '280px'}"></barChart>
       </div>
       <div class="item">
         <div class="header">
@@ -106,6 +107,7 @@
 
 <script type="text/ecmascript-6">
   import TrendLine from 'components/charts/line'
+  import barChart from 'components/charts/overviewVulnerability'
   import Bar from 'components/charts/bar'
   import NetEventTable from 'components/table/netEventTable'
   import AssetDiscoveryTable from 'components/table/assetDiscoveryTable'
@@ -114,6 +116,7 @@
   export default {
     components: {
       TrendLine,
+      barChart,
       Bar,
       NetEventTable,
       AssetDiscoveryTable,
