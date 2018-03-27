@@ -12,22 +12,18 @@
           </div>
         </div>
       </div>
-      <div class="item">
+      <div class="item combine">
         <div class="title">
           <i class="icon-webloudongjiance"></i>
           <span>近一周发现</span>
         </div>
         <div class="content big">
-          <div class="number">
-            <span>事件数量:</span>
-            <span class="item-data">6</span>
-            <span>特别重大:</span>
-            <span class="item-data">65</span>
-            <span>重大:</span>
-            <span class="item-data">666</span>
-            <span>较大:</span>
-            <span class="item-data">6852</span>
-          </div>
+          <el-row :gutter="20" class="number">
+            <el-col :span="5"><span>事件数量:</span><span class="item-data">6</span></el-col>
+            <el-col :span="5"><span>特别重大:</span><span class="item-data">65</span></el-col>
+            <el-col :span="5"><span>重大:</span><span class="item-data">666</span></el-col>
+            <el-col :span="5"><span>较大:</span><span class="item-data">6852</span></el-col>
+          </el-row>
         </div>
       </div>
     </div>
@@ -50,14 +46,14 @@
         <div class="header">
           <span>事件等级分布</span>
         </div>
-        <pieChart id="eventsGrade"  :style="{width: '100%', height: '280px'}"></pieChart>
+        <pieChart id="eventsGrade" :style="{width: '100%', height: '280px'}"></pieChart>
       </div>
       <div class="item">
         <div class="header">
           <span>事件类型排名</span>
         </div>
         <div class="chart-sort">
-          <pie  id="eventsSort" :style="{width: '38%', height: '280px'}"></pie>
+          <pie id="eventsSort" :style="{width: '38%', height: '280px'}"></pie>
           <barChart id="eventsSortBar" :style="{width: '60%', height: '280px'}"></barChart>
         </div>
       </div>
@@ -106,7 +102,7 @@
         position: absolute
         top: -13px
         left: 27px
-        width: 128px
+        width: 130px
         height: 26px
         beveled-corners($color-theme, 5px)
         color: $color-theme-r
@@ -128,7 +124,7 @@
         span
           margin-right: 50px
       .big
-        width:1203px !important
+        width: 1547px !important
 
   .chart-wraper
     margin-top: 58px
@@ -145,6 +141,7 @@
         border-bottom: 2px solid  $color-theme-d
       .chart-sort
         display: flex
+
   .list
     margin-top: 65px
     .item

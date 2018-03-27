@@ -69,6 +69,7 @@
         <div class="header">
           <span>安全事件分布</span>
         </div>
+        <events-distribution id="eventsDistribution" :style="{width: '100%', height: '280px'}"></events-distribution>
       </div>
       <div class="item">
         <div class="header">
@@ -80,6 +81,7 @@
         <div class="header">
           <span>网络流量</span>
         </div>
+        <net-flow id="netFlow" :style="{width: '100%', height: '280px'}"></net-flow>
       </div>
     </div>
     <div class="list">
@@ -109,18 +111,38 @@
   import TrendLine from 'components/charts/line'
   import barChart from 'components/charts/overviewVulnerability'
   import Bar from 'components/charts/bar'
+  import EventsDistribution from 'components/charts/eventsDistribution'
+  import NetFlow from 'components/charts/netFlow'
   import NetEventTable from 'components/table/netEventTable'
   import AssetDiscoveryTable from 'components/table/assetDiscoveryTable'
   import VulnerabilityDiscoveryTable from 'components/table/vulnerabilityDiscoveryTable'
+
+  import axios from 'axios'
 
   export default {
     components: {
       TrendLine,
       barChart,
       Bar,
+      EventsDistribution,
+      NetFlow,
       NetEventTable,
       AssetDiscoveryTable,
       VulnerabilityDiscoveryTable
+    },
+    data() {
+      return {
+        securityEvent: 0
+      }
+    },
+    created() {
+      axios.get('/api/assets/assets?probe=ubuntu&iface=eth0')
+        .then((res) => {
+          this.totalAssets = res.data.data.data.length
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 </script>

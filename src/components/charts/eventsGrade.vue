@@ -36,14 +36,17 @@
             {
               name: '访问来源',
               type: 'pie',
-              radius: '55%',
-              center: ['50%', '60%'],
+              radius: '75%',
+              center: ['25%', '47%'],
               data: [
                 {value: 335, name: '一般'},
                 {value: 310, name: '较大'},
                 {value: 234, name: '重大'},
                 {value: 135, name: '特别重大'}
               ],
+              label: {
+                fontSize: 15
+              },
               itemStyle: {
                 emphasis: {
                   shadowBlur: 10,

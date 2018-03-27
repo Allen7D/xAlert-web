@@ -34,7 +34,8 @@
           legend: {
             data: ['业务网络1', '业务网络2', '业务网络3', '业务网络4', '业务网络5'],
             textStyle: {
-              color: '#fff'
+              color: '#4676FF',
+              fontSize: '15'
             }
           },
           grid: {
@@ -42,11 +43,6 @@
             right: '4%',
             bottom: '3%',
             containLabel: true
-          },
-          toolbox: {
-            feature: {
-              saveAsImage: {}
-            }
           },
           xAxis: {
             type: 'category',
@@ -152,33 +148,33 @@
       this.initChart()
       setInterval(function () {
         addData(true)
-        this.chart.setOption({
-          xAxis: {
-            data: date
-          },
-          series: [
-            {
-              name: '业务网络1',
-              data: data
-            },
-            {
-              name: '业务网络2',
-              data: data
-            },
-            {
-              name: '业务网络3',
-              data: data
-            },
-            {
-              name: '业务网络4',
-              data: data
-            },
-            {
-              name: '业务网络5',
-              data: data
-            }
-          ]
-        })
+//        this.chart.setOption({
+//          xAxis: {
+//            data: date
+//          },
+//          series: [
+//            {
+//              name: '业务网络1',
+//              data: data
+//            },
+//            {
+//              name: '业务网络2',
+//              data: data
+//            },
+//            {
+//              name: '业务网络3',
+//              data: data
+//            },
+//            {
+//              name: '业务网络4',
+//              data: data
+//            },
+//            {
+//              name: '业务网络5',
+//              data: data
+//            }
+//          ]
+//        })
       }, 2000)
     },
     beforeDestroy() {

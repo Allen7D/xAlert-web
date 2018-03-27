@@ -45,7 +45,7 @@
                 name: '访问来源',
                 type: 'pie',
                 radius: '75%',
-                center: ['25%', '47%'],
+                center: ['35%', '47%'],
                 data: [
                   {value: 335, name: '业务网络1'},
                   {value: 310, name: '业务网络2'},

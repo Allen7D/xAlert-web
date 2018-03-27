@@ -45,13 +45,15 @@
                 name: '访问来源',
                 type: 'pie',
                 radius: '75%',
-                center: ['25%', '47%'],
+                center: ['35%', '50%'],
                 data: [
-                  {value: 335, name: '业务网络1'},
-                  {value: 310, name: '业务网络2'},
-                  {value: 234, name: '业务网络3'},
-                  {value: 135, name: '业务网络4'},
-                  {value: 548, name: '业务网络5'}
+                  {value: 959, name: 'http'},
+                  {value: 844, name: 'https'},
+                  {value: 713, name: 'TCP/IP'},
+                  {value: 654, name: 'NetBEUI'},
+                  {value: 508, name: 'iec104'},
+                  {value: 487, name: 'modbus'},
+                  {value: 400, name: '其他'}
                 ],
                 label: {
                   fontSize: 15

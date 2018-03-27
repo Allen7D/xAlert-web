@@ -41,15 +41,18 @@
             {
               name: '访问来源',
               type: 'pie',
-              radius: '55%',
-              center: ['50%', '60%'],
+              radius: '70%',
+              center: ['50%', '45%'],
               data: [
-                {value: 335, name: '事件类型1'},
-                {value: 310, name: '事件类型2'},
-                {value: 234, name: '事件类型3'},
-                {value: 135, name: '事件类型4'},
-                {value: 548, name: '事件类型5'}
+                {value: 335, name: '类型1'},
+                {value: 310, name: '类型2'},
+                {value: 234, name: '类型3'},
+                {value: 135, name: '类型4'},
+                {value: 548, name: '类型5'}
               ],
+              label: {
+                fontSize: 15
+              },
               itemStyle: {
                 emphasis: {
                   shadowBlur: 10,

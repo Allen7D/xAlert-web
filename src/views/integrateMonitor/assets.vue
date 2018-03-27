@@ -8,7 +8,7 @@
         </div>
         <div class="content">
           <div class="number">
-            <span class="item-data">8888</span>
+            <span class="item-data">{{totalAssets || 0}}</span>
           </div>
         </div>
       </div>
@@ -86,10 +86,25 @@
   import pieChart from 'components/charts/assetsOnline'
   import lineChart from 'components/charts/assetsTrend'
 
+  import axios from 'axios'
   export default {
     components: {
       pieChart,
       lineChart
+    },
+    data() {
+      return {
+        totalAssets: 0
+      }
+    },
+    created() {
+      axios.get('/api/assets/assets?probe=ubuntu&iface=eth0')
+        .then((res) => {
+          this.totalAssets = res.data.data.data.length
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 </script>
@@ -110,7 +125,7 @@
         position: absolute
         top: -13px
         left: 27px
-        width: 128px
+        width: 130px
         height: 26px
         beveled-corners($color-theme, 5px)
         color: $color-theme-r
