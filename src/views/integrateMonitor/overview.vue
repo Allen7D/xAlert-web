@@ -50,7 +50,7 @@
         </div>
       </div>
     </div>
-    <div class="chart chart-up">
+    <div class="chart-wraper chart-up">
       <div class="item">
         <div class="header">
           <span>安全趋势</span>
@@ -64,10 +64,23 @@
         <div id="myChart-assetsAllocation" :style="{width: '734px', height: '280px'}"></div>
       </div>
     </div>
-    <div class="chart chart-down">
-      <div class="item">安全事件分布</div>
-      <div class="item">漏洞分布</div>
-      <div class="item">网络流量</div>
+    <div class="chart-wraper chart-down">
+      <div class="item">
+        <div class="header">
+          <span>安全事件分布</span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="header">
+          <span>漏洞分布</span>
+        </div>
+        <barChart id="overviewVulnerability" :style="{width: '100%', height: '280px'}"></barChart>
+      </div>
+      <div class="item">
+        <div class="header">
+          <span>网络流量</span>
+        </div>
+      </div>
     </div>
     <div class="list">
       <div class="item net-event">网络事件</div>
@@ -78,40 +91,10 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import echarts from 'echarts'
-
+  import barChart from 'components/charts/overviewVulnerability'
   export default {
-    data () {
-      return {
-        msg: 'Welcome to Your Vue.js App',
-        xValue: ['自定义'],
-        yValue: [10]
-      }
-    },
-    mouted() {
-      this.drawLine()
-      // this.drawBar()
-    },
-    methods: {
-      drawLine() {
-        let myChartSecurityTrends = this.$echarts.init(document.getElementById('myChart-securityTrends'))
-        console.log('1111111111111111')
-        var option = {
-          xAxis: {
-            type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-          },
-          yAxis: {
-            type: 'value'
-          },
-          series: [{
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
-            type: 'line',
-            smooth: true
-          }]
-        }
-        myChartSecurityTrends.setOption(option)
-      }
+    components: {
+      barChart
     }
   }
 </script>
@@ -120,7 +103,7 @@
   @import "~common/stylus/variable"
   @import "~common/stylus/mixin"
   .data-index
-  .chart
+  .chart-wraper
   .list
     display: flex
     .item
@@ -132,7 +115,7 @@
         position: absolute
         top: -13px
         left: 27px
-        width: 127px
+        width: 128px
         height: 26px
         beveled-corners($color-theme, 5px)
         color: $color-theme-r
@@ -152,7 +135,7 @@
         .item-data
           color: $color-theme-d
           font-size: 28px
-  .chart
+  .chart-wraper
     margin-top: 58px
     .item
       height: 330px
