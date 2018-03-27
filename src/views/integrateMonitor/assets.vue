@@ -76,7 +76,7 @@
         <div class="header">
           <span>实时活动资产</span>
         </div>
-        <div class="activity-assets"></div>
+        <asset-online-table></asset-online-table>
       </div>
     </div>
   </div>
@@ -85,12 +85,14 @@
 <script type="text/ecmascript-6">
   import pieChart from 'components/charts/assetsOnline'
   import lineChart from 'components/charts/assetsTrend'
+  import assetOnlineTable from 'components/table/assetOnlineTable'
 
   import axios from 'axios'
   export default {
     components: {
       pieChart,
-      lineChart
+      lineChart,
+      assetOnlineTable
     },
     data() {
       return {
@@ -144,6 +146,7 @@
         .item-data
           color: $color-theme-d
           font-size: 28px
+
   .chart-wraper
     margin-top: 58px
     .item
@@ -157,6 +160,7 @@
         border-right: 1px solid $color-theme-d
         border-left: 8px solid  $color-theme-d
         border-bottom: 2px solid  $color-theme-d
+
   .list
     margin-top: 65px
     .item
