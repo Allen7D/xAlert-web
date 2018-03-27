@@ -67,7 +67,7 @@
         <div class="header">
           <span>事件列表</span>
         </div>
-        <div class="net-event"></div>
+        <event-list-table></event-list-table>
       </div>
     </div>
   </div>
@@ -79,13 +79,15 @@
   import barChart from 'components/charts/eventsSortBar'
   import bar from 'components/charts/eventsNum'
   import lineChart from 'components/charts/eventsTrend'
+  import eventListTable from 'components/table/eventListTable'
   export default {
     components: {
       pieChart,
       pie,
       barChart,
       bar,
-      lineChart
+      lineChart,
+      eventListTable
     }
   }
 </script>

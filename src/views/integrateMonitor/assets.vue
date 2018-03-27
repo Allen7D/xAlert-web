@@ -76,7 +76,7 @@
         <div class="header">
           <span>实时活动资产</span>
         </div>
-        <div class="activity-assets"></div>
+        <asset-online-table></asset-online-table>
       </div>
     </div>
   </div>
@@ -85,11 +85,12 @@
 <script type="text/ecmascript-6">
   import pieChart from 'components/charts/assetsOnline'
   import lineChart from 'components/charts/assetsTrend'
-
+  import assetOnlineTable from 'components/table/assetOnlineTable'
   export default {
     components: {
       pieChart,
-      lineChart
+      lineChart,
+      assetOnlineTable
     }
   }
 </script>
