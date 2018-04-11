@@ -1,96 +1,104 @@
 <template>
   <div class="net-event-table">
     <el-table
-      :data="netEventData" border style="width: 100%" height="250">
+      :data="netEventData" v-loading.body="listLoading" border style="width: 100%" height="250">
       <el-table-column
-        prop="time"
-        label="日期"
+        label="事件等级"
         sortable
         header-align="center"
         align="center"
         width="180">
+        <template slot-scope="scope">
+          <span>{{scope.row.rule.severity}}</span>
+        </template>
       </el-table-column>
       <el-table-column
-        prop="eventName"
         label="事件名称"
         header-align="center"
         align="center"
         width="140">
+        <template slot-scope="scope">
+          <span>{{scope.row.rule.name}}</span>
+        </template>
       </el-table-column>
       <el-table-column
-        prop="sourceIP"
         label="源IP"
         header-align="center"
         align="center"
         width="120">
+        <template slot-scope="scope">
+          <span>{{scope.row.rule.srcIp}}</span>
+        </template>
       </el-table-column>
       <el-table-column
-        prop="destinationIP"
         label="目标IP"
         header-align="center"
         align="center"
         width="120">
+        <template slot-scope="scope">
+          <span>{{scope.row.rule.dstIp}}</span>
+        </template>
       </el-table-column>
       <el-table-column
-        prop="serviceNet"
         label="业务网络"
         sortable
         header-align="center"
         align="center"
         width="110">
+        <template slot-scope="scope">
+          <span>{{scope.row.count}}</span>
+        </template>
       </el-table-column>
     </el-table>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import { fetchList } from '@/api/article'
   export default {
+    // props: {
+    //   data: {
+    //     type: Object,
+    //     default: () => {
+    //       return {
+    //         severity: 'HIGH',
+    //         name: '读取服务器数据',
+    //         srcIp: '192.168.3.25',
+    //         dstIp: '192.168.3.28',
+    //         count: 0
+    //       }
+    //     }
+    //   }
+    // },
     data() {
       return {
-        netEventData: [{
-          time: '2018-01-19 17:46:08',
-          eventName: '读取服务器数据',
-          sourceIP: '192.168.3.25',
-          destinationIP: '192.168.3.28',
-          serviceNet: '业务网络1'
-        }, {
-          time: '2018-01-21 09:31:25',
-          eventName: '读取服务器数据',
-          sourceIP: '192.168.3.25',
-          destinationIP: '192.168.3.21',
-          serviceNet: '业务网络1'
-        }, {
-          time: '2018-01-22 17:32:18',
-          eventName: '读取服务器数据',
-          sourceIP: '192.168.3.25',
-          destinationIP: '192.168.3.11',
-          serviceNet: '业务网络2'
-        }, {
-          time: '2018-01-22 19:56:08',
-          eventName: '读取服务器数据',
-          sourceIP: '192.168.3.26',
-          destinationIP: '192.168.3.28',
-          serviceNet: '业务网络3'
-        }, {
-          time: '2018-01-22 19:56:08',
-          eventName: '读取服务器数据',
-          sourceIP: '192.168.3.26',
-          destinationIP: '192.168.3.28',
-          serviceNet: '业务网络3'
-        }, {
-          time: '2018-01-22 19:56:08',
-          eventName: '读取服务器数据',
-          sourceIP: '192.168.3.26',
-          destinationIP: '192.168.3.28',
-          serviceNet: '业务网络3'
-        }, {
-          time: '2018-01-22 19:56:08',
-          eventName: '读取服务器数据',
-          sourceIP: '192.168.3.26',
-          destinationIP: '192.168.3.28',
-          serviceNet: '业务网络3'
+        netEventData: null,
+        listLoading: true,
+        listQuery: {
+          page: 1,
+          limit: 10
         }
-        ]
+      }
+    },
+    created() {
+      this.getList()
+    },
+    methods: {
+      getList() {
+        this.listLoading = true
+        // console.log('@@@@@', this.data)
+        fetchList(this.listQuery).then(response => {
+          console.log('items', response.data.data.data)
+          const items = response.data.data.data
+          this.netEventData = items.map(v => {
+            this.$set(v, 'edit', false) // https://vuejs.org/v2/guide/reactivity.html
+
+            v.originalTitle = v.title //  will be used when user click the cancel botton
+            console.log('******', v)
+            return v
+          })
+          this.listLoading = false
+        })
       }
     }
   }

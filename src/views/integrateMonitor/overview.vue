@@ -9,7 +9,7 @@
         <div class="content">
           <div class="number">
             <span>数量:</span>
-            <span class="item-data">13</span>
+            <span class="item-data">{{securityEvent || 0}}</span>
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@
         <div class="content">
           <div class="number">
             <span>数量:</span>
-            <span class="item-data">532</span>
+            <span class="item-data">{{totalAssets || 0}}</span>
           </div>
         </div>
       </div>
@@ -69,7 +69,7 @@
         <div class="header">
           <span>安全事件分布</span>
         </div>
-        <events-distribution id="eventsDistribution" :style="{width: '100%', height: '280px'}"></events-distribution>
+        <events-distribution id="eventsDistribution" :style="{width: '100%', height: '280px'}" :data="target"></events-distribution>
       </div>
       <div class="item">
         <div class="header">
@@ -89,13 +89,13 @@
         <div class="header">
           <span>网络事件</span>
         </div>
-        <net-event-table></net-event-table>
+        <net-event-table :data="netEventData"></net-event-table>
       </div>
       <div class="item asset">
         <div class="header">
           <span>资产发现</span>
         </div>
-        <asset-discovery-table></asset-discovery-table>
+        <asset-discovery-table :data="assetDiscovery"></asset-discovery-table>
       </div>
       <div class="item vulnerability">
         <div class="header">
@@ -132,17 +132,72 @@
     },
     data() {
       return {
-        securityEvent: 0
+        securityEvent: 0,
+        totalAssets: 0,
+        target: {
+          high: 0,
+          medium: 0,
+          low: 0
+        },
+        assetDiscovery: {
+          time: null,
+          ip: null,
+          status: null
+        },
+        netEventData: null
       }
     },
     created() {
-      axios.get('/api/assets/assets?probe=ubuntu&iface=eth0')
+      axios.get('/api/ui/data?eventId=ui-keyop-summary&probe=gushenxing&iface=eth0')
         .then((res) => {
-          this.totalAssets = res.data.data.data.length
+          var m = new Map()
+          for (let i = 0; i < res.data.data.data.length; i++) {
+            var mKey = res.data.data.data[i].rule.severity
+            var mValue = res.data.data.data[i].count
+            this.securityEvent += mValue
+            if (mKey === 'HIGH') {
+              if (m.get('HIGH') != null) {
+                m.set('HIGH', m.get('HIGH') + res.data.data.data[i].count)
+              } else {
+                m.set('HIGH', res.data.data.data[i].count)
+              }
+            } else if (mKey === 'MEDIUM') {
+              if (m.get('MEDIUM') != null) {
+                m.set('MEDIUM', m.get('MEDIUM') + mValue)
+              } else {
+                m.set('MEDIUM', mValue)
+              }
+            } else {
+              if (m.get('LOW') != null) {
+                m.set('LOW', m.get('LOW') + mValue)
+              } else {
+                m.set('LOW', mValue)
+              }
+            }
+          }
+          this.target.high = m.get('HIGH')
+          this.target.medium = m.get('MEDIUM')
+          this.target.low = m.get('LOW')
+          console.log(m.get('HIGH'))
+          console.log(m.get('MEDIUM'))
+          console.log(m.get('LOW'))
         })
         .catch((err) => {
           console.log(err)
         })
+      // axios.get('/api/assets/assets?probe=gushenxing&iface=eth0')
+        axios.get('/api/ui/data?eventId=ui-dashboard-summary&probe=gushenxing&iface=eth0')
+        .then((res) => {
+          this.totalAssets = res.data.data.data.assetSummary.NEW.length + res.data.data.data.assetSummary.VALID.length + res.data.data.data.assetSummary.INVALID.length + res.data.data.data.assetSummary.IGNORED.length
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+        axios.get('/api/ui/data?eventId=ui-keyop-summary&probe=gushenxing&iface=eth0')
+          .then((res) => {
+            this.netEventData = res.data.data
+            console.log('***********', this.netEventData)
+          })
     }
   }
 </script>

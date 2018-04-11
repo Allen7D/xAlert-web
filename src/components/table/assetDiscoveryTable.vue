@@ -72,6 +72,6 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .asset-table
     height: 320px
-    min-width: 396px
+    min-width: 592px
     padding: 30px 19px
 </style>

@@ -24,7 +24,7 @@
       </el-submenu>
       <el-menu-item index="2">
         <i class="icon icon-pc"></i>
-        <span slot="title">业务监控</span>
+        <span slot="title" class="h1"><router-link to="/business-monitor/business">业务监控</router-link></span>
       </el-menu-item>
       <el-submenu index="3">
         <template slot="title">
@@ -32,10 +32,10 @@
           <span slot="title" class="h1">管理分析</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="3-1">资产</el-menu-item>
-          <el-menu-item index="3-2">事件</el-menu-item>
-          <el-menu-item index="3-3">流量</el-menu-item>
-          <el-menu-item index="3-4">漏洞</el-menu-item>
+          <router-link to="/analysis/assetManage"><el-menu-item index="3-1">资产</el-menu-item></router-link>
+          <router-link to="/analysis/eventManage"><el-menu-item index="3-2">事件</el-menu-item></router-link>
+          <router-link to="/analysis/flowManage"><el-menu-item index="3-3">流量</el-menu-item></router-link>
+          <router-link to="/analysis/vulnerabilityManage"><el-menu-item index="3-4">漏洞</el-menu-item></router-link>
         </el-menu-item-group>
       </el-submenu>
       <el-menu-item index="4">
@@ -44,7 +44,7 @@
       </el-menu-item>
       <el-menu-item index="5">
         <i class="icon icon-securityIncident"></i>
-        <span slot="title">日志</span>
+        <span slot="title"><router-link to="/log/logPage">日志</router-link></span>
       </el-menu-item>
       <el-menu-item index="6">
         <i class="icon icon-setting"></i>
