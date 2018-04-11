@@ -23,7 +23,7 @@
 
 <script type="text/ecmascript-6">
   import XFooter from 'components/footer/footer'
-  import {mapState} from 'vuex'
+  import { mapState } from 'vuex'
   export default {
     components: {
       XFooter

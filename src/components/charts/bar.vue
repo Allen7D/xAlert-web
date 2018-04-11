@@ -158,8 +158,20 @@
     },
     methods: {
       initChart() {
+        let self = this
         this.chart = echarts.init(document.getElementById(this.id))
         this.chart.setOption(this.option)
+        this.chart.on('click', (params) => {
+          // 此处this.chart 为 undifined， 参数失效，涉及栈的知识
+          // 在回调函数里，this的指向变
+          self.chart.dispatchAction({
+            type: 'legendUnSelect',
+            name: '业务4'
+          })
+        })
+      },
+      legendHandle() {
+
       }
     }
   }

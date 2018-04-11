@@ -14,30 +14,32 @@ export const constantRouterMap = [
   {path: '/404', component: _import('errorPage/404'), hidden: true},
   {
     path: '/',
-    redirect: '/integrate-monitor/overview'
+    redirect: '/integrate-monitor/overview',
+    hidden: true
   },
   {
     path: '/main',
-    component: Layout
+    component: Layout,
+    hidden: true
   },
   {
     path: '/integrate-monitor',
     component: Layout,
     name: 'integrateMonitor',
     meta: {
-      title: 'integrateMonitor',
-      icon: 'integrateMonitor'
+      title: '综合监控',
+      icon: 'icon-home'
     },
     children: [
-      {path: 'overview', component: _import('integrateMonitor/overview'), name: 'overview', meta: {title: 'overview'}},
-      {path: 'assets', component: _import('integrateMonitor/assets'), name: 'assets', meta: {title: 'assets'}},
-      {path: 'events', component: _import('integrateMonitor/events'), name: 'events', meta: {title: 'events'}},
-      {path: 'flows', component: _import('integrateMonitor/flows'), name: 'flows', meta: {title: 'flows'}},
+      {path: 'overview', component: _import('integrateMonitor/overview'), name: 'overview', meta: {title: '安全总览'}},
+      {path: 'assets', component: _import('integrateMonitor/assets'), name: 'assets', meta: {title: '网络资产'}},
+      {path: 'events', component: _import('integrateMonitor/events'), name: 'events', meta: {title: '事件监测'}},
+      {path: 'flows', component: _import('integrateMonitor/flows'), name: 'flows', meta: {title: '流量监测'}},
       {
         path: 'vulnerability',
         component: _import('integrateMonitor/vulnerability'),
         name: 'vulnerability',
-        meta: {title: 'vulnerability'}
+        meta: {title: '漏洞监测'}
       }
     ]
   },

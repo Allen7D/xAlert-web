@@ -1,7 +1,8 @@
 <template>
   <nav class="sidebar-warpper">
-    <el-menu default-active="1-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
-             :collapse="isCollapse">
+
+    <el-menu mode="vertical" unique-opened :default-active="$route.path" class="el-menu-vertical-demo" :collapse="isCollapse">
+
       <div class="top" v-show="!isCollapse">
         <img class="logo" :src="logo_w_s" alt="北京立思辰">
         <div class="title">
@@ -9,70 +10,68 @@
           <span>网络安全监控平台</span>
         </div>
       </div>
-      <el-submenu index="1">
-        <template slot="title">
-          <i class="icon icon-home"></i>
-          <span slot="title" class="h1">综合监控</span>
-        </template>
-        <el-menu-item-group>
-          <router-link to="/integrate-monitor/overview"><el-menu-item index="1-1">安全总览</el-menu-item></router-link>
-          <router-link to="/integrate-monitor/assets"><el-menu-item index="1-2">网络资产</el-menu-item></router-link>
-          <router-link to="/integrate-monitor/events"><el-menu-item index="1-3">事件监测</el-menu-item></router-link>
-          <router-link to="/integrate-monitor/flows"><el-menu-item index="1-4">流量监测</el-menu-item></router-link>
-          <router-link to="/integrate-monitor/vulnerability"><el-menu-item index="1-5">漏洞监测</el-menu-item></router-link>
-        </el-menu-item-group>
-      </el-submenu>
-      <el-menu-item index="2">
-        <i class="icon icon-pc"></i>
-        <span slot="title">业务监控</span>
-      </el-menu-item>
-      <el-submenu index="3">
-        <template slot="title">
-          <i class="icon icon-analysis"></i>
-          <span slot="title" class="h1">管理分析</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item index="3-1">资产</el-menu-item>
-          <el-menu-item index="3-2">事件</el-menu-item>
-          <el-menu-item index="3-3">流量</el-menu-item>
-          <el-menu-item index="3-4">漏洞</el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
-      <el-menu-item index="4">
-        <i class="icon icon-webloudongjiance"></i>
-        <span slot="title">系统状态</span>
-      </el-menu-item>
-      <el-menu-item index="5">
-        <i class="icon icon-securityIncident"></i>
-        <span slot="title">日志</span>
-      </el-menu-item>
-      <el-menu-item index="6">
-        <i class="icon icon-setting"></i>
-        <span slot="title">系统配置</span>
-      </el-menu-item>
+
+      <template v-for="item in routes" v-if="!item.hidden&&item.children">
+        <router-link v-if="item.children.length===1 && !item.children[0].children && !item.alwaysShow" :to="item.path+'/'+item.children[0].path" :key="item.children[0].name">
+          <el-menu-item :index="item.path+'/'+item.children[0].path" :class="{'submenu-title-noDropdown':!isNest}">
+            <i v-if="item.children[0].meta&&item.children[0].meta.icon" class="icon" :class="item.children[0].meta.icon"></i>
+            <span v-if="item.children[0].meta&&item.children[0].meta.title" class="h1">{{item.children[0].meta.title}}</span>
+          </el-menu-item>
+        </router-link>
+
+        <el-submenu v-else :index="item.name||item.path" :key="item.name">
+          <template slot="title">
+            <i v-if="item.meta&&item.meta.icon" class="icon" :class="item.meta.icon"></i>
+            <span v-if="item.meta&&item.meta.title" class="h1">{{item.meta.title}}</span>
+          </template>
+
+          <el-menu-item-group>
+            <template v-for="child in item.children" v-if="!child.hidden">
+              <sidebar-item :is-nest="true" class="nest-menu" v-if="child.children&&child.children.length>0" :routes="[child]" :key="child.path"></sidebar-item>
+
+              <router-link v-else :to="item.path+'/'+child.path" :key="child.name">
+                <el-menu-item :index="item.path+'/'+child.path">
+                  <span v-if="child.meta&&child.meta.title">{{child.meta.title}}</span>
+                </el-menu-item>
+              </router-link>
+            </template>
+          </el-menu-item-group>
+        </el-submenu>
+      </template>
+
     </el-menu>
-    <button :class="isCollapse ? 'button-r' : 'button-l'" @click="isCollapse = !isCollapse">
+    <button :class="isCollapse ? 'button-r' : 'button-l'" @click="toggleClick">
       <i :class="isCollapse ? 'icon-dbArrowR' : 'icon-dbArrowL'"></i>
     </button>
   </nav>
 </template>
 
 <script type="text/ecmascript-6">
+  import { mapGetters } from 'vuex'
   import logo_w_s from './logo_w_s.jpg'
   export default {
     name: 'SidebarItem',
     data() {
       return {
-        isCollapse: true,
         logo_w_s
       }
     },
-    methods: {
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath)
+    computed: {
+      ...mapGetters([
+        'sidebar'
+      ]),
+      routes() {
+        console.log(this.$router.options.routes)
+        console.log(this.$router.options.routes[4].children)
+        return this.$router.options.routes
       },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath)
+      isCollapse() {
+        return this.sidebar.opened
+      }
+    },
+    methods: {
+      toggleClick() {
+        this.$store.dispatch('toggleSideBar')
       }
     }
   }
@@ -83,6 +82,9 @@
   .sidebar-warpper
     position: relative
     height: 100%
+    top: 0
+    bottom: 0
+    left: 0
     background: rgba(6, 6, 123, 1)
     border-right: solid 1px #4676ff
     .top
