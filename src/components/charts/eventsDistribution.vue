@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" :id="id" :style="{height:height,width:width}"></div>
+  <div :class="className" :id="id" :style="{height:height,width:width}" :data="data"></div>
 </template>
 
 <script>
@@ -22,6 +22,16 @@
         height: {
           type: String,
           default: '200px'
+        },
+        data: {
+          type: Object,
+          default: () => {
+            return {
+              high: 0,
+              medium: 0,
+              low: 0
+            }
+          }
         }
       },
       data() {
@@ -42,16 +52,14 @@
             // },
             series: [
               {
-                name: '访问来源',
+                name: '关键操作：按规则细分',
                 type: 'pie',
                 radius: '75%',
                 center: ['35%', '47%'],
                 data: [
-                  {value: 335, name: '业务网络1'},
-                  {value: 310, name: '业务网络2'},
-                  {value: 234, name: '业务网络3'},
-                  {value: 135, name: '业务网络4'},
-                  {value: 548, name: '业务网络5'}
+                  {value: this.data.high, name: '高危'},
+                  {value: this.data.medium, name: '中危'},
+                  {value: this.data.low, name: '低危'}
                 ],
                 label: {
                   fontSize: 15
@@ -70,6 +78,10 @@
       },
       mounted() {
         this.initChart()
+        this.option.series.data.value[0].push(this.data.high)
+        this.option.series.data.value[1].push(this.data.medium)
+        this.option.series.data.value[2].push(this.data.low)
+        this.chart.setOption(this.option)
       },
       beforeDestroy() {
         if (!this.chart) {
@@ -82,6 +94,7 @@
         initChart() {
           this.chart = echarts.init(document.getElementById(this.id))
           this.chart.setOption(this.option)
+          // console.log(this.data)
         }
       }
     }

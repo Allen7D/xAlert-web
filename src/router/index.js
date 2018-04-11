@@ -25,23 +25,67 @@ export const constantRouterMap = [
   {
     path: '/integrate-monitor',
     component: Layout,
+    redirect: 'noredirect',
     name: 'integrateMonitor',
     meta: {
       title: '综合监控',
       icon: 'icon-home'
     },
     children: [
-      {path: 'overview', component: _import('integrateMonitor/overview'), name: 'overview', meta: {title: '安全总览'}},
-      {path: 'assets', component: _import('integrateMonitor/assets'), name: 'assets', meta: {title: '网络资产'}},
-      {path: 'events', component: _import('integrateMonitor/events'), name: 'events', meta: {title: '事件监测'}},
-      {path: 'flows', component: _import('integrateMonitor/flows'), name: 'flows', meta: {title: '流量监测'}},
+      {path: 'overview', component: _import('integrateMonitor/overview'), name: 'overview', meta: {title: '安全总览', breadNumber: 2}},
+      {path: 'assets', component: _import('integrateMonitor/assets'), name: 'assets', meta: {title: '网络资产', breadNumber: 2}},
+      {path: 'events', component: _import('integrateMonitor/events'), name: 'events', meta: {title: '事件监测', breadNumber: 2}},
+      {path: 'flows', component: _import('integrateMonitor/flows'), name: 'flows', meta: {title: '流量监测', breadNumber: 2}},
       {
         path: 'vulnerability',
         component: _import('integrateMonitor/vulnerability'),
         name: 'vulnerability',
-        meta: {title: '漏洞监测'}
+        meta: {title: '漏洞监测', breadNumber: 2}
       }
     ]
+  },
+  {
+    path: '/business-monitor',
+    component: Layout,
+    redirect: '/business-monitor/busniess',
+    children: [{
+      path: 'business',
+      component: _import('businessMonitor/business'),
+      name: 'businessMonitor',
+      meta: {title: 'businessMonitor', icon: 'businessMonitor', breadNumber: 1}
+    }]
+  },
+  {
+    path: '/analysis',
+    component: Layout,
+    redirect: 'noredirect',
+    name: 'analysis',
+    meta: {
+      title: 'analysis',
+      icon: 'analysis'
+    },
+    children: [
+      {path: 'assetManage', component: _import('analysis/assets'), name: 'assetManage', meta: {title: 'assetManage', breadNumber: 2}},
+      {path: 'eventManage', component: _import('analysis/events'), name: 'eventManage', meta: {title: 'eventManage', breadNumber: 2}},
+      {path: 'flowManage', component: _import('analysis/flows'), name: 'flowManage', meta: {title: 'flowManage', breadNumber: 2}},
+      {
+        path: 'vulnerabilityManage',
+        component: _import('analysis/vulnerability'),
+        name: 'vulnerabilityManage',
+        meta: {title: 'vulnerabilityManage', breadNumber: 2}
+      }
+    ]
+  },
+  {
+    path: '/log',
+    component: Layout,
+    redirect: '/log/logPage',
+    children: [{
+      path: 'logPage',
+      component: _import('log/log'),
+      name: 'log',
+      meta: {title: 'log', icon: 'log', breadNumber: 1}
+    }]
   },
   {path: '*', redirect: '/404', hidden: true}
 ]

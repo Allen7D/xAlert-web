@@ -14,7 +14,7 @@
       </div>
       <div class="item">
         <div class="title">
-          <i class=""></i>
+          <i class="icon-discovery"></i>
           <span>近一周发现</span>
         </div>
         <div class="content">
@@ -25,34 +25,34 @@
       </div>
       <div class="item">
         <div class="title">
-          <i class=""></i>
+          <i class="icon-tick"></i>
           <span>确认资产</span>
         </div>
         <div class="content">
           <div class="number">
-            <span class="item-data">6672</span>
+            <span class="item-data">{{validAssets || 0}}</span>
           </div>
         </div>
       </div>
       <div class="item">
         <div class="title">
-          <i class=""></i>
+          <i class="icon-questionMark"></i>
           <span>未知资产</span>
         </div>
         <div class="content">
           <div class="number">
-            <span class="item-data">532</span>
+            <span class="item-data">{{newAssets || 0}}</span>
           </div>
         </div>
       </div>
       <div class="item">
         <div class="title">
-          <i class=""></i>
+          <i class="icon-exclamationPoint"></i>
           <span>可疑资产</span>
         </div>
         <div class="content">
           <div class="number">
-            <span class="item-data">99</span>
+            <span class="item-data">{{invalidAssets || 0}}</span>
           </div>
         </div>
       </div>
@@ -96,13 +96,23 @@
     },
     data() {
       return {
-        totalAssets: 0
+        totalAssets: 0,
+        validAssets: 0,
+        newAssets: 0,
+        invalidAssets: 0
       }
     },
     created() {
-      axios.get('/api/assets/assets?probe=ubuntu&iface=eth0')
+      // axios.get('/api/assets/assets?probe=gushenxing&iface=eth0')
+      //   .then((res) => {
+      //     this.totalAssets = res.data.data.data.length
+      //   })
+      axios.get('/api/ui/data?eventId=ui-dashboard-summary&probe=gushenxing&iface=eth0')
         .then((res) => {
-          this.totalAssets = res.data.data.data.length
+          this.totalAssets = res.data.data.data.assetSummary.NEW.length + res.data.data.data.assetSummary.VALID.length + res.data.data.data.assetSummary.INVALID.length + res.data.data.data.assetSummary.IGNORED.length
+          this.validAssets = res.data.data.data.assetSummary.VALID.length
+          this.newAssets = res.data.data.data.assetSummary.NEW.length
+          this.invalidAssets = res.data.data.data.assetSummary.MULTIPLE_MAC.length
         })
         .catch((err) => {
           console.log(err)
@@ -148,9 +158,9 @@
           font-size: 28px
 
   .chart-wraper
+  .list
     margin-top: 58px
     .item
-      height: 330px
       border: 1px solid $color-theme-d
       .header
         padding-left: 16px
@@ -164,14 +174,5 @@
   .list
     margin-top: 65px
     .item
-      border: 1px solid  $color-theme-d
       height: 400px
-      .header
-        padding-left: 16px
-        height: 50px
-        line-height: 50px
-        border-top: 1px solid $color-theme-d
-        border-right: 1px solid $color-theme-d
-        border-left: 8px solid  $color-theme-d
-        border-bottom: 2px solid  $color-theme-d
 </style>
