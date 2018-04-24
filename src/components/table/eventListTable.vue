@@ -3,114 +3,102 @@
     <el-table
       :data="eventListData" border style="width: 100%" height="250">
       <el-table-column
-        prop="eventName"
         label="事件名称"
         header-align="center"
         align="center"
-        width="210"></el-table-column>
+        width="210">
+        <template slot-scope="scope">
+          <span>{{scope.row.rule.name}}</span>
+        </template>
+      </el-table-column>
+      <!--<el-table-column-->
+        <!--prop="eventType"-->
+        <!--label="事件类型（默认为其它）"-->
+        <!--header-align="center"-->
+        <!--align="center"-->
+        <!--width="250">-->
+        <!---->
+      <!--</el-table-column>-->
       <el-table-column
-        prop="eventType"
-        label="事件类型（默认为其它）"
-        header-align="center"
-        align="center"
-        width="250"></el-table-column>
-      <el-table-column
-        prop="eventLevel"
         label="事件等级"
         header-align="center"
         align="center"
-        width="200"></el-table-column>
+        width="200">
+        <template slot-scope="scope">
+          <span>{{scope.row.rule.severity}}</span>
+        </template>
+      </el-table-column>
       <el-table-column
-        prop="sourseIP"
         label="源IP地址"
         header-align="center"
         align="center"
-        width="220"></el-table-column>
+        width="220">
+        <template slot-scope="scope">
+          <span>{{scope.row.rule.srcIp}}</span>
+        </template>
+      </el-table-column>
       <el-table-column
-        prop="destinationIP"
         label="目标IP地址"
         header-align="center"
         align="center"
-        width="220"></el-table-column>
+        width="220">
+        <template slot-scope="scope">
+          <span>{{scope.row.rule.dstIp}}</span>
+        </template>
+      </el-table-column>
       <el-table-column
-        prop="status"
         label="状态"
         header-align="center"
         align="center"
-        width="210"></el-table-column>
+        width="210">
+        <template slot-scope="scope">
+          <span>{{scope.row.rule.title}}</span>
+        </template>
+      </el-table-column>
       <el-table-column
-        prop="time"
         label="时间"
         sortable
         header-align="center"
         align="center"
-        width="230"></el-table-column>
+        width="230">
+        <template slot-scope="scope">
+          <span>{{scope.row.rule.histogramOption}}</span>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
 
 <script>
+    import { fetchList } from '@/api/article'
     export default {
       data() {
         return {
-          eventListData: [{
-            eventName: '行李分拣',
-            eventType: '其它',
-            eventLevel: '重大',
-            sourseIP: '192.168.3.65',
-            destinationIP: '192.168.3.6',
-            status: '离线',
-            time: '2018-01-19 17:46:08'
-          }, {
-            eventName: 'xx',
-            eventType: '其它',
-            eventLevel: '较大',
-            sourseIP: '192.168.3.135',
-            destinationIP: '192.168.3.36',
-            status: '在线',
-            time: '2018-02-17 14:49:10'
-          }, {
-            eventName: '行李分拣',
-            eventType: '其它',
-            eventLevel: '重大',
-            sourseIP: '192.168.3.88',
-            destinationIP: '192.168.3.68',
-            status: '在线',
-            time: '2018-02-17 04:49:10'
-          }, {
-            eventName: '行李分拣',
-            eventType: '其它',
-            eventLevel: '重大',
-            sourseIP: '192.168.3.35',
-            destinationIP: '192.168.3.6',
-            status: '在线',
-            time: '2018-02-16 04:49:10'
-          }, {
-            eventName: 'xxxxx',
-            eventType: '其它',
-            eventLevel: '重大',
-            sourseIP: '192.168.3.5',
-            destinationIP: '192.168.3.6',
-            status: '在线',
-            time: '2018-02-16 04:49:10'
-          }, {
-            eventName: 'xxx',
-            eventType: '其它',
-            eventLevel: '重大',
-            sourseIP: '192.168.3.35',
-            destinationIP: '192.168.3.99',
-            status: '在线',
-            time: '2018-02-16 04:49:10'
-          }, {
-            eventName: '行李分拣',
-            eventType: '其它',
-            eventLevel: '重大',
-            sourseIP: '192.168.3.3',
-            destinationIP: '192.168.3.6',
-            status: '在线',
-            time: '2018-02-16 04:49:10'
+          eventListData: null,
+          // listLoading: true,
+          listQuery: {
+            page: 1,
+            limit: 10
           }
-          ]
+        }
+      },
+      created() {
+        this.getList()
+      },
+      methods: {
+        getList() {
+          // this.listLoading = true
+          fetchList(this.listQuery).then(response => {
+            // console.log('eventListData', response.data.data.data)
+            const items = response.data.data.data
+            this.eventListData = items.map(v => {
+              this.$set(v, 'edit', false) // https://vuejs.org/v2/guide/reactivity.html
+              v.originalTitle = v.title //  will be used when user click the cancel botton
+              // console.log('******', v)
+              return v
+            })
+            // this.listLoading = false
+          })
         }
       }
     }

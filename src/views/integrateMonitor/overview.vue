@@ -1,54 +1,10 @@
 <template>
   <div class="container">
     <div class="data-index">
-      <div class="item">
-        <div class="title">
-          <i class="icon-log"></i>
-          <span>安全事件</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span>数量:</span>
-            <span class="item-data">{{securityEvent || 0}}</span>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="title">
-          <i class="icon-webloudongjiance"></i>
-          <span>漏洞数量</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span>数量:</span>
-            <span class="item-data">6</span>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="title">
-          <i class="icon-network-assets"></i>
-          <span>网络资产</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span>数量:</span>
-            <span class="item-data">{{totalAssets || 0}}</span>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="title">
-          <i class="icon-networkAssets"></i>
-          <span>资产活动数量</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span>数量:</span>
-            <span class="item-data">65</span>
-          </div>
-        </div>
-      </div>
+      <data-display-box :iconClass="'icon-log'" :dataName="'安全事件'" :handleData="securityEvent"></data-display-box>
+      <data-display-box :iconClass="'icon-webloudongjiance'" :dataName="'漏洞数量'" :handleData="otherData"></data-display-box>
+      <data-display-box :iconClass="'icon-network-assets'" :dataName="'网络资产'" :handleData="totalAssets"></data-display-box>
+      <data-display-box :iconClass="'icon-networkAssets'" :dataName="'资产活动数量'" :handleData="otherData"></data-display-box>
     </div>
     <div class="chart-wraper chart-up">
       <div class="item">
@@ -69,7 +25,7 @@
         <div class="header">
           <span>安全事件分布</span>
         </div>
-        <events-distribution id="eventsDistribution" :style="{width: '100%', height: '280px'}" :data="target"></events-distribution>
+        <events-distribution id="eventsDistribution" :style="{width: '100%', height: '280px'}" :data="eventsDistributionData"></events-distribution>
       </div>
       <div class="item">
         <div class="header">
@@ -81,7 +37,7 @@
         <div class="header">
           <span>网络流量</span>
         </div>
-        <net-flow id="netFlow" :style="{width: '100%', height: '280px'}"></net-flow>
+        <!--<net-flow id="netFlow" :style="{width: '100%', height: '280px'}" :data="netFlowData"></net-flow>-->
       </div>
     </div>
     <div class="list">
@@ -117,7 +73,9 @@
   import AssetDiscoveryTable from 'components/table/assetDiscoveryTable'
   import VulnerabilityDiscoveryTable from 'components/table/vulnerabilityDiscoveryTable'
 
-  import axios from 'axios'
+  // import axios from 'axios'
+  import dataDisplayBox from 'components/dataDisplayBox/dataDisplayBox'
+  import { getDataBox } from 'components/dataDisplayBox/handleDataDisplayBox'
 
   export default {
     components: {
@@ -128,12 +86,16 @@
       NetFlow,
       NetEventTable,
       AssetDiscoveryTable,
-      VulnerabilityDiscoveryTable
+      VulnerabilityDiscoveryTable,
+      dataDisplayBox
     },
     data() {
       return {
+        netEventData: null,
+        eventsDistributionData: null,
         securityEvent: 0,
         totalAssets: 0,
+        otherData: 0,
         target: {
           high: 0,
           medium: 0,
@@ -144,60 +106,80 @@
           ip: null,
           status: null
         },
-        netEventData: null
+        netFlowData: null
       }
     },
     created() {
-      axios.get('/api/ui/data?eventId=ui-keyop-summary&probe=gushenxing&iface=eth0')
-        .then((res) => {
-          var m = new Map()
-          for (let i = 0; i < res.data.data.data.length; i++) {
-            var mKey = res.data.data.data[i].rule.severity
-            var mValue = res.data.data.data[i].count
-            this.securityEvent += mValue
-            if (mKey === 'HIGH') {
-              if (m.get('HIGH') != null) {
-                m.set('HIGH', m.get('HIGH') + res.data.data.data[i].count)
-              } else {
-                m.set('HIGH', res.data.data.data[i].count)
-              }
-            } else if (mKey === 'MEDIUM') {
-              if (m.get('MEDIUM') != null) {
-                m.set('MEDIUM', m.get('MEDIUM') + mValue)
-              } else {
-                m.set('MEDIUM', mValue)
-              }
-            } else {
-              if (m.get('LOW') != null) {
-                m.set('LOW', m.get('LOW') + mValue)
-              } else {
-                m.set('LOW', mValue)
-              }
-            }
-          }
-          this.target.high = m.get('HIGH')
-          this.target.medium = m.get('MEDIUM')
-          this.target.low = m.get('LOW')
-          console.log(m.get('HIGH'))
-          console.log(m.get('MEDIUM'))
-          console.log(m.get('LOW'))
+      this.initData()
+    },
+    // ,
+    // created() {
+    //   axios.get('/api/ui/data?eventId=ui-keyop-summary&probe=gushenxing&iface=eth0')
+    //     .then((res) => {
+    //       var m = new Map()
+    //       for (let i = 0; i < res.data.data.data.length; i++) {
+    //         var mKey = res.data.data.data[i].rule.severity
+    //         var mValue = res.data.data.data[i].count
+    //         this.securityEvent += mValue
+    //         if (mKey === 'HIGH') {
+    //           if (m.get('HIGH') != null) {
+    //             m.set('HIGH', m.get('HIGH') + res.data.data.data[i].count)
+    //           } else {
+    //             m.set('HIGH', res.data.data.data[i].count)
+    //           }
+    //         } else if (mKey === 'MEDIUM') {
+    //           if (m.get('MEDIUM') != null) {
+    //             m.set('MEDIUM', m.get('MEDIUM') + mValue)
+    //           } else {
+    //             m.set('MEDIUM', mValue)
+    //           }
+    //         } else {
+    //           if (m.get('LOW') != null) {
+    //             m.set('LOW', m.get('LOW') + mValue)
+    //           } else {
+    //             m.set('LOW', mValue)
+    //           }
+    //         }
+    //       }
+    //       this.target.high = m.get('HIGH')
+    //       this.target.medium = m.get('MEDIUM')
+    //       this.target.low = m.get('LOW')
+    //       console.log(m.get('HIGH'))
+    //       console.log(m.get('MEDIUM'))
+    //       console.log(m.get('LOW'))
+    //     })
+    //     .catch((err) => {
+    //       console.log(err)
+    //     })
+    //   // axios.get('/api/assets/assets?probe=gushenxing&iface=eth0')
+    //     axios.get('/api/ui/data?eventId=ui-dashboard-summary&probe=gushenxing&iface=eth0')
+    //     .then((res) => {
+    //       this.totalAssets = res.data.data.data.assetSummary.NEW.length + res.data.data.data.assetSummary.VALID.length + res.data.data.data.assetSummary.INVALID.length + res.data.data.data.assetSummary.IGNORED.length
+    //     })
+    //     .catch((err) => {
+    //       console.log(err)
+    //     })
+    //     axios.get('/api/ui/data?eventId=ui-keyop-summary&probe=gushenxing&iface=eth0')
+    //       .then((res) => {
+    //         this.netEventData = res.data.data
+    //         console.log('***********', this.netEventData)
+    //       })
+    // }
+    methods: {
+      initData() {
+        getDataBox('securityEvent').then((result) => {
+          console.log('###########1#1', result)
+          this.securityEvent = result.afterHandleData
         })
-        .catch((err) => {
-          console.log(err)
+        getDataBox('otherData').then((result) => {
+          console.log('###########1#2', result)
+          this.otherData = result.afterHandleData
         })
-      // axios.get('/api/assets/assets?probe=gushenxing&iface=eth0')
-        axios.get('/api/ui/data?eventId=ui-dashboard-summary&probe=gushenxing&iface=eth0')
-        .then((res) => {
-          this.totalAssets = res.data.data.data.assetSummary.NEW.length + res.data.data.data.assetSummary.VALID.length + res.data.data.data.assetSummary.INVALID.length + res.data.data.data.assetSummary.IGNORED.length
+        getDataBox('totalAssets').then((result) => {
+          console.log('###########1#3', result)
+          this.totalAssets = result.afterHandleData
         })
-        .catch((err) => {
-          console.log(err)
-        })
-        axios.get('/api/ui/data?eventId=ui-keyop-summary&probe=gushenxing&iface=eth0')
-          .then((res) => {
-            this.netEventData = res.data.data
-            console.log('***********', this.netEventData)
-          })
+      }
     }
   }
 </script>

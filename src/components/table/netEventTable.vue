@@ -1,7 +1,7 @@
 <template>
   <div class="net-event-table">
     <el-table
-      :data="netEventData" v-loading.body="listLoading" border style="width: 100%" height="250">
+      :data="netEventData"  border style="width: 100%" height="250">
       <el-table-column
         label="事件等级"
         sortable
@@ -73,7 +73,7 @@
     data() {
       return {
         netEventData: null,
-        listLoading: true,
+        // listLoading: true,
         listQuery: {
           page: 1,
           limit: 10
@@ -85,19 +85,17 @@
     },
     methods: {
       getList() {
-        this.listLoading = true
-        // console.log('@@@@@', this.data)
+        // this.listLoading = true
         fetchList(this.listQuery).then(response => {
-          console.log('items', response.data.data.data)
+          // console.log('netEventData', response.data.data.data)
           const items = response.data.data.data
           this.netEventData = items.map(v => {
             this.$set(v, 'edit', false) // https://vuejs.org/v2/guide/reactivity.html
-
             v.originalTitle = v.title //  will be used when user click the cancel botton
-            console.log('******', v)
+            // console.log('******', v)
             return v
           })
-          this.listLoading = false
+          // this.listLoading = false
         })
       }
     }

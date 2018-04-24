@@ -1,61 +1,11 @@
 <template>
   <div class="container">
     <div class="data-index">
-      <div class="item">
-        <div class="title">
-          <i class="icon-totalAssets"></i>
-          <span>总资产</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span class="item-data">{{totalAssets || 0}}</span>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="title">
-          <i class="icon-discovery"></i>
-          <span>近一周发现</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span class="item-data">8888</span>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="title">
-          <i class="icon-tick"></i>
-          <span>确认资产</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span class="item-data">{{validAssets || 0}}</span>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="title">
-          <i class="icon-questionMark"></i>
-          <span>未知资产</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span class="item-data">{{newAssets || 0}}</span>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="title">
-          <i class="icon-exclamationPoint"></i>
-          <span>可疑资产</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span class="item-data">{{invalidAssets || 0}}</span>
-          </div>
-        </div>
-      </div>
+      <data-display-box :iconClass="'icon-totalAssets'" :dataName="'总资产'" :handleData="totalAssets"></data-display-box>
+      <data-display-box :iconClass="'icon-discovery'" :dataName="'近一周发现'" :handleData="otherData"></data-display-box>
+      <data-display-box :iconClass="'icon-tick'" :dataName="'确认资产'" :handleData="validAssets"></data-display-box>
+      <data-display-box :iconClass="'icon-questionMark'" :dataName="'未知资产'" :handleData="newAssets"></data-display-box>
+      <data-display-box :iconClass="'icon-exclamationPoint'" :dataName="'可疑资产'" :handleData="invalidAssets"></data-display-box>
     </div>
     <div class="chart-wraper chart-up">
       <div class="item">
@@ -88,11 +38,14 @@
   import assetOnlineTable from 'components/table/assetOnlineTable'
 
   import axios from 'axios'
+  import dataDisplayBox from 'components/dataDisplayBox/dataDisplayBox'
+  import { getDataBox } from 'components/dataDisplayBox/handleDataDisplayBox'
   export default {
     components: {
       pieChart,
       lineChart,
-      assetOnlineTable
+      assetOnlineTable,
+      dataDisplayBox
     },
     data() {
       return {
@@ -103,20 +56,32 @@
       }
     },
     created() {
-      // axios.get('/api/assets/assets?probe=gushenxing&iface=eth0')
+      this.initData()
+      // axios.get('/api/ui/data?eventId=ui-dashboard-summary&probe=gushenxing&iface=eth0')
       //   .then((res) => {
-      //     this.totalAssets = res.data.data.data.length
+      //     this.totalAssets = res.data.data.data.assetSummary.NEW.length + res.data.data.data.assetSummary.VALID.length + res.data.data.data.assetSummary.INVALID.length + res.data.data.data.assetSummary.IGNORED.length
+      //     this.validAssets = res.data.data.data.assetSummary.VALID.length
+      //     this.newAssets = res.data.data.data.assetSummary.NEW.length
+      //     this.invalidAssets = res.data.data.data.assetSummary.MULTIPLE_MAC.length
       //   })
-      axios.get('/api/ui/data?eventId=ui-dashboard-summary&probe=gushenxing&iface=eth0')
-        .then((res) => {
-          this.totalAssets = res.data.data.data.assetSummary.NEW.length + res.data.data.data.assetSummary.VALID.length + res.data.data.data.assetSummary.INVALID.length + res.data.data.data.assetSummary.IGNORED.length
-          this.validAssets = res.data.data.data.assetSummary.VALID.length
-          this.newAssets = res.data.data.data.assetSummary.NEW.length
-          this.invalidAssets = res.data.data.data.assetSummary.MULTIPLE_MAC.length
+      //   .catch((err) => {
+      //     console.log(err)
+      //   })
+    },
+    methods: {
+      initData() {
+        getDataBox('totalAssets').then((result) => {
+          console.log('###########2#1', result)
+          this.totalAssets = result.afterHandleData
+          this.validAssets = result.afterValidAseet
+          this.invalidAssets = result.afterInvalidAsset
+          this.newAssets = result.afterNewAsset
         })
-        .catch((err) => {
-          console.log(err)
+        getDataBox('otherData').then((result) => {
+          console.log('###########1#2', result)
+          this.otherData = result.afterHandleData
         })
+      }
     }
   }
 </script>

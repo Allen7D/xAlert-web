@@ -63,7 +63,7 @@
         <div class="header">
           <span>事件列表</span>
         </div>
-        <event-list-table></event-list-table>
+        <event-list-table ></event-list-table>
       </div>
     </div>
   </div>
