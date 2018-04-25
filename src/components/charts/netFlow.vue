@@ -5,6 +5,7 @@
 <script>
   // http://echarts.baidu.com/examples/editor.html?c=pie-simple
   import echarts from 'echarts'
+  import { debounce } from '@/utils'
     export default {
       props: {
         className: {
@@ -72,6 +73,12 @@
       },
       mounted() {
         this.initChart()
+        this.__resizeHanlder = debounce(() => {
+          if (this.chart) {
+            this.chart.resize()
+          }
+        }, 50)
+        window.addEventListener('resize', this.__resizeHanlder)
       },
       beforeDestroy() {
         if (!this.chart) {

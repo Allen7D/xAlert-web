@@ -13,8 +13,7 @@
           prop="addressIP"
           label="IP地址"
           header-align="center"
-          align="center"
-          width="200"></el-table-column>
+          align="center"></el-table-column>
         <el-table-column
           prop="assetName"
           label="资产名称"
@@ -72,8 +71,7 @@
           label="更新时间"
           sortable
           header-align="center"
-          align="center"
-          width="200"></el-table-column>
+          align="center"></el-table-column>
       </el-table>
     </div>
 </template>
@@ -176,6 +174,6 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .asset-online-table
     height: 320px
-    min-width: 520px
+    /*min-width: 520px*/
     padding: 30px 19px
 </style>

@@ -12,5 +12,5 @@
     .footer
       position: relative
       width: 800px
-      margin: -152px auto 0 auto
+      margin: -12px auto 0 auto
 </style>

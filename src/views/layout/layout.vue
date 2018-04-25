@@ -1,17 +1,15 @@
 <template>
-  <div class="app">
-    <sidebar></sidebar>
+  <div class="app" :class="{hideSiddbar:sidebar.opened}">
+    <sidebar class="sidebar"></sidebar>
     <div class="main">
       <navbar></navbar>
-      <div class="main-warpper">
-        <section class="app-main" style="min-height: 100%">
-          <transition name="fade" mode="out-in">
-            <keep-alive>
-              <router-view></router-view>
-            </keep-alive>
-          </transition>
-        </section>
-      </div>
+      <section class="main-wrapper">
+        <transition name="fade" mode="out-in">
+          <keep-alive>
+            <router-view></router-view>
+          </keep-alive>
+        </transition>
+      </section>
       <!--<x-footer></x-footer>-->
     </div>
   </div>
@@ -28,6 +26,7 @@
   import Admin from 'components/admin/admin'
 
   export default {
+    name: 'layout',
     components: {
       Sidebar,
       Navbar,
@@ -37,6 +36,11 @@
       SystemStatus,
       Log,
       Admin
+    },
+    computed: {
+      sidebar() {
+        return this.$store.state.app.sidebar
+      }
     }
   }
 </script>
@@ -45,15 +49,13 @@
   @import "~common/stylus/mixin"
   @import "~common/stylus/variable"
   .app
-    display: flex
-    width: 100%
-    height: 100%
     .main
-      flex: 1
-      width: 100%
-      height: 100%
-    .main-warpper
-      position: relative
-      height: 100%
-      margin: 70px 83px 0
+      margin: 0 53px 0 264px
+      padding-top: 20px
+      .main-wrapper
+        margin: 50px 0 0 53px
+
+  .hideSiddbar
+    .main
+      margin-left: 97px
 </style>

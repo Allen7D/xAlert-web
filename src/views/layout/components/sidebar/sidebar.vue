@@ -80,11 +80,12 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
   .sidebar-warpper
-    position: relative
+    position: fixed
     height: 100%
     top: 0
     bottom: 0
     left: 0
+    z-index: 1001
     background: rgba(6, 6, 123, 1)
     border-right: solid 1px #4676ff
     .top
@@ -121,7 +122,7 @@
       position: absolute
       right: 0
       top: 50%
-      z-index: 999
+      z-index: 1002
       width: 30px
       height: 66px
       padding-left: 0

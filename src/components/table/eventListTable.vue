@@ -24,14 +24,12 @@
         prop="sourseIP"
         label="源IP地址"
         header-align="center"
-        align="center"
-        width="220"></el-table-column>
+        align="center"></el-table-column>
       <el-table-column
         prop="destinationIP"
         label="目标IP地址"
         header-align="center"
-        align="center"
-        width="220"></el-table-column>
+        align="center"></el-table-column>
       <el-table-column
         prop="status"
         label="状态"
@@ -43,8 +41,7 @@
         label="时间"
         sortable
         header-align="center"
-        align="center"
-        width="230"></el-table-column>
+        align="center"></el-table-column>
     </el-table>
   </div>
 </template>
@@ -119,6 +116,6 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .event-list-table
     height: 320px
-    min-width: 1350px
+    /*min-width: 1350px*/
     padding: 30px 19px
 </style>

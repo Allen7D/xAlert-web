@@ -5,6 +5,7 @@
 <script type="text/ecmascript-6">
   // http://echarts.baidu.com/examples/editor.html?c=bar-y-category-stack
   import echarts from 'echarts'
+  import { debounce } from '@/utils'
 
   export default {
     props: {
@@ -148,6 +149,12 @@
         this.option.series[5].data.push(Math.round(Math.random() * 10))
       }
       this.initChart()
+      this.__resizeHanlder = debounce(() => {
+        if (this.chart) {
+          this.chart.resize()
+        }
+      }, 50)
+      window.addEventListener('resize', this.__resizeHanlder)
     },
     beforeDestroy() {
       if (!this.chart) {

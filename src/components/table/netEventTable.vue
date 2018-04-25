@@ -23,18 +23,18 @@
       </el-table-column>
       <el-table-column
         label="源IP"
+        sortable
         header-align="center"
-        align="center"
-        width="120">
+        align="center">
         <template slot-scope="scope">
           <span>{{scope.row.rule.srcIp}}</span>
         </template>
       </el-table-column>
       <el-table-column
         label="目标IP"
+        sortable
         header-align="center"
-        align="center"
-        width="120">
+        align="center">
         <template slot-scope="scope">
           <span>{{scope.row.rule.dstIp}}</span>
         </template>
@@ -106,7 +106,7 @@
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .net-event-table
-    height: 320px
-    min-width: 592px
-    padding: 30px 19px
+    height: 250px
+    /*min-width: 592px*/
+    padding: 30px 19px 0
 </style>

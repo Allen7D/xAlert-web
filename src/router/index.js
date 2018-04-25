@@ -45,15 +45,18 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/business-monitor',
+    path: '/custom-monitor',
     component: Layout,
-    redirect: '/business-monitor/busniess',
-    children: [{
-      path: 'business',
-      component: _import('businessMonitor/business'),
-      name: 'businessMonitor',
-      meta: {title: 'businessMonitor', icon: 'businessMonitor', breadNumber: 1}
-    }]
+    redirect: 'noredirect',
+    name: 'customMonitor',
+    meta: {
+      title: '业务监控',
+      icon: 'icon-pc'
+    },
+    children: [
+      {path: 'business', component: _import('customMonitor/business'), name: 'customMonitor', meta: {title: '业务监控', breadNumber: 2}},
+      {path: 'business2', component: _import('customMonitor/business'), name: 'customMonitor2', meta: {title: '业务监控2', breadNumber: 2}}
+    ]
   },
   {
     path: '/analysis',
@@ -61,31 +64,42 @@ export const constantRouterMap = [
     redirect: 'noredirect',
     name: 'analysis',
     meta: {
-      title: 'analysis',
-      icon: 'analysis'
+      title: '管理分析',
+      icon: 'icon-analysis'
     },
     children: [
-      {path: 'assetManage', component: _import('analysis/assets'), name: 'assetManage', meta: {title: 'assetManage', breadNumber: 2}},
-      {path: 'eventManage', component: _import('analysis/events'), name: 'eventManage', meta: {title: 'eventManage', breadNumber: 2}},
-      {path: 'flowManage', component: _import('analysis/flows'), name: 'flowManage', meta: {title: 'flowManage', breadNumber: 2}},
+      {path: 'assetManage', component: _import('analysis/assets'), name: 'assetManage', meta: {title: '资产', breadNumber: 2}},
+      {path: 'eventManage', component: _import('analysis/events'), name: 'eventManage', meta: {title: '事件', breadNumber: 2}},
+      {path: 'flowManage', component: _import('analysis/flows'), name: 'flowManage', meta: {title: '流量', breadNumber: 2}},
       {
         path: 'vulnerabilityManage',
         component: _import('analysis/vulnerability'),
         name: 'vulnerabilityManage',
-        meta: {title: 'vulnerabilityManage', breadNumber: 2}
+        meta: {title: '漏洞', breadNumber: 2}
       }
     ]
   },
   {
     path: '/log',
     component: Layout,
-    redirect: '/log/logPage',
-    children: [{
-      path: 'logPage',
-      component: _import('log/log'),
-      name: 'log',
-      meta: {title: 'log', icon: 'log', breadNumber: 1}
-    }]
+    redirect: 'noredirect',
+    name: 'log',
+    meta: {title: '日志', icon: 'icon-securityIncident'},
+    children: [
+      {path: 'logPage', component: _import('log/log'), name: 'log', meta: {title: '日志', breadNumber: 2}},
+      {path: 'logPage2', component: _import('log/log'), name: 'log2', meta: {title: '日志2', breadNumber: 2}}
+    ]
+  },
+  {
+    path: '/system',
+    component: Layout,
+    redirect: 'noredirect',
+    name: 'system',
+    meta: {title: '系统配置', icon: 'icon-setting'},
+    children: [
+      {path: 'system', component: _import('system/index'), name: 'system2', meta: {title: '系统配置', breadNumber: 2}},
+      {path: 'system2', component: _import('system/index'), name: 'system2', meta: {title: '系统配置2', breadNumber: 2}}
+    ]
   },
   {path: '*', redirect: '/404', hidden: true}
 ]

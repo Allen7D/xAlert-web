@@ -73,7 +73,6 @@
     border: 0
     .breadcrumb-container
       float: left
-      margin: 27px 0 0 60px
       font-size: 20px
     .errLog-container
       display: inline-block

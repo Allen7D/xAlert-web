@@ -4,7 +4,6 @@
       <el-table-column
         label="时间"
         prop="time"
-        width="200"
         header-align="center"
         align="center"
         sortable>
@@ -12,7 +11,6 @@
       <el-table-column
         label="IP"
         prop="IP"
-        width="140"
         header-align="center"
         align="center">
       </el-table-column>
@@ -71,7 +69,7 @@
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .asset-table
-    height: 320px
-    min-width: 592px
-    padding: 30px 19px
+    height: 250px
+    /*min-width: 592px*/
+    padding: 30px 19px 0
 </style>

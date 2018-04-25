@@ -101,7 +101,6 @@
     width : 400px
     margin : 0 auto
     text-align: center
-
     .logo
       img
         width: 130px

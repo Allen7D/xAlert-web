@@ -5,6 +5,8 @@
 <script type="text/ecmascript-6">
   // http://echarts.baidu.com/examples/editor.html?c=multiple-x-axis
   import echarts from 'echarts'
+  import { debounce } from '@/utils'
+
   let colors = ['#FFF100', '#51D9FF']
   export default {
     props: {
@@ -127,6 +129,12 @@
     },
     mounted() {
       this.initChart()
+      this.__resizeHanlder = debounce(() => {
+        if (this.chart) {
+          this.chart.resize()
+        }
+      }, 50)
+      window.addEventListener('resize', this.__resizeHanlder)
     },
     beforeDestroy() {
       if (!this.chart) {
