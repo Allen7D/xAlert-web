@@ -1,5 +1,4 @@
 <template>
-  <div class="net-event-table">
     <el-table
       :data="netEventData" v-loading.body="listLoading" border style="width: 100%" height="250">
       <el-table-column
@@ -50,7 +49,6 @@
         </template>
       </el-table-column>
     </el-table>
-  </div>
 </template>
 
 <script type="text/ecmascript-6">
@@ -86,7 +84,6 @@
     methods: {
       getList() {
         this.listLoading = true
-        // console.log('@@@@@', this.data)
         fetchList(this.listQuery).then(response => {
           console.log('items', response.data.data.data)
           const items = response.data.data.data
@@ -94,7 +91,6 @@
             this.$set(v, 'edit', false) // https://vuejs.org/v2/guide/reactivity.html
 
             v.originalTitle = v.title //  will be used when user click the cancel botton
-            console.log('******', v)
             return v
           })
           this.listLoading = false
@@ -105,8 +101,5 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-  .net-event-table
-    height: 250px
-    /*min-width: 592px*/
-    padding: 30px 19px 0
+
 </style>

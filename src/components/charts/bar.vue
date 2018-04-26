@@ -1,36 +1,15 @@
-<template>
-  <div :class="className" :id="id" :style="{height:height,width:width}"></div>
-</template>
-
 <script type="text/ecmascript-6">
   // http://echarts.baidu.com/examples/editor.html?c=bar-y-category-stack
-  import echarts from 'echarts'
-  import { debounce } from '@/utils'
-
+  import Chart from 'components/charts/chart'
+  import { getColor } from '@/utils/index'
   export default {
-    props: {
-      className: {
-        type: String,
-        default: 'chart'
-      },
-      id: {
-        type: String,
-        default: 'chart'
-      },
-      width: {
-        type: String,
-        default: '200px'
-      },
-      height: {
-        type: String,
-        default: '200px'
-      }
-    },
+    extends: Chart,
     data() {
       return {
         chart: null,
         option: {
           legend: {
+            show: false,
             data: ['业务1', '业务2', '业务3', '业务4', '业务5', '业务6'],
             align: 'left',
             left: 90,
@@ -92,6 +71,7 @@
             bottom: '3%',
             containLabel: true
           },
+          color: getColor(),
           series: [
             {
               name: '业务1',
@@ -139,51 +119,20 @@
         }
       }
     },
-    mounted() {
-      for (let i = 0; i < 6; i++) {
-        this.option.series[0].data.push(Math.round(Math.random() * 10))
-        this.option.series[1].data.push(Math.round(Math.random() * 10))
-        this.option.series[2].data.push(Math.round(Math.random() * 10))
-        this.option.series[3].data.push(Math.round(Math.random() * 10))
-        this.option.series[4].data.push(Math.round(Math.random() * 10))
-        this.option.series[5].data.push(Math.round(Math.random() * 10))
-      }
-      this.initChart()
-      this.__resizeHanlder = debounce(() => {
-        if (this.chart) {
-          this.chart.resize()
-        }
-      }, 50)
-      window.addEventListener('resize', this.__resizeHanlder)
-    },
-    beforeDestroy() {
-      if (!this.chart) {
-        return
-      }
-      this.chart.dispose()
-      this.chart = null
-    },
-    methods: {
-      initChart() {
-        let self = this
-        this.chart = echarts.init(document.getElementById(this.id))
-        this.chart.setOption(this.option)
-        this.chart.on('click', (params) => {
-          // 此处this.chart 为 undifined， 参数失效，涉及栈的知识
-          // 在回调函数里，this的指向变
-          self.chart.dispatchAction({
-            type: 'legendUnSelect',
-            name: '业务4'
-          })
+    computed: {
+      params() {
+        let i = 0
+        return this.option.series.map((item) => {
+          return {name: item.name, color: this.option.color[i++], select: true}
         })
-      },
-      legendHandle() {
-
+      }
+    },
+    created() {
+      for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 6; j++) {
+          this.option.series[j].data.push(Math.round(Math.random() * 10))
+        }
       }
     }
   }
 </script>
-
-<style scoped lang="stylus" rel="stylesheet/stylus">
-
-</style>

@@ -1,5 +1,4 @@
 <template>
-  <div class="asset-table">
     <el-table :data="assetData" border style="width: 100%" height="250">
       <el-table-column
         label="时间"
@@ -23,7 +22,6 @@
         sortable>
       </el-table-column>
     </el-table>
-  </div>
 </template>
 
 <script type="text/ecmascript-6">
@@ -68,8 +66,5 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-  .asset-table
-    height: 250px
-    /*min-width: 592px*/
-    padding: 30px 19px 0
+
 </style>

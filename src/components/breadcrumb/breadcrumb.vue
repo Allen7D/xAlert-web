@@ -28,14 +28,13 @@
     methods: {
       getBreadcrumb() {
         var breadNumber = typeof (this.$route.meta.breadNumber) !== 'undefined' ? this.$route.meta.breadNumber : 1
-        console.log(breadNumber)
         // The current page
-        var newBread = {name: this.$route.name, path: this.$route.fullPath}
-        console.log(newBread)
+//        var newBread = {name: this.$route.name, path: this.$route.fullPath}
+//        console.log(newBread)
 
         let matched = this.$route.matched.filter(item => item.name)
-        console.log(matched)
-        console.log(matched[0].redirect)
+//        console.log(matched)
+//        console.log(matched[0].redirect)
 
         const first = matched[0]
         if (first && breadNumber !== 1 && !['integrateMonitor', 'customMonitor', 'analysis', 'log', 'system'].includes(first.name)) {

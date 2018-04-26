@@ -80,11 +80,11 @@ export function getQueryObject(url) {
  */
 export function getByteLen(val) {
   let len = 0
-  for (let i = 0; i < val.length; i++) {
-    if (val[i].match(/[^\x00-\xff]/ig) != null) {
-      len += 1
-    } else { len += 0.5 }
-  }
+  // for (let i = 0; i < val.length; i++) {
+  //   if (val[i].match(/[^\x00-\xff]/ig) != null) {
+  //     len += 1
+  //   } else { len += 0.5 }
+  // }
   return Math.floor(len)
 }
 
@@ -264,4 +264,8 @@ export function deepClone(source) {
     }
   }
   return targetObj
+}
+
+export function getColor() {
+  return ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
 }

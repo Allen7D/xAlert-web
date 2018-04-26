@@ -61,8 +61,6 @@
         'sidebar'
       ]),
       routes() {
-        console.log(this.$router.options.routes)
-        console.log(this.$router.options.routes[4].children)
         return this.$router.options.routes
       },
       isCollapse() {

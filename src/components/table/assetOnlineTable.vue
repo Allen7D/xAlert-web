@@ -174,6 +174,5 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .asset-online-table
     height: 320px
-    /*min-width: 520px*/
-    padding: 30px 19px
+    padding: 30px 19px 0
 </style>

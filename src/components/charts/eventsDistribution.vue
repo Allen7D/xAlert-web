@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" :id="id" :style="{height:height,width:width}" :data="data"></div>
+  <div :class="className" :id="id" :style="{height: '280px',width: '100%'}" :data="data"></div>
 </template>
 
 <script>
@@ -79,15 +79,13 @@
       },
       mounted() {
         this.initChart()
-        this.option.series.data.value[0].push(this.data.high)
-        this.option.series.data.value[1].push(this.data.medium)
-        this.option.series.data.value[2].push(this.data.low)
         this.chart.setOption(this.option)
+        this.initChart()
         this.__resizeHanlder = debounce(() => {
-          if (this.chart) {
-            this.chart.resize()
-          }
-        }, 50)
+            if (this.chart) {
+          this.chart.resize()
+        }
+      }, 50)
         window.addEventListener('resize', this.__resizeHanlder)
       },
       beforeDestroy() {

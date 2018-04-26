@@ -116,6 +116,5 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .event-list-table
     height: 320px
-    /*min-width: 1350px*/
     padding: 30px 19px
 </style>
