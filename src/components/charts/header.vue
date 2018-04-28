@@ -9,11 +9,8 @@
         <div class="text" @click="legendToggle(item)" :style="{color: item.select ? item.color: '#A0B9FF'}">{{item.name}}</div>
       </div>
     </div>
-    <div class="select">
-    </div>
   </div>
 </template>
-
 <script type="text/ecmascript-6">
   export default {
     props: {
@@ -60,7 +57,6 @@
     }
   }
 </script>
-
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
   @import "~common/stylus/mixin"
@@ -74,27 +70,28 @@
     border-left: 8px solid  $color-theme-d
     border-bottom: 2px solid  $color-theme-d
     .title
-      flex 0 1 100px
+      flex 0 0 80px
     .legend-wrappers
-      flex: 1 1 200px
+      flex: 1 1 40%
       display: flex
-      flex-direction column
       flex-wrap: wrap
+      align-content: space-around
+      align-items: center
       .legends
-        height: 25px
+        height 30%
         display: flex
+        align-items: center
+        margin-right 5px
         .legend
-          margin-top 7px
           border-radius: 1px
           width: 24px
           height: 7px
           cursor: pointer
+          align-items: center
         .text
-          margin-left 5px
+          margin-left 2px
           font-size: 12px
           line-height 25px
           cursor: pointer
-    .select
-      flex: 0 1 200px
-      margin-right: 47px;
+          align-items: center
 </style>

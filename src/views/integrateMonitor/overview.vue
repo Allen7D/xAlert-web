@@ -45,11 +45,7 @@
           <overview-vulnerability id="overviewVulnerability" title="漏洞分布"></overview-vulnerability>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="8">
-          <chart-wrapper title="漏洞分布">
-            <div slot="chart">
-              <net-flow id="netFlow"></net-flow>
-            </div>
-          </chart-wrapper>
+          <net-flow id="netFlow" title="网络流量"></net-flow>
         </el-col>
       </el-row>
     </div>
