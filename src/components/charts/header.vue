@@ -9,8 +9,6 @@
         <div class="text" @click="legendToggle(item)" :style="{color: item.select ? item.color: '#A0B9FF'}">{{item.name}}</div>
       </div>
     </div>
-    <div class="select">
-    </div>
   </div>
 </template>
 
@@ -94,7 +92,4 @@
           font-size: 12px
           line-height 25px
           cursor: pointer
-    .select
-      flex: 0 1 200px
-      margin-right: 47px;
 </style>
