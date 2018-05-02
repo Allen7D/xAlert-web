@@ -43,14 +43,6 @@
               trigger: 'item',
               formatter: '{a} <br/>{b} : {c} ({d}%)'
             },
-            // legend: {
-            //   orient: 'vertical',
-            //   left: 'left',
-            //   data: ['业务网络1', '业务网络2', '业务网络3', '业务网络4', '业务网络5']
-            // },
-            // textStyle: {
-            //   fontSize: 14
-            // },
             series: [
               {
                 name: '关键操作：按规则细分',
@@ -99,7 +91,6 @@
         initChart() {
           this.chart = echarts.init(document.getElementById(this.id))
           this.chart.setOption(this.option)
-          // console.log(this.data)
         }
       }
     }

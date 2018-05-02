@@ -1,5 +1,5 @@
 <template>
-    <el-table :data="assetData" border style="width: 100%" height="250">
+    <el-table :data="list" border style="width: 100%" height="250">
       <el-table-column
         label="时间"
         prop="time"
@@ -26,41 +26,8 @@
 
 <script type="text/ecmascript-6">
   export default {
-    data() {
-      return {
-        assetData: [
-          {
-            time: '2018-01-19 17:46:08',
-            IP: '192.168.3.25',
-            serviceNet: '业务网络1'
-          },
-          {
-            time: '2018-01-19 17:46:08',
-            IP: '192.168.3.25',
-            serviceNet: '业务网络1'
-          },
-          {
-            time: '2018-01-19 17:46:08',
-            IP: '192.168.3.25',
-            serviceNet: '业务网络1'
-          },
-          {
-            time: '2018-01-19 17:46:08',
-            IP: '192.168.3.25',
-            serviceNet: '业务网络1'
-          },
-          {
-            time: '2018-01-19 17:46:08',
-            IP: '192.168.3.25',
-            serviceNet: '业务网络1'
-          },
-          {
-            time: '2018-01-19 17:46:08',
-            IP: '192.168.3.25',
-            serviceNet: '业务网络1'
-          }
-        ]
-      }
+    props: {
+      list: Array
     }
   }
 </script>

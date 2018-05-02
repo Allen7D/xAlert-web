@@ -58,17 +58,17 @@
       <el-row :gutter="20">
         <el-col :xs="30" :sm="30" :lg="10">
           <table-wrapper title="网络事件" tableHeight="250px">
-              <net-event :data="netEventData"></net-event>
+              <net-event :list="netEventData"></net-event>
           </table-wrapper>
         </el-col>
         <el-col :xs="18" :sm="18" :lg="6">
           <table-wrapper title="资产发现" tableHeight="250px">
-              <asset-discovery :data="assetDiscovery"></asset-discovery>
+              <asset-discovery :list="assetDiscoveryData"></asset-discovery>
           </table-wrapper>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="8">
           <table-wrapper title="漏洞发现" tableHeight="250px">
-              <vulnerability-discovery></vulnerability-discovery>
+              <vulnerability-discovery :list="vulnerabilityDiscoveryData"></vulnerability-discovery>
           </table-wrapper>
         </el-col>
       </el-row>
@@ -117,70 +117,50 @@
           medium: 0,
           low: 0
         },
-        assetDiscovery: {
-          time: null,
-          ip: null,
-          status: null
-        },
-        netEventData: null
+        netEventData: [],
+        assetDiscoveryData: [],
+        vulnerabilityDiscoveryData: []
       }
     },
     methods: {
-      receive(data) {
-        this.params = data.params
+      getNetEventData() {
+        axios.get('/api/integrateMonitor/table.json')
+          .then(res => {
+            res = res.data
+            if (res.ret && res.data) {
+              const data = res.data
+              this.netEventData = data.netEvent
+            }
+          })
+      },
+      getAssetDiscoveryData() {
+        axios.get('/api/integrateMonitor/table.json')
+          .then(res => {
+            res = res.data
+            if (res.ret && res.data) {
+              const data = res.data
+              this.assetDiscoveryData = data.assetDiscovery
+            }
+          })
+      },
+      getVulnerabilityDiscoveryData() {
+        axios.get('/api/integrateMonitor/table.json')
+          .then(res => {
+            res = res.data
+            if (res.ret && res.data) {
+              const data = res.data
+              this.vulnerabilityDiscoveryData = data.vulnerabilityDiscovery
+            }
+          })
       }
     },
-
     created() {
-      axios.get('/api/ui/data?eventId=ui-keyop-summary&probe=gushenxing&iface=eth0')
-        .then((res) => {
-          var m = new Map()
-          let data = res.data.data.data
-          for (let i = 0; i < data.length; i++) {
-            var mKey = data[i].rule.severity
-            var mValue = data[i].count
-            this.securityEvent += mValue
-            if (mKey === 'HIGH') {
-              if (m.get('HIGH') != null) {
-                m.set('HIGH', m.get('HIGH') + data[i].count)
-              } else {
-                m.set('HIGH', data[i].count)
-              }
-            } else if (mKey === 'MEDIUM') {
-              if (m.get('MEDIUM') != null) {
-                m.set('MEDIUM', m.get('MEDIUM') + mValue)
-              } else {
-                m.set('MEDIUM', mValue)
-              }
-            } else {
-              if (m.get('LOW') != null) {
-                m.set('LOW', m.get('LOW') + mValue)
-              } else {
-                m.set('LOW', mValue)
-              }
-            }
-          }
-          this.target.high = m.get('HIGH')
-          this.target.medium = m.get('MEDIUM')
-          this.target.low = m.get('LOW')
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-
-      // axios.get('/api/assets/assets?probe=gushenxing&iface=eth0')
-        axios.get('/api/ui/data?eventId=ui-dashboard-summary&probe=gushenxing&iface=eth0')
-        .then((res) => {
-          let data = res.data.data.data
-          this.totalAssets = data.assetSummary.NEW.length + data.assetSummary.VALID.length + data.assetSummary.INVALID.length + data.assetSummary.IGNORED.length
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-        axios.get('/api/ui/data?eventId=ui-keyop-summary&probe=gushenxing&iface=eth0')
-          .then((res) => {
-            this.netEventData = res.data.data
-          })
+      // 顶部，4个指标的数据
+      // 中间，5个图表的数据
+      // 底部，3个列表的数据
+      this.getNetEventData()
+      this.getAssetDiscoveryData()
+      this.getVulnerabilityDiscoveryData()
     }
   }
 </script>
