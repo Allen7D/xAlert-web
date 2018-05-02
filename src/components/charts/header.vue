@@ -72,7 +72,7 @@
     .title
       flex 0 0 80px
     .legend-wrappers
-      flex: 1 1 40%
+      flex: 0 0 60%
       display: flex
       flex-wrap: wrap
       align-content: space-around
