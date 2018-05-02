@@ -67,7 +67,14 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
             console.log('postData: ' + postData)
-            this.$router.push('/')
+            if (this.ruleForm.username === 'admin' && this.ruleForm.pass === 'admin') {
+              this.$router.push('/integrate-monitor/overview')
+            } else {
+              this.$notify.error({
+                title: '错误',
+                message: '账号密码错误'
+              })
+            }
           } else {
             console.log('error submit!!')
             this.$notify.error({
