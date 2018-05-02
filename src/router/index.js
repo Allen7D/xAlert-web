@@ -14,7 +14,7 @@ export const constantRouterMap = [
   {path: '/404', component: _import('errorPage/404'), hidden: true},
   {
     path: '/',
-    redirect: '/login',
+    redirect: '/integrate-monitor/overview',
     hidden: true
   },
   {
