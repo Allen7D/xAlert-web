@@ -1,46 +1,24 @@
-<template>
-  <div :class="className" :id="id" :style="{height:height,width:width}"></div>
-</template>
-
-<script>
+<script type="text/ecmascript-6">
   // http://echarts.baidu.com/examples/editor.html?c=pie-simple
-  import echarts from 'echarts'
-  import { debounce } from '@/utils'
+  import Chart from 'components/charts/chart'
+  import { getColor } from '@/utils/index'
     export default {
-      props: {
-        className: {
-          type: String,
-          default: 'chart'
-        },
-        id: {
-          type: String,
-          default: 'chart'
-        },
-        width: {
-          type: String,
-          default: '200px'
-        },
-        height: {
-          type: String,
-          default: '200px'
-        }
-      },
+      extends: Chart,
       data() {
         return {
+          datas: [],
           chart: null,
           option: {
             tooltip: {
               trigger: 'item',
               formatter: '{a} <br/>{b} : {c} ({d}%)'
             },
-            // legend: {
-            //   orient: 'vertical',
-            //   left: 'left',
-            //   data: ['业务网络1', '业务网络2', '业务网络3', '业务网络4', '业务网络5']
-            // },
-            // textStyle: {
-            //   fontSize: 14
-            // },
+            legend: {
+              show: false,
+              data: [{name: 'http'}, {name: 'https'}, {name: 'TCP/IP'}, {name: 'NetBEUI'},
+                {name: 'iec104'}, {name: 'modbus'}, {name: '其他'}]
+            },
+            color: getColor(),
             series: [
               {
                 name: '访问来源',
@@ -71,31 +49,13 @@
           }
         }
       },
-      mounted() {
-        this.initChart()
-        this.__resizeHanlder = debounce(() => {
-          if (this.chart) {
-            this.chart.resize()
-          }
-        }, 50)
-        window.addEventListener('resize', this.__resizeHanlder)
-      },
-      beforeDestroy() {
-        if (!this.chart) {
-          return
-        }
-        this.chart.dispose()
-        this.chart = null
-      },
-      methods: {
-        initChart() {
-          this.chart = echarts.init(document.getElementById(this.id))
-          this.chart.setOption(this.option)
+      computed: {
+        params() {
+          let i = 0
+          return this.option.series[0].data.map((item) => {
+            return {name: item.name, color: this.option.color[i++], select: true}
+          })
         }
       }
     }
 </script>
-
-<style scoped>
-
-</style>

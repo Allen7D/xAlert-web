@@ -67,7 +67,7 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
             console.log('postData: ' + postData)
-            this.$router.push('/')
+              this.$router.push('/')
           } else {
             console.log('error submit!!')
             this.$notify.error({
