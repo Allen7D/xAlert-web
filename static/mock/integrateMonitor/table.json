@@ -1,113 +1,271 @@
 {
   "ret": true,
   "data": {
-    "assetDiscovery": [
-      {
-        "time": "2018-01-19 17:46:08",
-        "IP": "192.168.3.25",
-        "serviceNet": "业务网络1"
-      },
-      {
-        "time": "2018-01-19 17:46:08",
-        "IP": "192.168.3.25",
-        "serviceNet": "业务网络1"
-      },
-      {
-        "time": "2018-01-19 17:46:08",
-        "IP": "192.168.3.25",
-        "serviceNet": "业务网络1"
-      },
-      {
-        "time": "2018-01-19 17:46:08",
-        "IP": "192.168.3.25",
-        "serviceNet": "业务网络1"
-      },
-      {
-        "time": "2018-01-19 17:46:08",
-        "IP": "192.168.3.25",
-        "serviceNet": "业务网络1"
-      },
-      {
-        "time": "2018-01-19 17:46:08",
-        "IP": "192.168.3.25",
-        "serviceNet": "业务网络1"
-      }
-    ],
-    "vulnerabilityDiscovery": [
-      {
-        "time": "2018-01-19 17:46:08",
-        "name": "机房MES服务器2",
-        "amount": 285,
-        "serviceNet": "业务网络1"
-      },
-      {
-        "time": "2018-01-19 17:46:08",
-        "name": "机房MES服务器2",
-        "amount": 285,
-        "serviceNet": "业务网络1"
-      },
-      {
-        "time": "2018-01-19 17:46:08",
-        "name": "机房MES服务器2",
-        "amount": 285,
-        "serviceNet": "业务网络1"
-      },
-      {
-        "time": "2018-01-19 17:46:08",
-        "name": "机房MES服务器2",
-        "amount": 285,
-        "serviceNet": "业务网络1"
-      },
-      {
-        "time": "2018-01-19 17:46:08",
-        "name": "机房MES服务器2",
-        "amount": 285,
-        "serviceNet": "业务网络1"
-      }
-    ],
-    "netEvent": [
-      {
-        "time": "2018-01-28 13:16:18",
-        "eventName": "读取服务器数据",
-        "srcIP": "192.168.3.25",
-        "dstIP": "192.168.3.28",
-        "netName": "业务网络1"
-      },
-      {
-        "time": "2018-01-29 17:46:08",
-        "eventName": "读取服务器数据",
-        "srcIP": "192.168.3.25",
-        "dstIP": "192.168.3.28",
-        "netName": "业务网络1"
-      },
-      {
-        "time": "2018-01-30 11:11:12",
-        "eventName": "读取服务器数据",
-        "srcIP": "192.168.3.25",
-        "dstIP": "192.168.3.29",
-        "netName": "业务网络1"
-      },
-      {
-        "time": "2018-02-01 11:13:59",
-        "eventName": "读取服务器数据",
-        "srcIP": "192.168.3.25",
-        "dstIP": "192.168.3.28",
-        "netName": "业务网络1"
-      },
-      {
-        "time": "2018-02-03 07:16:08",
-        "eventName": "读取服务器数据",
-        "srcIP": "192.168.3.22",
-        "dstIP": "192.168.3.29",
-        "netName": "业务网络2"
-      },
-      {
-        "time": "2018-02-03 21:41:38",
-        "eventName": "读取服务器数据",
-        "srcIP": "192.168.3.22",
-        "dstIP": "192.168.3.29",
-        "netName": "业务网络2"
-      }
-    ]
+    "overview": {
+      "assetDiscovery": [
+        {
+          "time": "2018-01-19 17:46:08",
+          "IP": "192.168.3.25",
+          "serviceNet": "业务网络1"
+        },
+        {
+          "time": "2018-01-19 17:46:08",
+          "IP": "192.168.3.25",
+          "serviceNet": "业务网络1"
+        },
+        {
+          "time": "2018-01-19 17:46:08",
+          "IP": "192.168.3.25",
+          "serviceNet": "业务网络1"
+        },
+        {
+          "time": "2018-01-19 17:46:08",
+          "IP": "192.168.3.25",
+          "serviceNet": "业务网络1"
+        },
+        {
+          "time": "2018-01-19 17:46:08",
+          "IP": "192.168.3.25",
+          "serviceNet": "业务网络1"
+        },
+        {
+          "time": "2018-01-19 17:46:08",
+          "IP": "192.168.3.25",
+          "serviceNet": "业务网络1"
+        }
+      ],
+      "vulneDiscovery": [
+        {
+          "time": "2018-01-19 17:46:08",
+          "name": "机房MES服务器2",
+          "amount": 285,
+          "serviceNet": "业务网络1"
+        },
+        {
+          "time": "2018-01-19 17:46:08",
+          "name": "机房MES服务器2",
+          "amount": 285,
+          "serviceNet": "业务网络1"
+        },
+        {
+          "time": "2018-01-19 17:46:08",
+          "name": "机房MES服务器2",
+          "amount": 285,
+          "serviceNet": "业务网络1"
+        },
+        {
+          "time": "2018-01-19 17:46:08",
+          "name": "机房MES服务器2",
+          "amount": 285,
+          "serviceNet": "业务网络1"
+        },
+        {
+          "time": "2018-01-19 17:46:08",
+          "name": "机房MES服务器2",
+          "amount": 285,
+          "serviceNet": "业务网络1"
+        }
+      ],
+      "netEvent": [
+        {
+          "time": "2018-01-28 13:16:18",
+          "eventName": "读取服务器数据",
+          "srcIP": "192.168.3.25",
+          "dstIP": "192.168.3.28",
+          "netName": "业务网络1"
+        },
+        {
+          "time": "2018-01-29 17:46:08",
+          "eventName": "读取服务器数据",
+          "srcIP": "192.168.3.25",
+          "dstIP": "192.168.3.28",
+          "netName": "业务网络1"
+        },
+        {
+          "time": "2018-01-30 11:11:12",
+          "eventName": "读取服务器数据",
+          "srcIP": "192.168.3.25",
+          "dstIP": "192.168.3.29",
+          "netName": "业务网络1"
+        },
+        {
+          "time": "2018-02-01 11:13:59",
+          "eventName": "读取服务器数据",
+          "srcIP": "192.168.3.25",
+          "dstIP": "192.168.3.28",
+          "netName": "业务网络1"
+        },
+        {
+          "time": "2018-02-03 07:16:08",
+          "eventName": "读取服务器数据",
+          "srcIP": "192.168.3.22",
+          "dstIP": "192.168.3.29",
+          "netName": "业务网络2"
+        },
+        {
+          "time": "2018-02-03 21:41:38",
+          "eventName": "读取服务器数据",
+          "srcIP": "192.168.3.22",
+          "dstIP": "192.168.3.29",
+          "netName": "业务网络2"
+        }
+      ]
+    },
+    "assets": {
+      "assetOnline": [
+        {
+          "status": "离线",
+          "addressIP": "192.168.3.65",
+          "assetName": "西门子PLC",
+          "business": "行李分拣",
+          "type": "网络控制设备",
+          "importance": "重要",
+          "eventsNum": "10000",
+          "vulnerabilityNum": "10000",
+          "port": "50",
+          "communicationNum": "20MB",
+          "updateTime": "2018-01-19 17:46:08"
+        }, {
+          "status": "在线",
+          "addressIP": "192.168.3.35",
+          "assetName": "MOXA PLC",
+          "business": "行李分拣",
+          "type": "网络控制设备",
+          "importance": "重要",
+          "eventsNum": "450",
+          "vulnerabilityNum": "100",
+          "port": "80",
+          "communicationNum": "200MB",
+          "updateTime": "2018-02-16 04:49:08"
+        }, {
+          "status": "离线",
+          "addressIP": "192.168.3.165",
+          "assetName": "PC",
+          "business": "行李分拣",
+          "type": "网络控制设备",
+          "importance": "重要",
+          "eventsNum": "6000",
+          "vulnerabilityNum": "1900",
+          "port": "8080",
+          "communicationNum": "250MB",
+          "updateTime": "2018-03-05 7:46:08"
+        }, {
+          "status": "离线",
+          "addressIP": "192.168.3.65",
+          "assetName": "西门子PLC",
+          "business": "行李分拣",
+          "type": "网络控制设备",
+          "importance": "重要",
+          "eventsNum": "10000",
+          "vulnerabilityNum": "10000",
+          "port": "50",
+          "communicationNum": "20MB",
+          "updateTime": "2018-01-19 17:46:08"
+        }, {
+          "status": "离线",
+          "addressIP": "192.168.3.65",
+          "assetName": "西门子PLC",
+          "business": "行李分拣",
+          "type": "网络控制设备",
+          "importance": "重要",
+          "eventsNum": "10000",
+          "vulnerabilityNum": "10000",
+          "port": "50",
+          "communicationNum": "20MB",
+          "updateTime": "2018-01-19 17:46:08"
+        }, {
+          "status": "离线",
+          "addressIP": "192.168.3.65",
+          "assetName": "西门子PLC",
+          "business": "行李分拣",
+          "type": "网络控制设备",
+          "importance": "重要",
+          "eventsNum": "10000",
+          "vulnerabilityNum": "10000",
+          "port": "50",
+          "communicationNum": "20MB",
+          "updateTime": "2018-01-19 17:46:08"
+        }, {
+          "status": "在线",
+          "addressIP": "192.168.3.65",
+          "assetName": "西门子PLC",
+          "business": "行李分拣",
+          "type": "网络控制设备",
+          "importance": "重要",
+          "eventsNum": "10000",
+          "vulnerabilityNum": "10000",
+          "port": "50",
+          "communicationNum": "20MB",
+          "updateTime": "2018-01-19 17:46:08"
+        }
+      ]
+    },
+    "events": {
+      "eventList": [
+        {
+          "name": "行李分拣",
+          "type": "其它",
+          "level": "重大",
+          "srcIP": "192.168.3.65",
+          "dstIP": "192.168.3.6",
+          "status": "离线",
+          "time": "2018-01-19 17:46:08"
+        },
+        {
+          "name": "xx",
+          "type": "其它",
+          "level": "较大",
+          "srcIP": "192.168.3.135",
+          "dstIP": "192.168.3.36",
+          "status": "在线",
+          "time": "2018-02-17 14:49:10"
+        },
+        {
+          "name": "行李分拣",
+          "type": "其它",
+          "level": "重大",
+          "srcIP": "192.168.3.88",
+          "dstIP": "192.168.3.68",
+          "status": "在线",
+          "time": "2018-02-17 04:49:10"
+        },
+        {
+          "name": "行李分拣",
+          "type": "其它",
+          "level": "重大",
+          "srcIP": "192.168.3.35",
+          "dstIP": "192.168.3.6",
+          "status": "在线",
+          "time": "2018-02-16 04:49:10"
+        },
+        {
+          "name": "xxxxx",
+          "type": "其它",
+          "level": "重大",
+          "srcIP": "192.168.3.5",
+          "dstIP": "192.168.3.6",
+          "status": "在线",
+          "time": "2018-02-16 04:49:10"
+        },
+        {
+          "name": "xxx",
+          "type": "其它",
+          "level": "重大",
+          "srcIP": "192.168.3.35",
+          "dstIP": "192.168.3.99",
+          "status": "在线",
+          "time": "2018-02-16 04:49:10"
+        },
+        {
+          "name": "行李分拣",
+          "type": "其它",
+          "level": "重大",
+          "srcIP": "192.168.3.3",
+          "dstIP": "192.168.3.6",
+          "status": "在线",
+          "time": "2018-02-16 04:49:10"
+        }
+      ]
+    }
   }
 }

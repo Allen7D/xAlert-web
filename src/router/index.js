@@ -32,16 +32,11 @@ export const constantRouterMap = [
       icon: 'icon-home'
     },
     children: [
-      {path: 'overview', component: _import('integrateMonitor/overview'), name: 'overview', meta: {title: '安全总览', breadNumber: 2}},
-      {path: 'assets', component: _import('integrateMonitor/assets'), name: 'assets', meta: {title: '网络资产', breadNumber: 2}},
-      {path: 'events', component: _import('integrateMonitor/events'), name: 'events', meta: {title: '事件监测', breadNumber: 2}},
-      {path: 'flows', component: _import('integrateMonitor/flows'), name: 'flows', meta: {title: '流量监测', breadNumber: 2}},
-      {
-        path: 'vulnerability',
-        component: _import('integrateMonitor/vulnerability'),
-        name: 'vulnerability',
-        meta: {title: '漏洞监测', breadNumber: 2}
-      }
+      {path: 'overview', component: _import('integrateMonitor/overview/overview'), name: 'overview', meta: {title: '安全总览', breadNumber: 2}},
+      {path: 'assets', component: _import('integrateMonitor/assets/assets'), name: 'assets', meta: {title: '网络资产', breadNumber: 2}},
+      {path: 'events', component: _import('integrateMonitor/events/events'), name: 'events', meta: {title: '事件监测', breadNumber: 2}},
+      {path: 'flows', component: _import('integrateMonitor/flows/flows'), name: 'flows', meta: {title: '流量监测', breadNumber: 2}},
+      {path: 'vulner', component: _import('integrateMonitor/vulne/vulne'), name: 'vulne', meta: {title: '漏洞监测', breadNumber: 2}}
     ]
   },
   {
@@ -68,15 +63,10 @@ export const constantRouterMap = [
       icon: 'icon-analysis'
     },
     children: [
-      {path: 'assetManage', component: _import('analysis/assets'), name: 'assetManage', meta: {title: '资产', breadNumber: 2}},
-      {path: 'eventManage', component: _import('analysis/events'), name: 'eventManage', meta: {title: '事件', breadNumber: 2}},
-      {path: 'flowManage', component: _import('analysis/flows'), name: 'flowManage', meta: {title: '流量', breadNumber: 2}},
-      {
-        path: 'vulnerabilityManage',
-        component: _import('analysis/vulnerability'),
-        name: 'vulnerabilityManage',
-        meta: {title: '漏洞', breadNumber: 2}
-      }
+      {path: 'assetManage', component: _import('analysis/assets/assets'), name: 'assetManage', meta: {title: '资产', breadNumber: 2}},
+      {path: 'eventManage', component: _import('analysis/events/events'), name: 'eventManage', meta: {title: '事件', breadNumber: 2}},
+      {path: 'flowManage', component: _import('analysis/flows/flows'), name: 'flowManage', meta: {title: '流量', breadNumber: 2}},
+      {path: 'vulneManage', component: _import('analysis/vulne/vulne'), name: 'vulneManage', meta: {title: '漏洞', breadNumber: 2}}
     ]
   },
   {

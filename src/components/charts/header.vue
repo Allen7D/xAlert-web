@@ -70,7 +70,7 @@
     border-left: 8px solid  $color-theme-d
     border-bottom: 2px solid  $color-theme-d
     .title
-      flex 0 0 80px
+      flex 0 0 100px
     .legend-wrappers
       flex: 0 0 60%
       display: flex

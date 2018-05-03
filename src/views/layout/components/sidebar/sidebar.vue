@@ -1,5 +1,5 @@
 <template>
-  <nav class="sidebar-warpper">
+  <nav class="sidebar-wrapper">
 
     <el-menu mode="vertical" unique-opened :default-active="$route.path" class="el-menu-vertical-demo" :collapse="isCollapse">
 
@@ -77,7 +77,7 @@
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
-  .sidebar-warpper
+  .sidebar-wrapper
     position: fixed
     height: 100%
     top: 0

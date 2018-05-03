@@ -29,6 +29,7 @@
   @import "~common/stylus/mixin"
   .item
     height: 350px
+    margin-bottom: 28px
     border: 1px solid $color-theme-d
     .header
       padding-left: 16px

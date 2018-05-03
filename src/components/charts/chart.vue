@@ -36,17 +36,23 @@
     },
     mounted() {
       this.initChart()
+      // 监听窗口的变化
       this.__resizeHanlder = debounce(() => {
         if (this.chart) {
           this.chart.resize()
         }
       }, 50)
       window.addEventListener('resize', this.__resizeHanlder)
+      // 监听侧边栏的变化
+      const sidebarElm = document.getElementsByClassName('sidebar')[0]
+      sidebarElm.addEventListener('transitionend', this.__resizeHanlder)
     },
     beforeDestroy() {
       if (!this.chart) {
         return
       }
+      const sidebarElm = document.getElementsByClassName('sidebar')[0]
+      sidebarElm.removeEventListener('transitionend', this.__resizeHanlder)
       this.chart.dispose()
       this.chart = null
     }
