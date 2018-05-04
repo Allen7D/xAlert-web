@@ -9,6 +9,10 @@
         <div class="text" @click="legendToggle(item)" :style="{color: item.select ? item.color: '#A0B9FF'}">{{item.name}}</div>
       </div>
     </div>
+    <div>
+      <el-button @click="changetime(1)">one</el-button>
+      <el-button @click="changetime(30)">two</el-button>
+    </div>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -20,12 +24,24 @@
     },
     data() {
       return {
-        legendList: []
+        legendList: [],
+        time: 5,
+        date: 1
       }
     },
     mounted() {
       this.legendList = this.params
+      // this.date = this.params[0].le
     },
+    // watch: {
+    //   date: function (newdate, olddate) {
+    //     this.chart.dispatchAction({
+    //       type: 'dataZoom',
+    //       start: (1 - (this.time * 60 / newdate)) * 100,
+    //       end: 100
+    //     })
+    //   }
+    // },
     methods: {
       legendToggle(item) {
         item.select = !item.select
@@ -53,8 +69,24 @@
           type: 'downplay',
           name: item.name
         })
+      },
+      changetime(data) {
+        this.time = data
+        this.datazoom()
+      },
+      datazoom() {
+        // var now = +new Date()
+         // let date = new Date(now - data * 1000 * 60)
+         // let time = [date.getHours(), date.getMinutes()].join(':')
+        let i = (1 - (this.time * 60 / this.params[0].le)) * 100
+        console.log('data' + i)
+          this.chart.dispatchAction({
+            type: 'dataZoom',
+            start: i,
+            end: 100
+          })
+        }
       }
-    }
   }
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
