@@ -99,8 +99,4 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-<<<<<<< HEAD
-=======
-
->>>>>>> 39f0290628c8494010d1e47936a70fae2b4486d1
 </style>
