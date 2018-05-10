@@ -1,98 +1,56 @@
+<!--<template>-->
+  <!--<div class="container">-->
+    <!--<div class="tab-wrapper">-->
+      <!--<el-tabs type="card" v-model="activeName">-->
+        <!--<el-tab-pane label="资产情况" name="first">-->
+          <!--资产情况-->
+        <!--</el-tab-pane>-->
+        <!--<el-tab-pane label="仪表盘" name="second">-->
+          <!--仪表盘-->
+        <!--</el-tab-pane>-->
+      <!--</el-tabs>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</template>-->
 <template>
   <div class="container">
-    <div class="data-index">
-      <div class="item">
-        <div class="title">
-          <i class="icon-totalAssets"></i>
-          <span>总资产</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span class="item-data">{{totalAssets || 0}}</span>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="title">
-          <i class="icon-discovery"></i>
-          <span>近一周发现</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span class="item-data">8888</span>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="title">
-          <i class="icon-tick"></i>
-          <span>确认资产</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span class="item-data">{{validAssets || 0}}</span>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="title">
-          <i class="icon-questionMark"></i>
-          <span>未知资产</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span class="item-data">{{newAssets || 0}}</span>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="title">
-          <i class="icon-exclamationPoint"></i>
-          <span>可疑资产</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span class="item-data">{{invalidAssets || 0}}</span>
-          </div>
-        </div>
-      </div>
+    <div class="chart-wrapper">
+      <el-row>
+        <el-col :xs="24" :sm="24" :lg="24">
+          <assetTrend id="analysis-assetOnline" title="资产在线数据统计趋势"></assetTrend>
+        </el-col>
+      </el-row>
     </div>
     <div class="chart-wrapper">
-      <div class="item">
-        <div class="header">
-          <span>资产统计</span>
-        </div>
-        <asset-stat id="assetsOnline" :style="{height:'280px', width:'100%'}"></asset-stat>
-      </div>
-      <div class="item">
-        <div class="header">
-          <span>资产趋势</span>
-        </div>
-        <asset-trend id="assetTrend" :style="{height:'280px', width:'100%'}"></asset-trend>
-      </div>
+      <el-row>
+        <el-col :xs="24" :sm="24" :lg="24">
+          <assetTypeStatistics id="assetTypeStatistics" title="资产类型统计"></assetTypeStatistics>
+        </el-col>
+      </el-row>
     </div>
-    <div class="table-wrapper">
-      <div class="item">
-        <div class="header">
-          <span>实时活动资产</span>
-        </div>
-        <asset-online :dataList="assetOnlineData"></asset-online>
-      </div>
+    <div class="chart-wrapper">
+      <el-row>
+        <el-col :xs="24" :sm="24" :lg="24">
+          <gradeDistribution id="gradeDestribution" title="等级分布"></gradeDistribution>
+        </el-col>
+      </el-row>
     </div>
   </div>
 </template>
-
 <script type="text/ecmascript-6">
   import assetStat from './components/assetStat'
   import assetTrend from './components/assetTrend'
   import assetOnline from './components/assetOnline'
-
+  import assetTypeStatistics from './components/assetTypeStatistics'
+  import gradeDistribution from './components/gradeDistribution'
   import axios from 'axios'
   export default {
     components: {
       assetStat,
       assetTrend,
-      assetOnline
+      assetOnline,
+      assetTypeStatistics,
+      gradeDistribution
     },
     data() {
       return {
@@ -100,7 +58,8 @@
         validAssets: 0,
         newAssets: 0,
         invalidAssets: 0,
-        assetOnlineData: []
+        assetOnlineData: [],
+        activeName: 'first'
       }
     },
     methods: {
@@ -138,7 +97,7 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
   @import "~common/stylus/mixin"
-  .data-index
+  /*.data-index
   .chart-wrapper
   .table-wrapper
     display: flex
@@ -189,4 +148,16 @@
     margin-top: 65px
     .item
       height: 400px
+      */
+</style>
+<style lang="stylus" rel="stylesheet/stylus">
+  .container
+    .el-tabs--card > .el-tabs__header {
+      border-bottom: none;
+    }
+  .container
+    .el-tabs__header{
+      margin 0;
+      background-color: bisque
+    }
 </style>
