@@ -1,35 +1,22 @@
 <template>
-  <div class="item" :style="itemHeight">
-    <AnalysisHead :title="title" :params="params" :chart="chart"></AnalysisHead>
-    <div :id="id" :style="[chartHeight, {width: '100%'}]"></div>
+  <div class="item">
+    <el-row>
+      <el-col :span="4"><span class="title" >{{title}}</span></el-col>
+      <el-col :span="4" :data="itemArray" v-for="item in itemArray" :key="item"><span class="item-title">{{item.title}}</span><span class="item-data">{{item.data}}</span></el-col>
+    </el-row>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import { debounce } from '@/utils'
-  import echarts from 'echarts'
-  import AnalysisHead from 'components/analysis/analysisHead'
   export default {
-    components: {
-      AnalysisHead
-    },
     props: {
-      id: {
-        type: String,
-        default: 'chart'
+      itemArray: {
+        type: Array
       },
       title: {
         type: String,
         default: '未名'
-      },
-      height: {
-        type: Number,
-        default: 330
-      }
-    },
-    data() {
-      return {
-        chart: null
       }
     },
     computed: {
@@ -38,12 +25,6 @@
       },
       chartHeight() {
         return {height: `${this.height - 50}px`}
-      }
-    },
-    methods: {
-      initChart() {
-        this.chart = echarts.init(document.getElementById(this.id))
-        this.chart.setOption(this.option)
       }
     },
     mounted() {
@@ -73,11 +54,31 @@
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
-  .item
-    /*height: 330px*/
+  .item {
+    height: 100px
     margin 20px
     position: relative
     border: 1px solid #e6e6e6
-    background-color #fff
+    background-color #f2f2f2
     border-radius 10px
+    overflow hidden
+    line-height 100px
+    text-align center
+  }
+  .title {
+    color: #333333
+    font-size 20px
+    font-weight: bold
+  }
+  .item-title {
+    color: #808080
+    font-size 15px
+    font-weight: bold
+  }
+  .item-data {
+    color: #00a0e9
+    font-weight: bolder
+    font-size 30px
+    padding 0 10px
+  }
 </style>
