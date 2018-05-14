@@ -4,7 +4,12 @@
       <i :class="icon"></i><span>{{title}}</span>
     </div>
     <div class="content">
-      <span>数量:</span><span class="index">{{data}}</span>
+      <el-row type="flex" justify="space-between">
+        <el-col v-for="(item, index) of indicators" :key="index" :span="8">
+          <span v-if="item.key">{{item.key + ':'}}</span>
+          <span class="index">{{item.value}}</span>
+        </el-col>
+      </el-row>
     </div>
   </div>
 </template>
@@ -19,6 +24,9 @@
       icon: {
         type: String,
         default: 'icon-log'
+      },
+      indicators: {
+        type: Array
       },
       data: {
         type: Number,
@@ -46,7 +54,6 @@
       text-align: center
       line-height: 26px
     .content
-      max-width: 314px
       height: 100px
       font-size: 20px
       font-weight: 700
