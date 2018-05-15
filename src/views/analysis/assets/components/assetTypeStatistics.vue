@@ -26,17 +26,21 @@
           },
           xAxis: {
             type: 'category',
-            boundaryGap: false,
-            data: ['9:00', '12:00', '15:00', '18:00', '21:00', '24:00', '3:00', '6:00', '9:00'],
+            data: ['类型1', '类型2', '类型3', '类型4', '类型5', '类型6', '类型7', '类型8', '类型9', '类型10'],
             axisLine: {
               lineStyle: {
                 color: '#a0a0a0'
               }
             },
+            axisLabel: {
+              textStyle: {
+                fontWeight: '500px',
+                color: '#a0a0a0'
+              }
+            },
             axisTick: {
               lineStyle: {
-                color: '#a0a0a0',
-                inside: true
+                color: '#a0a0a0'
               }
             }
           },
@@ -67,10 +71,11 @@
           ],
           color: getColor,
           series: [{
-            data: [41, 46, 41, 42, 49, 51, 76, 67, 45, 43, 38, 45, 100],
-            type: 'line',
-            color: '#00a0e9'
-            }]
+            data: [41, 46, 41, 42, 49, 51, 76, 67, 45, 43],
+            type: 'bar',
+            color: '#00a0e9',
+            barWidth: '30%'
+          }]
         }
       }
     }
