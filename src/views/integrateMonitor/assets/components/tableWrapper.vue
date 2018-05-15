@@ -3,7 +3,9 @@
     <div class="header">
       <span>{{title}}</span>
     </div>
-    <slot name="chart"></slot>
+    <div class="content" :style="{height: tableHeight}">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -14,13 +16,9 @@
         type: String,
         default: '未名'
       },
-      chart: Object,
-      params: Array
-    },
-    methods: {
-      receive(data) {
-        console.log('hehe', this.params)
-        this.params = data.params
+      tableHeight: {
+        type: String,
+        default: '300px'
       }
     }
   }
@@ -28,10 +26,10 @@
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
+  @import "~common/stylus/mixin"
   .item
-    height: 330px
+    height: 500px
     margin-bottom: 28px
-    position: relative
     border: 1px solid $color-theme-d
     .header
       padding-left: 16px
@@ -41,4 +39,6 @@
       border-right: 1px solid $color-theme-d
       border-left: 8px solid  $color-theme-d
       border-bottom: 2px solid  $color-theme-d
+    .content
+      padding: 30px 19px 0
 </style>

@@ -130,3 +130,12 @@
     .button-l
       right: -30px
 </style>
+<style lang="stylus" rel="stylesheet/stylus">
+  .el-menu--collapse .el-menu .el-submenu, .el-menu--popup {
+    min-width: 55px;
+    width: 100px;
+    text-align center;
+    // background-color: #4676ff;
+    // color: #06067b;
+  }
+</style>
