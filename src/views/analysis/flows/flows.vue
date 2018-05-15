@@ -1,9 +1,16 @@
 <template>
-  <div>flows</div>
+  <div>flows
+    <flowtable></flowtable>
+  </div>
 </template>
 
 <script type="text/ecmascript-6">
-  export default {}
+  import flowtable from './../../../components/pagination/table'
+  export default {
+    components: {
+      flowtable
+    }
+  }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
