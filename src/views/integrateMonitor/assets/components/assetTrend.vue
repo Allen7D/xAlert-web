@@ -1,60 +1,33 @@
-<template>
-  <div :class="className" :id="id" :style="{height: '280px',width: '100%'}"></div>
-</template>
-
-<script>
-  // http://echarts.baidu.com/examples/editor.html?c=line-stack
-  import echarts from 'echarts'
+<script type="text/ecmascript-6">
+  // http://echarts.baidu.com/examples/editor.html?c=bar-y-category-stack
+  import Chart from 'components/charts/chart'
+  import { getColor } from '@/utils/index'
   export default {
-    props: {
-      className: {
-        type: String,
-        default: 'chart'
-      },
-      id: {
-        type: String,
-        default: 'chart'
-      },
-      width: {
-        type: String,
-        default: '200px'
-      },
-      height: {
-        type: String,
-        default: '200px'
-      }
-    },
+    extends: Chart,
     data() {
       return {
         chart: null,
         option: {
-          tooltip: {
-            trigger: 'axis'
-          },
           legend: {
-            data: ['业务网络1', '业务网络2', '业务网络3', '业务网络4', '业务网络5'],
-            textStyle: {
-              color: '#4676FF',
-              fontSize: '15'
-            }
+            show: false,
+            data: ['行李分拣', '业务3', '业务5', '值机系统', '业务4', '业务6']
           },
           grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
+            left: '5%',
+            right: '5%',
+            top: '5%',
+            bottom: '5%',
             containLabel: true
           },
           xAxis: {
             type: 'category',
             boundaryGap: false,
-            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+            data: ['2016-1', '2016-2', '2016-3', '2016-4', '2016-5', '2016-6', '2016-7', '2016-8', '2016-9', '2016-10', '2016-11', '2016-12'],
+            splitLine: {show: false},
             axisLine: {
               lineStyle: {
                 color: '#4676FF'
               }
-            },
-            splitLine: {
-              show: false
             },
             axisLabel: {
               textStyle: {
@@ -68,131 +41,90 @@
               }
             }
           },
-          yAxis: {
-            type: 'value',
-            axisLine: {
-              lineStyle: {
-                color: '#4676FF'
-              }
-            },
-            splitLine: {
-              show: false
-            },
-            axisLabel: {
-              textStyle: {
-                color: '#4676FF',
-                fontSize: '15'
-              }
-            },
-            axisTick: {
-              lineStyle: {
-                color: '#4676FF'
+          yAxis: [
+            {
+              type: 'value',
+              splitLine: {show: false},
+              axisLine: {
+                lineStyle: {
+                  color: '#4676FF'
+                }
+              },
+              axisLabel: {
+                textStyle: {
+                  color: '#4676FF',
+                  fontSize: '15'
+                }
+              },
+              axisTick: {
+                lineStyle: {
+                  color: '#4676FF'
+                }
               }
             }
-          },
+          ],
+          color: getColor,
           series: [
             {
-              name: '业务网络1',
+              name: '行李分拣',
               type: 'line',
-              stack: '总量',
-              data: [20, 3, 1, 3, 9, 3, 1]
+              smooth: true,
+              data: [2, 125, 39, 26, 28, 70, 175, 182, 48, 18, 6, 2],
+              color: '#096'
             },
             {
-              name: '业务网络2',
+              name: '业务3',
               type: 'line',
-              stack: '总量',
-              data: [20, 8, 11, 24, 9, 3, 1]
+              smooth: true,
+              data: [3, 5, 11, 18, 148, 69, 231, 46, 55, 98, 10, 0],
+              color: '#c23531'
             },
             {
-              name: '业务网络3',
+              name: '业务5',
               type: 'line',
-              stack: '总量',
-              data: [10, 22, 20, 14, 9, 3, 10]
+              smooth: true,
+              data: [6, 25, 29, 46, 18, 170, 75, 108, 148, 48, 61, 12],
+              color: '#2f4554'
             },
             {
-              name: '业务网络4',
+              name: '值机系统',
               type: 'line',
-              stack: '总量',
-              data: [20, 32, 1, 34, 30, 30, 20]
+              smooth: true,
+              data: [13, 50, 31, 28, 78, 49, 31, 116, 155, 128, 100, 20],
+              color: '#61a0a8'
             },
             {
-              name: '业务网络5',
+              name: '业务4',
               type: 'line',
-              stack: '总量',
-              data: [20, 32, 21, 34, 19, 33, 12]
+              smooth: true,
+              data: [20, 135, 19, 116, 68, 39, 105, 12, 88, 38, 76, 27],
+              color: '#ffde33'
+            },
+            {
+              name: '业务6',
+              type: 'line',
+              smooth: true,
+              data: [13, 51, 111, 118, 48, 69, 131, 16, 155, 58, 120, 70],
+              color: '#660099'
             }
           ]
         }
       }
     },
-    mounted() {
-      var base = +new Date(1967, 3, 30)
-      var oneDay = 24 * 3600 * 1000
-      var date = []
-      var data = []
-      var now = new Date(base += oneDay)
-      function addData(shift) {
-        now = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/')
-        date.push(now)
-        data.push((Math.random() - 0.4) * 10 + data[data.length - 1])
-        if (shift) {
-          date.shift()
-          data.shift()
+    computed: {
+      params() {
+        let i = 0
+        return this.option.series.map((item) => {
+          return {name: item.name, color: this.option.color[i++], select: true}
+        })
+      }
+    },
+    created() {
+      for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 6; j++) {
+          this.option.series[j].data.push(Math.round(Math.random() * 10))
         }
-        now = new Date(+new Date(now) + oneDay)
-      }
-      for (var i = 1; i < 100; i++) {
-        addData()
-      }
-
-      this.initChart()
-      setInterval(function () {
-        addData(true)
-//        this.chart.setOption({
-//          xAxis: {
-//            data: date
-//          },
-//          series: [
-//            {
-//              name: '业务网络1',
-//              data: data
-//            },
-//            {
-//              name: '业务网络2',
-//              data: data
-//            },
-//            {
-//              name: '业务网络3',
-//              data: data
-//            },
-//            {
-//              name: '业务网络4',
-//              data: data
-//            },
-//            {
-//              name: '业务网络5',
-//              data: data
-//            }
-//          ]
-//        })
-      }, 2000)
-    },
-    beforeDestroy() {
-      if (!this.chart) {
-        return
-      }
-      this.chart.dispose()
-      this.chart = null
-    },
-    methods: {
-      initChart() {
-        this.chart = echarts.init(document.getElementById(this.id))
-        this.chart.setOption(this.option)
       }
     }
   }
 </script>
-
-<style scoped lang="stylus" rel="stylesheet/stylus">
-
-</style>
