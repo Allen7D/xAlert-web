@@ -1,81 +1,57 @@
 <template>
   <div class="container">
-    <div class="data-index">
-      <div class="item">
-        <div class="title">
-          <i class="icon-totalAssets"></i>
-          <span>事件趋势</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span class="item-data">13</span>
-          </div>
-        </div>
-      </div>
-      <div class="item combine">
-        <div class="title">
-          <i class="icon-webloudongjiance"></i>
-          <span>近一周发现</span>
-        </div>
-        <div class="content big">
-          <el-row :gutter="20" class="number">
-            <el-col :span="5"><span>事件数量:</span><span class="item-data">6</span></el-col>
-            <el-col :span="5"><span>特别重大:</span><span class="item-data">65</span></el-col>
-            <el-col :span="5"><span>重大:</span><span class="item-data">666</span></el-col>
-            <el-col :span="5"><span>较大:</span><span class="item-data">6852</span></el-col>
-          </el-row>
-        </div>
-      </div>
+    <div class="indicator">
+      <el-row :gutter="20">
+        <el-col :xs="6" :sm="6" :lg="6">
+          <indicator title="事件总数" icon="icon-totalAssets" :data="138"></indicator>
+        </el-col>
+        <el-col :xs="18" :sm="18" :lg="18">
+          <long-indicator title="近一周发现" icon="icon-webloudongjiance" :indicators="lastweekIndex"></long-indicator>
+        </el-col>
+      </el-row>
     </div>
     <div class="chart-wrapper">
-      <div class="item">
-        <div class="header">
-          <span>事件趋势</span>
-        </div>
-        <event-trend id="eventsTrend" :style="{width: '100%', height: '280px'}"></event-trend>
-      </div>
-      <div class="item">
-        <div class="header">
-          <span>事件数量排名</span>
-        </div>
-        <num-rank id="eventsNum" :style="{width: '100%', height: '280px'}"></num-rank>
-      </div>
+      <el-row :gutter="40">
+        <el-col :xs="24" :sm="24" :lg="12">
+          <event-trend id="eventTrend" title="事件趋势"></event-trend>
+        </el-col>
+        <el-col :xs="24" :sm="24" :lg="12">
+          <num-rank id="numRank" title="事件数量排名"></num-rank>
+        </el-col>
+      </el-row>
     </div>
+
     <div class="chart-wrapper">
-      <div class="item">
-        <div class="header">
-          <span>事件等级分布</span>
-        </div>
-        <level-dist id="eventsGrade" :style="{width: '100%', height: '280px'}"></level-dist>
-      </div>
-      <div class="item">
-        <div class="header">
-          <span>事件类型排名</span>
-        </div>
-        <div class="chart-sort">
-          <!--http://echarts.baidu.com/examples/editor.html?c=radar-multiple 将2个图合并在一个图表内-->
-          <genre-rank-pie id="genreRankPie" :style="{width: '38%', height: '280px'}"></genre-rank-pie>
-          <genre-rank-bar id="genreRankBar" :style="{width: '60%', height: '280px'}"></genre-rank-bar>
-        </div>
-      </div>
+      <el-row :gutter="20">
+        <el-col :xs="32" :sm="32" :lg="8">
+          <level-dist id="levelDist" title="事件等级分布"></level-dist>
+        </el-col>
+        <el-col :xs="32" :sm="32" :lg="16">
+          <genre-rank id="genreRank" title="事件类型排名"></genre-rank>
+        </el-col>
+      </el-row>
     </div>
     <div class="table-wrapper">
-      <div class="item">
-        <div class="header">
-          <span>事件列表</span>
-        </div>
-        <event-list :dataList="eventListData"></event-list>
-      </div>
+      <el-row :gutter="20">
+        <el-col :xs="24" :sm="24" :lg="24">
+          <table-wrapper title="事件列表" tableHeight="250px">
+            <event-list :dataList="eventListData"></event-list>
+          </table-wrapper>
+        </el-col>
+      </el-row>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import Indicator from 'components/indicator/indicator'
+  import LongIndicator from 'components/indicator/longIndicator'
+
   import EventTrend from './components/eventTrend'
   import NumRank from './components/numRank'
   import LevelDist from './components/levelDist'
+  import GenreRank from './components/genreRank'
   import GenreRankPie from './components/genreRankPie'
-  import GenreRankBar from './components/genreRankBar'
 
   import TableWrapper from 'components/table/tableWrapper'
   import EventList from './components/eventList'
@@ -84,16 +60,28 @@
 
   export default {
     components: {
+      Indicator,
+      LongIndicator,
       EventTrend,
       NumRank,
       LevelDist,
+      GenreRank,
       GenreRankPie,
-      GenreRankBar,
       TableWrapper,
       EventList
     },
     data() {
       return {
+        totalIndex: [
+          {key: '数量', value: 999}
+        ],
+        lastweekIndex: [
+          {key: '事件总数', value: 13},
+          {key: '特别重大', value: 91},
+          {key: '重大', value: 22},
+          {key: '较大', value: 61},
+          {key: '一般', value: 181}
+          ],
         eventListData: []
       }
     },
@@ -118,70 +106,10 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
   @import "~common/stylus/mixin"
-  .data-index
-  .chart-wrapper
-  .table-wrapper
-    display: flex
-    .item
-      flex: 1
-      align-items: space-around
-      margin-right: 75px
-      position: relative
-      .title
-        position: absolute
-        top: -13px
-        left: 27px
-        width: 130px
-        height: 26px
-        beveled-corners($color-theme, 5px)
-        color: $color-theme-r
-        font-size: 16px
-        text-align: center
-        line-height: 26px
-      .content
-        font-size: 20px
-        font-weight: 700
-        padding-left: 27px
-        line-height: 100px
-        border: 1px solid $color-theme-d
-        width: 314px
-        height: 100px
-        color: $color-theme
-        .item-data
-          color: $color-theme-d
-          font-size: 28px
-        span
-          margin-right: 50px
-      .big
-        width: 1547px !important
+  .container
+    .indicator
+    .chart-wrapper
+    .table-wrapper
+      margin-top: 18px
 
-  .chart-wrapper
-    margin-top: 58px
-    .item
-      height: 330px
-      border: 1px solid $color-theme-d
-      .header
-        padding-left: 16px
-        height: 50px
-        line-height: 50px
-        border-top: 1px solid $color-theme-d
-        border-right: 1px solid $color-theme-d
-        border-left: 8px solid  $color-theme-d
-        border-bottom: 2px solid  $color-theme-d
-      .chart-sort
-        display: flex
-
-  .table-wrapper
-    margin-top: 65px
-    .item
-      border: 1px solid  $color-theme-d
-      height: 400px
-      .header
-        padding-left: 16px
-        height: 50px
-        line-height: 50px
-        border-top: 1px solid $color-theme-d
-        border-right: 1px solid $color-theme-d
-        border-left: 8px solid  $color-theme-d
-        border-bottom: 2px solid  $color-theme-d
 </style>

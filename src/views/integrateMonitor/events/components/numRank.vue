@@ -1,29 +1,8 @@
-<template>
-  <div :class="className" :id="id" :style="{height: '280px',width: '100%'}"></div>
-</template>
-
 <script type="text/ecmascript-6">
   // http://echarts.baidu.com/examples/editor.html?c=bar-tick-align
-  import echarts from 'echarts'
+  import Chart from 'components/charts/chart'
   export default {
-    props: {
-      className: {
-        type: String,
-        default: 'chart'
-      },
-      id: {
-        type: String,
-        default: 'chart'
-      },
-      width: {
-        type: String,
-        default: '200px'
-      },
-      height: {
-        type: String,
-        default: '200px'
-      }
-    },
+    extends: Chart,
     data() {
       return {
         chart: null,
@@ -38,6 +17,7 @@
           grid: {
             left: '3%',
             right: '4%',
+            top: '10%',
             bottom: '3%',
             containLabel: true
           },
@@ -101,26 +81,6 @@
           ]
         }
       }
-    },
-    mounted() {
-      this.initChart()
-    },
-    beforeDestroy() {
-      if (!this.chart) {
-        return
-      }
-      this.chart.dispose()
-      this.chart = null
-    },
-    methods: {
-      initChart() {
-        this.chart = echarts.init(document.getElementById(this.id))
-        this.chart.setOption(this.option)
-      }
     }
   }
 </script>
-
-<style scoped>
-
-</style>

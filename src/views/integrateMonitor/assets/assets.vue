@@ -1,98 +1,62 @@
 <template>
   <div class="container">
-    <div class="data-index">
-      <div class="item">
-        <div class="title">
-          <i class="icon-totalAssets"></i>
-          <span>总资产</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span class="item-data">{{totalAssets || 0}}</span>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="title">
-          <i class="icon-discovery"></i>
-          <span>近一周发现</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span class="item-data">8888</span>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="title">
-          <i class="icon-tick"></i>
-          <span>确认资产</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span class="item-data">{{validAssets || 0}}</span>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="title">
-          <i class="icon-questionMark"></i>
-          <span>未知资产</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span class="item-data">{{newAssets || 0}}</span>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="title">
-          <i class="icon-exclamationPoint"></i>
-          <span>可疑资产</span>
-        </div>
-        <div class="content">
-          <div class="number">
-            <span class="item-data">{{invalidAssets || 0}}</span>
-          </div>
-        </div>
-      </div>
+    <!--5个指标容器-->
+    <div class="indicator">
+      <el-row :gutter="20">
+        <el-col :xs="24" :sm="12" :lg="4">
+          <indicator title="总资产" icon="icon-totalAssets" :data="8888" ></indicator>
+        </el-col>
+        <el-col :xs="24" :sm="12" :lg="4" :push="1">
+          <indicator title="近一周发现" icon="icon-totalAssets" :data="8888" ></indicator>
+        </el-col>
+        <el-col :xs="24" :sm="12" :lg="4" :push="2">
+          <indicator title="确认资产" icon="icon-totalAssets" :data="8888" ></indicator>
+        </el-col>
+        <el-col :xs="24" :sm="12" :lg="4" :push="3">
+          <indicator title="未知资产" icon="icon-totalAssets" :data="8888" ></indicator>
+        </el-col>
+        <el-col :xs="24" :sm="12" :lg="4" :push="4">
+          <indicator title="可疑资产" icon="icon-totalAssets" :data="8888" ></indicator>
+        </el-col>
+      </el-row>
     </div>
+    <!--2个图表容器-->
     <div class="chart-wrapper">
-      <div class="item">
-        <div class="header">
-          <span>资产统计</span>
-        </div>
-        <asset-stat id="assetsOnline" :style="{height:'280px', width:'100%'}"></asset-stat>
-      </div>
-      <div class="item">
-        <div class="header">
-          <span>资产趋势</span>
-        </div>
-        <asset-trend id="assetTrend" :style="{height:'280px', width:'100%'}"></asset-trend>
-      </div>
+      <el-row :gutter="40">
+        <el-col :xs="24" :sm="24" :lg="12">
+          <assetStat id="assetStat" title="在线资产统计" ></assetStat>
+        </el-col>
+        <el-col :xs="24" :sm="24" :lg="12">
+          <assetTrend id="assetTrend" title="在线资产趋势"></assetTrend>
+        </el-col>
+      </el-row>
     </div>
+    <!--一个列表容器-->
     <div class="table-wrapper">
-      <div class="item">
-        <div class="header">
-          <span>实时活动资产</span>
-        </div>
-        <asset-online :dataList="assetOnlineData"></asset-online>
-      </div>
+      <el-row >
+        <el-col :xs="24" :sm="24" :lg="24">
+          <table-wrapper title="实时活动资产" tableHeight="250px">
+            <assetOnline  :dataList="assetOnlineData"></assetOnline>
+          </table-wrapper>
+        </el-col>
+      </el-row>
     </div>
   </div>
 </template>
-
 <script type="text/ecmascript-6">
   import assetStat from './components/assetStat'
   import assetTrend from './components/assetTrend'
   import assetOnline from './components/assetOnline'
-
+  import Indicator from 'components/indicator/indicator'
+  import TableWrapper from 'components/table/tableWrapper'
   import axios from 'axios'
   export default {
     components: {
+      Indicator,
       assetStat,
       assetTrend,
-      assetOnline
+      assetOnline,
+      TableWrapper
     },
     data() {
       return {
@@ -136,57 +100,11 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-  @import "~common/stylus/variable"
-  @import "~common/stylus/mixin"
-  .data-index
-  .chart-wrapper
-  .table-wrapper
-    display: flex
-    .item
-      flex: 1
-      align-items: space-around
-      margin-right: 75px
-      position: relative
-      .title
-        position: absolute
-        top: -13px
-        left: 27px
-        width: 130px
-        height: 26px
-        beveled-corners($color-theme, 5px)
-        color: $color-theme-r
-        font-size: 16px
-        text-align: center
-        line-height: 26px
-      .content
-        font-size: 20px
-        font-weight: 700
-        padding-left: 27px
-        line-height: 100px
-        border: 1px solid $color-theme-d
-        width: 314px
-        height: 100px
-        color: $color-theme
-        .item-data
-          color: $color-theme-d
-          font-size: 28px
-
-  .chart-wrapper
-  .table-wrapper
-    margin-top: 58px
-    .item
-      border: 1px solid $color-theme-d
-      .header
-        padding-left: 16px
-        height: 50px
-        line-height: 50px
-        border-top: 1px solid $color-theme-d
-        border-right: 1px solid $color-theme-d
-        border-left: 8px solid  $color-theme-d
-        border-bottom: 2px solid  $color-theme-d
-
-  .table-wrapper
-    margin-top: 65px
-    .item
-      height: 400px
+  .container
+    .indicator
+      margin-top: 20px
+  .container
+    .table-wrapper
+    .chart-wrapper
+      margin-top: 73px
 </style>
