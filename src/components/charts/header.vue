@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="title">{{title}}</div>
-    <div class="legend-wrappers">
+    <slot><div class="legend-wrappers">
       <div class="legends" v-for="(item,index) in legendList" :key="index"
            @mouseout="donwplay(item)" @mouseover="highlight(item)"
       >
@@ -9,6 +9,7 @@
         <div class="text" @click="legendToggle(item)" :style="{color: item.select ? item.color: '#A0B9FF'}">{{item.name}}</div>
       </div>
     </div>
+    </slot>
   </div>
 </template>
 <script type="text/ecmascript-6">

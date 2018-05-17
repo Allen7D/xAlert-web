@@ -9,7 +9,7 @@
       <el-table-column prop="flows" label="流量" width="180"></el-table-column>
     </el-table>
   <div>
-  <pagination v-on:handleTable="changeData" :size="pageSize" :current="currentPage" :total="tableData.length"></pagination>
+  <pagination :size.sync="pageSize" :current.sync="currentPage" :total="tableData.length"></pagination>
   </div>
   </div>
 </template>
@@ -34,11 +34,6 @@
               .then(res => {
                 this.tableData = res.data.tableData
               })
-          },
-          changeData(cur, size) {
-            // console.log('size: ' + size + ' current: ' + cur)
-            this.pageSize = size
-            this.currentPage = cur
           }
         },
       created() {

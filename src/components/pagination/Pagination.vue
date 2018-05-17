@@ -1,4 +1,5 @@
 <template>
+  <div class="pagination">
   <el-pagination
     background
     @size-change="handleSizeChange"
@@ -7,14 +8,24 @@
     :page-sizes="[10,20,30,50]"
     :page-size=pageSize layout="total, sizes, prev, pager, next, jumper" :total=total>
   </el-pagination>
+  </div>
 </template>
 
 <script>
     export default {
       props: {
-        size: Number,
-        current: Number,
-        total: Number
+        size: {
+          type: Number,
+          default: 10
+        },
+        current: {
+          type: Number,
+          default: 1
+        },
+        total: {
+          type: Number,
+          default: 100
+        }
       },
       data() {
         return {
@@ -22,21 +33,28 @@
           pageSize: this.size
         }
       },
-      created() {
+      watch: {
+        currentPage(curval) {
+          this.$emit('update:current', curval)
+        },
+        pageSize(curval) {
+          this.$emit('update:size', curval)
+        }
       },
       methods: {
         handleSizeChange(val) {
           this.pageSize = val
-          this.$emit('handleTable', this.currentPage, this.pageSize)
         },
         handleCurrentChange(val) {
           this.currentPage = val
-          this.$emit('handleTable', this.currentPage, this.pageSize)
         }
       }
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="stylus" rel="stylesheet/stylus">
+  .pagination
+    margin: auto
+    width: 700px
+    height: 40px
 </style>

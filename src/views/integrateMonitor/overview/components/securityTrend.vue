@@ -87,7 +87,7 @@
               }
             }
           ],
-          color: getColor,
+          color: getColor(),
           series: [
             {
               name: '事件数量',
@@ -103,6 +103,14 @@
             }
           ]
         }
+      }
+    },
+    computed: {
+      params() {
+        let i = 0
+        return this.option.series.map((item) => {
+          return {name: item.name, color: this.option.color[i++], select: true}
+        })
       }
     }
   }
