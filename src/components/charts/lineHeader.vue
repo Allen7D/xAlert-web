@@ -10,11 +10,15 @@
     </div>
   </div>
     <div class="filter-wrapper">
-      <el-button>24h</el-button>
-      <el-button>24h</el-button>
-      <el-button>24h</el-button>
-      <el-button>24h</el-button>
-      <el-button>24h</el-button>
+      <el-row>
+        <el-col span="4"  v-for="(item, index) in timeList" :key="index">
+          <div class="filter-button" @click="filterToggle(index)"
+               :style="{backgroundColor: item.select ? '#A0B9FF': ''}">
+            <span :style="{color: item.select ? '#06067b': '#4676ff'}">{{item.time}}</span>
+          </div>
+        </el-col>
+        <el-col span="4"><div class="filter">自定义</div></el-col>
+      </el-row>
     </div>
   </div>
 </template>
@@ -26,13 +30,39 @@
     },
     data() {
       return {
-        legendList: []
+        legendList: [],
+        timeList: [
+          {
+          select: true,
+          time: '24h'},
+          {
+            select: false,
+            time: '7天'
+          },
+          {
+            select: false,
+            time: '30天'
+          },
+          {
+            select: false,
+            time: '90天'
+          },
+          {
+            select: false,
+            time: '半年'
+          }]
       }
     },
     mounted() {
       this.legendList = this.params
     },
     methods: {
+      filterToggle(index) {
+        this.timeList.forEach((item) => {
+          item.select = false
+        })
+        this.timeList[index].select = true
+      },
       legendToggle(item) {
         item.select = !item.select
         this.chart.dispatchAction({
@@ -58,8 +88,10 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .lineheader
     display: flex
-    background-color red
+    width 673px
+    justify-content: space-between
     .legend-wrapper
+      flex: 0 0 10%
       display: flex
       flex-wrap: wrap
       flex-direction column
@@ -89,7 +121,22 @@
           line-height 25px
           cursor: pointer
     .filter-wrapper
-      width 500px
-      position relative
-      left 200px
+      flex 0 0 50%
+      .filter-button
+        position relative
+        top 8px
+        width: 32px
+        height: 33px
+        border-radius: 50%
+        border: 1px #A0B9FF solid;
+        line-height: 34px
+        text-align center
+        font-size 12px
+        cursor: pointer
+      .filter
+        background green
+        position relative
+        width 50px
+        height 50px
+        right 20px
 </style>
