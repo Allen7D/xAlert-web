@@ -6,16 +6,16 @@
         <el-col :span="17">
           <el-row :gutter="40">
             <el-col :xs="24" :sm="12" :lg="6">
-              <vulneIndicator title="漏洞总数" icon="icon-totalAssets" :data="8888" ></vulneIndicator>
+              <vulneIndicator title="漏洞总数" icon="icon-totalAssets" :data="vulneTotalData" ></vulneIndicator>
             </el-col>
             <el-col :xs="24" :sm="12" :lg="6">
-              <vulneIndicator title="未修复" icon="icon-totalAssets" :data="8888" ></vulneIndicator>
+              <vulneIndicator title="未修复" icon="icon-totalAssets" :data="noRepairedData" ></vulneIndicator>
             </el-col>
             <el-col :xs="24" :sm="12" :lg="6">
-              <vulneIndicator title="已修复" icon="icon-totalAssets" :data="8888" ></vulneIndicator>
+              <vulneIndicator title="已修复" icon="icon-totalAssets" :data="RepairedData"></vulneIndicator>
             </el-col>
             <el-col :xs="24" :sm="12" :lg="6">
-              <vulneIndicator title="近一周发现" icon="icon-totalAssets" :data="8888" ></vulneIndicator>
+              <vulneIndicator title="近一周发现" icon="icon-totalAssets" :data="recentWeekData"></vulneIndicator>
             </el-col>
           </el-row>
           <el-row>
@@ -48,12 +48,6 @@
         <el-col :xs="24" :sm="24" :lg="12">
           <table-Wrapper title="最新发现漏洞列表" wrapperHeight="330px" tableHeight="230px">
             <newDiscoverVulneList :dataList="newDiscoverVulneData"></newDiscoverVulneList>
-            <!--分页-->
-            <el-pagination style="margin-top:20px;margin-left:150px;"
-              background
-              layout="prev, pager, next"
-              :total="100">
-            </el-pagination>
           </table-Wrapper>
         </el-col>
       </el-row>
@@ -82,11 +76,55 @@
     },
     data() {
       return {
+        vulneTotalData: 0,
+        noRepairedData: 0,
+        RepairedData: 0,
+        recentWeekData: 0,
         vulneDataList: [],
         newDiscoverVulneData: []
       }
     },
     methods: {
+      getVulneTotalData() {
+        axios.get('/api/integrateMonitor/table.json')
+          .then(res => {
+            res = res.data
+            if (res.ret && res.data) {
+              const data = res.data.vulne
+              this.vulneTotalData = data.vulneTotal
+            }
+          })
+      },
+      getNoRepairedData() {
+        axios.get('/api/integrateMonitor/table.json')
+          .then(res => {
+            res = res.data
+            if (res.ret && res.data) {
+              const data = res.data.vulne
+              this.noRepairedData = data.noRepaired
+            }
+          })
+      },
+      getRepairedData() {
+        axios.get('/api/integrateMonitor/table.json')
+          .then(res => {
+            res = res.data
+            if (res.ret && res.data) {
+              const data = res.data.vulne
+              this.RepairedData = data.Repaired
+            }
+          })
+      },
+      getRecentWeekData() {
+        axios.get('/api/integrateMonitor/table.json')
+          .then(res => {
+            res = res.data
+            if (res.ret && res.data) {
+              const data = res.data.vulne
+              this.recentWeekData = data.recentWeek
+            }
+          })
+      },
       getvulneStatisticList() {
         axios.get('/api/integrateMonitor/table.json')
           .then(res => {
@@ -109,6 +147,10 @@
       }
     },
     created() {
+      this.getVulneTotalData()
+      this.getNoRepairedData()
+      this.getRepairedData()
+      this.getRecentWeekData()
       this.getvulneStatisticList()
       this.getnewDiscoverVulneData()
     }

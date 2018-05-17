@@ -112,6 +112,11 @@
       ]
     },
     "assets": {
+      "totalAsset": "8888",
+      "recentWeek": "8888",
+      "confirmAsset": "8888",
+      "unkownAsset": "8888",
+      "suspiAsset": "8888",
       "assetOnline": [
         {
           "status": "离线",
@@ -268,6 +273,10 @@
       ]
     },
     "vulne": {
+      "vulneTotal": "8888",
+      "noRepaired": "8888",
+      "Repaired": "8888",
+      "recentWeek": "8888",
       "vulneData": [
         {
           "title": "严重:",

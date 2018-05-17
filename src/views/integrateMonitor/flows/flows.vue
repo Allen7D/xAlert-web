@@ -22,12 +22,6 @@
         <el-col :xs="24" :sm="24" :lg="24">
           <TableWrapper title="Top 20会话排行" wrapperHeight="420px">
             <sessionRank :dataList="sessRankData"></sessionRank>
-            <!--分页-->
-            <el-pagination style="margin-top: 20px;margin-left: 35%;"
-                           background
-                           layout="prev, pager, next"
-                           :total="130">
-            </el-pagination>
           </TableWrapper>
         </el-col>
       </el-row>

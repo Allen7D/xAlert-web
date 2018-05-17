@@ -1,7 +1,5 @@
 <script type="text/ecmascript-6">
-  // http://echarts.baidu.com/examples/editor.html?c=multiple-x-axis
   import analysis from 'components/analysis/analysis'
-  import { getColor } from '@/utils/index'
 
   export default {
     extends: analysis,
@@ -65,7 +63,6 @@
               }
             }
           ],
-          color: getColor,
           series: [{
             data: [41, 46, 41, 42, 49, 51, 76, 67, 45, 43, 38, 45, 100],
             type: 'line',

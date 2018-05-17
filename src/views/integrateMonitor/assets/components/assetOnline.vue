@@ -7,10 +7,10 @@
       header-align="center"
       align="center"
       width="100">
-      <template slot-scope="scope">
-        <i class="el-icon-remove-outline"></i>
-        <span style="margin-left: 10px">离线</span>
-      </template>
+      <!--<template slot-scope="scope">-->
+        <!--<i class="el-icon-remove-outline"></i>-->
+        <!--<span style="margin-left: 10px"></span>-->
+      <!--</template>-->
     </el-table-column>
     <el-table-column
       label="IP地址"

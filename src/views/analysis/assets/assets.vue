@@ -4,7 +4,7 @@
       <el-tab-pane label="资产情况" name="first">
         <el-row>
           <el-col :span="3" class="left">
-            <business></business>
+            <business title="业务"></business>
           </el-col>
           <el-col :span="21">
             <div class="assetIndicator">
@@ -13,16 +13,16 @@
             <div class="assetGrade">
               <assetGrade :itemArray="assetsGradeList" title="资产等级"></assetGrade>
             </div>
-            <analysisWrapper title="资产列表" tableHeight="250px">
+            <new-table-wrapper title="资产列表" tableHeight="250px">
               <assetList :dataList="assetsList"></assetList>
-            </analysisWrapper>
+            </new-table-wrapper>
           </el-col>
         </el-row>
       </el-tab-pane>
       <el-tab-pane label="仪表盘">
         <el-row>
           <el-col :span="3" class="left">
-            <business></business>
+            <business title="业务"></business>
             <assetClassSta></assetClassSta>
           </el-col>
           <el-col :span="21">
@@ -59,7 +59,7 @@
   import gradeDistribution from './components/gradeDistribution'
   import assetIndicator from './components/assetIndicator'
   import assetGrade from './components/assetGrade'
-  import analysisWrapper from 'components/table/analysisWrapper'
+  import newTableWrapper from 'components/table/newTableWrapper'
   import assetList from './components/assetList'
   import business from './components/business'
   import assetClassSta from './components/AssetClassSta'
@@ -71,18 +71,13 @@
       gradeDistribution,
       assetIndicator,
       assetGrade,
-      analysisWrapper,
+      newTableWrapper,
       assetList,
       business,
       assetClassSta
     },
     data() {
       return {
-        totalAssets: 0,
-        validAssets: 0,
-        newAssets: 0,
-        invalidAssets: 0,
-        assetOnlineData: [],
         activeName: 'first',
         assetsAllDataList: [],
         assetsGradeList: [],
@@ -90,16 +85,6 @@
       }
     },
     methods: {
-      getAssetOnlineData() {
-        axios.get('/api/integrateMonitor/table.json')
-          .then(res => {
-            res = res.data
-            if (res.ret && res.data) {
-              const data = res.data.assets
-              this.assetOnlineData = data.assetOnline
-            }
-          })
-      },
       getAssetDataList() {
         axios.get('/api/analysis/indicator.json')
           .then(res => {
@@ -135,21 +120,6 @@
       this.getAssetDataList()
       this.getAssetsGradeList()
       this.getAssetList()
-      this.getAssetOnlineData()
-      // axios.get('/api/assets/assets?probe=gushenxing&iface=eth0')
-      //   .then((res) => {
-      //     this.totalAssets = res.data.data.data.length
-      //   })
-      axios.get('/api/ui/data?eventId=ui-dashboard-summary&probe=gushenxing&iface=eth0')
-        .then((res) => {
-          this.totalAssets = res.data.data.data.assetSummary.NEW.length + res.data.data.data.assetSummary.VALID.length + res.data.data.data.assetSummary.INVALID.length + res.data.data.data.assetSummary.IGNORED.length
-          this.validAssets = res.data.data.data.assetSummary.VALID.length
-          this.newAssets = res.data.data.data.assetSummary.NEW.length
-          this.invalidAssets = res.data.data.data.assetSummary.MULTIPLE_MAC.length
-        })
-        .catch((err) => {
-          console.log(err)
-        })
     }
   }
 </script>
