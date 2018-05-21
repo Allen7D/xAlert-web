@@ -1,5 +1,5 @@
 <template>
-  <div class="item">
+  <div class="item" :style="{height: wrapperHeight}">
     <div class="header">
       <span class="title">{{title}}</span>
     </div>
@@ -19,6 +19,10 @@
       tableHeight: {
         type: String,
         default: '300px'
+      },
+      wrapperHeight: {
+        type: String,
+        default: '480px'
       }
     }
   }
@@ -29,7 +33,6 @@
   @import "~common/stylus/mixin"
   .item
     position: relative
-    height: 480px
     border: 1px solid #e6e6e6
     margin 20px
     background-color #fff

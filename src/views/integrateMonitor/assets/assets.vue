@@ -4,19 +4,19 @@
     <div class="indicator">
       <el-row :gutter="20">
         <el-col :xs="24" :sm="12" :lg="4">
-          <indicator title="总资产" icon="icon-totalAssets" :data="8888" ></indicator>
+          <indicator title="总资产" icon="icon-totalAssets" :data="totalAssetData" ></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="4" :push="1">
-          <indicator title="近一周发现" icon="icon-totalAssets" :data="8888" ></indicator>
+          <indicator title="近一周发现" icon="icon-totalAssets" :data="recentWeekData" ></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="4" :push="2">
-          <indicator title="确认资产" icon="icon-totalAssets" :data="8888" ></indicator>
+          <indicator title="确认资产" icon="icon-totalAssets" :data="confirmAssetData" ></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="4" :push="3">
-          <indicator title="未知资产" icon="icon-totalAssets" :data="8888" ></indicator>
+          <indicator title="未知资产" icon="icon-totalAssets" :data="unkownAssetData"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="4" :push="4">
-          <indicator title="可疑资产" icon="icon-totalAssets" :data="8888" ></indicator>
+          <indicator title="可疑资产" icon="icon-totalAssets" :data="suspiAssetData"></indicator>
         </el-col>
       </el-row>
     </div>
@@ -60,14 +60,65 @@
     },
     data() {
       return {
-        totalAssets: 0,
-        validAssets: 0,
-        newAssets: 0,
-        invalidAssets: 0,
+        totalAssetData: 0,
+        recentWeekData: 0,
+        confirmAssetData: 0,
+        unkownAssetData: 0,
+        suspiAssetData: 0,
         assetOnlineData: []
       }
     },
     methods: {
+      getTotalAssetData() {
+        axios.get('/api/integrateMonitor/table.json')
+          .then(res => {
+            res = res.data
+            if (res.ret && res.data) {
+              const data = res.data.assets
+              this.totalAssetData = data.totalAsset
+            }
+          })
+      },
+      getRecentWeekData() {
+        axios.get('/api/integrateMonitor/table.json')
+          .then(res => {
+            res = res.data
+            if (res.ret && res.data) {
+              const data = res.data.assets
+              this.recentWeekData = data.recentWeek
+            }
+          })
+      },
+      getConfirmAssetData() {
+        axios.get('/api/integrateMonitor/table.json')
+          .then(res => {
+            res = res.data
+            if (res.ret && res.data) {
+              const data = res.data.assets
+              this.confirmAssetData = data.confirmAsset
+            }
+          })
+      },
+      getUnkownAssetData() {
+        axios.get('/api/integrateMonitor/table.json')
+          .then(res => {
+            res = res.data
+            if (res.ret && res.data) {
+              const data = res.data.assets
+              this.unkownAssetData = data.unkownAsset
+            }
+          })
+      },
+      getsuspiAssetData() {
+        axios.get('/api/integrateMonitor/table.json')
+          .then(res => {
+            res = res.data
+            if (res.ret && res.data) {
+              const data = res.data.assets
+              this.suspiAssetData = data.suspiAsset
+            }
+          })
+      },
       getAssetOnlineData() {
         axios.get('/api/integrateMonitor/table.json')
           .then(res => {
@@ -80,21 +131,12 @@
       }
     },
     created() {
+      this.getTotalAssetData()
+      this.getRecentWeekData()
+      this.getConfirmAssetData()
+      this.getUnkownAssetData()
+      this.getsuspiAssetData()
       this.getAssetOnlineData()
-      // axios.get('/api/assets/assets?probe=gushenxing&iface=eth0')
-      //   .then((res) => {
-      //     this.totalAssets = res.data.data.data.length
-      //   })
-      axios.get('/api/ui/data?eventId=ui-dashboard-summary&probe=gushenxing&iface=eth0')
-        .then((res) => {
-          this.totalAssets = res.data.data.data.assetSummary.NEW.length + res.data.data.data.assetSummary.VALID.length + res.data.data.data.assetSummary.INVALID.length + res.data.data.data.assetSummary.IGNORED.length
-          this.validAssets = res.data.data.data.assetSummary.VALID.length
-          this.newAssets = res.data.data.data.assetSummary.NEW.length
-          this.invalidAssets = res.data.data.data.assetSummary.MULTIPLE_MAC.length
-        })
-        .catch((err) => {
-          console.log(err)
-        })
     }
   }
 </script>

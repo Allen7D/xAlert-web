@@ -2,7 +2,6 @@
   <nav class="sidebar-wrapper">
 
     <el-menu mode="vertical" unique-opened :default-active="$route.path" class="el-menu-vertical-demo" :collapse="isCollapse">
-
       <div class="top" v-show="!isCollapse">
         <img class="logo" :src="logo_w_s" alt="北京立思辰">
         <div class="title">

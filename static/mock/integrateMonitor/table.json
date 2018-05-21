@@ -112,6 +112,11 @@
       ]
     },
     "assets": {
+      "totalAsset": "8888",
+      "recentWeek": "8888",
+      "confirmAsset": "8888",
+      "unkownAsset": "8888",
+      "suspiAsset": "8888",
       "assetOnline": [
         {
           "status": "离线",
@@ -264,6 +269,123 @@
           "dstIP": "192.168.3.6",
           "status": "在线",
           "time": "2018-02-16 04:49:10"
+        }
+      ]
+    },
+    "vulne": {
+      "vulneTotal": "8888",
+      "noRepaired": "8888",
+      "Repaired": "8888",
+      "recentWeek": "8888",
+      "vulneData": [
+        {
+          "title": "严重:",
+          "data": "8888"
+        },
+        {
+          "title": "高危:",
+          "data": "8888"
+        },
+        {
+          "title": "中危:",
+          "data": "8888"
+        },
+        {
+          "title": "低危:",
+          "data": "8888"
+        },
+        {
+          "title": "消息:",
+          "data": "8888"
+        }
+      ],
+      "newDiscoverVulne": [
+        {
+          "vulneName": "行李分拣",
+          "vulneGrade": "高",
+          "vulneType":"主机漏洞",
+          "assetSum":"",
+          "findTime":"2018-2-1 11:12:43"
+        },
+        {
+          "vulneName": "xxxx",
+          "vulneGrade": "低",
+          "vulneType":"主机漏洞",
+          "assetSum":"",
+          "findTime":"2018-2-4 11:12:43"
+        },
+        {
+          "vulneName": "xxxx",
+          "vulneGrade": "高",
+          "vulneType":"主机漏洞",
+          "assetSum":"",
+          "findTime":"2018-3-1 11:12:43"
+        },
+        {
+          "vulneName": "xxxx",
+          "vulneGrade": "高",
+          "vulneType":"主机漏洞",
+          "assetSum":"",
+          "findTime":"2018-3-4 11:12:43"
+        },
+        {
+          "vulneName": "xxxx",
+          "vulneGrade": "高",
+          "vulneType":"主机漏洞",
+          "assetSum":"",
+          "findTime":"2018-2-1 11:12:43"
+        }
+      ]
+    },
+    "flows": {
+      "sessRank": [
+        {
+          "srcName":"PC1",
+          "srcAdd":"192.168.1.1",
+          "desName":"PC2",
+          "desAdd":"xxxxxx",
+          "appPro":"http",
+          "flow":"256KB"
+        },
+        {
+          "srcName":"PC1",
+          "srcAdd":"192.168.1.1",
+          "desName":"PC2",
+          "desAdd":"xxxxxx",
+          "appPro":"http",
+          "flow":"256KB"
+        },
+        {
+          "srcName":"PC1",
+          "srcAdd":"192.168.1.1",
+          "desName":"PC2",
+          "desAdd":"xxxxxx",
+          "appPro":"http",
+          "flow":"256KB"
+        },
+        {
+          "srcName":"PC1",
+          "srcAdd":"192.168.1.1",
+          "desName":"PC2",
+          "desAdd":"xxxxxx",
+          "appPro":"http",
+          "flow":"256KB"
+        },
+        {
+          "srcName":"PC1",
+          "srcAdd":"192.168.1.1",
+          "desName":"PC2",
+          "desAdd":"xxxxxx",
+          "appPro":"http",
+          "flow":"256KB"
+        },
+        {
+          "srcName":"PC1",
+          "srcAdd":"192.168.1.1",
+          "desName":"PC2",
+          "desAdd":"xxxxxx",
+          "appPro":"http",
+          "flow":"256KB"
         }
       ]
     }

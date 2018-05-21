@@ -32,7 +32,7 @@
       prop="OperateSys"
       header-align="center"
       align="center"
-      width="100">
+      width="90">
     </el-table-column>
     <el-table-column
       label="所属业务"
@@ -75,7 +75,7 @@
       prop="port"
       header-align="center"
       align="center"
-      width="80">
+      width="60">
     </el-table-column>
     <el-table-column
       label="状态"
@@ -95,8 +95,7 @@
       label="操作"
       prop="operate"
       header-align="center"
-      align="center"
-      width="70">
+      align="center">
     </el-table-column>
   </el-table>
 </template>

@@ -4,180 +4,50 @@
     "assets": {
       "assetsAll": [
         {
-          "title": "总资产",
-          "data": "8888"
+          "key": "总资产",
+          "value": "8888"
         },
         {
-          "title": "未知资产",
-          "data": "8888"
+          "key": "未知资产",
+          "value": "8888"
         },
         {
-          "title": "可疑资产",
-          "data": "8888"
+          "key": "可疑资产",
+          "value": "8888"
         },
         {
-          "title": "漏洞资产",
-          "data": "8888"
+          "key": "漏洞资产",
+          "value": "8888"
         },
         {
-          "title": "事件资产",
-          "data": "8888"
+          "key": "事件资产",
+          "value": "8888"
         },
         {
-          "title": "在线资产",
-          "data": "8888"
+          "key": "在线资产",
+          "value": "8888"
         }
       ],
       "assetsGrade": [
         {
-          "title": "很高",
-          "data": "8888"
+          "key": "很高",
+          "value": "8888"
         },
         {
-          "title": "高",
-          "data": "8888"
+          "key": "高",
+          "value": "8888"
         },
         {
-          "title": "中",
-          "data": "8888"
+          "key": "中",
+          "value": "8888"
         },
         {
-          "title": "低",
-          "data": "8888"
+          "key": "低",
+          "value": "8888"
         },
         {
-          "title": "很低",
-          "data": "8888"
-        }
-      ],
-      "assetsList": [
-        {
-          "check": "",
-          "assetName": "PC1",
-          "IPAddress": "192.168.3.25",
-          "MACAddress": "xxxxxxxx",
-          "OperateSys": "PC1",
-          "business": "业务网路1",
-          "type": "高",
-          "grade": "很高",
-          "event": "xxxxxxx",
-          "Vulnerability": "xxxxxxx",
-          "port": "xxxxxxxx",
-          "status": "xxxxxxx",
-          "findTime": "2018-01-28 13:16:18",
-          "operate": "xxxxx"
-        },
-        {
-          "check": "",
-          "assetName": "PC1",
-          "IPAddress": "192.168.3.25",
-          "MACAddress": "xxxxxxxx",
-          "OperateSys": "PC1",
-          "business": "业务网路1",
-          "type": "高",
-          "grade": "很高",
-          "event": "xxxxxxx",
-          "Vulnerability": "xxxxxxx",
-          "port": "xxxxxxxx",
-          "status": "xxxxxxx",
-          "findTime": "2018-01-28 13:16:18",
-          "operate": "xxxxx"
-        },
-        {
-          "check": "",
-          "assetName": "PC1",
-          "IPAddress": "192.168.3.25",
-          "MACAddress": "xxxxxxxx",
-          "OperateSys": "PC1",
-          "business": "业务网路1",
-          "type": "高",
-          "grade": "很高",
-          "event": "xxxxxxx",
-          "Vulnerability": "xxxxxxx",
-          "port": "xxxxxxxx",
-          "status": "xxxxxxx",
-          "findTime": "2018-01-28 13:16:18",
-          "operate": "xxxxx"
-        },
-        {
-          "check": "",
-          "assetName": "PC1",
-          "IPAddress": "192.168.3.25",
-          "MACAddress": "xxxxxxxx",
-          "OperateSys": "PC1",
-          "business": "业务网路1",
-          "type": "高",
-          "grade": "很高",
-          "event": "xxxxxxx",
-          "Vulnerability": "xxxxxxx",
-          "port": "xxxxxxxx",
-          "status": "xxxxxxx",
-          "findTime": "2018-01-28 13:16:18",
-          "operate": "xxxxx"
-        },
-        {
-          "check": "",
-          "assetName": "PC1",
-          "IPAddress": "192.168.3.25",
-          "MACAddress": "xxxxxxxx",
-          "OperateSys": "PC1",
-          "business": "业务网路1",
-          "type": "高",
-          "grade": "很高",
-          "event": "xxxxxxx",
-          "Vulnerability": "xxxxxxx",
-          "port": "xxxxxxxx",
-          "status": "xxxxxxx",
-          "findTime": "2018-01-28 13:16:18",
-          "operate": "xxxxx"
-        },
-        {
-          "check": "",
-          "assetName": "PC1",
-          "IPAddress": "192.168.3.25",
-          "MACAddress": "xxxxxxxx",
-          "OperateSys": "PC1",
-          "business": "业务网路1",
-          "type": "高",
-          "grade": "很高",
-          "event": "xxxxxxx",
-          "Vulnerability": "xxxxxxx",
-          "port": "xxxxxxxx",
-          "status": "xxxxxxx",
-          "findTime": "2018-01-28 13:16:18",
-          "operate": "xxxxx"
-        },
-        {
-          "check": "",
-          "assetName": "PC1",
-          "IPAddress": "192.168.3.25",
-          "MACAddress": "xxxxxxxx",
-          "OperateSys": "PC1",
-          "business": "业务网路1",
-          "type": "高",
-          "grade": "很高",
-          "event": "xxxxxxx",
-          "Vulnerability": "xxxxxxx",
-          "port": "xxxxxxxx",
-          "status": "xxxxxxx",
-          "findTime": "2018-01-28 13:16:18",
-          "operate": "xxxxx"
-        },
-        {
-          "check": "",
-          "assetName": "PC1",
-          "IPAddress": "192.168.3.25",
-          "MACAddress": "xxxxxxxx",
-          "OperateSys": "PC1",
-          "business": "业务网路1",
-          "type": "高",
-          "grade": "很高",
-          "event": "xxxxxxx",
-          "Vulnerability": "xxxxxxx",
-          "port": "xxxxxxxx",
-          "status": "xxxxxxx",
-          "findTime": "2018-01-28 13:16:18",
-          "operate": "xxxxx"
+          "key": "很低",
+          "value": "8888"
         }
       ]
     }

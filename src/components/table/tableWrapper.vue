@@ -1,5 +1,5 @@
 <template>
-  <div class="item">
+  <div class="item" :style="{height: wrapperHeight}">
     <div class="header">
       <span>{{title}}</span>
     </div>
@@ -19,7 +19,11 @@
       tableHeight: {
         type: String,
         default: '300px'
-      }
+      },
+      wrapperHeight: {
+        type: String,
+        default: '350px'
+  }
     }
   }
 </script>

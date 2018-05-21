@@ -7,6 +7,10 @@
       header-align="center"
       align="center"
       width="100">
+      <!--<template slot-scope="scope">-->
+        <!--<i class="el-icon-remove-outline"></i>-->
+        <!--<span style="margin-left: 10px"></span>-->
+      <!--</template>-->
     </el-table-column>
     <el-table-column
       label="IP地址"
@@ -17,7 +21,6 @@
     <el-table-column
       label="资产名称"
       prop="assetName"
-      sortable
       header-align="center"
       align="center"
       width="150"
@@ -26,7 +29,6 @@
     <el-table-column
       label="所属业务"
       prop="business"
-      sortable
       header-align="center"
       align="center"
       width="150"
@@ -35,7 +37,6 @@
     <el-table-column
       label="类型"
       prop="type"
-      sortable
       header-align="center"
       align="center"
       width="150">
@@ -67,7 +68,6 @@
     <el-table-column
       label="端口"
       prop="port"
-      sortable
       header-align="center"
       align="center"
       width="110">
