@@ -3,7 +3,7 @@
     <el-row>
       <el-col :span="4"><span class="title" >{{title}}</span></el-col>
       <el-col v-for="(item, index) of itemArray" :key="index" :span="4">
-        <span class="item-title" v-if="item.key">{{item.key}}</span>
+        <span class="item-title" v-if="item.key">{{item.key+":"}}</span>
         <span class="item-data">{{item.value}}</span>
       </el-col>
     </el-row>

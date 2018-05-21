@@ -106,7 +106,7 @@
           })
       },
       getAssetList() {
-        axios.get('/api/analysis/indicator.json')
+        axios.get('/api/analysis/table.json')
           .then(res => {
             res = res.data
             if (res.ret && res.data) {

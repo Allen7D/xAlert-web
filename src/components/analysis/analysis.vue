@@ -24,7 +24,7 @@
       },
       height: {
         type: Number,
-        default: 330
+        default: 500
       }
     },
     data() {

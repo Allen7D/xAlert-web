@@ -1,12 +1,12 @@
 <template>
   <div class="table-page">
     <div class="table">
-      <el-table :data="dataList" border style="width: 100%" height="250">
+      <el-table :data="dataList" style="width:100%" height="350px">
         <el-table-column
           label="源(名称)"
           prop="srcName"
-          header-align="center"
-          align="center">
+          align="center"
+          header-align="center">
         </el-table-column>
         <el-table-column
           label="源(地址)"
@@ -34,8 +34,7 @@
         </el-table-column>
         <el-table-column
           label="流量"
-          prop="flow"
-          sortable
+          prop="flows"
           header-align="center"
           align="center">
         </el-table-column>
@@ -44,21 +43,23 @@
     <div class="page">
       <el-pagination background
                      layout="prev, pager, next"
-                     :total="130">
+                     :total="120">
       </el-pagination>
     </div>
   </div>
 </template>
 
-<script type="text/ecmascript-6">
-  export default {
-    props: {
-      dataList: Array
+<script>
+    export default {
+      props: {
+        dataList: {
+          type: Array
+        }
+      }
     }
-  }
 </script>
 
-<style scoped lang="stylus" rel="stylesheet/stylus">
+<style scoped>
   .page {
     height: 60px;
     display: -webkit-flex;
