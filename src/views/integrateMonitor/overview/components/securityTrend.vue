@@ -2,7 +2,6 @@
   // http://echarts.baidu.com/examples/editor.html?c=multiple-x-axis
   import Chart from 'components/charts/chart'
   import { getColor } from '@/utils/index'
-
   export default {
     extends: Chart,
     data() {
@@ -87,7 +86,7 @@
               }
             }
           ],
-          color: getColor,
+          color: getColor(),
           series: [
             {
               name: '事件数量',
@@ -104,6 +103,14 @@
           ]
         }
       }
+    },
+    computed: {
+      params() {
+        let i = 0
+        return this.option.series.map((item) => {
+          return {name: item.name, color: this.option.color[i++], select: true}
+        })
+      }
     }
-  }
+    }
 </script>
