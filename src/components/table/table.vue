@@ -10,21 +10,35 @@
       </el-select>
     </div>
     <div class="item">
-      <el-row>
-        <el-col :span="5">源IP:<el-input v-model="src.ip" placeholder="请输入源IP" :style="{width: '205px'}"></el-input></el-col>
-        <el-col :span="5">源MAC:<el-input v-model="src.mac" placeholder="请输入源MAC" :style="{width: '205px'}"></el-input></el-col>
-        <el-col :span="5">源端口:<el-input v-model="src.port" placeholder="请输入源端口" :style="{width: '205px'}"></el-input></el-col>
-      </el-row>
+      <div clsss="sub-item">
+        <span>源IP:</span>
+        <el-input v-model="src.ip" placeholder="请输入源IP" :style="{width: '205px'}"></el-input>
+      </div>
+      <div clsss="sub-item">
+        <span>源MAC:</span>
+        <el-input v-model="src.mac" placeholder="请输入源MAC" :style="{width: '205px'}"></el-input>
+      </div>
+      <div clsss="sub-item">
+        <span>源端口:</span>
+        <el-input v-model="src.port" placeholder="请输入源端口" :style="{width: '205px'}"></el-input>
+      </div>
     </div>
     <div class="item">
-      <el-row>
-      <el-col :span="5">目标IP:<el-input v-model="dst.ip" placeholder="请输入目标IP" :style="{width: '205px'}"></el-input></el-col>
-      <el-col :span="5">目标MAC:<el-input v-model="dst.mac" placeholder="请输入目标MAC" :style="{width: '205px'}"></el-input></el-col>
-      <el-col :span="5">目标端口:<el-input v-model="dst.port" placeholder="请输入目标端口" :style="{width: '205px'}"></el-input></el-col>
-      </el-row>
+      <div clsss="sub-item">
+        <span>目标IP:</span>
+        <el-input v-model="dst.ip" placeholder="请输入目标IP" :style="{width: '205px'}"></el-input>
+      </div>
+      <div clsss="sub-item">
+        <span>目标MAC:</span>
+        <el-input v-model="dst.mac" placeholder="请输入目标MAC" :style="{width: '205px'}"></el-input>
+      </div>
+      <div clsss="sub-item">
+        <span>目标端口:</span>
+        <el-input v-model="dst.port" placeholder="请输入目标端口" :style="{width: '205px'}"></el-input>
+      </div>
     </div>
     <div class="item">
-      <p>严重程度</p>
+      <span>严重程度</span>
       <el-radio-group v-model="listQuery.severity" @change="handleBlur">
         <el-radio-button label="3">高</el-radio-button>
         <el-radio-button label="2">中</el-radio-button>
@@ -33,11 +47,11 @@
     </div>
     <div class="item">
       <div class="time">
-        开始时间:
+        <span>开始时间:</span>
         <time-picker :time.sync="listQuery.startTime"></time-picker>
       </div>
       <div class="time">
-        结束时间:
+        <span>结束时间:</span>
         <time-picker :time.sync="listQuery.endTime"></time-picker>
       </div>
     </div>
@@ -101,4 +115,6 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .item
     margin: 15px 0
+    .time
+      margin: 15px 0
 </style>
