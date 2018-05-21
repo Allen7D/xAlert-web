@@ -7,11 +7,6 @@
     data() {
       return {
         chart: null,
-        data: {
-          data1: [],
-          data2: [],
-          time: []
-        },
         option: {
           tooltip: {
             trigger: 'axis',
@@ -50,7 +45,7 @@
           xAxis: {
             type: 'category',
             boundaryGap: false,
-            data: [],
+            data: ['2016-1', '2016-2', '2016-3', '2016-4', '2016-5', '2016-6', '2016-7', '2016-8', '2016-9', '2016-10', '2016-11', '2016-12'],
             splitLine: {show: false},
             axisLine: {
               lineStyle: {
@@ -97,13 +92,13 @@
               name: '事件数量',
               type: 'line',
               smooth: true,
-              data: []
+              data: [2, 125, 39, 26, 28, 70, 175, 182, 48, 18, 6, 2]
             },
             {
               name: '漏洞数量',
               type: 'line',
               smooth: true,
-              data: []
+              data: [3, 5, 11, 18, 148, 69, 231, 46, 55, 98, 10, 0]
             }
           ]
         }
@@ -113,38 +108,9 @@
       params() {
         let i = 0
         return this.option.series.map((item) => {
-          return {name: item.name, color: this.option.color[i++], select: true, le: this.data.time.length}
+          return {name: item.name, color: this.option.color[i++], select: true}
         })
       }
-    },
-    created() {
-      // for (let i = 0; i < 5; i++) { // 生成折线图数据
-      //   for (let j = 0; j < 2; j++) {
-      //     this.option.series[j].data.push(Math.round(Math.random() * 10))
-      //   }
-      // }
-      this.getData()
-    },
-    methods: {
-      getData() {
-        setInterval(() => {
-          let now = new Date()
-          this.data.data1.push(Math.round(Math.random() * 100))
-          this.data.data2.push(Math.round(Math.random() * 100))
-          this.data.time.push([now.getHours(), now.getMinutes(), now.getSeconds()].join(':'))
-         this.chart.setOption({
-            xAxis: {
-              data: this.data.time
-            },
-            series: [{
-              data: this.data.data1
-            },
-              {
-                data: this.data.data2
-              }]
-          })
-      }, 1000)
-      }
     }
-  }
+    }
 </script>

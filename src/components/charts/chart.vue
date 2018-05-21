@@ -1,7 +1,7 @@
 <template>
-  <div class="item">
+  <div class="item" :style="itemHeight">
     <chart-header :title="title" :params="params" :chart="chart"></chart-header>
-    <div :id="id" :style="{height: '280px',width: '100%'}"></div>
+    <div :id="id" :style="[chartHeight, {width: '100%'}]"></div>
   </div>
 </template>
 
@@ -21,11 +21,23 @@
       title: {
         type: String,
         default: '未名'
+      },
+      height: {
+        type: Number,
+        default: 330
       }
     },
     data() {
       return {
         chart: null
+      }
+    },
+    computed: {
+      itemHeight() {
+        return {height: `${this.height}px`}
+      },
+      chartHeight() {
+        return {height: `${this.height - 50}px`}
       }
     },
     methods: {
@@ -62,7 +74,7 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
   .item
-    height: 330px
+    /*height: 330px*/
     margin-bottom: 28px
     position: relative
     border: 1px solid $color-theme-d

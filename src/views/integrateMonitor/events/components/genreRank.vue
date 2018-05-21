@@ -1,46 +1,39 @@
-<template>
-  <div :class="className" :id="id" :style="{height: '280px',width: '100%'}"></div>
-</template>
-
 <script type="text/ecmascript-6">
-  // http://echarts.baidu.com/examples/editor.html?c=bar-tick-align
-  import echarts from 'echarts'
+  // 饼图和柱状图结合
+  // http://echarts.baidu.com/examples/editor.html?c=watermark
+  import Chart from 'components/charts/chart'
+  import { getColor } from '@/utils/index'
   export default {
-    props: {
-      className: {
-        type: String,
-        default: 'chart'
-      },
-      id: {
-        type: String,
-        default: 'chart'
-      },
-      width: {
-        type: String,
-        default: '200px'
-      },
-      height: {
-        type: String,
-        default: '200px'
-      }
-    },
+    extends: Chart,
     data() {
       return {
         chart: null,
         option: {
-          color: ['#daa38f'],
+          color: getColor,
           tooltip: {
             trigger: 'axis',
             axisPointer: {
               type: 'shadow'
             }
           },
-          grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
+          title: {
+            text: '事件类型TOP 5',
+            x: '15%',
+            y: '88%',
+            textAlign: 'center',
+            textStyle: {
+              color: 'white'
+            }
           },
+          grid: [
+            {
+            left: '30%',
+            top: '10%',
+            bottom: '3%',
+            width: '65%',
+            containLabel: true
+          }
+          ],
           xAxis: [
             {
               type: 'category',
@@ -98,32 +91,35 @@
             {
               name: '直接访问',
               type: 'bar',
-              barWidth: '60%',
+              barWidth: '30%',
               data: [100, 52, 200, 334, 390]
+            },
+            {
+              name: '访问来源',
+              type: 'pie',
+              radius: '70%',
+              center: ['15%', '45%'],
+              data: [
+                {value: 335, name: '类型1'},
+                {value: 310, name: '类型2'},
+                {value: 234, name: '类型3'},
+                {value: 135, name: '类型4'},
+                {value: 548, name: '类型5'}
+              ],
+              label: {
+                fontSize: 15
+              },
+              itemStyle: {
+                emphasis: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+              }
             }
           ]
         }
       }
-    },
-    mounted() {
-      this.initChart()
-    },
-    beforeDestroy() {
-      if (!this.chart) {
-        return
-      }
-      this.chart.dispose()
-      this.chart = null
-    },
-    methods: {
-      initChart() {
-        this.chart = echarts.init(document.getElementById(this.id))
-        this.chart.setOption(this.option)
-      }
     }
   }
 </script>
-
-<style scoped lang="stylus" rel="stylesheet/stylus">
-
-</style>

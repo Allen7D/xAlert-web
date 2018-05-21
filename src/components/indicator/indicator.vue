@@ -4,7 +4,7 @@
       <i :class="icon"></i><span>{{title}}</span>
     </div>
     <div class="content">
-      <span>数量:</span><span class="index">{{data || 0}}</span>
+      <span>数量:</span><span class="index">{{data}}</span>
     </div>
   </div>
 </template>
@@ -46,15 +46,16 @@
       text-align: center
       line-height: 26px
     .content
+      max-width: 314px
+      height: 100px
       font-size: 20px
       font-weight: 700
       padding-left: 27px
       line-height: 100px
       border: 1px solid $color-theme-d
-      max-width: 314px
-      height: 100px
       color: $color-theme
       .index
         color: $color-theme-d
-        font-size: 28px
+        font-size: 48px
+        margin-left: 10px
 </style>
