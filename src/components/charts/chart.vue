@@ -1,8 +1,6 @@
 <template>
   <div class="item" :style="itemHeight">
-    <chart-header :title="title" :params="params" :chart="chart">
-      <line-header v-if="title === '安全趋势'" :params="params" :chart="chart"></line-header>
-    </chart-header>
+    <chart-header :title="title" :params="params" :chart="chart"></chart-header>
     <div :id="id" :style="[chartHeight, {width: '100%'}]"></div>
   </div>
 </template>
@@ -11,11 +9,9 @@
   import { debounce } from '@/utils'
   import echarts from 'echarts'
   import ChartHeader from 'components/charts/header'
-  import lineHeader from 'components/charts/lineHeader'
   export default {
     components: {
-      ChartHeader,
-      lineHeader
+      ChartHeader
     },
     props: {
       id: {

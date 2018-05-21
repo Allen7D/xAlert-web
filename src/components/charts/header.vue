@@ -1,19 +1,29 @@
 <template>
   <div class="header">
-    <div class="title">{{title}}</div>
-    <slot><div class="legend-wrappers">
-      <div class="legends" v-for="(item,index) in legendList" :key="index"
-           @mouseout="donwplay(item)" @mouseover="highlight(item)"
-      >
-        <div class="legend" @click="legendToggle(item)" :style="{backgroundColor: item.select ? item.color: '#A0B9FF'}"></div>
-        <div class="text" @click="legendToggle(item)" :style="{color: item.select ? item.color: '#A0B9FF'}">{{item.name}}</div>
-      </div>
-    </div>
-    </slot>
+    <el-row type="flex">
+      <el-col :span="5">
+        <span>{{title}}</span>
+      </el-col>
+      <el-col :span="9">
+        <line-legends v-if="title === '安全趋势'" :params="params" :chart="chart"></line-legends>
+        <legend-wrappers v-else :chart="chart" :params="params"></legend-wrappers>
+      </el-col>
+      <el-col :span="10">
+        <filter-wrapper v-if="title === '安全趋势'" :timeArr="timeList" :chart="chart"></filter-wrapper>
+      </el-col>
+    </el-row>
   </div>
 </template>
 <script type="text/ecmascript-6">
+  import lineLegends from 'components/charts/lineLegends'
+  import legendWrappers from 'components/charts/legends'
+  import filterWrapper from 'components/charts/filter'
   export default {
+    components: {
+      legendWrappers,
+      filterWrapper,
+      lineLegends
+    },
     props: {
       params: Array,
       chart: Object,
@@ -21,39 +31,32 @@
     },
     data() {
       return {
-        legendList: []
-      }
-    },
-    mounted() {
-      this.legendList = this.params
-    },
-    methods: {
-      legendToggle(item) {
-        item.select = !item.select
-        this.chart.dispatchAction({
-          type: 'legendToggleSelect',
-          name: item.name
-        })
-      },
-      highlight(item) {
-        this.chart.dispatchAction({
-          type: 'highlight',
-          seriesName: item.name
-        })
-        this.chart.dispatchAction({
-          type: 'highlight',
-          name: item.name
-        })
-      },
-      donwplay(item) {
-        this.chart.dispatchAction({
-          type: 'downplay',
-          seriesName: item.name
-        })
-        this.chart.dispatchAction({
-          type: 'downplay',
-          name: item.name
-        })
+        timeList: [
+          {
+            select: true,
+            name: '24h',
+            time: 1000 * 3600 * 24
+          },
+          {
+            select: false,
+            name: '7天',
+            time: 1000 * 3600 * 24 * 7
+          },
+          {
+            select: false,
+            name: '30天',
+            time: 1000 * 3600 * 24 * 30
+          },
+          {
+            select: false,
+            name: '90天',
+            time: 1000 * 3600 * 24 * 90
+          },
+          {
+            select: false,
+            name: '半年',
+            time: 1000 * 3600 * 24 * 180
+          }]
       }
     }
   }
@@ -62,7 +65,6 @@
   @import "~common/stylus/variable"
   @import "~common/stylus/mixin"
   .header
-    display: flex
     padding-left: 16px
     height: 50px
     line-height: 50px
@@ -70,29 +72,4 @@
     border-right: 1px solid $color-theme-d
     border-left: 8px solid  $color-theme-d
     border-bottom: 2px solid  $color-theme-d
-    .title
-      flex 0 0 100px
-    .legend-wrappers
-      flex: 0 0 60%
-      display: flex
-      flex-wrap: wrap
-      align-content: space-around
-      align-items: center
-      .legends
-        height 30%
-        display: flex
-        align-items: center
-        margin-right 5px
-        .legend
-          border-radius: 1px
-          width: 24px
-          height: 7px
-          cursor: pointer
-          align-items: center
-        .text
-          margin-left 2px
-          font-size: 12px
-          line-height 25px
-          cursor: pointer
-          align-items: center
 </style>
