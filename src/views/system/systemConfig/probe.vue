@@ -1,5 +1,5 @@
 <template>
-  <div>警报设置</div>
+  <div>采集器</div>
 </template>
 
 <script type="text/ecmascript-6">

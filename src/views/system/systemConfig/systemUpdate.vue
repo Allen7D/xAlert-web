@@ -1,5 +1,5 @@
 <template>
-  <div>警报设置</div>
+  <div>系统升级</div>
 </template>
 
 <script type="text/ecmascript-6">

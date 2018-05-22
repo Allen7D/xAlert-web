@@ -90,9 +90,38 @@ export const constantRouterMap = [
     name: 'system',
     meta: {title: '系统配置', icon: 'icon-setting'},
     children: [
-      {path: 'system-status', component: _import('system/systemStatus/systemStatus'), name: 'systemStatus', meta: {title: '系统状态', breadNumber: 2}},
-      {path: 'system-config', component: _import('system/systemConfig/systemConfig'), name: 'systemConfig', meta: {title: '系统配置', breadNumber: 2}},
-      {path: 'alert-setting', component: _import('system/alertSetting/alertSetting'), name: 'alertSetting', meta: {title: '报警设置', breadNumber: 2}},
+      {
+        path: 'system-status',
+        component: _import('system/systemStatus/index'),
+        name: 'systemStatus',
+        meta: {title: '系统状态', breadNumber: 2},
+        children: [
+          {path: 'platform', component: _import('assetDynamic/assetDetail/platform'), name: 'platform'},
+          {path: 'probe', component: _import('assetDynamic/assetDetail/probe'), name: 'probe'}
+        ]
+      },
+      {
+        path: 'system-config',
+        component: _import('system/systemConfig/index'),
+        name: 'systemConfig',
+        meta: {title: '系统配置', breadNumber: 2},
+        children: [
+          {path: 'platform', component: _import('system/systemConfig/platform'), name: 'platform'},
+          {path: 'probe', component: _import('system/systemConfig/probe'), name: 'probe'},
+          {path: 'dateConfig', component: _import('system/systemConfig/dateConfig'), name: 'dateConfig'},
+          {path: 'systemUpdate', component: _import('system/systemConfig/systemUpdate'), name: 'systemUpdate'}
+        ]
+      },
+      {
+        path: 'alert-setting',
+        component: _import('system/alertSetting/index'),
+        name: 'alertSetting',
+        meta: {title: '报警设置', breadNumber: 2},
+        children: [
+          {path: 'alertContact', component: _import('system/alertSetting/alertContact'), name: 'alertContact'},
+          {path: 'alertsetting', component: _import('system/alertSetting/alertsetting'), name: 'alertsetting'}
+        ]
+      },
       {path: 'user-manage', component: _import('system/userManage/userManage'), name: 'userManage', meta: {title: '用户管理', breadNumber: 2}},
       {path: 'security-policy', component: _import('system/securityPolicy/securityPolicy'), name: 'securityPolicy', meta: {title: '安全策略', breadNumber: 2}}
     ]
