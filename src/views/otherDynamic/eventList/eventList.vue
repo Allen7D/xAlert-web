@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>事件列表</div>
 </template>
 
 <script type="text/ecmascript-6">
