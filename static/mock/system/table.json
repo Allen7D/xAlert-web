@@ -1,0 +1,57 @@
+{
+  "ret": true,
+  "data": {
+    "systemConfig": {
+      "updateLog": [
+        {
+          "number": "1",
+          "upVerson": "xxxxxxxxxxxx",
+          "upDescip": "xxxxxxxxxxxx",
+          "upTime": "2018-5-14 15:02:00"
+        },
+        {
+          "number": "2",
+          "upVerson": "xxxxxxxxxxxx",
+          "upDescip": "xxxxxxxxxxxx",
+          "upTime": "2018-5-14 15:02:00"
+        },
+        {
+          "number": "3",
+          "upVerson": "xxxxxxxxxxxx",
+          "upDescip": "xxxxxxxxxxxx",
+          "upTime": "2018-5-14 15:02:00"
+        },
+        {
+          "number": "4",
+          "upVerson": "xxxxxxxxxxxx",
+          "upDescip": "xxxxxxxxxxxx",
+          "upTime": "2018-5-14 15:02:00"
+        },
+        {
+          "number": "5",
+          "upVerson": "xxxxxxxxxxxx",
+          "upDescip": "xxxxxxxxxxxx",
+          "upTime": "2018-5-14 15:02:00"
+        },
+        {
+          "number": "6",
+          "upVerson": "xxxxxxxxxxxx",
+          "upDescip": "xxxxxxxxxxxx",
+          "upTime": "2018-5-14 15:02:00"
+        },
+        {
+          "number": "7",
+          "upVerson": "xxxxxxxxxxxx",
+          "upDescip": "xxxxxxxxxxxx",
+          "upTime": "2018-5-14 15:02:00"
+        },
+        {
+          "number": "8",
+          "upVerson": "xxxxxxxxxxxx",
+          "upDescip": "xxxxxxxxxxxx",
+          "upTime": "2018-5-14 15:02:00"
+        }
+      ]
+    }
+  }
+}
