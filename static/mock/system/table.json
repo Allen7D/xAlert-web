@@ -52,6 +52,75 @@
           "upTime": "2018-5-14 15:02:00"
         }
       ]
+    },
+    "securityPolicy": {
+      "visitList": [
+        {
+          "number": "1",
+          "name": "任意访问1",
+          "status": "启用",
+          "grade": "高",
+          "srcArea": "业务网络1",
+          "srcAdd": "xxxxxxxx",
+          "srcPort": "xxxxx",
+          "desArea": "业务网络1",
+          "desAdd": "xxxxxxxx",
+          "desPort": "xxxxx",
+          "appPro": "HTTP"
+        },
+        {
+          "number": "2",
+          "name": "任意访问2",
+          "status": "启用",
+          "grade": "高",
+          "srcArea": "业务网络1",
+          "srcAdd": "xxxxxxxx",
+          "srcPort": "xxxxx",
+          "desArea": "业务网络1",
+          "desAdd": "xxxxxxxx",
+          "desPort": "xxxxx",
+          "appPro": "MODBUS/TCP"
+        },
+        {
+          "number": "3",
+          "name": "任意访问3",
+          "status": "启用",
+          "grade": "高",
+          "srcArea": "业务网络1",
+          "srcAdd": "xxxxxxxx",
+          "srcPort": "xxxxx",
+          "desArea": "业务网络1",
+          "desAdd": "xxxxxxxx",
+          "desPort": "xxxxx",
+          "appPro": "HTTP"
+        },
+        {
+          "number": "4",
+          "name": "任意访问4",
+          "status": "启用",
+          "grade": "高",
+          "srcArea": "业务网络1",
+          "srcAdd": "xxxxxxxx",
+          "srcPort": "xxxxx",
+          "desArea": "业务网络1",
+          "desAdd": "xxxxxxxx",
+          "desPort": "xxxxx",
+          "appPro": "HTTP"
+        },
+        {
+          "number": "5",
+          "name": "任意访问5",
+          "status": "启用",
+          "grade": "高",
+          "srcArea": "业务网络1",
+          "srcAdd": "xxxxxxxx",
+          "srcPort": "xxxxx",
+          "desArea": "业务网络1",
+          "desAdd": "xxxxxxxx",
+          "desPort": "xxxxx",
+          "appPro": "MODBUS/TCP"
+        }
+      ]
     }
   }
 }

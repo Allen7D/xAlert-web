@@ -1,34 +1,25 @@
 <template>
   <div class="updateLog">
-    <el-table
-      :data="tableData"
-      style="width: 100%" height="250">
-      <el-table-column
-        prop="number"
-        label="序号"
-        header-align="center"
-        align="center">
-      </el-table-column>
-      <el-table-column
-        prop="upVerson"
-        label="升级后版本"
-        header-align="center"
-        align="center"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="upDescip"
-        header-align="center"
-        align="center"
-        label="升级描述">
-      </el-table-column>
-      <el-table-column
-        prop="upTime"
-        header-align="center"
-        align="center"
-        label="升级时间">
-      </el-table-column>
-    </el-table>
+    <div class="updateTab">
+      <table width="100%">
+        <thead class="tab-title">
+          <tr>
+            <th>序号</th>
+            <th>升级后版本</th>
+            <th>升级描述</th>
+            <th>升级时间</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in list" :key="item" style="height: 25px;">
+            <td class="item-id">{{item.id}}</td>
+            <td class="item-verson">{{item.verson}}</td>
+            <td class="item-descrip">{{item.descrip}}</td>
+            <td class="item-time">{{item.time}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <div class="confirmBtn">
       <button class="confirm">确定</button>
     </div>
@@ -37,13 +28,30 @@
 
 <script>
     export default {
-      props: {
-        tableData: Array
+      data() {
+        return {
+          list: [
+            {id: 1, verson: 'xxxxxxxxxx', descrip: 'xxxxxxxxxxxx', time: '2018-5-14 15:05:00'},
+            {id: 2, verson: 'xxxxxxxxxx', descrip: 'xxxxxxxxxxxx', time: '2018-5-14 15:05:00'},
+            {id: 3, verson: 'xxxxxxxxxx', descrip: 'xxxxxxxxxxxx', time: '2018-5-14 15:05:00'},
+            {id: 4, verson: 'xxxxxxxxxx', descrip: 'xxxxxxxxxxxx', time: '2018-5-14 15:05:00'},
+            {id: 5, verson: 'xxxxxxxxxx', descrip: 'xxxxxxxxxxxx', time: '2018-5-14 15:05:00'},
+            {id: 6, verson: 'xxxxxxxxxx', descrip: 'xxxxxxxxxxxx', time: '2018-5-14 15:05:00'},
+            {id: 7, verson: 'xxxxxxxxxx', descrip: 'xxxxxxxxxxxx', time: '2018-5-14 15:05:00'},
+            {id: 8, verson: 'xxxxxxxxxx', descrip: 'xxxxxxxxxxxx', time: '2018-5-14 15:05:00'}
+            ]
+        }
       }
     }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+  .updateTab {
+    margin 10px 13px
+    color #000
+    font-size 15px
+    // height 200px
+  }
   .confirmBtn {
     height: 50px;
     display: -webkit-flex;
@@ -62,4 +70,19 @@
     border-radius 5px
     letter-spacing 5px
   }
+  .tab-title {
+    height 23px
+    line-height 23px
+    background-color #4676ff
+    color #fff
+  }
+  .item-id
+  .item-verson
+  .item-descrip
+  .item-time {
+    text-align center
+    line-height 25px
+  }
+   tbody tr:nth-child(odd){background:#fff;}
+   tbody tr:nth-child(even){background:#eee}
 </style>
