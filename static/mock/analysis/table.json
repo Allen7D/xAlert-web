@@ -4,7 +4,6 @@
     "assets": {
       "assetsList": [
         {
-          "check": "",
           "assetName": "PC1",
           "IPAddress": "192.168.3.25",
           "MACAddress": "xxxxxxxx",
@@ -20,7 +19,6 @@
           "operate": "xxxxx"
         },
         {
-          "check": "",
           "assetName": "PC1",
           "IPAddress": "192.168.3.25",
           "MACAddress": "xxxxxxxx",
@@ -36,7 +34,6 @@
           "operate": "xxxxx"
         },
         {
-          "check": "",
           "assetName": "PC1",
           "IPAddress": "192.168.3.25",
           "MACAddress": "xxxxxxxx",
@@ -52,7 +49,6 @@
           "operate": "xxxxx"
         },
         {
-          "check": "",
           "assetName": "PC1",
           "IPAddress": "192.168.3.25",
           "MACAddress": "xxxxxxxx",
@@ -68,7 +64,6 @@
           "operate": "xxxxx"
         },
         {
-          "check": "",
           "assetName": "PC1",
           "IPAddress": "192.168.3.25",
           "MACAddress": "xxxxxxxx",
@@ -84,7 +79,6 @@
           "operate": "xxxxx"
         },
         {
-          "check": "",
           "assetName": "PC1",
           "IPAddress": "192.168.3.25",
           "MACAddress": "xxxxxxxx",
@@ -100,7 +94,6 @@
           "operate": "xxxxx"
         },
         {
-          "check": "",
           "assetName": "PC1",
           "IPAddress": "192.168.3.25",
           "MACAddress": "xxxxxxxx",
@@ -116,7 +109,6 @@
           "operate": "xxxxx"
         },
         {
-          "check": "",
           "assetName": "PC1",
           "IPAddress": "192.168.3.25",
           "MACAddress": "xxxxxxxx",
@@ -134,6 +126,98 @@
       ]
     },
     "events": {
+      "eventData": [
+        {
+          "findTime": "2018-5-22 14:11:29",
+          "eventName": "名称",
+          "eventGrade": "重大",
+          "eventType": "其他",
+          "srcAdd": "xxx.xxx.xxx.xxx",
+          "desAdd": "xxx.xxx.xxx.xxx",
+          "status": "已确认",
+          "detail": "xxxxxxx"
+        },
+        {
+          "findTime": "2018-5-22 14:11:29",
+          "eventName": "名称",
+          "eventGrade": "重大",
+          "eventType": "其他",
+          "srcAdd": "xxx.xxx.xxx.xxx",
+          "desAdd": "xxx.xxx.xxx.xxx",
+          "status": "已确认",
+          "detail": "xxxxxxx"
+        },
+        {
+          "findTime": "2018-5-22 14:11:29",
+          "eventName": "名称",
+          "eventGrade": "重大",
+          "eventType": "其他",
+          "srcAdd": "xxx.xxx.xxx.xxx",
+          "desAdd": "xxx.xxx.xxx.xxx",
+          "status": "已确认",
+          "detail": "xxxxxxx"
+        },
+        {
+          "findTime": "2018-5-22 14:11:29",
+          "eventName": "名称",
+          "eventGrade": "重大",
+          "eventType": "其他",
+          "srcAdd": "xxx.xxx.xxx.xxx",
+          "desAdd": "xxx.xxx.xxx.xxx",
+          "status": "已确认",
+          "detail": "xxxxxxx"
+        },
+        {
+          "findTime": "2018-5-22 14:11:29",
+          "eventName": "名称",
+          "eventGrade": "重大",
+          "eventType": "其他",
+          "srcAdd": "xxx.xxx.xxx.xxx",
+          "desAdd": "xxx.xxx.xxx.xxx",
+          "status": "已确认",
+          "detail": "xxxxxxx"
+        },
+        {
+          "findTime": "2018-5-22 14:11:29",
+          "eventName": "名称",
+          "eventGrade": "重大",
+          "eventType": "其他",
+          "srcAdd": "xxx.xxx.xxx.xxx",
+          "desAdd": "xxx.xxx.xxx.xxx",
+          "status": "已确认",
+          "detail": "xxxxxxx"
+        },
+        {
+          "findTime": "2018-5-22 14:11:29",
+          "eventName": "名称",
+          "eventGrade": "重大",
+          "eventType": "其他",
+          "srcAdd": "xxx.xxx.xxx.xxx",
+          "desAdd": "xxx.xxx.xxx.xxx",
+          "status": "已确认",
+          "detail": "xxxxxxx"
+        },
+        {
+          "findTime": "2018-5-22 14:11:29",
+          "eventName": "名称",
+          "eventGrade": "重大",
+          "eventType": "其他",
+          "srcAdd": "xxx.xxx.xxx.xxx",
+          "desAdd": "xxx.xxx.xxx.xxx",
+          "status": "已确认",
+          "detail": "xxxxxxx"
+        },
+        {
+          "findTime": "2018-5-22 14:11:29",
+          "eventName": "名称",
+          "eventGrade": "重大",
+          "eventType": "其他",
+          "srcAdd": "xxx.xxx.xxx.xxx",
+          "desAdd": "xxx.xxx.xxx.xxx",
+          "status": "已确认",
+          "detail": "xxxxxxx"
+        }
+      ]
     },
     "flows": {
       "sessRank": [

@@ -1,19 +1,76 @@
 <template>
-  <div class="event-list-table">
-    <el-table
-      :data="dataList" border style="width: 100%" height="250">
-      <el-table-column prop="name" label="事件名称" header-align="center" align="center" width="210"></el-table-column>
-      <el-table-column prop="type" label="事件类型（默认为其它）" header-align="center" align="center" width="250"></el-table-column>
-      <el-table-column prop="level" label="事件等级" header-align="center" align="center" width="200"></el-table-column>
-      <el-table-column prop="srcIP" label="源IP地址" header-align="center" align="center"></el-table-column>
-      <el-table-column prop="dstIP" label="目标IP地址" header-align="center" align="center"></el-table-column>
-      <el-table-column prop="status" label="状态" header-align="center" align="center" width="210"></el-table-column>
-      <el-table-column prop="time" label="时间" sortable header-align="center" align="center"></el-table-column>
-    </el-table>
+  <div class="table-page">
+    <div class="table">
+      <el-table :data="dataList" border style="width: 100%" height="320">
+        <el-table-column
+          type="selection"
+          header-align="center"
+          align="center"
+          width="45">
+        </el-table-column>
+        <el-table-column
+          label="发现时间"
+          sortable
+          prop="findTime"
+          header-align="center"
+          align="center">
+        </el-table-column>
+        <el-table-column
+          label="事件名称"
+          prop="eventName"
+          header-align="center"
+          align="center">
+        </el-table-column>
+        <el-table-column
+          label="事件等级"
+          prop="eventGrade"
+          header-align="center"
+          align="center">
+        </el-table-column>
+        <el-table-column
+          label="事件类型"
+          prop="eventType"
+          header-align="center"
+          align="center"
+          width="90">
+        </el-table-column>
+        <el-table-column
+          label="源地址"
+          prop="srcAdd"
+          header-align="center"
+          align="center"
+          width="100">
+        </el-table-column>
+        <el-table-column
+          label="目标地址"
+          prop="desAdd"
+          header-align="center"
+          align="center">
+        </el-table-column>
+        <el-table-column
+          label="状态"
+          prop="status"
+          header-align="center"
+          align="center">
+        </el-table-column>
+        <el-table-column
+          label="详情"
+          prop="detail"
+          header-align="center"
+          align="center">
+        </el-table-column>
+      </el-table>
+    </div>
+    <div class="page">
+      <el-pagination background
+                     layout="prev, pager, next"
+                     :total="120">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
   export default {
     props: {
       dataList: Array
@@ -22,7 +79,24 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-  .event-list-table
-    height: 320px
-    padding: 30px 19px
+  .page {
+    height 60px
+    display -webkit-flex
+    display flex
+    -webkit-align-items center
+    align-items center
+    -webkit-justify-content center
+    justify-content center
+  }
+</style>
+<style lang="stylus" rel="stylesheet/stylus">
+  .el-table tr:nth-child(odd) {
+    background: #fff;
+  }
+  .el-table tr:nth-child(even) {
+    background: #f2f2f2;
+  }
+  .el-table tr {
+    color: #000
+  }
 </style>
