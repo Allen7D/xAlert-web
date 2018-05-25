@@ -9,7 +9,7 @@
         <el-row class="container" :gutter="20">
           <el-col :span="10">
             <div class="header">资产</div>
-            <el-table :data="setData" style="width: 100%">
+            <el-table :data="setData" size="mini">
               <el-table-column type="index" width="30"></el-table-column>
               <el-table-column prop="address" label="网络地址" width="110"></el-table-column>
               <el-table-column prop="segment" label="网段" width="120"></el-table-column>
@@ -19,7 +19,7 @@
           <el-col :span="14">
             <div class="header">配置</div>
             <div class="body">
-              <el-form :inline="true" :model="asset">
+              <el-form :model="asset">
                 <el-col :span="12">
                 <el-form-item label="资产名称:">
                   <el-input v-model="asset.name" placeholder="资产名称" size="mini" style="width: 130px"></el-input>
@@ -43,7 +43,7 @@
                     </el-select>
                   </el-form-item>
                 </el-col>
-                <el-col :span="11" :offset="1">
+                <el-col :span="12">
                   <el-form-item label="厂商:">
                     <el-select v-model="asset.firm" placeholder="厂商" size="mini" style="width: 130px">
                       <el-option label="GE" value="GE"></el-option>
@@ -94,7 +94,7 @@
                 </el-col>
                 <el-col :span="24">
                   <el-form-item label="描述说明:">
-                    <el-input v-model="asset.illustrate" style="width: 400px"></el-input>
+                    <el-input type="textarea" v-model="asset.illustrate" style="width: 400px"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="24">
@@ -119,21 +119,23 @@
                 </el-col>
                 <el-col :span="24">
                   <el-form-item label="应用程序:">
+                    <div>
                     <el-select v-model="asset.system" placeholder="应用程序1" size="mini" style="width: 130px">
                       <el-option label="xxxx" value="model1"></el-option>
                     </el-select>
                     <el-select v-model="asset.version" placeholder="版本" size="mini" style="width: 130px">
                       <el-option label="xxxx" value="version1"></el-option>
                     </el-select>
-                    <br>
                     <el-select v-model="asset.system" placeholder="应用程序2" size="mini" style="width: 130px">
                       <el-option label="xxxx" value="model1"></el-option>
                     </el-select>
                     <el-select v-model="asset.version" placeholder="版本" size="mini" style="width: 130px">
                       <el-option label="xxxx" value="version1"></el-option>
                     </el-select>
-                    <div style="width: 80px;height: 20px;background: darkgrey;line-height: 20px;text-align: center">
+                    <div style="width: 80px;height: 20px;background: darkgrey;
+                            line-height: 20px;text-align: center;margin-left: 100px">
                       <i class="el-icon-circle-plus-outline"></i>新增
+                    </div>
                     </div>
                   </el-form-item>
                 </el-col>
@@ -251,7 +253,7 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .box
     margin auto
-    width 1200px
+    width 70%
     padding-top 25px
     .cards
       width 100%
@@ -297,12 +299,14 @@
   .el-table tr:nth-child(even){
     color: grey;
     background: #f2f2f2;
-    height: 30px;
     text-align: center;
   }
   .el-table tr:nth-child(odd){
     color: gray;
     background: white;
     text-align: center;
+  }
+  .el-form-item {
+    margin-bottom: 0
   }
 </style>
