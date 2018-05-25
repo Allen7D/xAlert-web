@@ -79,7 +79,6 @@ export const constantRouterMap = [
     path: '/system',
     component: Layout,
     redirect: 'noredirect',
-    hidden: true,
     name: 'system',
     meta: {title: '系统配置', icon: 'icon-setting'},
     children: [
@@ -160,6 +159,7 @@ export const constantRouterMap = [
         path: 'asset-detail',
         component: _import('assetDynamic/assetDetail/assetDetail'),
         name: 'assetDetail',
+        redirect: '/asset-dynamic/gitasset-detail/event',
         meta: {title: '资产详情', breadNumber: 2},
         children: [
           {path: 'event', component: _import('assetDynamic/assetDetail/event'), name: 'event'},
