@@ -21,7 +21,7 @@
       </el-row>
     </div>
     <!--2个图表容器-->
-    <div class="chart-wrapper">
+    <div class="wrapper">
       <el-row :gutter="40">
         <el-col :xs="24" :sm="24" :lg="12">
           <assetStat id="assetStat" title="在线资产统计" ></assetStat>
@@ -32,7 +32,7 @@
       </el-row>
     </div>
     <!--一个列表容器-->
-    <div class="table-wrapper">
+    <div class="wrapper">
       <el-row >
         <el-col :xs="24" :sm="24" :lg="24">
           <table-wrapper title="实时活动资产" tableHeight="250px">
@@ -146,7 +146,6 @@
     .indicator
       margin-top: 20px
   .container
-    .table-wrapper
-    .chart-wrapper
+    .wrapper
       margin-top: 73px
 </style>

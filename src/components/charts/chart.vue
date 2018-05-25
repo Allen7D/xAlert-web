@@ -1,7 +1,8 @@
 <template>
   <div class="item" :style="itemHeight">
     <chart-header :title="title" :params="params" :chart="chart"></chart-header>
-    <div :id="id" :style="[chartHeight, {width: '100%'}]"></div>
+    <div :id="id" :style="[chartHeight, chartWidth, chartPosition]"></div>
+    <slot></slot>
   </div>
 </template>
 
@@ -25,6 +26,14 @@
       height: {
         type: Number,
         default: 330
+      },
+      width: {
+        type: String,
+        default: '100%'
+      },
+      float: {
+        type: String,
+        default: 'none'
       }
     },
     data() {
@@ -38,12 +47,27 @@
       },
       chartHeight() {
         return {height: `${this.height - 50}px`}
+      },
+      chartWidth() {
+        return {width: this.width}
+      },
+      chartPosition() {
+        return {float: this.float}
       }
     },
     methods: {
       initChart() {
         this.chart = echarts.init(document.getElementById(this.id))
         this.chart.setOption(this.option)
+      },
+      destroyChart() {
+        if (!this.chart) {
+          return
+        }
+        const sidebarElm = document.getElementsByClassName('sidebar')[0]
+        sidebarElm.removeEventListener('transitionend', this.__resizeHanlder)
+        this.chart.dispose()
+        this.chart = null
       }
     },
     mounted() {
@@ -53,20 +77,14 @@
         if (this.chart) {
           this.chart.resize()
         }
-      }, 50)
+      }, 5)
       window.addEventListener('resize', this.__resizeHanlder)
       // 监听侧边栏的变化
       const sidebarElm = document.getElementsByClassName('sidebar')[0]
       sidebarElm.addEventListener('transitionend', this.__resizeHanlder)
     },
     beforeDestroy() {
-      if (!this.chart) {
-        return
-      }
-      const sidebarElm = document.getElementsByClassName('sidebar')[0]
-      sidebarElm.removeEventListener('transitionend', this.__resizeHanlder)
-      this.chart.dispose()
-      this.chart = null
+      this.destroyChart()
     }
   }
 </script>
