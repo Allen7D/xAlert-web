@@ -134,7 +134,6 @@
       ]
     },
     "events": {
-
     },
     "flows": {
       "sessRank": [
@@ -261,36 +260,171 @@
       ],
       "sendSource":[
         {
-          "srcIP":"192.2.15.161",
+          "sendIP":"192.2.15.161",
           "percent":"20%",
           "flow":"50KB"
         },
         {
-          "srcIP":"192.2.15.161",
+          "sendIP":"192.2.15.161",
           "percent":"20%",
           "flow":"50KB"
         },
         {
-          "srcIP":"192.2.15.161",
+          "sendIP":"192.2.15.161",
           "percent":"20%",
           "flow":"50KB"
         },
         {
-          "srcIP":"192.2.15.161",
+          "sendIP":"192.2.15.161",
           "percent":"20%",
           "flow":"50KB"
         },
         {
-          "srcIP":"192.2.15.161",
+          "sendIP":"192.2.15.161",
           "percent":"20%",
           "flow":"50KB"
         },
         {
-          "srcIP":"192.2.15.161",
+          "sendIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "sendIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "sendIP":"192.2.15.161",
           "percent":"20%",
           "flow":"50KB"
         }
-
+      ],
+      "receiveSource": [
+        {
+          "receiveIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "receiveIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "receiveIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "receiveIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "receiveIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "receiveIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "receiveIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "receiveIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        }
+      ],
+      "appProto": [
+        {
+          "appProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "appProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "appProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "appProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "appProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "appProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "appProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "appProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        }
+      ],
+      "tranProto": [
+        {
+          "tranProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "tranProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "tranProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "tranProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "tranProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "tranProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "tranProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "tranProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        }
       ]
     },
     "vulne": {

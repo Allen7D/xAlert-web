@@ -335,6 +335,62 @@
           "assetSum":"",
           "findTime":"2018-2-1 11:12:43"
         }
+      ],
+      "assetVulner": [
+        {
+          "busNet":"分拣系统",
+          "count":"555"
+        },
+        {
+          "busNet":"值机系统",
+          "count":"444"
+        },
+        {
+          "busNet":"业务网络3",
+          "count":"333"
+        },
+        {
+          "busNet":"业务网络4",
+          "count":"222"
+        },
+        {
+          "busNet":"业务网络5",
+          "count":"555"
+        },
+        {
+          "busNet":"业务网络6",
+          "count":"444"
+        },
+        {
+          "busNet":"业务网络7",
+          "count":"222"
+        },
+        {
+          "busNet":"业务网络8",
+          "count":"333"
+        }
+      ],
+      "assetVulGrade": [
+        {
+          "vulGrade":"严重",
+          "count":"555"
+        },
+        {
+          "vulGrade":"高危",
+          "count":"444"
+        },
+        {
+          "vulGrade":"中危",
+          "count":"555"
+        },
+        {
+          "vulGrade":"低危",
+          "count":"555"
+        },
+        {
+          "vulGrade":"信息",
+          "count":"555"
+        }
       ]
     },
     "flows": {
