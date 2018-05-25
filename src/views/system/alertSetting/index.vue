@@ -2,28 +2,22 @@
   <div class="container">
     <el-tabs v-model="activeName" type="card">
       <el-tab-pane label="告警联系人" name="alertContact">
-        <alertTabWrapper title="添加联系人">
-          <alertContactTab></alertContactTab>
-        </alertTabWrapper>
+        <alertContact></alertContact>
       </el-tab-pane>
       <el-tab-pane label="告警设置" name="alertSetting">
-        <alertTabWrapper title="新增告警项">
-          <alertList></alertList>
-        </alertTabWrapper>
+        <alertSetting></alertSetting>
       </el-tab-pane>
     </el-tabs>
   </div>
 </template>
 
 <script>
-  import alertTabWrapper from 'components/table/alertTabWrapper'
-  import alertContactTab from './components/alertContactTab'
-  import alertList from './components/alertList'
+  import alertContact from './alertContact'
+  import alertSetting from './alertSetting'
   export default {
     components: {
-      alertTabWrapper,
-      alertContactTab,
-      alertList
+      alertContact,
+      alertSetting
     },
     data() {
       return {

@@ -18,49 +18,155 @@
           <td>{{item.role}}</td>
           <td>{{item.tips}}</td>
           <td>
-            <a href="javascript:;" class="edit">修改密码</a>
+            <a class="edit" @click="dialogCurpassVisible = true">修改密码</a>
           </td>
         </tr>
         </tbody>
       </table>
     </div>
-    <!--<div class="form-group">-->
-      <!--<input type="text" placeholder="hhhh" class="name" v-model="newContact.name">-->
-      <!--<input type="text" placeholder="13888888888" class="tel" v-model="newContact.telphone">-->
-      <!--<input type="email" placeholder="1388888888@163.com" class="email" v-model="newContact.email">-->
-      <!--<input type="text" placeholder="xxxx" class="post" v-model="newContact.post">-->
-      <!--<button class="confirmBtn" v-on:click="createContact">确认</button>-->
-      <!--<button class="deleteBtn" v-on:click="deleteInput">取消</button>-->
-    <!--</div>-->
-    <button class="save">新建用户</button>
+    <button class="save" @click="dialogCreateVisible = true">新建用户</button>
+    <!--输入当前密码提示框-->
+    <el-dialog :visible.sync="dialogCurpassVisible" center width="30%">
+      <el-form :model="curPassform">
+        <el-form-item label="请输入当前密码" :label-width="formLabelWidth">
+          <el-input v-model="curPassform.curPass" auto-complete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="dialogNewpassVisible = true,dialogCurpassVisible = false">确 定</el-button>
+        <el-button @click="dialogCurpassVisible = false">取 消</el-button>
+      </div>
+    </el-dialog>
+    <!--修改密码提示框-->
+    <el-dialog :visible.sync="dialogNewpassVisible" center width="30%">
+      <el-form :model="newPassform" status-icon :rules="rules" ref="newPassform" class="demo-ruleForm">
+        <el-form-item label="请输入新密码" prop="pass" :label-width="formLabelWidth">
+          <el-input type="password" v-model="newPassform.pass" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="请再次输入密码" prop="checkPass" :label-width="formLabelWidth">
+          <el-input type="password" v-model="newPassform.checkPass" auto-complete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="dialogNewpassVisible = false">确 定</el-button>
+        <el-button @click="dialogNewpassVisible = false">取 消</el-button>
+      </div>
+    </el-dialog>
+    <!--新建用户提示框-->
+    <el-dialog :visible.sync="dialogCreateVisible" center width="30%">
+      <el-form :model="createform" status-icon :rules="rules2" ref="createform" class="demo-ruleForm">
+        <el-form-item label="帐号" prop="account" :label-width="formLabelWidth">
+          <el-input v-model="createform.account" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="pass" :label-width="formLabelWidth">
+          <el-input type="password" v-model="createform.pass" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="确认密码" prop="checkPass" :label-width="formLabelWidth">
+          <el-input type="password" v-model="createform.checkPass" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="角色" prop="role" :label-width="formLabelWidth">
+          <el-select v-model="createform.role" placeholder="管理员">
+            <el-option label="管理员" value="manager"></el-option>
+            <el-option label="操作员" value="operator"></el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="dialogCreateVisible = false">确 定</el-button>
+        <el-button @click="dialogCreateVisible = false">取 消</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script>
   export default {
     data() {
+      var validatePass = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请输入密码(8-15位字符，必须包括大小写字母、数字和特殊字符组合)'))
+        } else {
+          if (this.newPassform.checkPass !== '') {
+            this.$refs.newPassform.validateField('checkPass')
+          }
+          callback()
+        }
+      }
+      var validatePass2 = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请再次输入密码'))
+        } else if (value !== this.newPassform.pass) {
+          callback(new Error('两次输入密码不一致!'))
+        } else {
+          callback()
+        }
+      }
+      var checkAccount = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('帐号不能为空'))
+        }
+      }
+      var ValidatePass = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请输入密码(8-15位字符，必须包括大小写字母、数字和特殊字符组合)'))
+        } else {
+          if (this.createform.checkPass !== '') {
+            this.$refs.createform.validateField('checkPass')
+          }
+          callback()
+        }
+      }
+      var ValidatePass2 = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请再次输入密码'))
+        } else if (value !== this.createform.pass) {
+          callback(new Error('两次输入密码不一致!'))
+        } else {
+          callback()
+        }
+      }
       return {
         list: [
           {account: 'Admin@lanxum.com', role: '操作员', tips: ''}
         ],
         newUser: {
           account: '', role: '', tips: ''
-        }
-      }
-    },
-    methods: {
-      createContact() {
-        this.list.push(this.newContact)
-        this.newContact = {
-          name: '', telphone: '', email: '', post: ''
-        }
-      },
-      deleteContact(index) {
-        this.list.splice(index, 1)
-      },
-      deleteInput() {
-        this.newContact = {
-          name: '', telphone: '', email: '', post: ''
+        },
+        dialogCurpassVisible: false,
+        dialogNewpassVisible: false,
+        dialogCreateVisible: false,
+        curPassform: {
+          curPass: ''
+        },
+        createform: {
+          account: '',
+          pass: '',
+          checkPass: '',
+          role: ''
+        },
+        formLabelWidth: '120px',
+        newPassform: {
+          pass: '',
+          checkPass: ''
+        },
+        rules: {
+          pass: [
+            { validator: validatePass, trigger: 'blur' }
+          ],
+          checkPass: [
+            { validator: validatePass2, trigger: 'blur' }
+          ]
+        },
+        rules2: {
+          pass: [
+            { validator: ValidatePass, trigger: 'blur' }
+          ],
+          checkPass: [
+            { validator: ValidatePass2, trigger: 'blur' }
+          ],
+          account: [
+            { validator: checkAccount, trigger: 'blur' }
+          ]
         }
       }
     }
