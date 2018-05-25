@@ -12,6 +12,7 @@
       </section>
       <!--<x-footer></x-footer>-->
     </div>
+    <div class="bg"></div>
   </div>
 </template>
 
@@ -54,7 +55,17 @@
       padding-top: 20px
       .main-wrapper
         margin: 50px 0 0 53px
-
+    .bg
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      margin: auto
+      position: fixed
+      z-index: -1
+      background-size: cover
+      background-repeat: no-repeat
+      background-image: url(./bg.jpg)
   .hideSiddbar
     .main
       margin-left: 97px

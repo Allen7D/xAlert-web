@@ -45,15 +45,7 @@ export const constantRouterMap = [
     path: '/custom-monitor',
     component: Layout,
     redirect: 'noredirect',
-    name: 'customMonitor',
-    meta: {
-      title: '业务监控',
-      icon: 'icon-pc'
-    },
-    children: [
-      {path: 'customMonitor', component: _import('customMonitor/customMonitor'), name: 'customMonitor', meta: {title: '业务监控', breadNumber: 2}},
-      {path: 'business', component: _import('customMonitor/customMonitor'), name: 'customMonitor', meta: {title: '业务监控', breadNumber: 2}}
-    ]
+    children: [{path: 'index', component: _import('customMonitor/customMonitor'), name: 'customMonitor', meta: {title: '业务监控', icon: 'icon-pc', breadNumber: 2}}]
   },
   {
     path: '/analysis',
@@ -87,6 +79,7 @@ export const constantRouterMap = [
     path: '/system',
     component: Layout,
     redirect: 'noredirect',
+    hidden: true,
     name: 'system',
     meta: {title: '系统配置', icon: 'icon-setting'},
     children: [
@@ -96,8 +89,8 @@ export const constantRouterMap = [
         name: 'systemStatus',
         meta: {title: '系统状态', breadNumber: 2},
         children: [
-          {path: 'platform', component: _import('assetDynamic/assetDetail/platform'), name: 'platform'},
-          {path: 'probe', component: _import('assetDynamic/assetDetail/probe'), name: 'probe'}
+          {path: 'platform', component: _import('system/systemStatus/platform'), name: 'platform'},
+          {path: 'probe', component: _import('system/systemStatus/probe'), name: 'probe'}
         ]
       },
       {
@@ -108,8 +101,8 @@ export const constantRouterMap = [
         children: [
           {path: 'platform', component: _import('system/systemConfig/platform'), name: 'platform'},
           {path: 'probe', component: _import('system/systemConfig/probe'), name: 'probe'},
-          {path: 'dateConfig', component: _import('system/systemConfig/dateConfig'), name: 'dateConfig'},
-          {path: 'systemUpdate', component: _import('system/systemConfig/systemUpdate'), name: 'systemUpdate'}
+          {path: 'date-config', component: _import('system/systemConfig/dateConfig'), name: 'dateConfig'},
+          {path: 'system-update', component: _import('system/systemConfig/systemUpdate'), name: 'systemUpdate'}
         ]
       },
       {
@@ -118,8 +111,8 @@ export const constantRouterMap = [
         name: 'alertSetting',
         meta: {title: '报警设置', breadNumber: 2},
         children: [
-          {path: 'alertContact', component: _import('system/alertSetting/alertContact'), name: 'alertContact'},
-          {path: 'alertsetting', component: _import('system/alertSetting/alertsetting'), name: 'alertsetting'}
+          {path: 'alert-contact', component: _import('system/alertSetting/alertContact'), name: 'alertContact'},
+          {path: 'alert-setting', component: _import('system/alertSetting/alertSetting'), name: 'alertSetting'}
         ]
       },
       {path: 'user-manage', component: _import('system/userManage/userManage'), name: 'userManage', meta: {title: '用户管理', breadNumber: 2}},

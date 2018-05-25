@@ -1,0 +1,199 @@
+{
+  "ret": true,
+  "data": {
+    "protocol": [
+      {
+        "type": "http",
+        "flow": 1024
+      },
+      {
+        "type": "TCP/IP",
+        "flow": 4096
+      },
+      {
+        "type": "NetBEUI",
+        "flow": 2048
+      },
+      {
+        "type": "iec104",
+        "flow": 1000
+      },
+      {
+        "type": "modbus",
+        "flow": 1024
+      },
+      {
+        "type": "https",
+        "flow": 2048
+      },
+      {
+        "type": "NetBEUI5",
+        "flow": 21
+      },
+      {
+        "type": "NetBEUI6",
+        "flow": 1024
+      },
+      {
+        "type": "NetBEUI7",
+        "flow": 48
+      },
+      {
+        "type": "NetBEUI8",
+        "flow": 21
+      }
+    ],
+    "netSession": [
+      {
+        "srcName": "PC1",
+        "srcIP": "192.168.22.51",
+        "dstName": "PC2",
+        "protocol": "TP/TCP",
+        "flow": "24G"
+      },
+      {
+        "srcName": "PC2",
+        "srcIP": "192.168.22.17",
+        "dstName": "PC1",
+        "protocol": "TP/TCP",
+        "flow": "14G"
+      },
+      {
+        "srcName": "PC1",
+        "srcIP": "192.168.22.51",
+        "dstName": "PC3",
+        "protocol": "TP/TCP",
+        "flow": "28G"
+      },
+      {
+        "srcName": "PC3",
+        "srcIP": "192.168.22.1",
+        "dstName": "PC1",
+        "protocol": "TP/TCP",
+        "flow": "24G"
+      },
+      {
+        "srcName": "PC1",
+        "srcIP": "192.168.22.51",
+        "dstName": "PC3",
+        "protocol": "TP/TCP",
+        "flow": "1024G"
+      },
+      {
+        "srcName": "PC1",
+        "srcIP": "192.168.22.51",
+        "dstName": "PC3",
+        "protocol": "TP/TCP",
+        "flow": "124G"
+      }
+    ],
+    "additionalAsset": [
+      {
+        "time": "2018-01-19 17:46:08",
+        "IP": "192.168.3.25",
+        "serviceNet": "业务网络1"
+      },
+      {
+        "time": "2018-01-19 17:46:08",
+        "IP": "192.168.3.25",
+        "serviceNet": "业务网络1"
+      },
+      {
+        "time": "2018-01-19 17:46:08",
+        "IP": "192.168.3.25",
+        "serviceNet": "业务网络1"
+      },
+      {
+        "time": "2018-01-19 17:46:08",
+        "IP": "192.168.3.25",
+        "serviceNet": "业务网络1"
+      },
+      {
+        "time": "2018-01-19 17:46:08",
+        "IP": "192.168.3.25",
+        "serviceNet": "业务网络1"
+      },
+      {
+        "time": "2018-01-19 17:46:08",
+        "IP": "192.168.3.25",
+        "serviceNet": "业务网络1"
+      }
+    ],
+    "vulneDiscovery": [
+      {
+        "time": "2018-01-19 17:46:08",
+        "name": "机房MES服务器2",
+        "amount": 285,
+        "serviceNet": "业务网络1"
+      },
+      {
+        "time": "2018-01-19 17:46:08",
+        "name": "机房MES服务器2",
+        "amount": 285,
+        "serviceNet": "业务网络1"
+      },
+      {
+        "time": "2018-01-19 17:46:08",
+        "name": "机房MES服务器2",
+        "amount": 285,
+        "serviceNet": "业务网络1"
+      },
+      {
+        "time": "2018-01-19 17:46:08",
+        "name": "机房MES服务器2",
+        "amount": 285,
+        "serviceNet": "业务网络1"
+      },
+      {
+        "time": "2018-01-19 17:46:08",
+        "name": "机房MES服务器2",
+        "amount": 285,
+        "serviceNet": "业务网络1"
+      }
+    ],
+    "netEvent": [
+      {
+        "time": "2018-01-28 13:16:18",
+        "eventName": "读取服务器数据",
+        "srcIP": "192.168.3.25",
+        "dstIP": "192.168.3.28",
+        "netName": "业务网络1"
+      },
+      {
+        "time": "2018-01-29 17:46:08",
+        "eventName": "读取服务器数据",
+        "srcIP": "192.168.3.25",
+        "dstIP": "192.168.3.28",
+        "netName": "业务网络1"
+      },
+      {
+        "time": "2018-01-30 11:11:12",
+        "eventName": "读取服务器数据",
+        "srcIP": "192.168.3.25",
+        "dstIP": "192.168.3.29",
+        "netName": "业务网络1"
+      },
+      {
+        "time": "2018-02-01 11:13:59",
+        "eventName": "读取服务器数据",
+        "srcIP": "192.168.3.25",
+        "dstIP": "192.168.3.28",
+        "netName": "业务网络1"
+      },
+      {
+        "time": "2018-02-03 07:16:08",
+        "eventName": "读取服务器数据",
+        "srcIP": "192.168.3.22",
+        "dstIP": "192.168.3.29",
+        "netName": "业务网络2"
+      },
+      {
+        "time": "2018-02-03 21:41:38",
+        "eventName": "读取服务器数据",
+        "srcIP": "192.168.3.22",
+        "dstIP": "192.168.3.29",
+        "netName": "业务网络2"
+      }
+    ]
+  }
+}
