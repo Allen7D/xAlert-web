@@ -119,24 +119,34 @@
                 </el-col>
                 <el-col :span="24">
                   <el-form-item label="应用程序:">
-                    <div>
-                    <el-select v-model="asset.system" placeholder="应用程序1" size="mini" style="width: 130px">
-                      <el-option label="xxxx" value="model1"></el-option>
-                    </el-select>
-                    <el-select v-model="asset.version" placeholder="版本" size="mini" style="width: 130px">
-                      <el-option label="xxxx" value="version1"></el-option>
-                    </el-select>
-                    <el-select v-model="asset.system" placeholder="应用程序2" size="mini" style="width: 130px">
-                      <el-option label="xxxx" value="model1"></el-option>
-                    </el-select>
-                    <el-select v-model="asset.version" placeholder="版本" size="mini" style="width: 130px">
-                      <el-option label="xxxx" value="version1"></el-option>
-                    </el-select>
+                      <el-row>
+                        <el-col :span="12">
+                          <el-select v-model="asset.system" placeholder="应用程序1" size="mini" style="width: 130px">
+                            <el-option label="xxxx" value="model1"></el-option>
+                          </el-select>
+                        </el-col>
+                        <el-col :span="8">
+                          <el-select v-model="asset.version" placeholder="版本" size="mini" style="width: 130px">
+                            <el-option label="xxxx" value="version1"></el-option>
+                          </el-select>
+                        </el-col>
+                        <el-col :span="8" >
+                          <el-select v-model="asset.system" placeholder="应用程序2" size="mini" style="width: 130px">
+                            <el-option label="xxxx" value="model1"></el-option>
+                          </el-select>
+                        </el-col>
+                        <el-col :span="8">
+                          <el-select v-model="asset.version" placeholder="版本" size="mini" style="width: 130px">
+                            <el-option label="xxxx" value="version1"></el-option>
+                          </el-select>
+                        </el-col>
+                        <el-col :span="8">
                     <div style="width: 80px;height: 20px;background: darkgrey;
                             line-height: 20px;text-align: center;margin-left: 100px">
                       <i class="el-icon-circle-plus-outline"></i>新增
                     </div>
-                    </div>
+                        </el-col>
+                      </el-row>
                   </el-form-item>
                 </el-col>
                 <el-col :span="12" :offset="6">
