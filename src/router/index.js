@@ -133,10 +133,10 @@ export const constantRouterMap = [
         name: 'assetDetail',
         meta: {title: '资产详情', breadNumber: 2},
         children: [
-          {path: 'event', component: _import('assetDynamic/assetDetail/components/event'), name: 'event'},
-          {path: 'flow', component: _import('assetDynamic/assetDetail/components/flow'), name: 'flow'},
-          {path: 'vulne', component: _import('assetDynamic/assetDetail/components/vulne'), name: 'vulne'},
-          {path: 'session', component: _import('assetDynamic/assetDetail/components/session'), name: 'session'}
+          {path: 'event', component: _import('assetDynamic/assetDetail/event'), name: 'event'},
+          {path: 'vulne', component: _import('assetDynamic/assetDetail/vulne'), name: 'vulne'},
+          {path: 'flow', component: _import('assetDynamic/assetDetail/flow'), name: 'flow'},
+          {path: 'session', component: _import('assetDynamic/assetDetail/session'), name: 'session'}
           ]
       },
       {path: 'asset-list', component: _import('assetDynamic/assetList/assetList'), name: 'assetList', meta: {title: '资产列表', breadNumber: 2}},
