@@ -11,10 +11,11 @@
       </div>
 
       <template v-for="item in routes" v-if="!item.hidden&&item.children">
+
         <router-link v-if="item.children.length===1 && !item.children[0].children && !item.alwaysShow" :to="item.path+'/'+item.children[0].path" :key="item.children[0].name">
-          <el-menu-item :index="item.path+'/'+item.children[0].path" :class="{'submenu-title-noDropdown':!isNest}">
+          <el-menu-item :index="item.path+'/'+item.children[0].path" :class="{'submenu-title-noDropdown':isCollapse}">
             <i v-if="item.children[0].meta&&item.children[0].meta.icon" class="icon" :class="item.children[0].meta.icon"></i>
-            <span v-if="item.children[0].meta&&item.children[0].meta.title&&!isCollapse" class="h1">{{item.children[0].meta.title}}</span>
+            <span v-if="item.children[0].meta&&item.children[0].meta.title" class="h1">{{item.children[0].meta.title}}</span>
           </el-menu-item>
         </router-link>
 
@@ -27,7 +28,6 @@
           <el-menu-item-group>
             <template v-for="child in item.children" v-if="!child.hidden">
               <sidebar-item :is-nest="true" class="nest-menu" v-if="child.children&&child.children.length>0" :routes="[child]" :key="child.path"></sidebar-item>
-
               <router-link v-else :to="item.path+'/'+child.path" :key="child.name">
                 <el-menu-item :index="item.path+'/'+child.path">
                   <span v-if="child.meta&&child.meta.title">{{child.meta.title}}</span>
@@ -60,6 +60,7 @@
         'sidebar'
       ]),
       routes() {
+        console.log('routes:', this.$router.options.routes)
         return this.$router.options.routes
       },
       isCollapse() {
@@ -100,7 +101,7 @@
     .el-menu
       background: rgba(6, 6, 123, 0.5)
       color: #4676FF
-      border: 0
+      border: none
       .icon
         color: #4676FF
         font-size: 26px
@@ -130,11 +131,40 @@
       right: -30px
 </style>
 <style lang="stylus" rel="stylesheet/stylus">
-  .el-menu--collapse .el-menu .el-submenu, .el-menu--popup {
-    min-width: 55px;
-    width: 100px;
-    text-align center;
-    // background-color: #4676ff;
-    // color: #06067b;
-  }
+  .el-menu--collapse .el-menu .el-submenu, .el-menu--popup
+    min-width: 55px
+    width: 120px
+    text-align center
+  .el-menu-item-group__title
+    padding: 0
+  .el-tooltip__popper.is-dark
+    display: none
+  .submenu-title-noDropdown
+    padding-left: 10px!important
+    position: relative
+    span
+      height: 0
+      width: 0
+      overflow: hidden
+      visibility: hidden
+      transition: opacity .3s cubic-bezier(.55, 0, .1, 1)
+      opacity: 0
+      display: inline-block
+    &:hover
+      span
+        display: block
+        border-radius: 2px
+        z-index: 1048
+        width: 120px
+        height: 56px
+        visibility: visible
+        position: absolute
+        right: -123px
+        text-align: center
+        top: 0px
+        background-color: white!important
+        opacity: 1
+      .h1
+        color: #303133
+        font-size: 14px
 </style>

@@ -45,7 +45,12 @@ export const constantRouterMap = [
     path: '/custom-monitor',
     component: Layout,
     redirect: 'noredirect',
-    children: [{path: 'index', component: _import('customMonitor/customMonitor'), name: 'customMonitor', meta: {title: '业务监控', icon: 'icon-pc', breadNumber: 2}}]
+    meta: {
+      title: '业务监控'
+    },
+    children: [
+      {path: 'index', component: _import('customMonitor/customMonitor'), name: 'customMonitor', meta: {title: '业务监控', icon: 'icon-pc', breadNumber: 1}}
+      ]
   },
   {
     path: '/analysis',
@@ -82,71 +87,13 @@ export const constantRouterMap = [
     name: 'system',
     meta: {title: '系统配置', icon: 'icon-setting'},
     children: [
-      {
-        path: 'system-status',
-        component: _import('system/systemStatus/index'),
-        name: 'systemStatus',
-        meta: {title: '系统状态', breadNumber: 2}
-      },
-      {
-        path: 'system-config',
-        component: _import('system/systemConfig/index'),
-        name: 'systemConfig',
-        meta: {title: '系统配置', breadNumber: 2}
-      },
-      {
-        path: 'alert-setting',
-        component: _import('system/alertSetting/index'),
-        name: 'alertSetting',
-        meta: {title: '报警设置', breadNumber: 2}
-      },
+      {path: 'system-status', component: _import('system/systemStatus/index'), name: 'systemStatus', meta: {title: '系统状态', breadNumber: 2}},
+      {path: 'system-config', component: _import('system/systemConfig/index'), name: 'systemConfig', meta: {title: '系统配置', breadNumber: 2}},
+      {path: 'alert-setting', component: _import('system/alertSetting/index'), name: 'alertSetting', meta: {title: '报警设置', breadNumber: 2}},
       {path: 'user-manage', component: _import('system/userManage/userManage'), name: 'userManage', meta: {title: '用户管理', breadNumber: 2}},
       {path: 'security-policy', component: _import('system/securityPolicy/securityPolicy'), name: 'securityPolicy', meta: {title: '安全策略', breadNumber: 2}}
     ]
   },
-  // {
-  //   path: '/system',
-  //   component: Layout,
-  //   redirect: 'noredirect',
-  //   name: 'system',
-  //   meta: {title: '系统配置', icon: 'icon-setting'},
-  //   children: [
-  //     {
-  //       path: 'system-status',
-  //       component: _import('system/systemStatus/index'),
-  //       name: 'systemStatus',
-  //       meta: {title: '系统状态', breadNumber: 2},
-  //       children: [
-  //         {path: 'platform', component: _import('assetDynamic/assetDetail/platform'), name: 'platform'},
-  //         {path: 'probe', component: _import('assetDynamic/assetDetail/probe'), name: 'probe'}
-  //       ]
-  //     },
-  //     {
-  //       path: 'system-config',
-  //       component: _import('system/systemConfig/index'),
-  //       name: 'systemConfig',
-  //       meta: {title: '系统配置', breadNumber: 2},
-  //       children: [
-  //         {path: 'platform', component: _import('system/systemConfig/platform'), name: 'platform'},
-  //         {path: 'probe', component: _import('system/systemConfig/probe'), name: 'probe'},
-  //         {path: 'dateConfig', component: _import('system/systemConfig/dateConfig'), name: 'dateConfig'},
-  //         {path: 'systemUpdate', component: _import('system/systemConfig/systemUpdate'), name: 'systemUpdate'}
-  //       ]
-  //     },
-  //     {
-  //       path: 'alert-setting',
-  //       component: _import('system/alertSetting/index'),
-  //       name: 'alertSetting',
-  //       meta: {title: '报警设置', breadNumber: 2},
-  //       children: [
-  //         {path: 'alertContact', component: _import('system/alertSetting/alertContact'), name: 'alertContact'},
-  //         {path: 'alertsetting', component: _import('system/alertSetting/alertsetting'), name: 'alertsetting'}
-  //       ]
-  //     },
-  //     {path: 'user-manage', component: _import('system/userManage/userManage'), name: 'userManage', meta: {title: '用户管理', breadNumber: 2}},
-  //     {path: 'security-policy', component: _import('system/securityPolicy/securityPolicy'), name: 'securityPolicy', meta: {title: '安全策略', breadNumber: 2}}
-  //   ]
-  // },
   {
     path: '/asset-dynamic',
     component: Layout,
@@ -174,18 +121,38 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/other-dynamic',
+    path: '/event-dynamic',
     component: Layout,
     hidden: true,
     redirect: 'noredirect',
-    name: 'otherDynamic',
-    meta: {title: '其他动态'},
+    name: 'eventDynamic',
+    meta: {title: '事件动态'},
     children: [
-      {path: 'event-detail', component: _import('otherDynamic/eventDetail/eventDetail'), name: 'eventDetail', meta: {title: '事件详情', breadNumber: 2}},
-      {path: 'event-list', component: _import('otherDynamic/eventList/eventList'), name: 'eventList', meta: {title: '事件列表', breadNumber: 2}},
-      {path: 'vulne-detail', component: _import('otherDynamic/vulneDetail/vulneDetail'), name: 'vulneDetail', meta: {title: '漏洞详情', breadNumber: 2}},
-      {path: 'vulne-list', component: _import('otherDynamic/vulneList/vulneList'), name: 'vulneList', meta: {title: '漏洞列表', breadNumber: 2}},
-      {path: 'protocol-datail', component: _import('otherDynamic/protocolDatail/protocolDatail'), name: 'protocolDatail', meta: {title: '协议详情', breadNumber: 2}}
+      {path: 'event-detail', component: _import('eventDynamic/eventDetail/eventDetail'), name: 'eventDetail', meta: {title: '事件详情', breadNumber: 2}},
+      {path: 'event-list', component: _import('eventDynamic/eventList/eventList'), name: 'eventList', meta: {title: '事件列表', breadNumber: 2}}
+    ]
+  },
+  {
+    path: '/vulne-dynamic',
+    component: Layout,
+    hidden: true,
+    redirect: 'noredirect',
+    name: 'vulneDynamic',
+    meta: {title: '漏洞动态'},
+    children: [
+      {path: 'vulne-detail', component: _import('vulneDynamic/vulneDetail/vulneDetail'), name: 'vulneDetail', meta: {title: '漏洞详情', breadNumber: 2}},
+      {path: 'vulne-list', component: _import('vulneDynamic/vulneList/vulneList'), name: 'vulneList', meta: {title: '漏洞列表', breadNumber: 2}}
+    ]
+  },
+  {
+    path: '/net-flow',
+    component: Layout,
+    hidden: true,
+    redirect: 'noredirect',
+    name: 'netFlow',
+    meta: {title: '网络流量'},
+    children: [
+      {path: 'protocol-detail', component: _import('netFlow/protocolDetail'), name: 'protocolDetail', meta: {title: '协议详情', breadNumber: 2}}
     ]
   },
   {path: '*', redirect: '/404', hidden: true}
