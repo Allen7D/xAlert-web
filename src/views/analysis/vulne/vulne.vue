@@ -14,10 +14,9 @@
         </el-row>
         <el-row>
           <el-col :xs="24" :sm="24" :lg="24">
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :xs="24" :sm="24" :lg="24">
+            <new-table-wrapper title="漏洞列表" tableHeight="350px">
+              <vulne-list :dataList="vulneList"></vulne-list>
+            </new-table-wrapper>
           </el-col>
         </el-row>
       </el-col>
@@ -29,33 +28,37 @@
   import vulneCountStat from './components/vulneCountStat'
   import vulneGradeStat from './components/vulneGradeStat'
   import vulneDistribution from './components/vulneDistribution'
+  import vulneList from './components/vulneList'
+  import newTableWrapper from 'components/table/newTableWrapper'
   import axios from 'axios'
   export default {
     components: {
       business,
       vulneCountStat,
       vulneGradeStat,
-      vulneDistribution
+      vulneDistribution,
+      vulneList,
+      newTableWrapper
     },
     data() {
       return {
-        eventDataList: []
+        vulneList: []
       }
     },
     methods: {
-      getEventDataList() {
+      getVulneList() {
         axios.get('/api/analysis/table.json')
           .then(res => {
             res = res.data
             if (res.ret && res.data) {
-              const data = res.data.events
-              this.eventDataList = data.eventData
+              const data = res.data.vulne
+              this.vulneList = data.vulneData
             }
           })
       }
     },
     created() {
-      this.getEventDataList()
+      this.getVulneList()
     }
   }
 </script>

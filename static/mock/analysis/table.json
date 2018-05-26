@@ -217,6 +217,102 @@
           "status": "已确认",
           "detail": "xxxxxxx"
         }
+      ],
+      "eveStyLeft": [
+        {
+          "number": "1",
+          "eventType": "事件类型1",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "2",
+          "eventType": "事件类型2",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "3",
+          "eventType": "事件类型3",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "4",
+          "eventType": "事件类型4",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "5",
+          "eventType": "事件类型5",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        }
+      ],
+      "eveStyCenter": [
+        {
+          "number": "1",
+          "eventType": "事件类型1",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "2",
+          "eventType": "事件类型2",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "3",
+          "eventType": "事件类型3",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "4",
+          "eventType": "事件类型4",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "5",
+          "eventType": "事件类型5",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        }
+      ],
+      "eveStyRight": [
+        {
+          "number": "1",
+          "eventType": "事件类型1",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "2",
+          "eventType": "事件类型2",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "3",
+          "eventType": "事件类型3",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "4",
+          "eventType": "事件类型4",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "5",
+          "eventType": "事件类型5",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        }
       ]
     },
     "flows": {
@@ -512,7 +608,92 @@
       ]
     },
     "vulne": {
-
+      "vulneData": [
+        {
+          "findTime": "2018-5-2 14:12:39",
+          "vulName": "名称",
+          "grade": "高危",
+          "type": "主机漏洞",
+          "ownAsset": "PC1",
+          "address": "xxx.xxx.xxx.xxx",
+          "ownBus": "业务网络1",
+          "application": "office",
+          "repairPlan": "点击查看",
+          "repairRes": "已修复"
+        },
+        {
+          "findTime": "2018-5-2 14:12:39",
+          "vulName": "名称",
+          "grade": "高危",
+          "type": "主机漏洞",
+          "ownAsset": "PC1",
+          "address": "xxx.xxx.xxx.xxx",
+          "ownBus": "业务网络1",
+          "application": "office",
+          "repairPlan": "点击查看",
+          "repairRes": "已修复"
+        },
+        {
+          "findTime": "2018-5-2 14:12:39",
+          "vulName": "名称",
+          "grade": "高危",
+          "type": "主机漏洞",
+          "ownAsset": "PC1",
+          "address": "xxx.xxx.xxx.xxx",
+          "ownBus": "业务网络1",
+          "application": "office",
+          "repairPlan": "点击查看",
+          "repairRes": "已修复"
+        },
+        {
+          "findTime": "2018-5-2 14:12:39",
+          "vulName": "名称",
+          "grade": "高危",
+          "type": "主机漏洞",
+          "ownAsset": "PC1",
+          "address": "xxx.xxx.xxx.xxx",
+          "ownBus": "业务网络1",
+          "application": "office",
+          "repairPlan": "点击查看",
+          "repairRes": "已修复"
+        },
+        {
+          "findTime": "2018-5-2 14:12:39",
+          "vulName": "名称",
+          "grade": "高危",
+          "type": "主机漏洞",
+          "ownAsset": "PC1",
+          "address": "xxx.xxx.xxx.xxx",
+          "ownBus": "业务网络1",
+          "application": "office",
+          "repairPlan": "点击查看",
+          "repairRes": "已修复"
+        },
+        {
+          "findTime": "2018-5-2 14:12:39",
+          "vulName": "名称",
+          "grade": "中危",
+          "type": "主机漏洞",
+          "ownAsset": "PC1",
+          "address": "xxx.xxx.xxx.xxx",
+          "ownBus": "业务网络1",
+          "application": "office",
+          "repairPlan": "点击查看",
+          "repairRes": "已修复"
+        },
+        {
+          "findTime": "2018-5-2 14:12:39",
+          "vulName": "名称",
+          "grade": "低危",
+          "type": "主机漏洞",
+          "ownAsset": "PC1",
+          "address": "xxx.xxx.xxx.xxx",
+          "ownBus": "业务网络1",
+          "application": "office",
+          "repairPlan": "点击查看",
+          "repairRes": "已修复"
+        }
+      ]
     }
   }
 }

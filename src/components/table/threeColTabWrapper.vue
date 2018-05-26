@@ -3,8 +3,16 @@
     <div class="header">
       <span class="title">{{title}}</span>
     </div>
-    <div class="content" :style="{height: tableHeight}">
-      <slot></slot>
+    <div class="content">
+      <div class="tab" :style="{height: tableHeight}">
+        <slot></slot>
+      </div>
+      <div class="tab" :style="{height: tableHeight}">
+        <slot name="center"></slot>
+      </div>
+      <div class="tab" :style="{height: tableHeight}">
+        <slot name="right"></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -50,5 +58,10 @@
       font-weight: bold
     }
     .content
-      padding: 30px 19px 0
+      padding: 10px 10px 10px 40px
+      .tab {
+        width 32%
+        float left
+        margin-right 15px
+      }
 </style>
