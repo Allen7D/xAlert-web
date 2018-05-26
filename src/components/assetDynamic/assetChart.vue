@@ -1,7 +1,8 @@
 <template>
-  <div :style="itemHeight">
+  <div class="item" :style="itemHeight">
     <div class="title">{{title}}</div>
-    <div class="item" :id="id" :style="[chartHeight, {width: '100%'}]"></div>
+    <div :id="id" :style="[chartHeight, chartWidth, chartPosition]"></div>
+    <slot></slot>
   </div>
 </template>
 
@@ -21,6 +22,14 @@
       height: {
         type: Number,
         default: 300
+      },
+      width: {
+        type: String,
+        default: '100%'
+      },
+      float: {
+        type: String,
+        default: 'none'
       }
     },
     data() {
@@ -34,6 +43,12 @@
       },
       chartHeight() {
         return {height: `${this.height - 50}px`}
+      },
+      chartWidth() {
+        return {width: this.width}
+      },
+      chartPosition() {
+        return {float: this.float}
       }
     },
     methods: {
@@ -69,12 +84,6 @@
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
-  .title
-    height 25px
-    line-height 25px
-    color black
-    padding-left 20px
-    font-weight bolder
   .item
     /*height: 330px*/
     margin-top 5px
@@ -84,4 +93,10 @@
     border: 1px solid #e6e6e6
     background-color #fff
     border-radius 10px
+    .title
+      height 25px
+      line-height 25px
+      color black
+      padding-left 20px
+      font-weight bolder
 </style>
