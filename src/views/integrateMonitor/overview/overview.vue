@@ -3,13 +3,13 @@
     <div class="indicator">
       <el-row :gutter="40">
         <el-col :xs="24" :sm="12" :lg="6">
-          <indicator title="安全事件" icon="icon-log" :data="securityEvent"></indicator>
+          <indicator title="安全事件" icon="icon-log" link="/event-dynamic/event-list" :data="securityEvent"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
-          <indicator title="漏洞数量" icon="icon-webloudongjiance" :data="6"></indicator>
+          <indicator title="漏洞数量" icon="icon-webloudongjiance" link="/vulne-dynamic/vulne-list" :data="6"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
-          <indicator title="网络资产" icon="icon-network-assets" :data="totalAssets"></indicator>
+          <indicator title="网络资产" icon="icon-network-assets" link="/asset-dynamic/asset-list" :data="totalAssets"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
           <indicator title="资产活动数量" icon="icon-networkAssets" :data="66"></indicator>

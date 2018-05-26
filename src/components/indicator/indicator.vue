@@ -1,7 +1,9 @@
 <template>
   <div class="item">
     <div class="title">
-      <i :class="icon"></i><span>{{title}}</span>
+      <router-link :to="link">
+        <i :class="icon"></i><span>{{title}}</span>
+      </router-link>
     </div>
     <div class="content">
       <span>数量:</span><span class="index">{{data}}</span>
@@ -19,6 +21,10 @@
       icon: {
         type: String,
         default: 'icon-log'
+      },
+      link: {
+        type: String,
+        default: ''
       },
       data: {
         type: Number,
@@ -41,10 +47,13 @@
       width: 130px
       height: 26px
       beveled-corners($color-theme, 5px)
-      color: $color-theme-r
       font-size: 16px
       text-align: center
       line-height: 26px
+      a
+        text-decoration:none
+        out-line: none
+        color: $color-theme-r
     .content
       max-width: 314px
       height: 100px
