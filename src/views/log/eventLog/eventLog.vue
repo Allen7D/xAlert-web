@@ -120,11 +120,11 @@
         <div class="table-body">
           <el-table :data="eventData">
             <el-table-column type="index" label="序号" width="60"></el-table-column>
-            <el-table-column prop="time" sortable label="时间" width="150"></el-table-column>
+            <el-table-column prop="time" sortable label="时间" width="140"></el-table-column>
             <el-table-column prop="name" label="事件名称" width="120"></el-table-column>
             <el-table-column prop="type" label="类型" width="60"></el-table-column>
             <el-table-column prop="grade" label="等级" width="60"></el-table-column>
-            <el-table-column prop="sourceip" label="源IP" width="120"></el-table-column>
+            <el-table-column prop="sourceip" label="源IP" width="110"></el-table-column>
             <el-table-column prop="sourcemac" label="源MAC" width="150"></el-table-column>
             <el-table-column prop="targetip" label="目标IP" width="120"></el-table-column>
             <el-table-column prop="targetmac" label="目标MAC"></el-table-column>
@@ -231,6 +231,8 @@
       .table-body
         background white
         padding 10px 12px 20px 13px
+        .table-item
+          height 10px
   .log-footer
     background white
     padding-top 80px
