@@ -62,7 +62,7 @@
         links: []
       }
     },
-    created() {
+    mounted() {
       this.getTabs()
     },
     methods: {

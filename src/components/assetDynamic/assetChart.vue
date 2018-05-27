@@ -1,8 +1,10 @@
 <template>
-  <div :style="itemHeight">
+  <div style="padding-top: 20px">
     <div class="title">{{title}}</div>
-    <div class="item" :id="id" :style="[chartHeight, chartWidth, chartPosition]"></div>
-    <slot></slot>
+    <div class="item" :style="itemHeight">
+      <div :id="id" :style="[chartHeight, chartWidth, chartPosition]"></div>
+      <slot></slot>
+    </div>
   </div>
 </template>
 

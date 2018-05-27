@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <table border="">
+  <div style="padding-top: 20px">
+    <table>
       <tr class="col">
         <td></td>
         <th class="head">应用协议</th>
