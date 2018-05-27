@@ -42,6 +42,8 @@
   .clock
     color: #4676FF
     font-size: 20px
+    position relative
+    top -10px
     .time
       font-size: 30px
 </style>

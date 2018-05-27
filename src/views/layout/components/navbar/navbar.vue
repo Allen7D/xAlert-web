@@ -28,11 +28,12 @@
             </el-dropdown-item>
           </a>
           <el-dropdown-item divided>
-            <span @click="logout" style="display:block"><i class="icon-signOut"></i>  {{$t('navbar.logOut')}}</span>
+            <span @click="isShow = true" style="display:block"><i class="icon-signOut"></i>  {{$t('navbar.logOut')}}</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
+    <logout :isShow.sync="isShow"></logout>
   </el-menu>
 </template>
 
@@ -40,25 +41,22 @@
   import Breadcrumb from 'components/breadcrumb/breadcrumb'
   import Screenfull from 'components/screenfull/screenfull'
   import Clock from 'components/clock/clock'
-
+  import logout from 'components/logout/logout'
   import log from './log.jpg'
 
   export default {
     components: {
       Breadcrumb,
       Screenfull,
-      Clock
+      Clock,
+      logout
     },
     data() {
       return {
         name: '',
         avata: '',
-        log
-      }
-    },
-    methods: {
-      logout() {
-        this.$router.push('/login')
+        log,
+        isShow: false
       }
     }
   }
