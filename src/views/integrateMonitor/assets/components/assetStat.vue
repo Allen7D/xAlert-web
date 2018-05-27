@@ -17,8 +17,8 @@
             {
               name: '资产来源',
               type: 'pie',
-              radius: '75%',
-              center: ['35%', '47%'],
+              radius: '60%',
+              center: ['50%', '47%'],
               data: [
                 {value: 12, name: '业务网络1'},
                 {value: 25, name: '业务网络2'},

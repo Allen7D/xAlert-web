@@ -3,7 +3,11 @@
     <div class="indicator">
       <el-row>
         <el-col ::xs="24" :sm="24" :lg="24">
-          <IPStat title="Top20 IP资产流量统计" id="IPStat"></IPStat>
+          <IPStat title="Top20 IP资产流量统计" id="IPStat" :height="330" width="72%" float="left">
+            <div style="padding: 20px 5px 0">
+              <IPStatTable :dataList="IPStatData"></IPStatTable>
+            </div>
+          </IPStat>
         </el-col>
       </el-row>
     </div>
@@ -30,6 +34,7 @@
 </template>
 <script type="text/ecmascript-6">
   import IPStat from './components/IPStat'
+  import IPStatTable from './components/IPStatTable'
   import appTranStat from './components/appTranStat'
   import portStat from './components/PortStat'
   import sessionRank from './components/sessionRank'
@@ -38,6 +43,7 @@
   export default {
     components: {
       IPStat,
+      IPStatTable,
       appTranStat,
       portStat,
       TableWrapper,
@@ -45,7 +51,8 @@
     },
     data() {
       return {
-        sessRankData: []
+        sessRankData: [],
+        IPStatData: []
       }
     },
     methods: {
@@ -58,11 +65,22 @@
               this.sessRankData = data.sessRank
             }
           })
+      },
+      getIPStatData() {
+        axios.get('/api/integrateMonitor/table.json')
+          .then(res => {
+            res = res.data
+            if (res.ret && res.data) {
+              const data = res.data.flows
+              this.IPStatData = data.IPStat
+            }
+          })
       }
     },
     created() {
       // 获取会话排行表格数据
       this.getsessRankData()
+      this.getIPStatData()
     }
   }
 </script>

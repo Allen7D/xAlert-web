@@ -1,28 +1,22 @@
 <template>
-  <el-table :data="dataList" border style="width: 60%" height="380">
+  <el-table :data="dataList" border style="width: 25%" height="240">
     <el-table-column
-      label="传输层协议"
-      prop="tranProto"
-      header-align="center"
-      align="center"
-      width="300">
-    </el-table-column>
-    <el-table-column
-      label="百分比"
-      prop="percent"
+      label="业务网络"
+      prop="busNet"
       header-align="center"
       align="center">
     </el-table-column>
     <el-table-column
-      label="流量"
-      prop="flow"
+      label="数量"
+      sortable
+      prop="count"
       header-align="center"
       align="center">
     </el-table-column>
   </el-table>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
   export default {
     props: {
       dataList: Array
@@ -31,4 +25,5 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+
 </style>
