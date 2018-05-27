@@ -48,7 +48,7 @@ export const constantRouterMap = [
     meta: {
       title: '业务监控'
     },
-    children: [{path: 'index', component: _import('customMonitor/customMonitor'), name: 'customMonitor', meta: {title: '业务监控', icon: 'icon-pc', breadNumber: 2}}]
+    children: [{path: 'index', component: _import('customMonitor/customMonitor'), name: 'customMonitor', meta: {title: '业务监控', icon: 'icon-pc', breadNumber: 1}}]
   },
   {
     path: '/analysis',
