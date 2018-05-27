@@ -1,10 +1,10 @@
 <template>
   <div class="main">
-    <el-row :gutter="50">
-      <el-col :span="8" :offset="2">
+    <el-row>
+      <el-col :span="10" :offset="1">
         <vulne-grade id="eventTrend" title="漏洞等级分布"></vulne-grade>
       </el-col>
-      <el-col :span="8" :offset="4">
+      <el-col :span="10" :offset="2">
         <vulne-type id="eventGrade" title="漏洞类型分布"></vulne-type>
       </el-col>
     </el-row>

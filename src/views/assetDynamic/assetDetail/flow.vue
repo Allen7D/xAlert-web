@@ -122,6 +122,7 @@
   border-right 2px #E6E6E6 solid
   margin auto
   color black
+  padding-left 26px
   .time-picker
     display inline-block
     width 70px

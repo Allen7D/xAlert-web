@@ -1,7 +1,7 @@
 <template>
-  <div class="item" :style="itemHeight">
+  <div :style="itemHeight">
     <div class="title">{{title}}</div>
-    <div :id="id" :style="[chartHeight, chartWidth, chartPosition]"></div>
+    <div class="item" :id="id" :style="[chartHeight, chartWidth, chartPosition]"></div>
     <slot></slot>
   </div>
 </template>
@@ -17,7 +17,7 @@
       },
       title: {
         type: String,
-        default: '未名'
+        default: ''
       },
       height: {
         type: Number,
@@ -84,19 +84,17 @@
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
+  .title
+    height 25px
+    line-height 25px
+    color black
+    font-weight bolder
   .item
     /*height: 330px*/
     margin-top 5px
-    margin-left 20px
     margin-right 20px
     position: relative
     border: 1px solid #e6e6e6
     background-color #fff
     border-radius 10px
-    .title
-      height 25px
-      line-height 25px
-      color black
-      padding-left 20px
-      font-weight bolder
 </style>

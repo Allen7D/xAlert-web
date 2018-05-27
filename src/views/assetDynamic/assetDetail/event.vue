@@ -146,6 +146,7 @@
   border-left 2px #E6E6E6 solid
   border-right 2px #E6E6E6 solid
   padding-bottom 30px
+  padding-left 26px
   .time-picker
     display inline-block
     width 70px
@@ -158,7 +159,6 @@
     text-align center
   .table
     padding-top 26px
-    padding-left 20px
     color black
     .button
       text-decoration underline
