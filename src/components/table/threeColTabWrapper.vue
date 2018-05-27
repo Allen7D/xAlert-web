@@ -3,8 +3,16 @@
     <div class="header">
       <span class="title">{{title}}</span>
     </div>
-    <div class="content" :style="{height: tableHeight}">
-      <slot></slot>
+    <div class="content">
+      <div class="tab" :style="{height: tableHeight}">
+        <slot></slot>
+      </div>
+      <div class="tab" :style="{height: tableHeight}">
+        <slot name="center"></slot>
+      </div>
+      <div class="tab" :style="{height: tableHeight}">
+        <slot name="right"></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -18,11 +26,11 @@
       },
       tableHeight: {
         type: String,
-        default: '250px'
+        default: '300px'
       },
       wrapperHeight: {
         type: String,
-        default: '320px'
+        default: '480px'
       }
     }
   }
@@ -34,18 +42,26 @@
   .item
     position: relative
     border: 1px solid #e6e6e6
+    margin 20px
     background-color #fff
-    border-bottom-right-radius: 6px
-    border-bottom-left-radius: 6px
-    margin-bottom 20px
+    border-radius 10px
     .header
       padding-left: 20px
-      height: 45px
-      line-height: 45px
+      height: 62px
+      line-height: 62px
       background-color #e6e6e6
+      border-top-left-radius: 10px
+      border-top-right-radius: 10px
     .title {
       color: #333333
-      font-size 18px
+      font-size 20px
       font-weight: bold
     }
+    .content
+      padding: 10px 10px 10px 40px
+      .tab {
+        width 32%
+        float left
+        margin-right 15px
+      }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="table-page">
     <div class="table">
-      <el-table :data="dataList" border style="width: 100%" height="320">
+      <el-table :data="dataList" style="width:100%" height="320px">
         <el-table-column
           type="selection"
           header-align="center"
@@ -16,46 +16,61 @@
           align="center">
         </el-table-column>
         <el-table-column
-          label="事件名称"
-          prop="eventName"
-          header-align="center"
-          align="center">
-        </el-table-column>
-        <el-table-column
-          label="事件等级"
-          prop="eventGrade"
-          header-align="center"
-          align="center">
-        </el-table-column>
-        <el-table-column
-          label="事件类型"
-          prop="eventType"
+          label="漏洞名称"
+          prop="vulName"
           header-align="center"
           align="center"
           width="90">
         </el-table-column>
         <el-table-column
-          label="源地址"
-          prop="srcAdd"
+          label="等级"
+          prop="grade"
           header-align="center"
           align="center"
           width="100">
         </el-table-column>
         <el-table-column
-          label="目标地址"
-          prop="desAdd"
+          label="类型"
+          prop="type"
+          header-align="center"
+          align="center"
+          width="80">
+        </el-table-column>
+        <el-table-column
+          label="所属资产"
+          prop="ownAsset"
+          header-align="center"
+          align="center"
+          width="90">
+        </el-table-column>
+        <el-table-column
+          label="地址"
+          prop="address"
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
-          label="状态"
-          prop="status"
+          label="所属业务"
+          prop="ownBus"
           header-align="center"
           align="center">
         </el-table-column>
         <el-table-column
-          label="详情"
-          prop="detail"
+          label="应用"
+          prop="application"
+          header-align="center"
+          align="center"
+          width="80">
+        </el-table-column>
+        <el-table-column
+          label="修复方案"
+          prop="repairPlan"
+          header-align="center"
+          align="center">
+        </el-table-column>
+        <el-table-column
+          label="修复结果"
+          prop="repairRes"
           header-align="center"
           align="center">
         </el-table-column>
@@ -70,33 +85,24 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
   export default {
     props: {
-      dataList: Array
+      dataList: {
+        type: Array
+      }
     }
   }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .page {
-    height 60px
-    display -webkit-flex
-    display flex
-    -webkit-align-items center
-    align-items center
-    -webkit-justify-content center
-    justify-content center
-  }
-</style>
-<style lang="stylus" rel="stylesheet/stylus">
-  .el-table tr:nth-child(odd) {
-    background: #fff;
-  }
-  .el-table tr:nth-child(even) {
-    background: #f2f2f2;
-  }
-  .el-table tr {
-    color: #000
+    height: 60px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
   }
 </style>
