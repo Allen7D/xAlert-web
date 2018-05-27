@@ -33,7 +33,11 @@
     <div class="chart-wrapper">
       <el-row :gutter="40">
         <el-col :xs="24" :sm="24" :lg="12">
-          <assetVulneDistribution id="assetVulneDistribution" title="资产漏洞分布"></assetVulneDistribution>
+          <assetVulneDistribution id="assetVulneDistribution" title="资产漏洞分布" :height="330" width="50%" float="left">
+            <div style="padding: 20px 19px 0">
+              <assetVulnerTable :dataList="assetVulData"></assetVulnerTable>
+            </div>
+          </assetVulneDistribution>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="12">
           <BNetVulnerDistribution id="BNetVulnerDistribution" title="业务网络漏洞分布"></BNetVulnerDistribution>
@@ -43,7 +47,11 @@
     <div class="chartList-wrapper">
       <el-row :gutter="40">
         <el-col :xs="24" :sm="24" :lg="12">
-          <assetVulneDistribution title="资产漏洞分布"></assetVulneDistribution>
+          <assetVulnerGrade id="assetVulnerGrade" title="资产漏洞分布" :height="330" width="50%" float="left">
+            <div style="padding: 20px 19px 0">
+              <assetVulGradeTable :dataList="assetVulGradeData"></assetVulGradeTable>
+            </div>
+          </assetVulnerGrade>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="12">
           <table-Wrapper title="最新发现漏洞列表" wrapperHeight="330px" tableHeight="230px">
@@ -59,6 +67,9 @@
   import VulneStatistic from './components/VulneStatistic'
   import ringDiagram from './components/ringDiagram'
   import assetVulneDistribution from './components/assetVulnerDistribution'
+  import assetVulnerTable from './components/assetVulnerTable'
+  import assetVulnerGrade from './components/assetVulnerGrade'
+  import assetVulGradeTable from './components/assetVulGradeTable'
   import BNetVulnerDistribution from './components/BNetVulner Distribution'
   import TableWrapper from 'components/table/tableWrapper'
   import newDiscoverVulneList from './components/newDiscoverVulneList'
@@ -70,6 +81,9 @@
       VulneStatistic,
       ringDiagram,
       assetVulneDistribution,
+      assetVulnerTable,
+      assetVulnerGrade,
+      assetVulGradeTable,
       BNetVulnerDistribution,
       TableWrapper,
       newDiscoverVulneList
@@ -81,7 +95,9 @@
         RepairedData: 0,
         recentWeekData: 0,
         vulneDataList: [],
-        newDiscoverVulneData: []
+        newDiscoverVulneData: [],
+        assetVulData: [],
+        assetVulGradeData: []
       }
     },
     methods: {
@@ -144,6 +160,26 @@
               this.newDiscoverVulneData = data.newDiscoverVulne
             }
           })
+      },
+      getAssetVulData() {
+        axios.get('/api/integrateMonitor/table.json')
+          .then(res => {
+            res = res.data
+            if (res.ret && res.data) {
+              const data = res.data.vulne
+              this.assetVulData = data.assetVulner
+            }
+          })
+      },
+      getAssetVulGradeData() {
+        axios.get('/api/integrateMonitor/table.json')
+          .then(res => {
+            res = res.data
+            if (res.ret && res.data) {
+              const data = res.data.vulne
+              this.assetVulGradeData = data.assetVulGrade
+            }
+          })
       }
     },
     created() {
@@ -153,6 +189,8 @@
       this.getRecentWeekData()
       this.getvulneStatisticList()
       this.getnewDiscoverVulneData()
+      this.getAssetVulData()
+      this.getAssetVulGradeData()
     }
   }
 </script>

@@ -48,9 +48,7 @@ export const constantRouterMap = [
     meta: {
       title: '业务监控'
     },
-    children: [
-      {path: 'index', component: _import('customMonitor/customMonitor'), name: 'customMonitor', meta: {title: '业务监控', icon: 'icon-pc', breadNumber: 1}}
-      ]
+    children: [{path: 'index', component: _import('customMonitor/customMonitor'), name: 'customMonitor', meta: {title: '业务监控', icon: 'icon-pc', breadNumber: 2}}]
   },
   {
     path: '/analysis',
@@ -106,7 +104,8 @@ export const constantRouterMap = [
         path: 'asset-detail',
         component: _import('assetDynamic/assetDetail/assetDetail'),
         name: 'assetDetail',
-        redirect: '/asset-dynamic/asset-detail/event',
+        // redirect: '/asset-dynamic/asset-detail/event',
+        redirect: '/asset-dynamic/gitasset-detail/event',
         meta: {title: '资产详情', breadNumber: 2},
         children: [
           {path: 'event', component: _import('assetDynamic/assetDetail/event'), name: 'event'},

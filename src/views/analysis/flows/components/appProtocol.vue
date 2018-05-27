@@ -15,7 +15,7 @@
               name: '应用协议',
               type: 'pie',
               radius: '60%',
-              center: ['20%', '47%'],
+              center: ['45%', '47%'],
               data: [
                 {value: 12, name: '业务网络1'},
                 {value: 25, name: '业务网络2'},

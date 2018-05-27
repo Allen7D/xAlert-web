@@ -14,20 +14,20 @@
           },
           legend: {
             show: false,
-            data: ['业务网络1', '业务网络2', '业务网络5', '业务网络4', '业务网络3']
+            data: ['高危', '中危', '低危', '严重', '信息']
           },
           series: [
             {
-              name: '资产漏洞分布',
+              name: '漏洞等级分布',
               type: 'pie',
               radius: '60%',
               center: ['50%', '50%'],
               data: [
-                {value: 335, name: '业务网络1'},
-                {value: 310, name: '业务网络2'},
-                {value: 234, name: '业务网络5'},
-                {value: 135, name: '业务网络4'},
-                {value: 548, name: '业务网络3'}
+                {value: 335, name: '高危'},
+                {value: 310, name: '中危'},
+                {value: 234, name: '低危'},
+                {value: 135, name: '严重'},
+                {value: 548, name: '信息'}
               ]
             }
           ]
