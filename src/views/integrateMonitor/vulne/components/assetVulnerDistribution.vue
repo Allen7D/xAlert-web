@@ -20,8 +20,8 @@
             {
               name: '资产漏洞分布',
               type: 'pie',
-              radius: '55%',
-              center: ['25%', '50%'],
+              radius: '60%',
+              center: ['50%', '50%'],
               data: [
                 {value: 335, name: '业务网络1'},
                 {value: 310, name: '业务网络2'},

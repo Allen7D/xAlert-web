@@ -26,7 +26,7 @@
               name: '访问来源',
               type: 'pie',
               radius: '75%',
-              center: ['40%', '50%'],
+              center: ['20%', '50%'],
               data: [
                 {value: 959, name: '很高'},
                 {value: 844, name: '高'},

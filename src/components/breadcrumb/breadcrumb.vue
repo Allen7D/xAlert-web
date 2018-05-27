@@ -5,7 +5,7 @@
           <i class="icon-location" v-show='item.redirect==="noredirect" || item.meta.breadNumber===1'></i>
           {{item.meta.title}}
         </span>
-        <router-link v-else :to="item.redirect||item.path">{{item.meta.title}}</router-link>
+        <!--<router-link v-else :to="item.redirect||item.path">{{item.meta.title}}</router-link>-->
       </el-breadcrumb-item>
   </el-breadcrumb>
 </template>
@@ -38,7 +38,7 @@
 
         const first = matched[0]
 
-        if (first && breadNumber !== 1 && !['integrateMonitor', 'customMonitor', 'analysis', 'log', 'system', 'assetDynamic', 'vulneDynamic', 'netFlow'].includes(first.name)) {
+        if (first && breadNumber !== 1 && !['integrateMonitor', 'customMonitor', 'analysis', 'log', 'system', 'assetDynamic', 'eventDynamic', 'vulneDynamic', 'netFlow'].includes(first.name)) {
           matched = [{path: first.path, meta: {title: first.meta.title}}].concat(matched)
         }
         this.levelList = matched

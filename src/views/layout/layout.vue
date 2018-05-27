@@ -25,7 +25,6 @@
   import SystemStatus from 'components/system-status/system-status'
   import Log from 'components/log/log'
   import Admin from 'components/admin/admin'
-
   export default {
     name: 'layout',
     components: {

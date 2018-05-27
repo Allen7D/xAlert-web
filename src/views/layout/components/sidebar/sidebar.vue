@@ -19,7 +19,7 @@
           </el-menu-item>
         </router-link>
 
-        <el-submenu v-else :index="item.name||item.path" :key="item.name">
+        <el-submenu v-else :index="item.name||item.path" :key="item.name" :show-timeout='0' :hide-timeout='0'>
           <template slot="title">
             <i v-if="item.meta&&item.meta.icon" class="icon" :class="item.meta.icon"></i>
             <span v-if="item.meta&&item.meta.title" class="h1">{{item.meta.title}}</span>

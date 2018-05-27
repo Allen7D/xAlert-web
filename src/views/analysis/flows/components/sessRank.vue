@@ -59,11 +59,11 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="stylus" rel="stylesheet/stylus">
   .page {
     height: 60px;
     display: -webkit-flex;
-    display:         flex;
+    display: flex;
     -webkit-align-items: center;
     align-items: center;
     -webkit-justify-content: center;

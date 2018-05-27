@@ -29,21 +29,21 @@
             <div class="chart-wrapper">
               <el-row>
                 <el-col :xs="24" :sm="24" :lg="24">
-                  <assetTrend id="analysis-assetOnline" title="资产在线数据统计趋势"></assetTrend>
+                  <assetTrend id="analysis-assetOnline" title="资产在线数据统计趋势" :height="400"></assetTrend>
                 </el-col>
               </el-row>
             </div>
             <div class="chart-wrapper">
               <el-row>
                 <el-col :xs="24" :sm="24" :lg="24">
-                  <assetTypeStatistics id="assetTypeStatistics" title="资产类型统计"></assetTypeStatistics>
+                  <assetTypeStatistics id="assetTypeStatistics" title="资产类型统计" :height="400"></assetTypeStatistics>
                 </el-col>
               </el-row>
             </div>
             <div class="chart-wrapper">
               <el-row>
                 <el-col :xs="24" :sm="24" :lg="24">
-                  <gradeDistribution id="gradeDestribution" title="等级分布"></gradeDistribution>
+                  <gradeDistribution id="gradeDestribution" title="等级分布" :height="400"></gradeDistribution>
                 </el-col>
               </el-row>
             </div>
@@ -134,7 +134,7 @@
   }
   .left {
     background-color #f5f5f5
-    height 1164px
+    height 1350px
   }
 </style>
 <style lang="stylus" rel="stylesheet/stylus">

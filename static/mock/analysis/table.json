@@ -4,7 +4,6 @@
     "assets": {
       "assetsList": [
         {
-          "check": "",
           "assetName": "PC1",
           "IPAddress": "192.168.3.25",
           "MACAddress": "xxxxxxxx",
@@ -20,7 +19,6 @@
           "operate": "xxxxx"
         },
         {
-          "check": "",
           "assetName": "PC1",
           "IPAddress": "192.168.3.25",
           "MACAddress": "xxxxxxxx",
@@ -36,7 +34,6 @@
           "operate": "xxxxx"
         },
         {
-          "check": "",
           "assetName": "PC1",
           "IPAddress": "192.168.3.25",
           "MACAddress": "xxxxxxxx",
@@ -52,7 +49,6 @@
           "operate": "xxxxx"
         },
         {
-          "check": "",
           "assetName": "PC1",
           "IPAddress": "192.168.3.25",
           "MACAddress": "xxxxxxxx",
@@ -68,7 +64,6 @@
           "operate": "xxxxx"
         },
         {
-          "check": "",
           "assetName": "PC1",
           "IPAddress": "192.168.3.25",
           "MACAddress": "xxxxxxxx",
@@ -84,7 +79,6 @@
           "operate": "xxxxx"
         },
         {
-          "check": "",
           "assetName": "PC1",
           "IPAddress": "192.168.3.25",
           "MACAddress": "xxxxxxxx",
@@ -100,7 +94,6 @@
           "operate": "xxxxx"
         },
         {
-          "check": "",
           "assetName": "PC1",
           "IPAddress": "192.168.3.25",
           "MACAddress": "xxxxxxxx",
@@ -116,7 +109,6 @@
           "operate": "xxxxx"
         },
         {
-          "check": "",
           "assetName": "PC1",
           "IPAddress": "192.168.3.25",
           "MACAddress": "xxxxxxxx",
@@ -134,7 +126,194 @@
       ]
     },
     "events": {
-
+      "eventData": [
+        {
+          "findTime": "2018-5-22 14:11:29",
+          "eventName": "名称",
+          "eventGrade": "重大",
+          "eventType": "其他",
+          "srcAdd": "xxx.xxx.xxx.xxx",
+          "desAdd": "xxx.xxx.xxx.xxx",
+          "status": "已确认",
+          "detail": "xxxxxxx"
+        },
+        {
+          "findTime": "2018-5-22 14:11:29",
+          "eventName": "名称",
+          "eventGrade": "重大",
+          "eventType": "其他",
+          "srcAdd": "xxx.xxx.xxx.xxx",
+          "desAdd": "xxx.xxx.xxx.xxx",
+          "status": "已确认",
+          "detail": "xxxxxxx"
+        },
+        {
+          "findTime": "2018-5-22 14:11:29",
+          "eventName": "名称",
+          "eventGrade": "重大",
+          "eventType": "其他",
+          "srcAdd": "xxx.xxx.xxx.xxx",
+          "desAdd": "xxx.xxx.xxx.xxx",
+          "status": "已确认",
+          "detail": "xxxxxxx"
+        },
+        {
+          "findTime": "2018-5-22 14:11:29",
+          "eventName": "名称",
+          "eventGrade": "重大",
+          "eventType": "其他",
+          "srcAdd": "xxx.xxx.xxx.xxx",
+          "desAdd": "xxx.xxx.xxx.xxx",
+          "status": "已确认",
+          "detail": "xxxxxxx"
+        },
+        {
+          "findTime": "2018-5-22 14:11:29",
+          "eventName": "名称",
+          "eventGrade": "重大",
+          "eventType": "其他",
+          "srcAdd": "xxx.xxx.xxx.xxx",
+          "desAdd": "xxx.xxx.xxx.xxx",
+          "status": "已确认",
+          "detail": "xxxxxxx"
+        },
+        {
+          "findTime": "2018-5-22 14:11:29",
+          "eventName": "名称",
+          "eventGrade": "重大",
+          "eventType": "其他",
+          "srcAdd": "xxx.xxx.xxx.xxx",
+          "desAdd": "xxx.xxx.xxx.xxx",
+          "status": "已确认",
+          "detail": "xxxxxxx"
+        },
+        {
+          "findTime": "2018-5-22 14:11:29",
+          "eventName": "名称",
+          "eventGrade": "重大",
+          "eventType": "其他",
+          "srcAdd": "xxx.xxx.xxx.xxx",
+          "desAdd": "xxx.xxx.xxx.xxx",
+          "status": "已确认",
+          "detail": "xxxxxxx"
+        },
+        {
+          "findTime": "2018-5-22 14:11:29",
+          "eventName": "名称",
+          "eventGrade": "重大",
+          "eventType": "其他",
+          "srcAdd": "xxx.xxx.xxx.xxx",
+          "desAdd": "xxx.xxx.xxx.xxx",
+          "status": "已确认",
+          "detail": "xxxxxxx"
+        },
+        {
+          "findTime": "2018-5-22 14:11:29",
+          "eventName": "名称",
+          "eventGrade": "重大",
+          "eventType": "其他",
+          "srcAdd": "xxx.xxx.xxx.xxx",
+          "desAdd": "xxx.xxx.xxx.xxx",
+          "status": "已确认",
+          "detail": "xxxxxxx"
+        }
+      ],
+      "eveStyLeft": [
+        {
+          "number": "1",
+          "eventType": "事件类型1",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "2",
+          "eventType": "事件类型2",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "3",
+          "eventType": "事件类型3",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "4",
+          "eventType": "事件类型4",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "5",
+          "eventType": "事件类型5",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        }
+      ],
+      "eveStyCenter": [
+        {
+          "number": "1",
+          "eventType": "事件类型1",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "2",
+          "eventType": "事件类型2",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "3",
+          "eventType": "事件类型3",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "4",
+          "eventType": "事件类型4",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "5",
+          "eventType": "事件类型5",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        }
+      ],
+      "eveStyRight": [
+        {
+          "number": "1",
+          "eventType": "事件类型1",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "2",
+          "eventType": "事件类型2",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "3",
+          "eventType": "事件类型3",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "4",
+          "eventType": "事件类型4",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        },
+        {
+          "number": "5",
+          "eventType": "事件类型5",
+          "time": "2018-5-21 13：11：23",
+          "count": "888"
+        }
+      ]
     },
     "flows": {
       "sessRank": [
@@ -261,40 +440,260 @@
       ],
       "sendSource":[
         {
-          "srcIP":"192.2.15.161",
+          "sendIP":"192.2.15.161",
           "percent":"20%",
           "flow":"50KB"
         },
         {
-          "srcIP":"192.2.15.161",
+          "sendIP":"192.2.15.161",
           "percent":"20%",
           "flow":"50KB"
         },
         {
-          "srcIP":"192.2.15.161",
+          "sendIP":"192.2.15.161",
           "percent":"20%",
           "flow":"50KB"
         },
         {
-          "srcIP":"192.2.15.161",
+          "sendIP":"192.2.15.161",
           "percent":"20%",
           "flow":"50KB"
         },
         {
-          "srcIP":"192.2.15.161",
+          "sendIP":"192.2.15.161",
           "percent":"20%",
           "flow":"50KB"
         },
         {
-          "srcIP":"192.2.15.161",
+          "sendIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "sendIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "sendIP":"192.2.15.161",
           "percent":"20%",
           "flow":"50KB"
         }
-
+      ],
+      "receiveSource": [
+        {
+          "receiveIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "receiveIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "receiveIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "receiveIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "receiveIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "receiveIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "receiveIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "receiveIP":"192.2.15.161",
+          "percent":"20%",
+          "flow":"50KB"
+        }
+      ],
+      "appProto": [
+        {
+          "appProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "appProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "appProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "appProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "appProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "appProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "appProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "appProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        }
+      ],
+      "tranProto": [
+        {
+          "tranProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "tranProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "tranProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "tranProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "tranProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "tranProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "tranProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        },
+        {
+          "tranProto":"HTTP",
+          "percent":"20%",
+          "flow":"50KB"
+        }
       ]
     },
     "vulne": {
-
+      "vulneData": [
+        {
+          "findTime": "2018-5-2 14:12:39",
+          "vulName": "名称",
+          "grade": "高危",
+          "type": "主机漏洞",
+          "ownAsset": "PC1",
+          "address": "xxx.xxx.xxx.xxx",
+          "ownBus": "业务网络1",
+          "application": "office",
+          "repairPlan": "点击查看",
+          "repairRes": "已修复"
+        },
+        {
+          "findTime": "2018-5-2 14:12:39",
+          "vulName": "名称",
+          "grade": "高危",
+          "type": "主机漏洞",
+          "ownAsset": "PC1",
+          "address": "xxx.xxx.xxx.xxx",
+          "ownBus": "业务网络1",
+          "application": "office",
+          "repairPlan": "点击查看",
+          "repairRes": "已修复"
+        },
+        {
+          "findTime": "2018-5-2 14:12:39",
+          "vulName": "名称",
+          "grade": "高危",
+          "type": "主机漏洞",
+          "ownAsset": "PC1",
+          "address": "xxx.xxx.xxx.xxx",
+          "ownBus": "业务网络1",
+          "application": "office",
+          "repairPlan": "点击查看",
+          "repairRes": "已修复"
+        },
+        {
+          "findTime": "2018-5-2 14:12:39",
+          "vulName": "名称",
+          "grade": "高危",
+          "type": "主机漏洞",
+          "ownAsset": "PC1",
+          "address": "xxx.xxx.xxx.xxx",
+          "ownBus": "业务网络1",
+          "application": "office",
+          "repairPlan": "点击查看",
+          "repairRes": "已修复"
+        },
+        {
+          "findTime": "2018-5-2 14:12:39",
+          "vulName": "名称",
+          "grade": "高危",
+          "type": "主机漏洞",
+          "ownAsset": "PC1",
+          "address": "xxx.xxx.xxx.xxx",
+          "ownBus": "业务网络1",
+          "application": "office",
+          "repairPlan": "点击查看",
+          "repairRes": "已修复"
+        },
+        {
+          "findTime": "2018-5-2 14:12:39",
+          "vulName": "名称",
+          "grade": "中危",
+          "type": "主机漏洞",
+          "ownAsset": "PC1",
+          "address": "xxx.xxx.xxx.xxx",
+          "ownBus": "业务网络1",
+          "application": "office",
+          "repairPlan": "点击查看",
+          "repairRes": "已修复"
+        },
+        {
+          "findTime": "2018-5-2 14:12:39",
+          "vulName": "名称",
+          "grade": "低危",
+          "type": "主机漏洞",
+          "ownAsset": "PC1",
+          "address": "xxx.xxx.xxx.xxx",
+          "ownBus": "业务网络1",
+          "application": "office",
+          "repairPlan": "点击查看",
+          "repairRes": "已修复"
+        }
+      ]
     }
   }
 }

@@ -21,18 +21,18 @@
             <div class="body">
               <el-form :model="asset">
                 <el-col :span="12">
-                <el-form-item label="资产名称:">
-                  <el-input v-model="asset.name" placeholder="资产名称" size="mini" style="width: 130px"></el-input>
-                </el-form-item>
+                  <el-form-item label="资产名称:">
+                    <el-input v-model="asset.name" placeholder="资产名称" size="mini" style="width: 130px"></el-input>
+                  </el-form-item>
                 </el-col>
                 <el-col :span="12">
-                <el-form-item label="资产等级:">
-                  <el-select v-model="asset.grade" placeholder="高/中/低" size="mini" style="width: 130px">
-                    <el-option label="高" value="high"></el-option>
-                    <el-option label="中" value="middle"></el-option>
-                    <el-option label="低" value="low"></el-option>
-                  </el-select>
-                </el-form-item>
+                  <el-form-item label="资产等级:">
+                    <el-select v-model="asset.grade" placeholder="高/中/低" size="mini" style="width: 130px">
+                      <el-option label="高" value="high"></el-option>
+                      <el-option label="中" value="middle"></el-option>
+                      <el-option label="低" value="low"></el-option>
+                    </el-select>
+                  </el-form-item>
                 </el-col>
                 <el-col :span="12">
                   <el-form-item label="资产类型:">
@@ -119,65 +119,55 @@
                 </el-col>
                 <el-col :span="24">
                   <el-form-item label="应用程序:">
-                      <el-row>
-                        <el-col :span="12">
-                          <el-select v-model="asset.system" placeholder="应用程序1" size="mini" style="width: 130px">
-                            <el-option label="xxxx" value="model1"></el-option>
-                          </el-select>
-                        </el-col>
-                        <el-col :span="8">
-                          <el-select v-model="asset.version" placeholder="版本" size="mini" style="width: 130px">
-                            <el-option label="xxxx" value="version1"></el-option>
-                          </el-select>
-                        </el-col>
-                        <el-col :span="8" >
-                          <el-select v-model="asset.system" placeholder="应用程序2" size="mini" style="width: 130px">
-                            <el-option label="xxxx" value="model1"></el-option>
-                          </el-select>
-                        </el-col>
-                        <el-col :span="8">
-                          <el-select v-model="asset.version" placeholder="版本" size="mini" style="width: 130px">
-                            <el-option label="xxxx" value="version1"></el-option>
-                          </el-select>
-                        </el-col>
-                        <el-col :span="8">
-                    <div style="width: 80px;height: 20px;background: darkgrey;
+                    <div>
+                      <el-select v-model="asset.system" placeholder="应用程序1" size="mini" style="width: 130px">
+                        <el-option label="xxxx" value="model1"></el-option>
+                      </el-select>
+                      <el-select v-model="asset.version" placeholder="版本" size="mini" style="width: 130px">
+                        <el-option label="xxxx" value="version1"></el-option>
+                      </el-select>
+                      <el-select v-model="asset.system" placeholder="应用程序2" size="mini" style="width: 130px">
+                        <el-option label="xxxx" value="model1"></el-option>
+                      </el-select>
+                      <el-select v-model="asset.version" placeholder="版本" size="mini" style="width: 130px">
+                        <el-option label="xxxx" value="version1"></el-option>
+                      </el-select>
+                      <div style="width: 80px;height: 20px;background: darkgrey;
                             line-height: 20px;text-align: center;margin-left: 100px">
-                      <i class="el-icon-circle-plus-outline"></i>新增
+                        <i class="el-icon-circle-plus-outline"></i>新增
+                      </div>
                     </div>
-                        </el-col>
-                      </el-row>
                   </el-form-item>
                 </el-col>
                 <el-col :span="12" :offset="6">
-                <el-form-item>
+                  <el-form-item>
                     <el-col :span="6" :offset="4"><el-button @click="clickKeep" type="primary">保存</el-button></el-col>
                     <el-col :span="6" :offset="6"><el-button @click="clickReset" type="info">重置</el-button></el-col>
-                </el-form-item>
+                  </el-form-item>
                 </el-col>
               </el-form>
             </div>
           </el-col>
         </el-row>
+      </div>
     </div>
-  </div>
     <el-dialog title="编辑列表" :visible.sync="dialogVisible" width="400px">
-          <div style="background: #f2f2f2;padding-top: 5%;height: 400px">
-            <div><i class="el-icon-plus"></i></div>
-            <div style="height: 300px;width: 90%;background: white;margin-left: 3%;
+      <div style="background: #f2f2f2;padding-top: 5%;height: 400px">
+        <div><i class="el-icon-plus"></i></div>
+        <div style="height: 300px;width: 90%;background: white;margin-left: 3%;
                         padding-left: 10px;padding-top: 10px">
-              <el-checkbox-group v-model="checkList">
-                <el-col :span="24"><el-checkbox label="业务网络"></el-checkbox></el-col>
-                <el-col :span="24"><el-checkbox label="业务网络1"></el-checkbox></el-col>
-                <el-col :span="24"><el-checkbox label="业务网络2"></el-checkbox></el-col>
-                <el-col :span="24"><el-checkbox label="业务网络3"></el-checkbox></el-col>
-              </el-checkbox-group>
-            </div>
-            <div style="margin-top: 20px;margin-left: 50%">
-            <el-button @click="dialogComfirm">确定</el-button>
-            <el-button @click="dialogClose">取消</el-button>
-            </div>
-          </div>
+          <el-checkbox-group v-model="checkList">
+            <el-col :span="24"><el-checkbox label="业务网络"></el-checkbox></el-col>
+            <el-col :span="24"><el-checkbox label="业务网络1"></el-checkbox></el-col>
+            <el-col :span="24"><el-checkbox label="业务网络2"></el-checkbox></el-col>
+            <el-col :span="24"><el-checkbox label="业务网络3"></el-checkbox></el-col>
+          </el-checkbox-group>
+        </div>
+        <div style="margin-top: 20px;margin-left: 50%">
+          <el-button @click="dialogComfirm">确定</el-button>
+          <el-button @click="dialogClose">取消</el-button>
+        </div>
+      </div>
     </el-dialog>
   </div>
 </template>
