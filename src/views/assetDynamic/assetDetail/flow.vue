@@ -54,14 +54,23 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-  .main
-    width 1000px
-    height 100%
-    border-top 5px #00A0E9 solid
-    border-bottom  2px #E6E6E6 solid
-    border-left 2px #E6E6E6 solid
-    border-right 2px #E6E6E6 solid
-    margin auto
+.main
+  width 1000px
+  height 100%
+  border-top 5px #00A0E9 solid
+  border-bottom  2px #E6E6E6 solid
+  border-left 2px #E6E6E6 solid
+  border-right 2px #E6E6E6 solid
+  margin auto
+  color black
+  padding-left 26px
+  .time-picker
+    display inline-block
+    width 70px
+    height 25px
+    line-height 25px
+    background-color #E6E6E6
+    font-size 15px
     color black
     .time-picker
       display inline-block
