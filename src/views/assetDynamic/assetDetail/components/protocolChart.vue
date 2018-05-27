@@ -26,13 +26,13 @@
               name: '访问来源',
               type: 'pie',
               radius: '75%',
-              center: ['20%', '50%'],
+              center: ['50%', '50%'],
               data: [
-                {value: 959, name: '很高'},
-                {value: 844, name: '高'},
-                {value: 713, name: '中'},
-                {value: 654, name: '低'},
-                {value: 508, name: '很低'}
+                {value: 959, name: ''},
+                {value: 844, name: ''},
+                {value: 713, name: ''},
+                {value: 654, name: ''},
+                {value: 508, name: ''}
               ],
               label: {
                 fontSize: 15

@@ -189,19 +189,8 @@
     },
     mounted() {
       this.getData()
-      this.getvulneDta()
     },
     methods: {
-      getvulneDta() {
-        axios.get('/api/otherDynamic/vulneTable.json')
-          .then(res => {
-            res = res.data
-            if (res.vulne) {
-              const data = res.vulne
-              this.vulneData = data
-            }
-          })
-      },
       getData() {
         axios.get('/api/otherDynamic/vulneTable.json')
           .then(res => {

@@ -9,8 +9,8 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import axios from 'axios'
-  // import {fetchList} from '../../../api/article'
+  import { debounce } from '@/utils'
+  import echarts from 'echarts'
   export default {
     props: {
       id: {
@@ -36,74 +36,50 @@
     },
     data() {
       return {
-        checkList: ['业务网络'],
-        dialogVisible: false,
-        setData: [],
-        asset: {
-          name: '',
-          grade: '',
-          type: '',
-          firm: '',
-          net: '',
-          deparment: '',
-          location: '',
-          status: '',
-          illustrate: '',
-          model: '',
-          system: '',
-          application: '',
-          version: ''
-        }
+        chart: null
       }
     },
-    created() {
-      this.getsetData()
+    computed: {
+      itemHeight() {
+        return {height: `${this.height}px`}
+      },
+      chartHeight() {
+        return {height: `${this.height - 50}px`}
+      },
+      chartWidth() {
+        return {width: this.width}
+      },
+      chartPosition() {
+        return {float: this.float}
+      }
     },
     methods: {
-      dialogClose() {
-        this.dialogVisible = false
-      },
-      dialogComfirm() {
-        this.dialogVisible = false
-      },
-      clickKeep() {
-        this.$confirm('保存配置?', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          center: true
-        })
-      },
-      clickReset() {
-        this.$confirm('重置配置?', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          center: true
-        })
-      },
-      getsetData() {
-        axios.get('/api/assetDynamic/table.json')
-          .then(res => {
-            res = res.data
-            if (res.assets) {
-              const data = res.setting
-              this.setData = data
-            }
-          })
-        // fetchList(this.listQuery).then((res) => {
-        //   this.total = res.data.total
-        //   res.data.data.forEach((item, index) => {
-        //     this.eventData.push({
-        //       time: item.time,
-        //       eventname: item.eventname,
-        //       eventtype: item.eventtype,
-        //       eventgrade: item.eventgrade,
-        //       source: item.source,
-        //       target: item.target,
-        //       status: item.status
-        //     })
-        //   })
-        // })
+      initChart() {
+        this.chart = echarts.init(document.getElementById(this.id))
+        this.chart.setOption(this.option)
       }
+    },
+    mounted() {
+      this.initChart()
+      // 监听窗口的变化
+      this.__resizeHanlder = debounce(() => {
+        if (this.chart) {
+          this.chart.resize()
+        }
+      }, 50)
+      window.addEventListener('resize', this.__resizeHanlder)
+      // 监听侧边栏的变化
+      const sidebarElm = document.getElementsByClassName('sidebar')[0]
+      sidebarElm.addEventListener('transitionend', this.__resizeHanlder)
+    },
+    beforeDestroy() {
+      if (!this.chart) {
+        return
+      }
+      const sidebarElm = document.getElementsByClassName('sidebar')[0]
+      sidebarElm.removeEventListener('transitionend', this.__resizeHanlder)
+      this.chart.dispose()
+      this.chart = null
     }
   }
 </script>

@@ -13,7 +13,7 @@
                 <option value="type1" selected>所有业务网络</option>
               </select>
             </el-col>
-            <el-col :span="13" :offset="8">
+            <el-col :span="14" :offset="7">
               <div class="time-picker" v-for="(item,index) in time" :key="index">{{item}}</div>
             </el-col>
           </el-row>
