@@ -107,66 +107,6 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-<<<<<<< HEAD
-  .box
-    margin auto
-    width 70%
-    padding-top 25px
-    .cards
-      width 100%
-      border-radius 5px
-      border 2px #E6E6E6 solid
-      height 1000px
-      .header
-        height 50px
-        border-top-left-radius 5px
-        border-top-right-radius 5px
-        line-height 50px
-        background-color #E6E6E6
-        padding-left 26px
-        color #333333
-      .container
-        height 500px
-        width 100%
-        margin-top 26px
-        padding-left 13px
-        .header
-          background-color #00A0E6
-          height 26px
-          line-height 26px
-          color white
-        .body
-          background-color #f2f2f2
-          padding-top 22px
-          padding-bottom 11px
-          color black
-          font-weight bolder
-          height 600px
-</style>
-
-<style>
-  .el-table th{
-    background: #f2f2f2;
-    padding-top: 22px;
-    padding-bottom: 11px;
-    font-weight: bolder;
-    color: black;
-    text-align: center;
-  }
-  .el-table tr:nth-child(even){
-    color: grey;
-    background: #f2f2f2;
-    text-align: center;
-  }
-  .el-table tr:nth-child(odd){
-    color: gray;
-    background: white;
-    text-align: center;
-  }
-  .el-form-item {
-    margin-bottom: 0
-  }
-=======
   @import "~common/stylus/variable"
   .title
     height 25px
@@ -181,5 +121,4 @@
     border: 1px solid #e6e6e6
     background-color #fff
     border-radius 10px
->>>>>>> origin/lml
 </style>
