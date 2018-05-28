@@ -28,11 +28,11 @@
               radius: '75%',
               center: ['50%', '50%'],
               data: [
-                {value: 959, name: ''},
-                {value: 844, name: ''},
-                {value: 713, name: ''},
-                {value: 654, name: ''},
-                {value: 508, name: ''}
+                {value: 959, name: 'xx'},
+                {value: 844, name: 'xxx'},
+                {value: 713, name: 'xxxx'},
+                {value: 654, name: 'xxxxx'},
+                {value: 508, name: 'xxxxxx'}
               ],
               label: {
                 fontSize: 15

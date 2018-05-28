@@ -16,11 +16,9 @@
           grid: [{
             top: 50,
             left: 50,
-            right: '40%',
             height: '35%'
           }, {
             left: 50,
-            right: '40%',
             top: '55%',
             height: '35%'
           }],

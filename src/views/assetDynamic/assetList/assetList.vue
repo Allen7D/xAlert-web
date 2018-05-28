@@ -121,7 +121,7 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .box
     margin auto
-    width 1100px
+    width 90%
     padding-top 25px
     .cards
       width 100%

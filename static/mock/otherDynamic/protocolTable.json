@@ -1,0 +1,69 @@
+{
+  "ret": true,
+  "protocol": [
+    {
+      "protocol": "HTTP",
+      "name": "TCP",
+      "IP": "xxx.xxx.xxx.xxx.xx",
+      "business": "业务网络1",
+      "rate": "385.28MB",
+      "traffic": "385.28MB"
+    },
+    {
+      "protocol": "HTTP",
+      "name": "TCP",
+      "IP": "xxx.xxx.xxx.xxx.xx",
+      "business": "业务网络1",
+      "rate": "385.28MB",
+      "traffic": "385.28MB"
+    },
+    {
+      "protocol": "HTTP",
+      "name": "TCP",
+      "IP": "xxx.xxx.xxx.xxx.xx",
+      "business": "业务网络1",
+      "rate": "385.28MB",
+      "traffic": "385.28MB"
+    },
+    {
+      "protocol": "HTTP",
+      "name": "TCP",
+      "IP": "xxx.xxx.xxx.xxx.xx",
+      "business": "业务网络1",
+      "rate": "385.28MB",
+      "traffic": "385.28MB"
+    },
+    {
+      "protocol": "HTTP",
+      "name": "TCP",
+      "IP": "xxx.xxx.xxx.xxx.xx",
+      "business": "业务网络1",
+      "rate": "385.28MB",
+      "traffic": "385.28MB"
+    },
+    {
+      "protocol": "HTTP",
+      "name": "TCP",
+      "IP": "xxx.xxx.xxx.xxx.xx",
+      "business": "业务网络1",
+      "rate": "385.28MB",
+      "traffic": "385.28MB"
+    },
+    {
+      "protocol": "HTTP",
+      "name": "TCP",
+      "IP": "xxx.xxx.xxx.xxx.xx",
+      "business": "业务网络1",
+      "rate": "385.28MB",
+      "traffic": "385.28MB"
+    },
+    {
+      "protocol": "HTTP",
+      "name": "TCP",
+      "IP": "xxx.xxx.xxx.xxx.xx",
+      "business": "业务网络1",
+      "rate": "385.28MB",
+      "traffic": "385.28MB"
+    }
+  ]
+}

@@ -52,7 +52,7 @@
           </select>
         </el-col>
       </el-row>
-      <el-table :data="eventData" tooltip-effect="dark" style="padding-bottom: 20px;padding-top: 7px"
+      <el-table :data="eventData" style="padding-bottom: 20px;padding-top: 7px"
         size="mini">
         <el-table-column type="selection" width="55"></el-table-column>
         <el-table-column prop="time" sortable label="时间" width="150"></el-table-column>
@@ -105,7 +105,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.geteventData()
     },
     methods: {
@@ -146,6 +146,7 @@
   border-left 2px #E6E6E6 solid
   border-right 2px #E6E6E6 solid
   padding-bottom 30px
+  padding-left 26px
   .time-picker
     display inline-block
     width 70px
@@ -158,7 +159,6 @@
     text-align center
   .table
     padding-top 26px
-    padding-left 20px
     color black
     .button
       text-decoration underline

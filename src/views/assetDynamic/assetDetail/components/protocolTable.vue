@@ -1,7 +1,7 @@
 <template>
   <el-table
     :data="dataList"
-    style="width: 50%">
+    style="width: 50%;padding-top: 20px">
     <el-table-column
       :prop=name
       :label=title
