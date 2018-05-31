@@ -95,12 +95,24 @@
     },
     data() {
       return {
-        securityEvent: 0,
-        totalAssets: 0,
         netEventData: [],
         assetDiscoveryData: [],
         vulneDiscoveryData: []
       }
+    },
+    computed: {
+      agents() {
+        return this.$store.app.agents
+      },
+      totalAssets() {
+        return this.$store.getters.totalAssets
+      },
+      securityEvent() {
+        return this.$store.getters.securityEvent
+      }
+//      totalFlowByteIn() {
+//        return this.$store.getters.totalFlowByteIn
+//      }
     },
     methods: {
       getNetEventData() {
@@ -134,7 +146,7 @@
           })
       }
     },
-    created() {
+    mounted() {
       // 顶部，4个指标的数据
       // 中间，5个图表的数据
       // 底部，3个列表的数据

@@ -8,7 +8,7 @@ const service = axios.create({
 service.interceptors.request.use(config => {
   // Do something before request is sent
   config.headers['Accept'] = 'application/json'
-  config.headers['Content-Type'] = 'application/json'
+  config.headers['Content-Type'] = 'application/json; charset=utf-8'
   return config
 }, error => {
   // Do something with request error

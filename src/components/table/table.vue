@@ -62,7 +62,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import {fetchList} from '@/api/log'
+  import {fetchList} from '@/api/demo'
   import TimePicker from 'components/time-picker/timePicker'
   export default {
     components: {

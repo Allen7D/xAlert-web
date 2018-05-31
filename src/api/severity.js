@@ -1,9 +1,9 @@
 import request from '@/utils/request'
 
-export function fetchList(query) {
+export function fetchSeverity(params) {
   return request({
-    url: '/log/list',
+    url: 'ui/data',
     method: 'get',
-    params: query
+    params
   })
 }

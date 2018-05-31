@@ -3,7 +3,7 @@
     <div class="indicator">
       <el-row :gutter="20">
         <el-col :xs="6" :sm="6" :lg="6">
-          <indicator title="事件总数" icon="icon-totalAssets" :data="138"></indicator>
+          <indicator title="事件总数" icon="icon-totalAssets" :data="security.summaryTotal"></indicator>
         </el-col>
         <el-col :xs="18" :sm="18" :lg="18">
           <long-indicator title="近一周发现" icon="icon-webloudongjiance" :indicators="lastweekIndex"></long-indicator>
@@ -57,6 +57,7 @@
   import EventList from './components/eventList'
 
   import axios from 'axios'
+  import {mapGetters} from 'vuex'
 
   export default {
     components: {
@@ -77,13 +78,15 @@
         ],
         lastweekIndex: [
           {key: '事件总数', value: 13},
-          {key: '特别重大', value: 91},
           {key: '重大', value: 22},
           {key: '较大', value: 61},
           {key: '一般', value: 181}
           ],
         eventListData: []
       }
+    },
+    computed: {
+      ...mapGetters(['security'])
     },
     methods: {
       getEventListData() {

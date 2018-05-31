@@ -11,6 +11,8 @@
         <screenfull class="screenfull right-menu-item"></screenfull>
       </el-tooltip>
 
+      <lang-select class="international right-menu-item"></lang-select>
+
       <el-dropdown class="avatar-container right-menu-item" trigger="click">
         <div class="avatar-wrapper">
           <img class="user-avatar" :src="log">
@@ -40,6 +42,7 @@
 <script type="text/ecmascript-6">
   import Breadcrumb from 'components/breadcrumb/breadcrumb'
   import Screenfull from 'components/screenfull/screenfull'
+  import LangSelect from 'components/langSelect'
   import Clock from 'components/clock/clock'
   import logout from 'components/logout/logout'
   import log from './log.jpg'
@@ -48,6 +51,7 @@
     components: {
       Breadcrumb,
       Screenfull,
+      LangSelect,
       Clock,
       logout
     },
