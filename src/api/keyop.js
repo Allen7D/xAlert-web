@@ -38,3 +38,11 @@ export function fetchKeyopRuleList() {
     method: 'get'
   })
 }
+
+export function fetchKeyopEvent(params) {
+  return request({
+    url: 'controldevices/keyoprule/eventswithrange',
+    method: 'get',
+    params
+  })
+}

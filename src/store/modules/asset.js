@@ -1,0 +1,4 @@
+const asset = {
+  state: {
+  }
+}

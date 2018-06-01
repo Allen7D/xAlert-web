@@ -4,19 +4,19 @@
     <div class="indicator">
       <el-row :gutter="20">
         <el-col :xs="24" :sm="12" :lg="4">
-          <indicator title="总资产" icon="icon-totalAssets" :data="assets.totalAssets"></indicator>
+          <indicator title="总资产" icon="icon-totalAssets" :data="0"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="4" :push="1">
-          <indicator title="近一周发现" icon="icon-totalAssets" :data="assets.totalNewAssets"></indicator>
+          <indicator title="近一周发现" icon="icon-totalAssets" :data="0"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="4" :push="2">
-          <indicator title="确认资产" icon="icon-totalAssets" :data="assets.totalValidAssets"></indicator>
+          <indicator title="确认资产" icon="icon-totalAssets" :data="0"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="4" :push="3">
-          <indicator title="未知资产" icon="icon-totalAssets" :data="unkownAssets"></indicator>
+          <indicator title="未知资产" icon="icon-totalAssets" :data="9"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="4" :push="4">
-          <indicator title="可疑资产" icon="icon-totalAssets" :data="assets.totalAssetsAlerts"></indicator>
+          <indicator title="可疑资产" icon="icon-totalAssets" :data="0"></indicator>
         </el-col>
       </el-row>
     </div>

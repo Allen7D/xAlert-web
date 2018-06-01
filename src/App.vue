@@ -47,7 +47,6 @@
       getAgentsData() {
         fetchAgents().then(res => {
           const agents = res.data.data
-          console.log('agents', agents)
           this.$store.dispatch('fetchAgentsAsync', agents)
         })
       },
@@ -237,7 +236,7 @@
       this.initCurrentAgentRule()
       setInterval(() => {
         this.getSeverityData(this.severityParams, this.severityParams.eventId)
-      }, 2000)
+      }, 12000)
     }
   }
 </script>

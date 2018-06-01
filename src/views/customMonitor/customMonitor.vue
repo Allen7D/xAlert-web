@@ -3,16 +3,16 @@
     <div class="indicator">
       <el-row :gutter="40">
         <el-col :xs="24" :sm="12" :lg="6">
-          <indicator title="今日事件" icon="icon-log" :data="securityEvent"></indicator>
+          <indicator title="今日事件" icon="icon-log" :data="securityEventNum"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
           <indicator title="今日漏洞" icon="icon-webloudongjiance" :data="6"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
-          <indicator title="今日资产发现" icon="icon-network-assets" :data="totalAssets"></indicator>
+          <indicator title="今日资产发现" icon="icon-network-assets" :data="TodayAssetsNum"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
-          <indicator title="资产在线数量" icon="icon-networkAssets" :data="66"></indicator>
+          <indicator title="资产在线数量" icon="icon-networkAssets" :data="OnlineAssetsNum"></indicator>
         </el-col>
       </el-row>
     </div>
@@ -111,6 +111,9 @@
   import VulneDiscovery from './components/vulneDiscovery'
 
   import axios from 'axios'
+  import {mapState} from 'vuex'
+  import { fetchKeyopEvent } from '@/api/keyop'
+  import { fetchAssets, fetchActiveAssets } from '@/api/asset'
 
   export default {
     components: {
@@ -132,8 +135,11 @@
     },
     data() {
       return {
-        securityEvent: 0,
+        securityEventNum: 0,
+        securityEvent: [],
         totalAssets: 0,
+        TodayAssetsNum: 0,
+        OnlineAssetsNum: 0,
         netSessionData: [],
         protocolData: [],
         netEventData: [],
@@ -143,7 +149,47 @@
         vulneDiscoveryData: []
       }
     },
+    computed: {
+      ...mapState({
+        currentAgent: (state) => state.app.currentAgent
+      })
+    },
+    watch: {
+      '$store.state.app.currentAgent': {
+          handler: function(cur, pre) {
+            console.log('cur', cur)
+            this.getAssetData('/reload')
+            this.getKeyopEventData()
+          },
+          deep: true
+      }
+    },
     methods: {
+      getAssetData(surfix) {
+        const params = {
+          probe: this.currentAgent.probe,
+          iface: this.currentAgent.iface
+        }
+        fetchAssets(params, surfix).then(res => {
+          const OnlineAssets = res.data.data
+          this.OnlineAssetsNum = OnlineAssets.length
+        })
+        fetchActiveAssets(params, '1d').then(res => {
+          this.TodayAssetsNum = res.data.data.length
+          console.log('res.data.data', res.data.data)
+        })
+      },
+      getKeyopEventData() {
+        const params = {
+          probe: this.currentAgent.probe,
+          iface: this.currentAgent.iface,
+          range: 'LAST_DAY'
+        }
+        fetchKeyopEvent(params).then(res => {
+          this.securityEvent = res.data.data.data
+          this.securityEventNum = this.securityEvent.length
+        })
+      },
       getProtocolData() {
         axios.get('/api/customMonitor/table.json')
           .then(res => {
@@ -196,6 +242,8 @@
       }
     },
     mounted() {
+      this.getAssetData('/reload')
+      this.getKeyopEventData()
       this.getProtocolData()
       this.getNetSessionData()
       this.getNetEventData()

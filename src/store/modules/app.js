@@ -9,8 +9,9 @@ const app = {
     language: Cookies.get('language') || 'en',
     agents: [],
     currentAgent: {
-      probe: Cookies.get('currentAgent').probe || '',
-      iface: Cookies.get('currentAgent').iface || ''
+      name: '',
+      probe: '',
+      iface: ''
     },
     records: {},
     security: {},
@@ -34,9 +35,9 @@ const app = {
       state.agents = agents
     },
     setCurrentAgent: (state, agent) => {
+      state.currentAgent.name = agent.name
       state.currentAgent.probe = agent.probe
       state.currentAgent.iface = agent.iface
-      Cookies.set('currentAgent', agent)
     },
     addRecord: (state, {key, record}) => {
       state.records[key] = record
@@ -54,12 +55,10 @@ const app = {
     },
     fetchAgentsAsync({state, commit}, agents) {
       commit('fetchAgents', agents)
+      console.log('state.currentAgent.probe', !!state.currentAgent.probe)
       if (!state.currentAgent.probe) {
         commit('setCurrentAgent', agents[0])
       }
-    },
-    setCurrentAgentAsync({commit}, agent) {
-      commit('setCurrentAgent', agent)
     },
     addRecordAsync({commit}, data) {
       commit('addRecord', data)
