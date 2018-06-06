@@ -1,21 +1,34 @@
 <script type="text/ecmascript-6">
   // http://echarts.baidu.com/examples/editor.html?c=bar-tick-align
   import Chart from 'components/charts/chart'
+  import { filterChart } from '@/utils/index'
   export default {
     extends: Chart,
+    props: {
+      data: {
+        type: Array
+      }
+    },
     data() {
       return {
-        chart: null,
-        option: {
+        chart: null
+      }
+    },
+    computed: {
+      localData() {
+        return filterChart(this.data, 'value', 20)
+      },
+      option() {
+        return {
           tooltip: {
             trigger: 'item',
-            formatter: '{a} <br/>{b} : {c}%'
+            formatter: '{a} <br/>{b} : {c} ({d}%)'
           },
           calculable: true,
           xAxis: [
             {
               type: 'category',
-              data: ['行李分拣', '自助值机', '行李分拣', '自助值机', '监控', '监控', '业务系统4', '业务系统4', '业务系统5', '业务系统5', '业务系统6', '业务系统6', '业务系统7', '业务系统7', '业务系统8', '业务系统8', '业务系统9', '业务系统9', '业务系统10', '业务系统10', '业务系统11', '业务系统11', '业务系统12', '业务系统12', '业务系统13', '业务系统13'],
+              data: ['行李分拣', '自助值机', '行李分拣', '自助值机', '监控', '监控'],
               axisTick: {
                 alignWithLabel: true
               },
@@ -74,15 +87,9 @@
             {
               name: '流量统计',
               type: 'pie',
-              radius: '65%',
-              center: ['80%', '50%'],
-              data: [
-                {value: 335, name: '业务网络2'},
-                {value: 310, name: '业务网络5'},
-                {value: 234, name: '业务网络4'},
-                {value: 135, name: '业务网络3'},
-                {value: 1548, name: '业务网络1'}
-              ],
+              radius: '75%',
+              center: ['85%', '60%'],
+              data: this.localData,
               itemStyle: {
                 emphasis: {
                   shadowBlur: 10,
@@ -95,7 +102,7 @@
               name: '流量统计',
               type: 'bar',
               barWidth: '40%',
-              data: [100, 52, 200, 334, 390, 188, 88, 85, 555, 333, 200, 334, 390, 188, 100, 52, 200, 334, 188, 88, 85, 555, 333, 200, 155, 244],
+              data: [100, 52, 200, 334, 390, 77],
               color: '#4676ff'
             }
           ]

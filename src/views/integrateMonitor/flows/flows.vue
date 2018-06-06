@@ -3,9 +3,9 @@
     <div class="indicator">
       <el-row>
         <el-col ::xs="24" :sm="24" :lg="24">
-          <IPStat title="Top 20 IP资产流量统计（流入）" id="IPStatIn" titleType="simple" :height="330" width="72%" float="left">
+          <IPStat title="Top 20 IP资产流量统计（流入）" id="IPStatIn" :data="totalFlow.totalInBySrcIp" titleType="simple" :height="330" width="80%" float="left">
             <div style="padding: 20px 5px 0">
-              <IPStatTable :dataList="IPStatData"></IPStatTable>
+              <IPStatTable :dataList="totalFlow.totalInBySrcIp"></IPStatTable>
             </div>
           </IPStat>
         </el-col>
@@ -14,7 +14,11 @@
     <div class="indicator">
       <el-row>
         <el-col ::xs="24" :sm="24" :lg="24">
-          <IPStat title="Top 20 IP资产流量统计（流出）" id="IPStatOut" titleType="simple"></IPStat>
+          <IPStat title="Top 20 IP资产流量统计（流出）" id="IPStatOut" :data="totalFlow.totalOutBySrcIp" titleType="simple" :height="330" width="80%" float="left">
+            <div style="padding: 20px 5px 0">
+              <IPStatTable :dataList="totalFlow.totalOutBySrcIp"></IPStatTable>
+            </div>
+          </IPStat>
         </el-col>
       </el-row>
     </div>
@@ -63,7 +67,11 @@
           totalInByL4: [],
           totalInByL7: [],
           totalOutByL4: [],
-          totalOutByL7: []
+          totalOutByL7: [],
+          totalInBySrcIp: [],
+          totalInByDstIp: [],
+          totalOutBySrcIp: [],
+          totalOutByDstIp: []
         },
         sessRankData: [],
         IPStatData: []
@@ -92,21 +100,28 @@
           this.totalFlow.totalInByL7 = data.total.totalInByL7.map(function (item, index, array) {
             return {name: constants.L7_PROTO[item.key], value: item.y}
           })
-          totalFlow.TotalInBySrcIp = data.total.totalInBySrcIp
-          totalFlow.TotalInByDstIp = data.total.totalInByDstIp
+          this.totalFlow.totalInBySrcIp = data.total.totalInBySrcIp.map(function (item, index, array) {
+            return {name: item.key, value: item.y}
+          })
+          this.totalFlow.totalInByDstIp = data.total.totalInByDstIp.map(function (item, index, array) {
+            return {name: item.key, value: item.y}
+          })
           this.totalFlow.totalOutByL4 = data.total.totalOutByL4.map(function (item, index, array) {
             return {name: constants.L4_PROTO[item.key], value: item.y}
           })
           this.totalFlow.totalOutByL7 = data.total.totalOutByL7.map(function (item, index, array) {
             return {name: constants.L7_PROTO[item.key], value: item.y}
           })
-          totalFlow.TotalOutBySrcIp = data.total.totalOutBySrcIp
-          totalFlow.TotalOutByDstIp = data.total.totalOutByDstIp
-          this.$store.commit('fetchFlow', totalFlow)
+          this.totalFlow.totalOutBySrcIp = data.total.totalOutBySrcIp.map(function (item, index, array) {
+            return {name: item.key, value: item.y}
+          })
+          this.totalFlow.totalOutByDstIp = data.total.totalOutByDstIp.map(function (item, index, array) {
+            return {name: item.key, value: item.y}
+          })
           // 流量的数据
           console.log('未处理的FlowData', data)
           // 加工后的数据
-          console.log('预处理后的FlowData', totalFlow)
+          console.log('预处理后的FlowData', this.totalFlow)
         })
       },
       getIPStatData() {
