@@ -15,11 +15,7 @@
             }
           },
           legend: {
-            data: ['事件数量', '漏洞数量'],
-            textStyle: {
-              color: '#FFF100',
-              fontSize: '15'
-            }
+            show: false
           },
           grid: {
             left: '3%',

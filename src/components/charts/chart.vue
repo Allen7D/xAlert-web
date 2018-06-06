@@ -1,6 +1,6 @@
 <template>
   <div class="item" :style="itemHeight">
-    <chart-header :title="title" :params="params" :chart="chart"></chart-header>
+    <chart-header :title="title" :params="params" :chart="chart" :titleType="titleType"></chart-header>
     <div :id="id" :style="[chartHeight, chartWidth, chartPosition]"></div>
     <slot></slot>
   </div>
@@ -19,9 +19,16 @@
         type: String,
         default: 'chart'
       },
+      data: {
+        type: Array
+      },
       title: {
         type: String,
         default: '未名'
+      },
+      titleType: {
+        type: String,
+        default: 'complex'
       },
       height: {
         type: Number,
@@ -53,6 +60,11 @@
       },
       chartPosition() {
         return {float: this.float}
+      }
+    },
+    watch: {
+      data() {
+        this.initChart()
       }
     },
     methods: {

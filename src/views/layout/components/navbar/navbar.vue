@@ -1,6 +1,12 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
+
     <breadcrumb class="breadcrumb-container"></breadcrumb>
+    <div class="service" v-show="isCustom">
+      <el-select v-model="currentAgent.name" placeholder="业务切换" @change="handleChange">
+        <el-option v-for="item in agents" :key="item.probe" :label="item.name" :value="item"></el-option>
+      </el-select>
+    </div>
 
     <div class="right-menu">
       <el-tooltip effect="dark" :content="$t('localtime')" placement="bottom">
@@ -10,6 +16,8 @@
       <el-tooltip effect="dark" :content="$t('navbar.screenfull')" placement="bottom">
         <screenfull class="screenfull right-menu-item"></screenfull>
       </el-tooltip>
+
+      <lang-select class="international right-menu-item"></lang-select>
 
       <el-dropdown class="avatar-container right-menu-item" trigger="click">
         <div class="avatar-wrapper">
@@ -40,14 +48,17 @@
 <script type="text/ecmascript-6">
   import Breadcrumb from 'components/breadcrumb/breadcrumb'
   import Screenfull from 'components/screenfull/screenfull'
+  import LangSelect from 'components/langSelect'
   import Clock from 'components/clock/clock'
   import logout from 'components/logout/logout'
   import log from './log.jpg'
+  import {mapState} from 'vuex'
 
   export default {
     components: {
       Breadcrumb,
       Screenfull,
+      LangSelect,
       Clock,
       logout
     },
@@ -57,6 +68,22 @@
         avata: '',
         log,
         isShow: false
+      }
+    },
+    computed: {
+      ...mapState({
+        agents: (state) => state.app.agents,
+        currentAgent: (state) => state.app.currentAgent
+      }),
+      isCustom() {
+        return this.$route.name === 'customMonitor'
+      }
+    },
+    methods: {
+      handleChange(item) {
+        if (item.probe !== this.currentAgent.probe) {
+          this.$store.commit('setCurrentAgent', item)
+        }
       }
     }
   }
@@ -69,6 +96,9 @@
     border-radius: 0px !important
     background: 0
     border: 0
+    .service
+      float: left
+      margin-left: 15px
     .breadcrumb-container
       float: left
       font-size: 20px

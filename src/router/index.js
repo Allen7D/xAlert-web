@@ -104,8 +104,7 @@ export const constantRouterMap = [
         path: 'asset-detail',
         component: _import('assetDynamic/assetDetail/assetDetail'),
         name: 'assetDetail',
-        // redirect: '/asset-dynamic/asset-detail/event',
-        redirect: '/asset-dynamic/gitasset-detail/event',
+        redirect: '/asset-dynamic/asset-detail/event',
         meta: {title: '资产详情', breadNumber: 2},
         children: [
           {path: 'event', component: _import('assetDynamic/assetDetail/event'), name: 'event'},

@@ -3,11 +3,29 @@
   import Chart from 'components/charts/chart'
   export default {
     extends: Chart,
+    props: {
+      data: {
+        type: Array
+      }
+    },
     data() {
       return {
-        chart: null,
-        option: {
-          color: ['#3398DB'],
+        chart: null
+      }
+    },
+    computed: {
+      xAxisdata() {
+        return this.data.map((item, index) => {
+          return item.name
+        })
+      },
+      seriesdata() {
+        return this.data.map((item, index) => {
+          return item.value
+        })
+      },
+      option() {
+        return {
           tooltip: {
             trigger: 'axis',
             axisPointer: {
@@ -24,7 +42,7 @@
           xAxis: [
             {
               type: 'category',
-              data: ['业务系统1', '业务系统2', '业务系统3', '业务系统4', '业务系统5', '业务系统6', '业务系统7', '业务系统8', '业务系统9', '业务系统10'],
+              data: this.xAxisdata,
               axisTick: {
                 alignWithLabel: true
               },
@@ -75,8 +93,18 @@
             {
               name: '直接访问',
               type: 'bar',
-              barWidth: '60%',
-              data: [100, 52, 200, 334, 390, 188, 88, 85, 555, 333]
+              barWidth: '50%',
+              data: this.seriesdata,
+              itemStyle: {
+                normal: {
+                  color: function(params) {
+                    var colorList = [
+                      '#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae',
+                      '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
+                    return colorList[params.dataIndex]
+                  }
+                }
+              }
             }
           ]
         }

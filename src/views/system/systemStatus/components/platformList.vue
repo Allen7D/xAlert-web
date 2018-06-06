@@ -7,17 +7,17 @@
         <option label="管理平台2" value="platform-two"></option>
       </select>
       <label class="notice">
-        <i class="el-icon-success"></i>
+        <i class="el-icon-circle-check-outline"></i>
         <span class="normal">正常</span>
       </label>
-      <label class="notice">
-        <i class="el-icon-warning"></i>
-        <span class="inormal">异常</span>
-      </label>
-      <label class="notice">
-        <i class="el-icon-error"></i>
-        <span class="offline">离线</span>
-      </label>
+      <!--<label class="notice">-->
+        <!--<i class="el-icon-warning"></i>-->
+        <!--<span class="inormal">异常</span>-->
+      <!--</label>-->
+      <!--<label class="notice">-->
+        <!--<i class="el-icon-circle-close-outline"></i>-->
+        <!--<span class="offline">离线</span>-->
+      <!--</label>-->
     </li>
     <li class="item">
       <label>名称：</label>
@@ -33,16 +33,16 @@
     </li>
     <li class="item">
       <label>系统状态：</label>
+      <!--<label class="notice">-->
+        <!--<i class="el-icon-circle-check-outline"></i>-->
+        <!--<span class="normal">正常</span>-->
+      <!--</label>-->
+      <!--<label class="notice">-->
+        <!--<i class="el-icon-warning"></i>-->
+        <!--<span class="inormal">异常</span>-->
+      <!--</label>-->
       <label class="notice">
-        <i class="el-icon-success"></i>
-        <span class="normal">正常</span>
-      </label>
-      <label class="notice">
-        <i class="el-icon-warning"></i>
-        <span class="inormal">异常</span>
-      </label>
-      <label class="notice">
-        <i class="el-icon-error"></i>
+        <i class="el-icon-circle-close-outline"></i>
         <span class="offline">离线</span>
       </label>
     </li>
@@ -108,13 +108,13 @@
   .notice {
     margin-left 15px
   }
-  .normal
   .inormal
-  .offline{
+  .normal
+  .offline {
     display inline-block
     width 40px
-    height 16px
-    line-height 16px
+    height 18px
+    line-height 18px
     text-align: center
     background-color #67c23a
     color #fff
@@ -127,5 +127,21 @@
   }
   .offline {
     background-color #909399
+  }
+</style>
+<style lang="stylus" rel="stylesheet/stylus">
+  .notice i.el-icon-circle-check-outline {
+    font-weight bolder
+    color: #67c23a;
+    font-size 17px
+    position relative
+    top 2px
+  }
+  .notice i.el-icon-circle-close-outline {
+    font-weight bolder
+    color: #909399;
+    font-size 17px
+    position relative
+    top 2px
   }
 </style>

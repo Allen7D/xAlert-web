@@ -4,13 +4,22 @@
       <el-col :span="5">
         <span>{{title}}</span>
       </el-col>
-      <el-col :span="9">
-        <line-legends v-if="title === '安全趋势'" :params="params" :chart="chart"></line-legends>
-        <legend-wrappers v-else :chart="chart" :params="params"></legend-wrappers>
-      </el-col>
-      <el-col :span="10">
-        <filter-wrapper v-if="title === '安全趋势'" :timeArr="timeList" :chart="chart"></filter-wrapper>
-      </el-col>
+
+      <template v-if="title === '安全趋势'">
+        <el-col :span="9">
+          <line-legends :params="params" :chart="chart"></line-legends>
+        </el-col>
+        <el-col :span="10">
+          <filter-wrapper :timeArr="timeList" :chart="chart"></filter-wrapper>
+        </el-col>
+      </template>
+      <template v-else-if="titleType === 'simple'">
+        <legend-wrappers :chart="chart" :params="params"></legend-wrappers>
+      </template>
+
+      <template v-else>
+        <legend-wrappers :chart="chart" :params="params" v-if="params.length"></legend-wrappers>
+      </template>
     </el-row>
   </div>
 </template>
@@ -27,11 +36,11 @@
     props: {
       params: Array,
       chart: Object,
-      title: String
+      title: String,
+      titleType: String
     },
     data() {
       return {
-        legendList: [],
         timeList: [
           {
             select: true,
@@ -59,9 +68,6 @@
             time: 1000 * 3600 * 24 * 180
           }]
       }
-    },
-    mounted() {
-      this.legendList = this.params
     },
     methods: {
       legendToggle(item) {

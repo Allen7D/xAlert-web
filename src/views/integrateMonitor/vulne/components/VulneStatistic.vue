@@ -41,7 +41,7 @@
       top: -13px
       left: 27px
       width: 130px
-      height: 26px
+      height: 28px
       beveled-corners($color-theme, 5px)
       color: $color-theme-r
       font-size: 16px

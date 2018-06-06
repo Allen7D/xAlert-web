@@ -1,6 +1,6 @@
 <template>
   <div class="legend-wrappers">
-    <div class="legends" :span="24" v-for="(item,index) in legendList" :key="index"
+    <div class="legends" :span="24" v-for="(item, index) in legendList" :key="index"
                 @mouseout="donwplay(item)" @mouseover="highlight(item)">
           <div class="legend" @click="legendToggle(item)" :style="{backgroundColor: item.select ? item.color: '#A0B9FF'}"></div>
           <div class="text" @click="legendToggle(item)" :style="{color: item.select ? item.color: '#A0B9FF'}">{{item.name}}</div>
@@ -16,11 +16,8 @@
       },
       data() {
         return {
-          legendList: []
+          legendList: this.params
         }
-      },
-      mounted() {
-        this.legendList = this.params
       },
       methods: {
         legendToggle(item) {

@@ -19,27 +19,28 @@
           label="事件名称"
           prop="eventName"
           header-align="center"
-          align="center">
+          align="center"
+          width="110">
         </el-table-column>
         <el-table-column
           label="事件等级"
           prop="eventGrade"
           header-align="center"
-          align="center">
+          align="center"
+          width="100">
         </el-table-column>
         <el-table-column
           label="事件类型"
           prop="eventType"
           header-align="center"
           align="center"
-          width="90">
+          width="100">
         </el-table-column>
         <el-table-column
           label="源地址"
           prop="srcAdd"
           header-align="center"
-          align="center"
-          width="100">
+          align="center">
         </el-table-column>
         <el-table-column
           label="目标地址"
@@ -87,16 +88,5 @@
     align-items center
     -webkit-justify-content center
     justify-content center
-  }
-</style>
-<style lang="stylus" rel="stylesheet/stylus">
-  .el-table tr:nth-child(odd) {
-    background: #fff;
-  }
-  .el-table tr:nth-child(even) {
-    background: #f2f2f2;
-  }
-  .el-table tr {
-    color: #000
   }
 </style>

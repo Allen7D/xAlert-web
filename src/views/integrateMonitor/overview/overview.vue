@@ -3,13 +3,13 @@
     <div class="indicator">
       <el-row :gutter="40">
         <el-col :xs="24" :sm="12" :lg="6">
-          <indicator title="安全事件" icon="icon-log" link="/event-dynamic/event-list" :data="securityEvent"></indicator>
+          <indicator title="安全事件" icon="icon-log" link="/event-dynamic/event-list" :data="0"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
           <indicator title="漏洞数量" icon="icon-webloudongjiance" link="/vulne-dynamic/vulne-list" :data="6"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
-          <indicator title="网络资产" icon="icon-network-assets" link="/asset-dynamic/asset-list" :data="totalAssets"></indicator>
+          <indicator title="网络资产" icon="icon-network-assets" link="/asset-dynamic/asset-list" :data="0"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
           <indicator title="资产活动数量" icon="icon-networkAssets" :data="66"></indicator>
@@ -31,13 +31,13 @@
     <div class="chart-wrapper">
       <el-row :gutter="20">
         <el-col :xs="24" :sm="24" :lg="8">
-          <event-distribution id="eventDistribution" title="安全事件分布"></event-distribution>
+          <event-distribution id="eventDistribution" title="安全事件分布" titleType="simple"></event-distribution>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="8">
           <vulne-distribution id="vulnerabilityDistribution" title="漏洞分布"></vulne-distribution>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="8">
-          <net-flow id="netFlow" title="网络流量"></net-flow>
+          <net-flow id="netFlow" title="应用层流量统计" :data="TotalInByL7"></net-flow>
         </el-col>
       </el-row>
     </div>
@@ -79,6 +79,8 @@
   import VulneDiscovery from './components/vulneDiscovery'
 
   import axios from 'axios'
+  import flowApi from '@/api/flow'
+  import constants from '@/utils/constants'
 
   export default {
     components: {
@@ -95,14 +97,41 @@
     },
     data() {
       return {
-        securityEvent: 0,
-        totalAssets: 0,
         netEventData: [],
         assetDiscoveryData: [],
+        TotalInByL7: [],
+        TotalOutByL7: [],
         vulneDiscoveryData: []
       }
     },
+    computed: {
+      agents() {
+        return this.$store.app.agents
+      },
+      totalAssets() {
+        return this.$store.getters.totalAssets
+      },
+      securityEvent() {
+        return this.$store.getters.securityEvent
+      }
+//      totalFlowByteIn() {
+//        return this.$store.getters.totalFlowByteIn
+//      }
+    },
     methods: {
+      getFlowData(params) {
+        // 流量的数据
+        flowApi.fetchFlowRule(params).then(res => {
+          const data = res.data.data.data
+          this.TotalInByL7 = data.total.totalInByL7.map(function (item, index, array) {
+            return {name: constants.L7_PROTO[item.key], value: item.y}
+          })
+
+          this.TotalOutByL7 = data.total.totalOutByL7.map(function (item, index, array) {
+            return {name: constants.L7_PROTO[item.key], value: item.y}
+          })
+        })
+      },
       getNetEventData() {
         axios.get('/api/integrateMonitor/table.json')
           .then(res => {
@@ -137,6 +166,7 @@
     created() {
       // 顶部，4个指标的数据
       // 中间，5个图表的数据
+      this.getFlowData({eventId: 'ui-flows-summary'})
       // 底部，3个列表的数据
       this.getNetEventData()
       this.getAssetDiscoveryData()
