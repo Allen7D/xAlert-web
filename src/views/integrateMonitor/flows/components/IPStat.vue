@@ -16,19 +16,29 @@
     },
     computed: {
       localData() {
-        return filterChart(this.data, 'value', 20)
+        return filterChart(this.data, 'value', 5)
+      },
+      xAxisdata() {
+        return this.localData.map((item, index) => {
+            return item.name
+        })
+      },
+      seriesdata() {
+        return this.localData.map((item, index) => {
+            return item.value
+        })
       },
       option() {
         return {
           tooltip: {
             trigger: 'item',
-            formatter: '{a} <br/>{b} : {c} ({d}%)'
+            formatter: '{a} <br/>{b} : {c} '
           },
           calculable: true,
           xAxis: [
             {
               type: 'category',
-              data: ['行李分拣', '自助值机', '行李分拣', '自助值机', '监控', '监控'],
+              data: this.xAxisdata,
               axisTick: {
                 alignWithLabel: true
               },
@@ -36,9 +46,6 @@
                 lineStyle: {
                   color: '#A0B9FF'
                 }
-              },
-              splitLine: {
-                show: false
               },
               axisLabel: {
                 textStyle: {
@@ -50,24 +57,27 @@
           ],
           yAxis: [
             {
-              type: 'value',
+              type: 'log',
               axisLine: {
-                show: false,
                 lineStyle: {
                   color: '#A0B9FF'
                 }
               },
               splitLine: {
-                show: true,
+                show: false,
                 lineStyle: {
                   color: '#A0B9FF'
                 }
               },
               axisLabel: {
-                show: false,
                 textStyle: {
                   color: '#A0B9FF',
                   fontSize: '15'
+                },
+                formatter: function(value) {
+                  let item
+                  item = value / 1000000
+                  return item + 'kb'
                 }
               },
               axisTick: {
@@ -78,7 +88,7 @@
             }
           ],
           grid: {
-            left: '2%',
+            left: '7%',
             width: '60%',
             height: '70%',
             bottom: '15%'
@@ -102,8 +112,17 @@
               name: '流量统计',
               type: 'bar',
               barWidth: '40%',
-              data: [100, 52, 200, 334, 390, 77],
-              color: '#4676ff'
+              data: this.seriesdata,
+              itemStyle: {
+                normal: {
+                  color: function(params) {
+                    var colorList = [
+                      '#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae',
+                      '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
+                    return colorList[params.dataIndex]
+                  }
+                }
+              }
             }
           ]
         }
