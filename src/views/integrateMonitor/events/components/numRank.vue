@@ -14,9 +14,18 @@
       }
     },
     computed: {
+      xAxisdata() {
+        return this.data.map((item, index) => {
+          return item.name
+        })
+      },
+      seriesdata() {
+        return this.data.map((item, index) => {
+          return item.value
+        })
+      },
       option() {
         return {
-          color: ['#3398DB'],
           tooltip: {
             trigger: 'axis',
             axisPointer: {
@@ -33,7 +42,7 @@
           xAxis: [
             {
               type: 'category',
-              data: ['系统1', '系统2', '系统3', '系统4', '系统5', '系统6', '系统7', '系统8', '系统9', '系统10'],
+              data: this.xAxisdata,
               axisTick: {
                 alignWithLabel: true
               },
@@ -84,8 +93,18 @@
             {
               name: '直接访问',
               type: 'bar',
-              barWidth: '60%',
-              data: [100, 52, 200, 334, 390, 188, 88, 85, 555, 333]
+              barWidth: '50%',
+              data: this.seriesdata,
+              itemStyle: {
+                normal: {
+                  color: function(params) {
+                    var colorList = [
+                      '#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae',
+                      '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
+                    return colorList[params.dataIndex]
+                  }
+                }
+              }
             }
           ]
         }
