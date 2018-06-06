@@ -2,20 +2,20 @@
     <el-table :data="dataList" border style="width: 100%" height="250">
       <el-table-column
         label="时间"
-        prop="time"
+        prop="timestamp"
         header-align="center"
         align="center"
         sortable>
       </el-table-column>
       <el-table-column
         label="IP"
-        prop="IP"
+        prop="ip"
         header-align="center"
         align="center">
       </el-table-column>
       <el-table-column
         label="业务网络"
-        prop="serviceNet"
+        prop="iface"
         width="110"
         header-align="center"
         align="center"

@@ -4,19 +4,19 @@
     <div class="indicator">
       <el-row :gutter="20">
         <el-col :xs="24" :sm="12" :lg="4">
-          <indicator title="总资产" icon="icon-totalAssets" :data="0"></indicator>
+          <indicator title="总资产" icon="icon-totalAssets" :data="assetData.totalAssets"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="4" :push="1">
-          <indicator title="近一周发现" icon="icon-totalAssets" :data="0"></indicator>
+          <indicator title="近一周发现" icon="icon-totalAssets" :data="assetData.totalRecentWeekAssets"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="4" :push="2">
-          <indicator title="确认资产" icon="icon-totalAssets" :data="0"></indicator>
+          <indicator title="确认资产" icon="icon-totalAssets" :data="assetData.totalConfirmedAssets"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="4" :push="3">
-          <indicator title="未知资产" icon="icon-totalAssets" :data="9"></indicator>
+          <indicator title="未知资产" icon="icon-totalAssets" :data="assetData.totalNewAssets"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="4" :push="4">
-          <indicator title="可疑资产" icon="icon-totalAssets" :data="0"></indicator>
+          <indicator title="可疑资产" icon="icon-totalAssets" :data="assetData.totalAssetsAlerts"></indicator>
         </el-col>
       </el-row>
     </div>
@@ -24,7 +24,7 @@
     <div class="wrapper">
       <el-row :gutter="40">
         <el-col :xs="24" :sm="24" :lg="12">
-          <assetStat id="assetStat" title="在线资产统计"></assetStat>
+          <assetStat id="assetStat" title="在线资产统计" :data="assetStatData" titleType="simple"></assetStat>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="12">
           <assetTrend id="assetTrend" title="在线资产趋势"></assetTrend>
@@ -35,8 +35,8 @@
     <div class="wrapper">
       <el-row>
         <el-col :xs="24" :sm="24" :lg="24">
-          <table-wrapper title="实时活动资产" tableHeight="250px">
-            <assetOnline :dataList="assetOnlineData"></assetOnline>
+          <table-wrapper title="实时活动资产" tableHeight="350px" wrapperHeight="450px">
+            <assetOnline :dataList="assetData.data" v-if="assetData.data.length > 0"></assetOnline>
           </table-wrapper>
         </el-col>
       </el-row>
@@ -50,7 +50,9 @@
   import Indicator from 'components/indicator/indicator'
   import TableWrapper from 'components/table/tableWrapper'
   import axios from 'axios'
-  import {mapGetters} from 'vuex'
+//  import {mapGetters} from 'vuex'
+  import assetApi from '@/api/asset'
+  import constants from '@/utils/constants'
   export default {
     components: {
       Indicator,
@@ -61,23 +63,65 @@
     },
     data() {
       return {
+        assetData: {
+          data: {},
+          totalAssets: 0,
+          totalRecentWeekAssets: 0,
+          totalConfirmedAssets: 0,
+          totalAssetsAlerts: 0,
+          totalNewAssets: 0
+        },
+        assetStatData: [],
         assetOnlineData: []
       }
     },
-    computed: {
-      ...mapGetters(['assets']),
-      unkownAssets() {
-        return this.assets.totalAssets - this.assets.totalAssetsAlerts - this.assets.totalValidAssets
-      }
-    },
+//    computed: {
+//      ...mapGetters(['assets']),
+//      unkownAssets() {
+//        return this.assets.totalAssets - this.assets.totalAssetsAlerts - this.assets.totalValidAssets
+//      }
+//    },
     methods: {
+      getAssetData() {
+        assetApi.fetchAssets({}, '/reload').then(res => {
+          const data = res.data.data
+          this.assetData.data = data
+          const stat = {}
+          let set = new Set()
+          data.forEach((item, index) => {
+            if (set.has(`${item.probe}-${item.iface}`)) {
+              stat[`${item.probe}-${item.iface}`] += 1
+            } else {
+              set.add(`${item.probe}-${item.iface}`)
+              stat[`${item.probe}-${item.iface}`] = 1
+            }
+          })
+          for (let key in stat) {
+            this.assetStatData.push({name: key, value: stat[key]})
+          }
+        })
+        assetApi.fetchActiveAssets({}, '1w').then(res => {
+          this.assetData.totalRecentWeekAssets = res.data.data.length
+        })
+      },
+      getAssetsSummaryData() {
+        assetApi.fetchAssetsSummary({eventId: 'ui-dashboard-summary'}).then(res => {
+          const data = res.data.data.data
+          const assetSummary = data.assetSummary
+          this.assetData.totalAssets = assetSummary[constants.ASSETS.STATUS_NEW].length + assetSummary[constants.ASSETS.STATUS_VALID].length +
+            assetSummary[constants.ASSETS.STATUS_INVALID].length + assetSummary[constants.ASSETS.STATUS_IGNORED].length
+          this.assetData.totalAssetsAlerts = assetSummary[constants.ASSETS.ALERT_MULTIPLE_MAC].length + assetSummary[constants.ASSETS.ALERT_MULTIPLE_OS].length
+          this.assetData.totalNewAssets = assetSummary[constants.ASSETS.STATUS_NEW].length
+          this.assetData.totalConfirmedAssets = this.assetData.totalAssets - this.assetData.totalNewAssets
+        })
+      },
       getTotalAssetData() {
         axios.get('/api/integrateMonitor/table.json')
           .then(res => {
             res = res.data
             if (res.ret && res.data) {
               const data = res.data.assets
-              this.totalAssetData = data.totalAsset
+              this.totalAssetData = data
             }
           })
       },
@@ -133,12 +177,14 @@
       }
     },
     created() {
-      this.getTotalAssetData()
-      this.getRecentWeekData()
-      this.getConfirmAssetData()
-      this.getUnkownAssetData()
-      this.getsuspiAssetData()
-      this.getAssetOnlineData()
+      this.getAssetData()
+      this.getAssetsSummaryData()
+//      this.getTotalAssetData()
+//      this.getRecentWeekData()
+//      this.getConfirmAssetData()
+//      this.getUnkownAssetData()
+//      this.getsuspiAssetData()
+//      this.getAssetOnlineData()
     }
   }
 </script>

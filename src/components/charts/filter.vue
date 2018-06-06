@@ -77,11 +77,11 @@
     .filter-button
       position relative
       top 8px
-      width: 32px
-      height: 33px
+      width: 38px
+      height: 38px
       border-radius: 50%
       border: 1px #A0B9FF solid;
-      line-height: 34px
+      line-height: 38px
       text-align center
       font-size 12px
       cursor: pointer

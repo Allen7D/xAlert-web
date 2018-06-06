@@ -13,10 +13,10 @@
     <div class="chart-wrapper">
       <el-row :gutter="40">
         <el-col :xs="24" :sm="24" :lg="12">
-          <event-trend id="eventTrend" title="事件趋势"></event-trend>
+          <event-trend id="eventTrend" title="事件趋势" titleType="simple"></event-trend>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="12">
-          <num-rank id="numRank" title="事件数量排名"></num-rank>
+          <num-rank id="numRank" title="事件数量排名" titleType="simple"></num-rank>
         </el-col>
       </el-row>
     </div>
@@ -24,10 +24,10 @@
     <div class="chart-wrapper">
       <el-row :gutter="20">
         <el-col :xs="32" :sm="32" :lg="8">
-          <level-dist id="levelDist" title="事件等级分布"></level-dist>
+          <level-dist id="levelDist" title="事件等级分布" titleType="simple"></level-dist>
         </el-col>
         <el-col :xs="32" :sm="32" :lg="16">
-          <genre-rank id="genreRank" title="事件类型排名"></genre-rank>
+          <genre-rank id="genreRank" title="事件类型排名" titleType="simple"></genre-rank>
         </el-col>
       </el-row>
     </div>

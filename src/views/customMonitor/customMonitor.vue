@@ -31,9 +31,9 @@
     <div class="wrapper">
       <el-row :gutter="40">
         <el-col :xs="24" :sm="24" :lg="12">
-          <protocol-chart id="protocolDistribution" title="TOP 20 应用层协议" :height="350" width="50%" float="left">
+          <protocol-chart id="protocolDistribution" title="TOP 20 应用层协议" titleType="simple" :data="flowData.totalInByL7" :height="350" width="50%" float="left">
             <div style="padding: 30px 19px 0">
-              <protoco-table :dataList="protocolData"></protoco-table>
+              <protoco-table :dataList="flowData.totalInByL7"></protoco-table>
             </div>
           </protocol-chart>
         </el-col>
@@ -48,17 +48,17 @@
     <div class="wrapper">
       <el-row :gutter="40">
         <el-col :xs="27" :sm="27" :lg="6">
-          <asset-distribution id="assetDistribution" title="资产分布" :height="350"></asset-distribution>
+          <asset-distribution id="assetDistribution" title="资产分布" titleType="simple" :height="350"></asset-distribution>
         </el-col>
         <el-col :xs="27" :sm="27" :lg="9">
-          <event-distribution-chart id="evnetDistributionChart" title="事件分布" :height="350" width="50%" float="left">
+          <event-distribution-chart id="evnetDistributionChart" title="事件分布" titleType="simple" :height="350" width="50%" float="left">
             <div style="padding: 30px 19px 0">
               <event-distribution-table :dataList="evnetDistributionData"></event-distribution-table>
             </div>
           </event-distribution-chart>
         </el-col>
         <el-col :xs="27" :sm="24" :lg="9">
-          <vulne-distribution-chart id="vulneDistributionChart" title="漏洞分布" :height="350" width="50%" float="left">
+          <vulne-distribution-chart id="vulneDistributionChart" title="漏洞分布" titleType="simple" :height="350" width="50%" float="left">
             <div style="padding: 30px 19px 0">
               <vulne-distribution-table :dataList="vulneDistributionData"></vulne-distribution-table>
             </div>
@@ -113,7 +113,9 @@
   import axios from 'axios'
   import {mapState} from 'vuex'
   import { fetchKeyopEvent } from '@/api/keyop'
-  import { fetchAssets, fetchActiveAssets } from '@/api/asset'
+  import assetApi from '@/api/asset'
+  import flowApi from '@/api/flow'
+  import constants from '@/utils/constants'
 
   export default {
     components: {
@@ -137,12 +139,15 @@
       return {
         securityEventNum: 0,
         securityEvent: [],
-        totalAssets: 0,
         TodayAssetsNum: 0,
         OnlineAssetsNum: 0,
         netSessionData: [],
         protocolData: [],
         netEventData: [],
+        flowData: {
+          totalInByL7: [],
+          totalOutByL7: []
+        },
         evnetDistributionData: [],
         vulneDistributionData: [],
         additionalAssetData: [],
@@ -157,9 +162,9 @@
     watch: {
       '$store.state.app.currentAgent': {
           handler: function(cur, pre) {
-            console.log('cur', cur)
             this.getAssetData('/reload')
             this.getKeyopEventData()
+            this.getFlowData()
           },
           deep: true
       }
@@ -170,13 +175,13 @@
           probe: this.currentAgent.probe,
           iface: this.currentAgent.iface
         }
-        fetchAssets(params, surfix).then(res => {
+        assetApi.fetchAssets(params, surfix).then(res => {
           const OnlineAssets = res.data.data
           this.OnlineAssetsNum = OnlineAssets.length
         })
-        fetchActiveAssets(params, '1d').then(res => {
-          this.TodayAssetsNum = res.data.data.length
-          console.log('res.data.data', res.data.data)
+        assetApi.fetchActiveAssets(params, '1d').then(res => {
+          this.additionalAssetData = res.data.data
+          this.TodayAssetsNum = this.additionalAssetData.length
         })
       },
       getKeyopEventData() {
@@ -188,6 +193,22 @@
         fetchKeyopEvent(params).then(res => {
           this.securityEvent = res.data.data.data
           this.securityEventNum = this.securityEvent.length
+        })
+      },
+      getFlowData() {
+        const params = {
+          probe: this.currentAgent.probe,
+          iface: this.currentAgent.iface,
+          eventId: 'ui-flows-summary'
+        }
+        flowApi.fetchFlowRule(params).then(res => {
+          const data = res.data.data.data
+          this.flowData.totalInByL7 = data.total.totalInByL7.map(function (item, index, array) {
+            return {name: constants.L7_PROTO[item.key], value: item.y}
+          })
+          this.flowData.totalOutByL7 = data.total.totalOutByL7.map(function (item, index, array) {
+            return {name: constants.L7_PROTO[item.key], value: item.y}
+          })
         })
       },
       getProtocolData() {
@@ -244,6 +265,7 @@
     mounted() {
       this.getAssetData('/reload')
       this.getKeyopEventData()
+      this.getFlowData()
       this.getProtocolData()
       this.getNetSessionData()
       this.getNetEventData()

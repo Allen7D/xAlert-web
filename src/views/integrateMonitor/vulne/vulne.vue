@@ -20,7 +20,7 @@
           </el-row>
           <el-row>
             <el-col :xs="24" :sm="24" :lg="24">
-              <VulneStatistic title="漏洞统计" icon="icon-totalAssets" :itemArray="vulneDataList" ></VulneStatistic>
+              <vulne-statistic title="漏洞统计" icon="icon-totalAssets" :itemArray="vulneDataList" ></vulne-statistic>
             </el-col>
           </el-row>
         </el-col>
@@ -33,21 +33,21 @@
     <div class="chart-wrapper">
       <el-row :gutter="40">
         <el-col :xs="24" :sm="24" :lg="12">
-          <assetVulneDistribution id="assetVulneDistribution" title="资产漏洞分布" :height="330" width="50%" float="left">
+          <assetVulneDistribution id="assetVulneDistribution" title="资产漏洞分布" titleType="simple" :height="330" width="50%" float="left">
             <div style="padding: 20px 19px 0">
               <assetVulnerTable :dataList="assetVulData"></assetVulnerTable>
             </div>
           </assetVulneDistribution>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="12">
-          <BNetVulnerDistribution id="BNetVulnerDistribution" title="业务网络漏洞分布"></BNetVulnerDistribution>
+          <BNetVulnerDistribution id="BNetVulnerDistribution" title="业务网络漏洞分布" titleType="simple"></BNetVulnerDistribution>
         </el-col>
       </el-row>
     </div>
     <div class="chartList-wrapper">
       <el-row :gutter="40">
         <el-col :xs="24" :sm="24" :lg="12">
-          <assetVulnerGrade id="assetVulnerGrade" title="资产漏洞分布" :height="330" width="50%" float="left">
+          <assetVulnerGrade id="assetVulnerGrade" title="资产漏洞分布" titleType="simple" :height="330" width="50%" float="left">
             <div style="padding: 20px 19px 0">
               <assetVulGradeTable :dataList="assetVulGradeData"></assetVulGradeTable>
             </div>

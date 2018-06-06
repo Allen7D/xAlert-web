@@ -30,3 +30,7 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+Vue.prototype.timeConvert = function (row) {
+  return new Date(row.timestamp).toLocaleString('chinese', {hour12: false})
+}

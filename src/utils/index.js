@@ -269,3 +269,20 @@ export function deepClone(source) {
 export function getColor() {
   return ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
 }
+
+// 排序、求和
+export function filterChart(arr, key, no) {
+  if (arr.length === 0) {
+    return []
+  }
+  arr.sort((a, b) => {
+    return -(a[key] - b[key])
+  })
+  let newArr = arr.slice(0, no)
+  let other = {name: 'Other', value: 0}
+  for (let i = no; i < arr.length; i++) {
+    other.value += arr[i][key]
+  }
+  newArr.push(other)
+  return newArr
+}

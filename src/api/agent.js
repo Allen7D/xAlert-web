@@ -1,8 +1,12 @@
 import request from '@/utils/request'
 
-export function fetchAgents() {
+function fetchAgents() {
   return request({
     url: '/agents',
     method: 'get'
   })
+}
+
+export default {
+  fetchAgents
 }

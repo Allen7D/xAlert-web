@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function fetchFlowRule(params) {
+function fetchFlowRule(params) {
   return request({
     url: 'ui/data',
     method: 'get',
@@ -8,7 +8,7 @@ export function fetchFlowRule(params) {
   })
 }
 
-export function initFlowRule(params) {
+function initFlowRule(params) {
   return request({
     url: 'behaviours/flowrules',
     method: 'get',
@@ -16,7 +16,7 @@ export function initFlowRule(params) {
   })
 }
 
-export function removeFlowRule(rule) {
+function removeFlowRule(rule) {
   return request({
     url: 'behaviours/flowrule/' + rule._id,
     method: 'delete',
@@ -24,10 +24,17 @@ export function removeFlowRule(rule) {
   })
 }
 
-export function createFlowRule(rule) {
+function createFlowRule(rule) {
   return request({
     url: 'behaviours/flowrule',
     method: 'POST',
     data: rule
   })
+}
+
+export default {
+  fetchFlowRule,
+  initFlowRule,
+  removeFlowRule,
+  createFlowRule
 }

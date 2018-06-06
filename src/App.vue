@@ -7,9 +7,9 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import {fetchAgents} from '@/api/agent'
+  import agentApi from '@/api/agent'
   import {fetchSummary} from '@/api/summary'
-  import {initFlowRule, fetchFlowRule} from '@/api/flow'
+  import flowApi from '@/api/flow'
   import {initKeyopRule, fetchKeyopRule, fetchKeyopRuleList} from '@/api/keyop'
   import {initFirewallRule} from '@/api/firewall'
   import {fetchSeverity} from '@/api/severity'
@@ -45,13 +45,14 @@
     },
     methods: {
       getAgentsData() {
-        fetchAgents().then(res => {
+        agentApi.fetchAgents().then(res => {
+          console.log('fetchAgents', res.data)
           const agents = res.data.data
           this.$store.dispatch('fetchAgentsAsync', agents)
         })
       },
       initCurrentAgentRule() {
-        initFlowRule(this.currentAgent).then(res => {
+        flowApi.initFlowRule(this.currentAgent).then(res => {
           this.$store.dispatch('initFlowRuleAsync', res.data.data)
         })
         initKeyopRule(this.currentAgent).then(res => {
@@ -68,7 +69,7 @@
           const record = {}
           const assetSummary = data.assetSummary
           record.totalAssets = assetSummary[constants.ASSETS.STATUS_NEW].length + assetSummary[constants.ASSETS.STATUS_VALID].length +
-                              assetSummary[constants.ASSETS.STATUS_INVALID].length + assetSummary[constants.ASSETS.STATUS_IGNORED].length
+            assetSummary[constants.ASSETS.STATUS_INVALID].length + assetSummary[constants.ASSETS.STATUS_IGNORED].length
           record.totalAssetsAlerts = assetSummary[constants.ASSETS.ALERT_MULTIPLE_MAC].length + assetSummary[constants.ASSETS.ALERT_MULTIPLE_OS].length
           record.totalNewAssets = assetSummary[constants.ASSETS.STATUS_NEW].length
           record.totalValidAssets = assetSummary[constants.ASSETS.STATUS_VALID].length
@@ -128,34 +129,6 @@
           this.$store.dispatch('addRecordAsync', {key: key, record: record})
         })
       },
-      getFlowData(params, uiKey) {
-        fetchFlowRule(params).then(res => {
-          const data = res.data.data.data
-          const widget = {}
-          widget[uiKey] = {}
-          widget[uiKey].TotalIn = data.total.totalIn
-          widget[uiKey].TotalOut = data.total.totalOut
-          widget[uiKey].TotalInByL4 = data.total.totalInByL4.map(function (item, index, array) {
-            return {key: constants.L4_PROTO[item.key], y: item.y}
-          })
-          widget[uiKey].TotalInByL7 = data.total.totalInByL7.map(function (item, index, array) {
-            return {key: constants.L7_PROTO[item.key], y: item.y}
-          })
-          widget[uiKey].TotalInBySrcIp = data.total.totalInBySrcIp
-          widget[uiKey].TotalInByDstIp = data.total.totalInByDstIp
-          widget[uiKey].TotalOutByL4 = data.total.totalOutByL4.map(function (item, index, array) {
-            return {key: constants.L4_PROTO[item.key], y: item.y}
-          })
-          widget[uiKey].TotalOutByL7 = data.total.totalOutByL7.map(function (item, index, array) {
-            return {key: constants.L7_PROTO[item.key], y: item.y}
-          })
-          widget[uiKey].TotalOutBySrcIp = data.total.totalOutBySrcIp
-          widget[uiKey].TotalOutByDstIp = data.total.totalOutByDstIp
-          this.$store.commit('fetchFlow', widget[uiKey])
-          console.log('getFlowData', data)
-          console.log('getFlowData-widget', widget)
-        })
-      },
       getKeyopData(params, uiKey) {
         fetchKeyopRule(params).then(res => {
           const data = res.data.data.data
@@ -180,7 +153,7 @@
               widget[uiKey].severityData.LOW = widget[uiKey].severityData.LOW + item.count
             }
           })
-          this.$store.commit('fetchkeyopRule', widget[uiKey])
+          this.$store.commit('fetchKeyopRule', widget[uiKey])
           console.log('getKeyopData', data)
           console.log('getKeyopData-widget', widget)
         })
@@ -228,15 +201,12 @@
     },
     created() {
       this.getAgentsData()
-      this.getSummaryData(this.summaryParams)
-      this.getFlowData(this.flowParams, this.flowParams.eventId)
-      this.getKeyopData(this.keyopParams, this.keyopParams.eventId)
-      console.log(this.$t(`base.${constants.ELASTIC_TIMEFRAME_OPTION[0]}`))
-      this.getKeyopList()
-      this.initCurrentAgentRule()
-      setInterval(() => {
-        this.getSeverityData(this.severityParams, this.severityParams.eventId)
-      }, 12000)
+//      this.getSummaryData(this.summaryParams)
+//      this.getKeyopData(this.keyopParams, this.keyopParams.eventId)
+//      console.log(this.$t(`base.${constants.ELASTIC_TIMEFRAME_OPTION[0]}`))
+//      this.getKeyopList()
+//      this.initCurrentAgentRule()
+//      this.getSeverityData(this.severityParams, this.severityParams.eventId)
     }
   }
 </script>
@@ -245,6 +215,7 @@
   html
     height: 100%
     box-sizing: border-box
+
   body
     height: 100% !important
 </style>

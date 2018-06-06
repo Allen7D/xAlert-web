@@ -23,7 +23,7 @@
       wrapperHeight: {
         type: String,
         default: '350px'
-  }
+      }
     }
   }
 </script>
