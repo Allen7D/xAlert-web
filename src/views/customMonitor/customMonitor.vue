@@ -6,7 +6,7 @@
           <indicator title="今日事件" icon="icon-log" :data="securityEventNum"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
-          <indicator title="今日漏洞" icon="icon-webloudongjiance" :data="6"></indicator>
+          <indicator title="今日漏洞" icon="icon-webloudongjiance" :data="1"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
           <indicator title="今日资产发现" icon="icon-network-assets" :data="TodayAssetsNum"></indicator>
@@ -47,17 +47,17 @@
 
     <div class="wrapper">
       <el-row :gutter="40">
-        <el-col :xs="27" :sm="27" :lg="6">
-          <asset-distribution id="assetDistribution" title="资产分布" titleType="simple" :height="350"></asset-distribution>
-        </el-col>
-        <el-col :xs="27" :sm="27" :lg="9">
+        <!--<el-col :xs="27" :sm="27" :lg="6">-->
+          <!--<asset-distribution id="assetDistribution" title="资产分布" titleType="simple" :height="350"></asset-distribution>-->
+        <!--</el-col>-->
+        <el-col :xs="24" :sm="24" :lg="12">
           <event-distribution-chart id="evnetDistributionChart" title="事件分布" titleType="simple" :height="350" width="50%" float="left">
             <div style="padding: 30px 19px 0">
               <event-distribution-table :dataList="evnetDistributionData"></event-distribution-table>
             </div>
           </event-distribution-chart>
         </el-col>
-        <el-col :xs="27" :sm="24" :lg="9">
+        <el-col :xs="24" :sm="24" :lg="12">
           <vulne-distribution-chart id="vulneDistributionChart" title="漏洞分布" titleType="simple" :height="350" width="50%" float="left">
             <div style="padding: 30px 19px 0">
               <vulne-distribution-table :dataList="vulneDistributionData"></vulne-distribution-table>
@@ -149,7 +149,12 @@
           totalOutByL7: []
         },
         evnetDistributionData: [],
-        vulneDistributionData: [],
+        vulneDistributionData: [
+          {type: '严重', count: 1},
+          {type: '高危', count: 1},
+          {type: '中危', count: 2},
+          {type: '低危', count: 1}
+        ],
         additionalAssetData: [],
         vulneDiscoveryData: []
       }

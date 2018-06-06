@@ -14,8 +14,7 @@
             formatter: '{a} <br/>{b} : {c} ({d}%)'
           },
           legend: {
-            show: false,
-            data: [{name: '严重'}, {name: '高危'}, {name: '中危'}, {name: '低危'}]
+            show: false
           },
           color: getColor(),
           series: [
@@ -25,10 +24,10 @@
               radius: '75%',
               center: ['45%', '50%'],
               data: [
-                {value: 959, name: '严重'},
-                {value: 844, name: '高危'},
-                {value: 713, name: '中危'},
-                {value: 654, name: '低危'}
+                {value: 1, name: '严重'},
+                {value: 1, name: '高危'},
+                {value: 2, name: '中危'},
+                {value: 1, name: '低危'}
               ],
               label: {
                 fontSize: 15
