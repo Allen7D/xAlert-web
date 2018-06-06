@@ -38,9 +38,9 @@
       </div>
       <el-row :gutter="20">
       <div class="tabs" v-for="(item, index) in links" :key="index">
-        <el-col :span="6"><router-link :to="item.path">
+        <el-col :span="6">
           <div class="tab" @click='tabToggle(index)' :style="{backgroundColor: item.select ? '#00A0E9':'#E6E6E6'}">{{item.name}}</div>
-        </router-link></el-col>
+        </el-col>
       </div>
       </el-row>
       <keep-alive>
@@ -57,8 +57,7 @@
   export default {
     data() {
       return {
-        panel: ['事件', '漏洞', '流量', '会话'],
-        tabs: [true, false, false, false],
+        tabs: ['事件', '漏洞', '流量', '会话'],
         links: []
       }
     },
@@ -70,8 +69,13 @@
         this.$router.options.routes[10].children[0].children.forEach((item, index) => {
           this.links.push({
             path: '/asset-dynamic/asset-detail/' + item.path,
-            name: this.panel[index],
-            select: this.tabs[index]
+            name: this.tabs[index],
+            select: false
+          })
+          this.links.forEach((item, index) => {
+            if (item.path === this.$route.path) {
+              item.select = true
+            }
           })
         })
       },
@@ -80,6 +84,7 @@
           this.links[i].select = false
         }
         this.links[index].select = true
+        this.$router.push(this.links[index].path)
       }
     }
   }
