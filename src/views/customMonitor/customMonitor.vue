@@ -6,7 +6,7 @@
           <indicator title="今日事件" icon="icon-log" :data="securityEventNum"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
-          <indicator title="今日漏洞" icon="icon-webloudongjiance" :data="1"></indicator>
+          <indicator title="今日漏洞" icon="icon-webloudongjiance" :data="totalVulne"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
           <indicator title="今日资产发现" icon="icon-network-assets" :data="TodayAssetsNum"></indicator>
@@ -51,16 +51,16 @@
           <!--<asset-distribution id="assetDistribution" title="资产分布" titleType="simple" :height="350"></asset-distribution>-->
         <!--</el-col>-->
         <el-col :xs="24" :sm="24" :lg="12">
-          <event-distribution-chart id="evnetDistributionChart" title="事件分布" titleType="simple" :height="350" width="50%" float="left">
+          <event-distribution-chart id="evnetDistributionChart" :data="event.data" title="事件分布" titleType="simple" :height="350" width="50%" float="left">
             <div style="padding: 30px 19px 0">
-              <event-distribution-table :dataList="evnetDistributionData"></event-distribution-table>
+              <event-distribution-table :dataList="event.data"></event-distribution-table>
             </div>
           </event-distribution-chart>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="12">
-          <vulne-distribution-chart id="vulneDistributionChart" title="漏洞分布" titleType="simple" :height="350" width="50%" float="left">
+          <vulne-distribution-chart id="vulneDistributionChart" :data="vulne" title="漏洞分布" titleType="simple" :height="350" width="50%" float="left">
             <div style="padding: 30px 19px 0">
-              <vulne-distribution-table :dataList="vulneDistributionData"></vulne-distribution-table>
+              <vulne-distribution-table :dataList="vulne"></vulne-distribution-table>
             </div>
           </vulne-distribution-chart>
         </el-col>
@@ -116,7 +116,44 @@
   import flowApi from '@/api/flow'
   import keyopApi from '@/api/keyop'
   import constants from '@/utils/constants'
-
+  const vulneMockData = {
+    'gushenxing': [
+      {name: '严重', value: 1},
+      {name: '高危', value: 1},
+      {name: '中危', value: 2},
+      {name: '低危', value: 1}
+    ],
+    'master': [
+      {name: '严重', value: 0},
+      {name: '高危', value: 0},
+      {name: '中危', value: 0},
+      {name: '低危', value: 1}
+    ],
+    'airport': [
+      {name: '严重', value: 0},
+      {name: '高危', value: 0},
+      {name: '中危', value: 1},
+      {name: '低危', value: 0}
+    ],
+    'iot': [
+      {name: '严重', value: 0},
+      {name: '高危', value: 1},
+      {name: '中危', value: 1},
+      {name: '低危', value: 0}
+    ],
+    'medical': [
+      {name: '严重', value: 0},
+      {name: '高危', value: 0},
+      {name: '中危', value: 1},
+      {name: '低危', value: 1}
+    ],
+    'cnc': [
+      {name: '严重', value: 0},
+      {name: '高危', value: 0},
+      {name: '中危', value: 0},
+      {name: '低危', value: 2}
+    ]
+  }
   export default {
     components: {
       Indicator,
@@ -148,13 +185,11 @@
           totalInByL7: [],
           totalOutByL7: []
         },
+        event: {
+          data: []
+        },
         evnetDistributionData: [],
-        vulneDistributionData: [
-          {type: '严重', count: 1},
-          {type: '高危', count: 1},
-          {type: '中危', count: 2},
-          {type: '低危', count: 1}
-        ],
+        vulne: [],
         additionalAssetData: [],
         vulneDiscoveryData: []
       }
@@ -162,11 +197,19 @@
     computed: {
       ...mapState({
         currentAgent: (state) => state.app.currentAgent
-      })
+      }),
+      totalVulne() {
+        let sum = 0
+        for (let i = 0; i < this.vulne.length; i++) {
+          sum += this.vulne[i].value
+        }
+        return sum
+      }
     },
     watch: {
       '$store.state.app.currentAgent': {
           handler: function(cur, pre) {
+            this.vulne = vulneMockData[cur.probe]
             this.getAssetData('/reload')
             this.getKeyopEventData()
             this.getFlowData()
@@ -226,10 +269,6 @@
         keyopApi.fetchKeyopRule(params).then(res => {
           const data = res.data.data.data
           const widget = {}
-          widget.summaryData = data
-          widget.summaryTotal = data.reduce(function (memo, item) {
-            return memo + item.count
-          }, 0)
           widget.severityData = {}
           widget.severityData[constants.SEVERITY.HIGH] = 0
           widget.severityData[constants.SEVERITY.MEDIUM] = 0
@@ -245,8 +284,11 @@
               widget.severityData.LOW = widget.severityData.LOW + item.count
             }
           })
-          console.log('某个getKeyopData', data)
-          console.log('某个 getKeyopData-widget', widget)
+          this.event.data = [
+            {name: '重大', value: widget.severityData.HIGH},
+            {name: '较大', value: widget.severityData.MEDIUM},
+            {name: '一般', value: widget.severityData.LOW}
+          ]
         })
       },
       getProtocolData() {

@@ -3,16 +3,16 @@
     <div class="indicator">
       <el-row :gutter="40">
         <el-col :xs="24" :sm="12" :lg="6">
-          <indicator title="安全事件" icon="icon-log" link="/event-dynamic/event-list" :data="0"></indicator>
+          <indicator title="安全事件" icon="icon-log" link="/event-dynamic/event-list" :data="event.total"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
           <indicator title="漏洞数量" icon="icon-webloudongjiance" link="/vulne-dynamic/vulne-list" :data="6"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
-          <indicator title="网络资产" icon="icon-network-assets" link="/asset-dynamic/asset-list" :data="0"></indicator>
+          <indicator title="网络资产" icon="icon-network-assets" link="/asset-dynamic/asset-list" :data="asset.total"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
-          <indicator title="资产活动数量" icon="icon-networkAssets" :data="66"></indicator>
+          <indicator title="资产活动数量" icon="icon-networkAssets" :data="event.active"></indicator>
         </el-col>
       </el-row>
     </div>
@@ -81,6 +81,7 @@
   import axios from 'axios'
   import flowApi from '@/api/flow'
   import keyopApi from '@/api/keyop'
+  import assetApi from '@/api/asset'
   import constants from '@/utils/constants'
 
   export default {
@@ -103,10 +104,15 @@
         TotalInByL7: [],
         TotalOutByL7: [],
         vulneDiscoveryData: [],
+        asset: {
+          total: 0
+        },
         event: {
+          total: 0,
           high: 0,
           medium: 0,
-          low: 0
+          low: 0,
+          active: 0
         }
       }
     },
@@ -149,16 +155,17 @@
         // 最近一年的数据
         keyopApi.fetchKeyopEvent({range: 'LAST_YEAR'}).then(res => {
           const data = res.data.data.data
-          console.log('event', data)
+          console.log('网络事件', data)
           data.forEach((item, index, array) => {
+            this.event.total += item.count.count
             if (item.rule.severity === constants.SEVERITY.HIGH) {
-              this.event.high += item.count
+              this.event.high += item.count.count
             }
             if (item.rule.severity === constants.SEVERITY.MEDIUM) {
-              this.event.medium += item.count
+              this.event.medium += item.count.count
             }
             if (item.rule.severity === constants.SEVERITY.LOW) {
-              this.event.low += item.count
+              this.event.low += item.count.count
             }
           })
         })
@@ -174,24 +181,25 @@
           })
       },
       getAssetDiscoveryData() {
-        axios.get('/api/integrateMonitor/table.json')
-          .then(res => {
-            res = res.data
-            if (res.ret && res.data) {
-              const data = res.data.overview
-              this.assetDiscoveryData = data.assetDiscovery
-            }
+        assetApi.fetchAssets({}, '/reload').then(res => {
+          const data = res.data.data
+          this.asset.total = data.length
+        })
+        // 资产活动数量
+        assetApi.fetchActiveAssets({range: '1y'}).then(res => {
+          this.event.active = res.data.data.length
+        })
+
+        // 轮巡 发现最新的前10资产
+        setInterval(() => {
+          assetApi.fetchActiveAssets({range: '1h'}).then(res => {
+            const data = res.data.data
+            this.assetDiscoveryData = data.slice(0, 10)
           })
+        }, 10000)
       },
       getVulneDiscoveryData() {
-        axios.get('/api/integrateMonitor/table.json')
-          .then(res => {
-            res = res.data
-            if (res.ret && res.data) {
-              const data = res.data.overview
-              this.vulneDiscoveryData = data.vulneDiscovery
-            }
-          })
+        this.assetDiscoveryData = []
       }
     },
     created() {

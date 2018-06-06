@@ -4,11 +4,19 @@
   import { getColor } from '@/utils/index'
   export default {
     extends: Chart,
+    props: {
+      data: {
+        type: Array
+      }
+    },
     data() {
       return {
-        datas: [],
-        chart: null,
-        option: {
+        chart: null
+      }
+    },
+    computed: {
+      option() {
+        return {
           tooltip: {
             trigger: 'item',
             formatter: '{a} <br/>{b} : {c} ({d}%)'
@@ -24,12 +32,7 @@
               type: 'pie',
               radius: '75%',
               center: ['45%', '50%'],
-              data: [
-                {value: 959, name: '特别重大'},
-                {value: 844, name: '重大'},
-                {value: 713, name: '较大'},
-                {value: 654, name: '一般'}
-              ],
+              data: this.data,
               label: {
                 fontSize: 15
               },

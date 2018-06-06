@@ -16,7 +16,7 @@
     },
     computed: {
       localData() {
-        return filterChart(this.data, 'value', 5)
+        return filterChart(this.data, 'value', 10)
       },
       xAxisdata() {
         return this.localData.map((item, index) => {

@@ -121,15 +121,15 @@
           const stat = {}
           let set = new Set()
           data.forEach((item, index, array) => {
-            this.event.count += item.count
+            this.event.count += item.count.count
             if (item.rule.severity === constants.SEVERITY.HIGH) {
-              this.event.data.high += item.count
+              this.event.data.high += item.count.count
             }
             if (item.rule.severity === constants.SEVERITY.MEDIUM) {
-              this.event.data.medium += item.count
+              this.event.data.medium += item.count.count
             }
             if (item.rule.severity === constants.SEVERITY.LOW) {
-              this.event.data.low += item.count
+              this.event.data.low += item.count.count
             }
 
             if (set.has(`${item.rule.probe}-${item.rule.iface}`)) {
@@ -149,13 +149,13 @@
           const data = res.data.data.data
           data.forEach((item, index, array) => {
             if (item.rule.severity === constants.SEVERITY.HIGH) {
-              this.event.recentWeekData.high += item.count
+              this.event.recentWeekData.high += item.count.count
             }
             if (item.rule.severity === constants.SEVERITY.MEDIUM) {
-              this.event.recentWeekData.medium += item.count
+              this.event.recentWeekData.medium += item.count.count
             }
             if (item.rule.severity === constants.SEVERITY.LOW) {
-              this.event.recentWeekData.low += item.count
+              this.event.recentWeekData.low += item.count.count
             }
           })
         })

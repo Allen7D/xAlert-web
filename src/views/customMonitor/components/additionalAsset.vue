@@ -4,7 +4,7 @@
       </el-table-column>
       <el-table-column label="IP" prop="ip" header-align="center" align="center">
       </el-table-column>
-      <el-table-column label="业务网络" prop="iface" width="110" header-align="center" align="center" sortable>
+      <el-table-column label="业务网络" :formatter="splice" width="110" header-align="center" align="center" sortable>
       </el-table-column>
     </el-table>
 </template>
@@ -15,7 +15,9 @@
       dataList: Array
     },
     methods: {
-
+      splice(row) {
+        return `${row.probe}-${row.iface}`
+      }
     }
   }
 </script>
