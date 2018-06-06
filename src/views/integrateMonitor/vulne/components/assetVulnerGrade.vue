@@ -23,11 +23,11 @@
               radius: '60%',
               center: ['50%', '50%'],
               data: [
-                {value: 335, name: '高危'},
-                {value: 310, name: '中危'},
-                {value: 234, name: '低危'},
-                {value: 135, name: '严重'},
-                {value: 548, name: '信息'}
+                {value: 0, name: '高危'},
+                {value: 1, name: '中危'},
+                {value: 3, name: '低危'},
+                {value: 4, name: '严重'},
+                {value: 7, name: '信息'}
               ]
             }
           ]
