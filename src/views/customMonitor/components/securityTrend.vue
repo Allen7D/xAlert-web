@@ -4,28 +4,35 @@
   import { getColor } from '@/utils/index'
   export default {
     extends: Chart,
+    props: {
+      data: Object
+    },
     data() {
       return {
-        chart: null,
-        option: {
+        chart: null
+      }
+    },
+    computed: {
+      option() {
+        return {
           tooltip: {
             trigger: 'axis',
-            axisPointer: {
+              axisPointer: {
               type: 'cross'
             }
           },
           legend: {
             data: ['事件数量', '漏洞数量'],
-            textStyle: {
+              textStyle: {
               color: '#FFF100',
-              fontSize: '15'
+                fontSize: '15'
             }
           },
           grid: {
             left: '3%',
-            right: '4%',
-            bottom: '15%',
-            containLabel: true
+              right: '4%',
+              bottom: '15%',
+              containLabel: true
           },
           dataZoom: [
             {
@@ -42,11 +49,11 @@
               fillerColor: 'rgba(81,217,255,0.5)'
             }
           ],
-          xAxis: {
+            xAxis: {
             type: 'category',
-            boundaryGap: false,
-            data: ['2016-1', '2016-2', '2016-3', '2016-4', '2016-5', '2016-6', '2016-7', '2016-8', '2016-9', '2016-10', '2016-11', '2016-12'],
-            splitLine: {show: false},
+              boundaryGap: false,
+              data: ['2016-1', '2016-2', '2016-3', '2016-4', '2016-5', '2016-6', '2016-7', '2016-8', '2016-9', '2016-10', '2016-11', '2016-12'],
+              splitLine: {show: false},
             axisLine: {
               lineStyle: {
                 color: '#4676FF'
@@ -55,7 +62,7 @@
             axisLabel: {
               textStyle: {
                 color: '#4676FF',
-                fontSize: '15'
+                  fontSize: '15'
               }
             },
             axisTick: {
@@ -86,8 +93,8 @@
               }
             }
           ],
-          color: getColor(),
-          series: [
+            color: getColor(),
+            series: [
             {
               name: '事件数量',
               type: 'line',
@@ -102,9 +109,7 @@
             }
           ]
         }
-      }
-    },
-    computed: {
+      },
       params() {
         let i = 0
         return this.option.series.map((item) => {

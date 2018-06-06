@@ -10,7 +10,7 @@
   import agentApi from '@/api/agent'
   import {fetchSummary} from '@/api/summary'
   import flowApi from '@/api/flow'
-  import {initKeyopRule, fetchKeyopRule, fetchKeyopRuleList} from '@/api/keyop'
+  import keyopApi from '@/api/keyop'
   import {initFirewallRule} from '@/api/firewall'
   import {fetchSeverity} from '@/api/severity'
   import constants from '@/utils/constants'
@@ -55,7 +55,7 @@
         flowApi.initFlowRule(this.currentAgent).then(res => {
           this.$store.dispatch('initFlowRuleAsync', res.data.data)
         })
-        initKeyopRule(this.currentAgent).then(res => {
+        keyopApi.initKeyopRule(this.currentAgent).then(res => {
           this.$store.dispatch('initKeyopRuleAsync', res.data.data)
         })
         initFirewallRule(this.currentAgent).then(res => {
@@ -130,7 +130,7 @@
         })
       },
       getKeyopData(params, uiKey) {
-        fetchKeyopRule(params).then(res => {
+        keyopApi.fetchKeyopRule(params).then(res => {
           const data = res.data.data.data
           const widget = {}
           widget[uiKey] = {}
@@ -159,7 +159,7 @@
         })
       },
       getKeyopList() {
-        fetchKeyopRuleList().then(res => {
+        keyopApi.fetchKeyopRuleList().then(res => {
           const availableRules = res.data.data
           const keyOpRuleList = []
           for (let key in availableRules) {

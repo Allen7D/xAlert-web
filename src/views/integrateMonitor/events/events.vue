@@ -3,7 +3,7 @@
     <div class="indicator">
       <el-row :gutter="20">
         <el-col :xs="6" :sm="6" :lg="6">
-          <indicator title="事件总数" icon="icon-totalAssets" :data="security.summaryTotal"></indicator>
+          <indicator title="事件总数" icon="icon-totalAssets" :data="event.count"></indicator>
         </el-col>
         <el-col :xs="18" :sm="18" :lg="18">
           <long-indicator title="近一周发现" icon="icon-webloudongjiance" :indicators="lastweekIndex"></long-indicator>
@@ -16,7 +16,7 @@
           <event-trend id="eventTrend" title="事件趋势" titleType="simple"></event-trend>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="12">
-          <num-rank id="numRank" title="事件数量排名" titleType="simple"></num-rank>
+          <num-rank id="numRank" :data="event.statData" title="事件数量排名" titleType="simple"></num-rank>
         </el-col>
       </el-row>
     </div>
@@ -24,7 +24,7 @@
     <div class="chart-wrapper">
       <el-row :gutter="20">
         <el-col :xs="32" :sm="32" :lg="8">
-          <level-dist id="levelDist" title="事件等级分布" titleType="simple"></level-dist>
+          <level-dist id="levelDist" :data="pieChartData" title="事件等级分布" titleType="simple"></level-dist>
         </el-col>
         <el-col :xs="32" :sm="32" :lg="16">
           <genre-rank id="genreRank" title="事件类型排名" titleType="simple"></genre-rank>
@@ -57,7 +57,9 @@
   import EventList from './components/eventList'
 
   import axios from 'axios'
+  import constants from '@/utils/constants'
   import {mapGetters} from 'vuex'
+  import keyopApi from '@/api/keyop'
 
   export default {
     components: {
@@ -73,22 +75,91 @@
     },
     data() {
       return {
+        event: {
+          count: 0,
+          data: {
+            high: 0,
+            medium: 0,
+            low: 0
+          },
+          recentWeekData: {
+            high: 0,
+            medium: 0,
+            low: 0
+          },
+          statData: []
+        },
         totalIndex: [
           {key: '数量', value: 999}
         ],
-        lastweekIndex: [
-          {key: '事件总数', value: 13},
-          {key: '重大', value: 22},
-          {key: '较大', value: 61},
-          {key: '一般', value: 181}
-          ],
         eventListData: []
       }
     },
     computed: {
-      ...mapGetters(['security'])
+      ...mapGetters(['security']),
+      lastweekIndex() {
+        return [
+          {key: '事件总数', value: this.event.recentWeekData.high + this.event.recentWeekData.medium + this.event.recentWeekData.low},
+          {key: '重大', value: this.event.recentWeekData.high},
+          {key: '较大', value: this.event.recentWeekData.medium},
+          {key: '一般', value: this.event.recentWeekData.low}
+        ]
+      },
+      pieChartData() {
+        return [
+          {value: this.event.data.high, name: '重大'},
+          {value: this.event.data.medium, name: '较大'},
+          {value: this.event.data.low, name: '一般'}
+        ]
+      }
     },
     methods: {
+      getKeyopData() {
+        // 最近一年的数据
+        keyopApi.fetchKeyopEvent({range: 'LAST_YEAR'}).then(res => {
+          const data = res.data.data.data
+          const stat = {}
+          let set = new Set()
+          data.forEach((item, index, array) => {
+            this.event.count += item.count
+            if (item.rule.severity === constants.SEVERITY.HIGH) {
+              this.event.data.high += item.count
+            }
+            if (item.rule.severity === constants.SEVERITY.MEDIUM) {
+              this.event.data.medium += item.count
+            }
+            if (item.rule.severity === constants.SEVERITY.LOW) {
+              this.event.data.low += item.count
+            }
+
+            if (set.has(`${item.rule.probe}-${item.rule.iface}`)) {
+              stat[`${item.rule.probe}-${item.rule.iface}`] += 1
+            } else {
+              set.add(`${item.rule.probe}-${item.rule.iface}`)
+              stat[`${item.rule.probe}-${item.rule.iface}`] = 1
+            }
+          })
+          for (let key in stat) {
+            this.event.statData.push({name: key, value: stat[key]})
+          }
+          console.log('this.event.statData', this.event.statData)
+        })
+          // 最近一周的数据
+        keyopApi.fetchKeyopEvent({range: 'LAST_WEEK'}).then(res => {
+          const data = res.data.data.data
+          data.forEach((item, index, array) => {
+            if (item.rule.severity === constants.SEVERITY.HIGH) {
+              this.event.recentWeekData.high += item.count
+            }
+            if (item.rule.severity === constants.SEVERITY.MEDIUM) {
+              this.event.recentWeekData.medium += item.count
+            }
+            if (item.rule.severity === constants.SEVERITY.LOW) {
+              this.event.recentWeekData.low += item.count
+            }
+          })
+        })
+      },
       getEventListData() {
         axios.get('/api/integrateMonitor/table.json')
           .then(res => {
@@ -100,8 +171,9 @@
           })
       }
     },
-    created() {
+    mounted() {
       this.getEventListData()
+      this.getKeyopData()
     }
   }
 </script>

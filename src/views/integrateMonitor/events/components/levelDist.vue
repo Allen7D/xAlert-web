@@ -3,26 +3,28 @@
   import Chart from 'components/charts/chart'
   export default {
     extends: Chart,
+    props: {
+      data: Array
+    },
     data() {
       return {
-        chart: null,
-        option: {
+        chart: null
+      }
+    },
+    computed: {
+      option() {
+        return {
           tooltip: {
             trigger: 'item',
             formatter: '{a} <br/>{b} : {c} ({d}%)'
           },
           series: [
             {
-              name: '访问来源',
+              name: '事件等级分布',
               type: 'pie',
               radius: '75%',
               center: ['50%', '47%'],
-              data: [
-                {value: 335, name: '一般'},
-                {value: 310, name: '较大'},
-                {value: 234, name: '重大'},
-                {value: 135, name: '特别重大'}
-              ],
+              data: this.data,
               label: {
                 fontSize: 15
               },

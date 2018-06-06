@@ -3,10 +3,19 @@
   import Chart from 'components/charts/chart'
   export default {
     extends: Chart,
+    props: {
+      data: {
+        type: Array
+      }
+    },
     data() {
       return {
-        chart: null,
-        option: {
+        chart: null
+      }
+    },
+    computed: {
+      option() {
+        return {
           color: ['#3398DB'],
           tooltip: {
             trigger: 'axis',
@@ -24,7 +33,7 @@
           xAxis: [
             {
               type: 'category',
-              data: ['业务系统1', '业务系统2', '业务系统3', '业务系统4', '业务系统5', '业务系统6', '业务系统7', '业务系统8', '业务系统9', '业务系统10'],
+              data: ['系统1', '系统2', '系统3', '系统4', '系统5', '系统6', '系统7', '系统8', '系统9', '系统10'],
               axisTick: {
                 alignWithLabel: true
               },

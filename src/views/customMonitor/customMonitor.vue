@@ -112,9 +112,9 @@
 
   import axios from 'axios'
   import {mapState} from 'vuex'
-  import { fetchKeyopEvent } from '@/api/keyop'
   import assetApi from '@/api/asset'
   import flowApi from '@/api/flow'
+  import keyopApi from '@/api/keyop'
   import constants from '@/utils/constants'
 
   export default {
@@ -165,6 +165,7 @@
             this.getAssetData('/reload')
             this.getKeyopEventData()
             this.getFlowData()
+            this.getKeyopData()
           },
           deep: true
       }
@@ -190,7 +191,7 @@
           iface: this.currentAgent.iface,
           range: 'LAST_DAY'
         }
-        fetchKeyopEvent(params).then(res => {
+        keyopApi.fetchKeyopEvent(params).then(res => {
           this.securityEvent = res.data.data.data
           this.securityEventNum = this.securityEvent.length
         })
@@ -209,6 +210,38 @@
           this.flowData.totalOutByL7 = data.total.totalOutByL7.map(function (item, index, array) {
             return {name: constants.L7_PROTO[item.key], value: item.y}
           })
+        })
+      },
+      getKeyopData() {
+        const params = {
+          probe: this.currentAgent.probe,
+          iface: this.currentAgent.iface,
+          eventId: 'ui-keyop-summary'
+        }
+        keyopApi.fetchKeyopRule(params).then(res => {
+          const data = res.data.data.data
+          const widget = {}
+          widget.summaryData = data
+          widget.summaryTotal = data.reduce(function (memo, item) {
+            return memo + item.count
+          }, 0)
+          widget.severityData = {}
+          widget.severityData[constants.SEVERITY.HIGH] = 0
+          widget.severityData[constants.SEVERITY.MEDIUM] = 0
+          widget.severityData[constants.SEVERITY.LOW] = 0
+          data.forEach(function (item, index, array) {
+            if (item.rule.severity === constants.SEVERITY.HIGH) {
+              widget.severityData.HIGH = widget.severityData.HIGH + item.count
+            }
+            if (item.rule.severity === constants.SEVERITY.MEDIUM) {
+              widget.severityData.MEDIUM = widget.severityData.MEDIUM + item.count
+            }
+            if (item.rule.severity === constants.SEVERITY.LOW) {
+              widget.severityData.LOW = widget.severityData.LOW + item.count
+            }
+          })
+          console.log('某个getKeyopData', data)
+          console.log('某个 getKeyopData-widget', widget)
         })
       },
       getProtocolData() {
@@ -266,6 +299,7 @@
       this.getAssetData('/reload')
       this.getKeyopEventData()
       this.getFlowData()
+      this.getKeyopData()
       this.getProtocolData()
       this.getNetSessionData()
       this.getNetEventData()

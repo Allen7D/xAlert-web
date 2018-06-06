@@ -55,7 +55,6 @@ const app = {
     },
     fetchAgentsAsync({state, commit}, agents) {
       commit('fetchAgents', agents)
-      console.log('state.currentAgent.probe', !!state.currentAgent.probe)
       if (!state.currentAgent.probe) {
         commit('setCurrentAgent', agents[0])
       }
