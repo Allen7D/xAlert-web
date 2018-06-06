@@ -22,21 +22,21 @@
         <el-col :xs="24" :sm="24" :lg="12">
           <security-trend id="securityTrend" title="安全趋势"></security-trend>
         </el-col>
+        <!--<el-col :xs="24" :sm="24" :lg="12">-->
+          <!--<asset-distribution id="assetDistribution" title="资产分布"></asset-distribution>-->
+        <!--</el-col>-->
         <el-col :xs="24" :sm="24" :lg="12">
-          <asset-distribution id="assetDistribution" title="资产分布"></asset-distribution>
+          <event-distribution id="eventDistribution" title="安全事件分布" :data="eventChartData" titleType="simple"></event-distribution>
         </el-col>
       </el-row>
     </div>
 
     <div class="chart-wrapper">
-      <el-row :gutter="20">
-        <el-col :xs="24" :sm="24" :lg="8">
-          <event-distribution id="eventDistribution" title="安全事件分布" titleType="simple"></event-distribution>
-        </el-col>
-        <el-col :xs="24" :sm="24" :lg="8">
+      <el-row :gutter="40">
+        <el-col :xs="24" :sm="24" :lg="12">
           <vulne-distribution id="vulnerabilityDistribution" title="漏洞分布"></vulne-distribution>
         </el-col>
-        <el-col :xs="24" :sm="24" :lg="8">
+        <el-col :xs="24" :sm="24" :lg="12">
           <net-flow id="netFlow" title="应用层流量统计" :data="TotalInByL7"></net-flow>
         </el-col>
       </el-row>
@@ -80,6 +80,7 @@
 
   import axios from 'axios'
   import flowApi from '@/api/flow'
+  import keyopApi from '@/api/keyop'
   import constants from '@/utils/constants'
 
   export default {
@@ -101,7 +102,12 @@
         assetDiscoveryData: [],
         TotalInByL7: [],
         TotalOutByL7: [],
-        vulneDiscoveryData: []
+        vulneDiscoveryData: [],
+        event: {
+          high: 0,
+          medium: 0,
+          low: 0
+        }
       }
     },
     computed: {
@@ -113,6 +119,13 @@
       },
       securityEvent() {
         return this.$store.getters.securityEvent
+      },
+      eventChartData() {
+        return [
+          {value: this.event.high, name: '重大'},
+          {value: this.event.medium, name: '较大'},
+          {value: this.event.low, name: '一般'}
+        ]
       }
 //      totalFlowByteIn() {
 //        return this.$store.getters.totalFlowByteIn
@@ -129,6 +142,24 @@
 
           this.TotalOutByL7 = data.total.totalOutByL7.map(function (item, index, array) {
             return {name: constants.L7_PROTO[item.key], value: item.y}
+          })
+        })
+      },
+      getKeyopData() {
+        // 最近一年的数据
+        keyopApi.fetchKeyopEvent({range: 'LAST_YEAR'}).then(res => {
+          const data = res.data.data.data
+          console.log('event', data)
+          data.forEach((item, index, array) => {
+            if (item.rule.severity === constants.SEVERITY.HIGH) {
+              this.event.high += item.count
+            }
+            if (item.rule.severity === constants.SEVERITY.MEDIUM) {
+              this.event.medium += item.count
+            }
+            if (item.rule.severity === constants.SEVERITY.LOW) {
+              this.event.low += item.count
+            }
           })
         })
       },
@@ -167,6 +198,7 @@
       // 顶部，4个指标的数据
       // 中间，5个图表的数据
       this.getFlowData({eventId: 'ui-flows-summary'})
+      this.getKeyopData()
       // 底部，3个列表的数据
       this.getNetEventData()
       this.getAssetDiscoveryData()
