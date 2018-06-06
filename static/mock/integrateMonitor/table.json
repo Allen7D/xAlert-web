@@ -203,6 +203,40 @@
           "communicationNum": "20MB",
           "updateTime": "2018-01-19 17:46:08"
         }
+      ],
+      "assetStat": [
+        {
+          "busNet": "分拣系统",
+          "count": "555"
+        },
+        {
+          "busNet": "值机系统",
+          "count": "444"
+        },
+        {
+          "busNet": "业务网络3",
+          "count": "555"
+        },
+        {
+          "busNet": "业务网络4",
+          "count": "555"
+        },
+        {
+          "busNet": "业务网络5",
+          "count": "555"
+        },
+        {
+          "busNet": "业务网络6",
+          "count": "555"
+        },
+        {
+          "busNet": "业务网络7",
+          "count": "555"
+        },
+        {
+          "busNet": "业务网络8",
+          "count": "555"
+        }
       ]
     },
     "events": {
@@ -442,6 +476,40 @@
           "desAdd":"xxxxxx",
           "appPro":"http",
           "flow":"256KB"
+        }
+      ],
+      "IPStat": [
+        {
+          "busNet":"分拣系统",
+          "count":"555"
+        },
+        {
+          "busNet":"值机系统",
+          "count":"444"
+        },
+        {
+          "busNet":"业务网络3",
+          "count":"333"
+        },
+        {
+          "busNet":"业务网络4",
+          "count":"222"
+        },
+        {
+          "busNet":"业务网络5",
+          "count":"555"
+        },
+        {
+          "busNet":"业务网络6",
+          "count":"444"
+        },
+        {
+          "busNet":"业务网络7",
+          "count":"222"
+        },
+        {
+          "busNet":"业务网络8",
+          "count":"333"
         }
       ]
     }

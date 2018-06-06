@@ -1,13 +1,15 @@
 <template>
-  <el-dialog :visible.sync="isVisible" center @close="handleHide">
-    <div class="logout">
-      <div class="title"><span>确定要退出吗?</span></div>
-      <div class="btnWrapper">
-        <button class="confirm" @click="logout">确定</button>
-        <button class="exit" @click="handleHide">取消</button>
+  <div class="test">
+    <el-dialog :visible.sync="isVisible" center @close="handleHide">
+      <div class="logout">
+        <div class="title"><span>确定要退出吗?</span></div>
+        <div class="btnWrapper">
+          <button class="confirm" @click="logout">确定</button>
+          <button class="exit" @click="handleHide">取消</button>
+        </div>
       </div>
-    </div>
-  </el-dialog>
+    </el-dialog>
+  </div>
 </template>
 
 <script>
@@ -42,16 +44,16 @@
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
     .logout
-      width 617px
-      height 349px
+      width 600px
+      height 340px
       margin 90px auto
-      background:
-        linear-gradient(135deg, transparent 20px, rgba(6, 6, 118, 0.8) 0) top left,
-        linear-gradient(-135deg, transparent 20px, rgba(6, 6, 118, 0.8) 0) top right,
-        linear-gradient(-45deg, transparent 20px, rgba(6, 6, 118, 0.8) 0) bottom right,
-        linear-gradient(45deg, transparent 20px, rgba(6, 6, 118, 0.8) 0) bottom left;
-      background-size: 51% 51%;
-      background-repeat: no-repeat;
+      background: rgba(6, 6, 118, 0.8);
+      background: linear-gradient(135deg, transparent 15px, rgba(6, 6, 118, 0.8) 0) top left,
+                  linear-gradient(-135deg, transparent 15px, rgba(6, 6, 118, 0.8) 0) top right,
+                  linear-gradient(-45deg, transparent 15px, rgba(6, 6, 118, 0.8) 0) bottom right,
+                  linear-gradient(45deg, transparent 15px, rgba(6, 6, 118, 0.8) 0) bottom left
+      background-size: 50% 50%
+      background-repeat: no-repeat
       // border 2px solid rgba(70, 118, 255, 0.8)
       // box-shadow: 0 0 2px 2px rgba(70, 118, 255, 0.8);
       .title
@@ -90,8 +92,10 @@
         color #fff
 </style>
 <style lang="stylus" rel="stylesheet/stylus">
-  .el-dialog--center
-    background-color transparent
-    .el-dialog__headerbtn
-       display none
+  .test
+    .el-dialog--center
+      background-color transparent
+      box-shadow none
+      .el-dialog__headerbtn
+         display none
 </style>

@@ -24,7 +24,11 @@
     <div class="wrapper">
       <el-row :gutter="40">
         <el-col :xs="24" :sm="24" :lg="12">
-          <assetStat id="assetStat" title="在线资产统计" :data="assetStatData" titleType="simple"></assetStat>
+          <assetStat id="assetStat" title="在线资产统计" :data="assetStatData" titleType="simple" :height="330" width="50%" float="left">
+            <div style="padding: 20px 19px 0">
+              <assetStatTable :dataList="assetStatData"></assetStatTable>
+            </div>
+          </assetStat>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="12">
           <assetTrend id="assetTrend" title="在线资产趋势"></assetTrend>
@@ -49,6 +53,7 @@
   import assetOnline from './components/assetOnline'
   import Indicator from 'components/indicator/indicator'
   import TableWrapper from 'components/table/tableWrapper'
+  import assetStatTable from './components/assetStatTable'
   import axios from 'axios'
 //  import {mapGetters} from 'vuex'
   import assetApi from '@/api/asset'
@@ -59,7 +64,8 @@
       assetStat,
       assetTrend,
       assetOnline,
-      TableWrapper
+      TableWrapper,
+      assetStatTable
     },
     data() {
       return {
@@ -172,6 +178,16 @@
             if (res.ret && res.data) {
               const data = res.data.assets
               this.assetOnlineData = data.assetOnline
+            }
+          })
+      },
+      getAssetStatData() {
+        axios.get('/api/integrateMonitor/table.json')
+          .then(res => {
+            res = res.data
+            if (res.ret && res.data) {
+              const data = res.data.assets
+              this.assetStatData = data.assetStat
             }
           })
       }

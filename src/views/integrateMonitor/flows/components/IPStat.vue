@@ -65,8 +65,8 @@
             }
           ],
           grid: {
-            left: '1%',
-            width: '50%',
+            left: '2%',
+            width: '60%',
             height: '70%',
             bottom: '15%'
           },
@@ -74,8 +74,8 @@
             {
               name: '流量统计',
               type: 'pie',
-              radius: '60%',
-              center: ['65%', '50%'],
+              radius: '65%',
+              center: ['80%', '50%'],
               data: [
                 {value: 335, name: '业务网络2'},
                 {value: 310, name: '业务网络5'},

@@ -31,16 +31,4 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-
-</style>
-<style lang="stylus" rel="stylesheet/stylus">
-  .el-table tr:nth-child(odd) {
-    background: #fff;
-  }
-  .el-table tr:nth-child(even) {
-    background: #f2f2f2;
-  }
-  .el-table tr {
-    color: #000
-  }
 </style>
