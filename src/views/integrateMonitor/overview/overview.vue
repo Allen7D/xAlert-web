@@ -26,7 +26,11 @@
           <!--<asset-distribution id="assetDistribution" title="资产分布"></asset-distribution>-->
         <!--</el-col>-->
         <el-col :xs="24" :sm="24" :lg="12">
-          <event-distribution id="eventDistribution" title="安全事件分布" :data="eventChartData" titleType="simple"></event-distribution>
+          <event-distribution id="eventDistribution" title="安全事件分布" :data="eventChartData" titleType="simple" width="50%" float="left">
+            <div style="padding: 45px 19px 0">
+              <EventDistributionTab :dataList="eventDistributionList"></EventDistributionTab>
+            </div>
+          </event-distribution>
         </el-col>
       </el-row>
     </div>
@@ -37,7 +41,11 @@
           <vulne-distribution id="vulnerabilityDistribution" title="漏洞分布"></vulne-distribution>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="12">
-          <net-flow id="netFlow" title="应用层流量统计" :data="TotalInByL7"></net-flow>
+          <net-flow id="netFlow" title="应用层流量统计" :data="TotalInByL7" width="50%" float="left">
+            <div style="padding: 20px 19px 0">
+              <NetFlowTab :dataList="NetFlowTabList"></NetFlowTab>
+            </div>
+          </net-flow>
         </el-col>
       </el-row>
     </div>
@@ -71,7 +79,9 @@
   import VulneDistribution from './components/vulneDistribution'
   import AssetDistribution from './components/assetDistribution'
   import EventDistribution from './components/eventDistribution'
+  import EventDistributionTab from './components/eventDistributionTab'
   import NetFlow from './components/netFlow'
+  import NetFlowTab from './components/netFlowTab'
 
   import TableWrapper from 'components/table/tableWrapper'
   import NetEvent from './components/netEvent'
@@ -91,7 +101,9 @@
       VulneDistribution,
       AssetDistribution,
       EventDistribution,
+      EventDistributionTab,
       NetFlow,
+      NetFlowTab,
       TableWrapper,
       NetEvent,
       AssetDiscovery,
@@ -102,6 +114,7 @@
         netEventData: [],
         assetDiscoveryData: [],
         TotalInByL7: [],
+        NetFlowTabList: [],
         TotalOutByL7: [],
         vulneDiscoveryData: [],
         asset: {
@@ -132,6 +145,13 @@
           {value: this.event.medium, name: '较大'},
           {value: this.event.low, name: '一般'}
         ]
+      },
+      eventDistributionList() {
+        return [
+          {eventGrade: '重大', count: this.event.high},
+          {eventGrade: '较大', count: this.event.medium},
+          {eventGrade: '一般', count: this.event.low}
+        ]
       }
 //      totalFlowByteIn() {
 //        return this.$store.getters.totalFlowByteIn
@@ -144,6 +164,9 @@
           const data = res.data.data.data
           this.TotalInByL7 = data.total.totalInByL7.map(function (item, index, array) {
             return {name: constants.L7_PROTO[item.key], value: item.y}
+          })
+          this.NetFlowTabList = data.total.totalInByL7.map(function (item, index, array) {
+            return {style: constants.L7_PROTO[item.key], flows: item.y}
           })
 
           this.TotalOutByL7 = data.total.totalOutByL7.map(function (item, index, array) {
