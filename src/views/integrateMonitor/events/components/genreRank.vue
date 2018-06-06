@@ -9,9 +9,10 @@
       return {
         chart: null,
         option: {
-          color: getColor,
+          color: getColor(),
           tooltip: {
             trigger: 'axis',
+            formatter: '{a} <br/>{b} : {c} ({d}%)',
             axisPointer: {
               type: 'shadow'
             }
@@ -37,7 +38,7 @@
           xAxis: [
             {
               type: 'category',
-              data: ['事件类型1', '事件类型2', '事件类型3', '事件类型4', '事件类型5'],
+              data: ['访问行为', '流量', '关键操作', '其他'],
               axisLine: {
                 lineStyle: {
                   color: '#4676FF'
@@ -89,22 +90,21 @@
           ],
           series: [
             {
-              name: '直接访问',
+              name: '事件类型',
               type: 'bar',
               barWidth: '30%',
-              data: [100, 52, 200, 334, 390]
+              data: [4, 5, 17, 1]
             },
             {
-              name: '访问来源',
+              name: '事件类型',
               type: 'pie',
               radius: '70%',
               center: ['15%', '45%'],
               data: [
-                {value: 335, name: '类型1'},
-                {value: 310, name: '类型2'},
-                {value: 234, name: '类型3'},
-                {value: 135, name: '类型4'},
-                {value: 548, name: '类型5'}
+                {value: 4, name: '访问行为'},
+                {value: 5, name: '流量'},
+                {value: 17, name: '关键操作'},
+                {value: 1, name: '其他'}
               ],
               label: {
                 fontSize: 15
