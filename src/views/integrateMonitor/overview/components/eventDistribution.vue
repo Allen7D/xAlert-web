@@ -1,43 +1,44 @@
 <script>
   // http://echarts.baidu.com/examples/editor.html?c=pie-simple
   import Chart from 'components/charts/chart'
-  import { getColor } from '@/utils/index'
-    export default {
-      extends: Chart,
-      data() {
+  export default {
+    extends: Chart,
+    props: {
+      data: Array
+    },
+    data() {
+      return {
+        chart: null
+      }
+    },
+    computed: {
+      option() {
         return {
-          chart: null,
-          option: {
-            tooltip: {
-              trigger: 'item',
-              formatter: '{a} <br/>{b} : {c} ({d}%)'
-            },
-            color: getColor(),
-            series: [
-              {
-                name: '关键操作：按规则细分',
-                type: 'pie',
-                radius: '75%',
-                center: ['35%', '47%'],
-                data: [
-                  {value: 11, name: '高危'},
-                  {value: 19, name: '中危'},
-                  {value: 17, name: '低危'}
-                ],
-                label: {
-                  fontSize: 15
-                },
-                itemStyle: {
-                  emphasis: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                  }
+          tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b} : {c} ({d}%)'
+          },
+          series: [
+            {
+              name: '事件等级分布',
+              type: 'pie',
+              radius: '75%',
+              center: ['50%', '47%'],
+              data: this.data,
+              label: {
+                fontSize: 15
+              },
+              itemStyle: {
+                emphasis: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
                 }
               }
-            ]
-          }
+            }
+          ]
         }
       }
     }
+  }
 </script>

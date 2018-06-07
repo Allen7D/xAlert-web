@@ -139,7 +139,7 @@
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
 .main
-  width 1000px
+  width 974px
   height 100%
   border-top 5px #00A0E9 solid
   border-bottom  2px #E6E6E6 solid

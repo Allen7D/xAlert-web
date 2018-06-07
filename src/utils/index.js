@@ -286,3 +286,22 @@ export function filterChart(arr, key, no) {
   newArr.push(other)
   return newArr
 }
+
+export function timeInterval() {
+  function getDate(year, month) {
+    let d = new Date(year, month, 0)
+    return d.getDate()
+  }
+  var arr = []
+  var nowMonth = new Date().getMonth() + 1
+  for (let i = 1; i < nowMonth; i++) {
+    for (let j = 1; j <= getDate(2018, i); j++) {
+      arr.push('2018-' + i + '-' + j)
+    }
+  }
+  var nowDay = new Date().getDate()
+  for (let i = 1; i <= nowDay; i++) {
+    arr.push('2018-' + nowMonth + '-' + i)
+  }
+  return arr
+}

@@ -6,7 +6,7 @@
           <indicator title="今日事件" icon="icon-log" :data="securityEventNum"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
-          <indicator title="今日漏洞" icon="icon-webloudongjiance" :data="6"></indicator>
+          <indicator title="今日漏洞" icon="icon-webloudongjiance" :data="totalVulne"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
           <indicator title="今日资产发现" icon="icon-network-assets" :data="TodayAssetsNum"></indicator>
@@ -19,12 +19,12 @@
 
     <div class="wrapper">
       <el-row :gutter="40">
-        <el-col :xs="24" :sm="24" :lg="12">
+        <el-col :xs="24" :sm="24" :lg="24">
           <security-trend id="securityTrend" title="安全趋势"></security-trend>
         </el-col>
-        <el-col :xs="24" :sm="24" :lg="12">
-          <asset-online id="assetOnline" title="在线资产"></asset-online>
-        </el-col>
+        <!--<el-col :xs="24" :sm="24" :lg="12">-->
+          <!--<asset-online id="assetOnline" title="在线资产"></asset-online>-->
+        <!--</el-col>-->
       </el-row>
     </div>
 
@@ -47,20 +47,20 @@
 
     <div class="wrapper">
       <el-row :gutter="40">
-        <el-col :xs="27" :sm="27" :lg="6">
-          <asset-distribution id="assetDistribution" title="资产分布" titleType="simple" :height="350"></asset-distribution>
-        </el-col>
-        <el-col :xs="27" :sm="27" :lg="9">
-          <event-distribution-chart id="evnetDistributionChart" title="事件分布" titleType="simple" :height="350" width="50%" float="left">
+        <!--<el-col :xs="27" :sm="27" :lg="6">-->
+          <!--<asset-distribution id="assetDistribution" title="资产分布" titleType="simple" :height="350"></asset-distribution>-->
+        <!--</el-col>-->
+        <el-col :xs="24" :sm="24" :lg="12">
+          <event-distribution-chart id="evnetDistributionChart" :data="event.data" title="事件分布" titleType="simple" :height="350" width="50%" float="left">
             <div style="padding: 30px 19px 0">
-              <event-distribution-table :dataList="evnetDistributionData"></event-distribution-table>
+              <event-distribution-table :dataList="event.data"></event-distribution-table>
             </div>
           </event-distribution-chart>
         </el-col>
-        <el-col :xs="27" :sm="24" :lg="9">
-          <vulne-distribution-chart id="vulneDistributionChart" title="漏洞分布" titleType="simple" :height="350" width="50%" float="left">
+        <el-col :xs="24" :sm="24" :lg="12">
+          <vulne-distribution-chart id="vulneDistributionChart" :data="vulne" title="漏洞分布" titleType="simple" :height="350" width="50%" float="left">
             <div style="padding: 30px 19px 0">
-              <vulne-distribution-table :dataList="vulneDistributionData"></vulne-distribution-table>
+              <vulne-distribution-table :dataList="vulne"></vulne-distribution-table>
             </div>
           </vulne-distribution-chart>
         </el-col>
@@ -116,7 +116,44 @@
   import flowApi from '@/api/flow'
   import keyopApi from '@/api/keyop'
   import constants from '@/utils/constants'
-
+  const vulneMockData = {
+    'gushenxing': [
+      {name: '严重', value: 1},
+      {name: '高危', value: 1},
+      {name: '中危', value: 2},
+      {name: '低危', value: 1}
+    ],
+    'master': [
+      {name: '严重', value: 0},
+      {name: '高危', value: 0},
+      {name: '中危', value: 0},
+      {name: '低危', value: 1}
+    ],
+    'airport': [
+      {name: '严重', value: 0},
+      {name: '高危', value: 0},
+      {name: '中危', value: 1},
+      {name: '低危', value: 0}
+    ],
+    'iot': [
+      {name: '严重', value: 0},
+      {name: '高危', value: 1},
+      {name: '中危', value: 1},
+      {name: '低危', value: 0}
+    ],
+    'medical': [
+      {name: '严重', value: 0},
+      {name: '高危', value: 0},
+      {name: '中危', value: 1},
+      {name: '低危', value: 1}
+    ],
+    'cnc': [
+      {name: '严重', value: 0},
+      {name: '高危', value: 0},
+      {name: '中危', value: 0},
+      {name: '低危', value: 2}
+    ]
+  }
   export default {
     components: {
       Indicator,
@@ -148,8 +185,12 @@
           totalInByL7: [],
           totalOutByL7: []
         },
+        event: {
+          data: [],
+          timelist: []
+        },
         evnetDistributionData: [],
-        vulneDistributionData: [],
+        vulne: [],
         additionalAssetData: [],
         vulneDiscoveryData: []
       }
@@ -157,11 +198,19 @@
     computed: {
       ...mapState({
         currentAgent: (state) => state.app.currentAgent
-      })
+      }),
+      totalVulne() {
+        let sum = 0
+        for (let i = 0; i < this.vulne.length; i++) {
+          sum += this.vulne[i].value
+        }
+        return sum
+      }
     },
     watch: {
       '$store.state.app.currentAgent': {
           handler: function(cur, pre) {
+            this.vulne = vulneMockData[cur.probe]
             this.getAssetData('/reload')
             this.getKeyopEventData()
             this.getFlowData()
@@ -195,6 +244,19 @@
           this.securityEvent = res.data.data.data
           this.securityEventNum = this.securityEvent.length
         })
+        const params2 = {
+          probe: this.currentAgent.probe,
+          iface: this.currentAgent.iface,
+          range: 'LAST_YEAR'
+        }
+        // 事件序列的集合
+        keyopApi.fetchKeyopEvent(params2).then(res => {
+          const data = res.data.data.data
+          data.forEach((item, index) => {
+            this.event.timelist = this.event.timelist.concat(item.count.timestamps)
+          })
+          console.log('this.event.timelist', this.event.timelist)
+        })
       },
       getFlowData() {
         const params = {
@@ -221,10 +283,6 @@
         keyopApi.fetchKeyopRule(params).then(res => {
           const data = res.data.data.data
           const widget = {}
-          widget.summaryData = data
-          widget.summaryTotal = data.reduce(function (memo, item) {
-            return memo + item.count
-          }, 0)
           widget.severityData = {}
           widget.severityData[constants.SEVERITY.HIGH] = 0
           widget.severityData[constants.SEVERITY.MEDIUM] = 0
@@ -240,8 +298,11 @@
               widget.severityData.LOW = widget.severityData.LOW + item.count
             }
           })
-          console.log('某个getKeyopData', data)
-          console.log('某个 getKeyopData-widget', widget)
+          this.event.data = [
+            {name: '重大', value: widget.severityData.HIGH},
+            {name: '较大', value: widget.severityData.MEDIUM},
+            {name: '一般', value: widget.severityData.LOW}
+          ]
         })
       },
       getProtocolData() {

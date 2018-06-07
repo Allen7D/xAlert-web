@@ -1,7 +1,7 @@
 <script type="text/ecmascript-6">
   // http://echarts.baidu.com/examples/editor.html?c=multiple-x-axis
   import Chart from 'components/charts/chart'
-  import { getColor } from '@/utils/index'
+  import { getColor, timeInterval } from '@/utils/index'
   export default {
     extends: Chart,
     props: {
@@ -22,11 +22,7 @@
             }
           },
           legend: {
-            data: ['事件数量', '漏洞数量'],
-              textStyle: {
-              color: '#FFF100',
-                fontSize: '15'
-            }
+            show: false
           },
           grid: {
             left: '3%',
@@ -52,7 +48,7 @@
             xAxis: {
             type: 'category',
               boundaryGap: false,
-              data: ['2016-1', '2016-2', '2016-3', '2016-4', '2016-5', '2016-6', '2016-7', '2016-8', '2016-9', '2016-10', '2016-11', '2016-12'],
+              data: timeInterval(),
               splitLine: {show: false},
             axisLine: {
               lineStyle: {

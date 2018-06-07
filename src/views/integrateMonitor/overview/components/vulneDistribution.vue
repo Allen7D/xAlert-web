@@ -57,7 +57,7 @@
           },
           yAxis: {
             type: 'category',
-            data: ['业务一', '业务二', '业务三', '业务四', '业务五', '业务六', '业务七'],
+            data: ['master-eth0', 'airport-eth0', 'iot-eth0', 'madical-eth0', 'cnc-eth0'],
             splitLine: {show: false},
             axisLine: {
               lineStyle: {
@@ -79,39 +79,39 @@
           color: getColor(),
           series: [
             {
+              name: '严重',
+              type: 'bar',
+              stack: '总量',
+              label: label,
+              data: [320, 302, 301, 334, 390]
+            },
+            {
               name: '高危',
               type: 'bar',
               stack: '总量',
               label: label,
-              data: [320, 302, 301, 334, 390, 330, 320]
+              data: [320, 302, 301, 334, 390]
             },
             {
               name: '中危',
               type: 'bar',
               stack: '总量',
               label: label,
-              data: [120, 132, 101, 134, 90, 230, 210]
+              data: [120, 132, 101, 134, 90]
             },
             {
               name: '低危',
               type: 'bar',
               stack: '总量',
               label: label,
-              data: [220, 182, 191, 234, 290, 330, 310]
+              data: [220, 182, 191, 234, 290]
             },
             {
               name: '信息',
               type: 'bar',
               stack: '总量',
               label: label,
-              data: [150, 212, 201, 154, 190, 330, 410]
-            },
-            {
-              name: '未定义',
-              type: 'bar',
-              stack: '总量',
-              label: label,
-              data: [820, 832, 901, 934, 1290, 1330, 1320]
+              data: [150, 212, 201, 154, 190]
             }
           ]
         }

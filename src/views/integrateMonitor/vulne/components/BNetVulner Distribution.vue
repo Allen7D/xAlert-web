@@ -18,7 +18,7 @@
           xAxis: [
             {
               type: 'category',
-              data: ['行李分拣', '自助', '监控', '业务系统4', '业务系统5', '业务系统6', '业务系统7', '业务系统8', '业务系统9', '业务系统10'],
+              data: ['master-eth0', 'airport-eth0', 'lot-eth0', 'medical-eth0', 'cnc-eth0'],
               axisTick: {
                 alignWithLabel: true
               },
@@ -46,7 +46,7 @@
               name: '业务网络漏洞分布',
               type: 'bar',
               barWidth: '60%',
-              data: [999, 888, 800, 777, 767, 700, 400, 350, 200, 150]
+              data: [1, 1, 3, 2, 1]
             }
           ]
         }
