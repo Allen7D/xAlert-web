@@ -20,8 +20,11 @@
             {
               name: '漏洞等级分布',
               type: 'pie',
-              radius: '60%',
+              radius: '75%',
               center: ['50%', '50%'],
+              label: {
+                fontSize: 15
+              },
               data: [
                 {value: 2, name: '高危'},
                 {value: 5, name: '中危'},

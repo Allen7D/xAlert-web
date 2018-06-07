@@ -1,6 +1,6 @@
 <script type="text/ecmascript-6">
   import Chart from 'components/charts/chart'
-
+  import { getColor } from '@/utils/index'
   export default {
     extends: Chart,
     data() {
@@ -8,7 +8,7 @@
         chart: null,
         option: {
           tooltip: {},
-          color: ['#4676FF'],
+          color: getColor(),
           grid: {
             left: '3%',
             right: '4%',
@@ -46,7 +46,15 @@
               name: '业务网络漏洞分布',
               type: 'bar',
               barWidth: '60%',
-              data: [5, 1, 1, 3, 2, 1]
+              data: [5, 1, 1, 3, 2, 1],
+              itemStyle: {
+                normal: {
+                  color: function(params) {
+                    var colorList = getColor()
+                    return colorList[params.dataIndex]
+                  }
+                }
+              }
             }
           ]
         }

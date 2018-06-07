@@ -20,8 +20,11 @@
             {
               name: '资产漏洞分布',
               type: 'pie',
-              radius: '60%',
+              radius: '75%',
               center: ['50%', '50%'],
+              label: {
+                fontSize: 15
+              },
               data: [
                 {value: 5, name: 'gushenxing-eth0'},
                 {value: 1, name: 'master-eth0'},
