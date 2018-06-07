@@ -22,7 +22,7 @@
               name: '资产来源',
               type: 'pie',
               radius: '75%',
-              center: ['45%', '50%'],
+              center: ['50%', '50%'],
               data: this.data,
               label: {
                 fontSize: 15
