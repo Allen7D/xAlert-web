@@ -11,7 +11,8 @@
     },
     data() {
       return {
-        chart: null
+        chart: null,
+        params: []
       }
     },
     computed: {

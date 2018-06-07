@@ -2,7 +2,7 @@
     <el-table :data="dataList" border style="width: 50%" height="250">
       <el-table-column
         label="事件类型"
-        prop="type"
+        prop="name"
         sortable
         header-align="center"
         align="center"
@@ -10,7 +10,7 @@
       </el-table-column>
       <el-table-column
         label="数量"
-        prop="num"
+        prop="value"
         sortable
         header-align="center"
         align="center">

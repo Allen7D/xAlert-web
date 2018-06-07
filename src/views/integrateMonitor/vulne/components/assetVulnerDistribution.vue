@@ -14,7 +14,7 @@
           },
           legend: {
             show: false,
-            data: ['业务网络1', '业务网络2', '业务网络5', '业务网络4', '业务网络3']
+            data: ['master-eth0', 'airport-eth0', 'lot-eth0', 'medical-eth0', 'cnc-eth0']
           },
           series: [
             {
@@ -23,11 +23,11 @@
               radius: '60%',
               center: ['50%', '50%'],
               data: [
-                {value: 335, name: '业务网络1'},
-                {value: 310, name: '业务网络2'},
-                {value: 234, name: '业务网络5'},
-                {value: 135, name: '业务网络4'},
-                {value: 548, name: '业务网络3'}
+                {value: 1, name: 'master-eth0'},
+                {value: 1, name: 'airport-eth0'},
+                {value: 3, name: 'lot-eth0'},
+                {value: 2, name: 'medical-eth0'},
+                {value: 1, name: 'cnc-eth0'}
               ]
             }
           ]

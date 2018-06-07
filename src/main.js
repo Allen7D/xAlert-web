@@ -27,10 +27,59 @@ new Vue({
   router,
   store,
   i18n,
-  components: { App },
+  components: {App},
   template: '<App/>'
 })
 
 Vue.prototype.timeConvert = function (row) {
   return new Date(row.timestamp).toLocaleString('chinese', {hour12: false})
+}
+
+Vue.prototype.flowConvert = function (row) {
+  console.log(row)
+  let flow = row.value
+  if (!flow) {
+    return '0 b'
+  }
+  let t = Math.pow(1024, 4)
+  let g = Math.pow(1024, 3)
+  let m = Math.pow(1024, 2)
+  let k = Math.pow(1024, 1)
+  let tn = 0
+  let gn = 0
+  let mn = 0
+  let kn = 0
+  let str = ''
+  while (flow >= t) {
+    flow = flow - t
+    tn++
+  }
+  if (tn > 0) {
+    str = str + tn + 'T '
+  }
+  while (flow >= g) {
+    flow = flow - g
+    gn++
+  }
+  if (gn > 0) {
+    str = str + gn + 'G '
+  }
+  while (flow >= m) {
+    flow = flow - m
+    mn++
+  }
+  if (mn > 0) {
+    str = str + mn + 'M '
+  }
+  while (flow >= k) {
+    flow = flow - k
+    kn++
+  }
+  if (kn > 0) {
+    str = str + kn + 'K '
+  }
+  if (flow > 0) {
+    str = str + flow + 'b '
+  }
+  return str
 }

@@ -307,30 +307,30 @@
       ]
     },
     "vulne": {
-      "vulneTotal": "8888",
-      "noRepaired": "8888",
-      "Repaired": "8888",
-      "recentWeek": "8888",
+      "vulneTotal": "8",
+      "noRepaired": "8",
+      "Repaired": "0",
+      "recentWeek": "5",
       "vulneData": [
         {
           "title": "严重:",
-          "data": "8888"
+          "data": "0"
         },
         {
           "title": "高危:",
-          "data": "8888"
+          "data": "1"
         },
         {
           "title": "中危:",
-          "data": "8888"
+          "data": "3"
         },
         {
           "title": "低危:",
-          "data": "8888"
+          "data": "4"
         },
         {
           "title": "消息:",
-          "data": "8888"
+          "data": "7"
         }
       ],
       "newDiscoverVulne": [
@@ -372,58 +372,46 @@
       ],
       "assetVulner": [
         {
-          "busNet":"分拣系统",
-          "count":"555"
+          "busNet":"master-eth0",
+          "count":"1"
         },
         {
-          "busNet":"值机系统",
-          "count":"444"
+          "busNet":"airport-eth0",
+          "count":"1"
         },
         {
-          "busNet":"业务网络3",
-          "count":"333"
+          "busNet":"lot-eth0",
+          "count":"3"
         },
         {
-          "busNet":"业务网络4",
-          "count":"222"
+          "busNet":"medical-eth0",
+          "count":"2"
         },
         {
-          "busNet":"业务网络5",
-          "count":"555"
-        },
-        {
-          "busNet":"业务网络6",
-          "count":"444"
-        },
-        {
-          "busNet":"业务网络7",
-          "count":"222"
-        },
-        {
-          "busNet":"业务网络8",
-          "count":"333"
+          "busNet":"cnc-eth0",
+          "count":"1"
         }
       ],
       "assetVulGrade": [
         {
           "vulGrade":"严重",
-          "count":"555"
+          "count":"0"
         },
         {
           "vulGrade":"高危",
-          "count":"444"
+          "count":"1"
         },
         {
           "vulGrade":"中危",
-          "count":"555"
+          "count":"3"
         },
         {
           "vulGrade":"低危",
-          "count":"555"
+          "count":"4"
         },
         {
           "vulGrade":"信息",
-          "count":"555"
+          "count":"7"
         }
       ]
     },

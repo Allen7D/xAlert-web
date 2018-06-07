@@ -3,7 +3,7 @@
     <div class="indicator">
       <el-row>
         <el-col ::xs="24" :sm="24" :lg="24">
-          <IPStat title="Top 20 IP资产流量统计（流入）" id="IPStatIn" :data="totalFlow.totalInBySrcIp" titleType="simple" :height="330" width="80%" float="left">
+          <IPStat title="Top 10 IP资产流量统计（流入）" id="IPStatIn" :data="totalFlow.totalInBySrcIp" titleType="simple" :height="330" width="80%" float="left">
             <div style="padding: 20px 5px 0">
               <IPStatTable :dataList="totalFlow.totalInBySrcIp"></IPStatTable>
             </div>
@@ -14,7 +14,7 @@
     <div class="indicator">
       <el-row>
         <el-col ::xs="24" :sm="24" :lg="24">
-          <IPStat title="Top 20 IP资产流量统计（流出）" id="IPStatOut" :data="totalFlow.totalOutBySrcIp" titleType="simple" :height="330" width="80%" float="left">
+          <IPStat title="Top 10 IP资产流量统计（流出）" id="IPStatOut" :data="totalFlow.totalOutBySrcIp" titleType="simple" :height="330" width="80%" float="left">
             <div style="padding: 20px 5px 0">
               <IPStatTable :dataList="totalFlow.totalOutBySrcIp"></IPStatTable>
             </div>

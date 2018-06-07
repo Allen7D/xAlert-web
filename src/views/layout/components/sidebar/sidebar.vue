@@ -47,7 +47,7 @@
 
 <script type="text/ecmascript-6">
   import { mapGetters } from 'vuex'
-  import logo_w_s from './logo_w_s.jpg'
+  import logo_w_s from './logo_gy.jpg'
   export default {
     name: 'SidebarItem',
     data() {
@@ -88,7 +88,7 @@
     .top
       .logo
         margin: 24px auto 36px 25px
-        width: 130px
+        width: 180px
         height: 55px
       .title
         margin-left: 6px
