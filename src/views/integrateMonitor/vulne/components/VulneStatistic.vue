@@ -60,7 +60,6 @@
   }
   .item-data {
     color: $color-theme-d
-    font-size: 30px
-    font-weight bolder
+    font-size: 55px
   }
 </style>

@@ -65,6 +65,11 @@
     watch: {
       data() {
         this.initChart()
+      },
+      $route(to, from) {
+        setTimeout(() => {
+          this.chart.resize()
+        }, 1000)
       }
     },
     methods: {

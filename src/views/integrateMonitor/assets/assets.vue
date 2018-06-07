@@ -23,16 +23,16 @@
     <!--2个图表容器-->
     <div class="wrapper">
       <el-row :gutter="40">
-        <el-col :xs="24" :sm="24" :lg="12">
+        <el-col :xs="24" :sm="24" :lg="24">
           <assetStat id="assetStat" title="在线资产统计" :data="assetStatData" titleType="simple" :height="330" width="50%" float="left">
             <div style="padding: 20px 19px 0">
               <assetStatTable :dataList="assetStatData"></assetStatTable>
             </div>
           </assetStat>
         </el-col>
-        <el-col :xs="24" :sm="24" :lg="12">
-          <assetTrend id="assetTrend" title="在线资产趋势"></assetTrend>
-        </el-col>
+        <!--<el-col :xs="24" :sm="24" :lg="12">-->
+          <!--<assetTrend id="assetTrend" title="在线资产趋势"></assetTrend>-->
+        <!--</el-col>-->
       </el-row>
     </div>
     <!--一个列表容器-->

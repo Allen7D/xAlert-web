@@ -178,7 +178,9 @@
             this.vulne = vulneMockData[cur.probe]
             this.vulneDetail = vulneDetailMockData[cur.probe]
             this.getAssetData('/reload')
-            this.getKeyopEventData()
+            setInterval(() => {
+              this.getKeyopEventData()
+            }, 3000)
             this.getFlowData()
             this.getKeyopData()
           },
@@ -222,7 +224,6 @@
           data.forEach((item, index) => {
             this.event.timelist = this.event.timelist.concat(item.count.timestamps)
           })
-          console.log('this.event.timelist', this.event.timelist)
         })
       },
       getFlowData() {

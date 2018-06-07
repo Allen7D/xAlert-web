@@ -6,7 +6,7 @@
           <indicator title="安全事件" icon="icon-log" link="/event-dynamic/event-list" :data="event.total"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
-          <indicator title="漏洞数量" icon="icon-webloudongjiance" link="/vulne-dynamic/vulne-list" :data="13"></indicator>
+          <indicator title="漏洞数量" icon="icon-webloudongjiance" link="/vulne-dynamic/vulne-list" :data="vulne.total"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
           <indicator title="网络资产" icon="icon-network-assets" link="/asset-dynamic/asset-list" :data="asset.total"></indicator>
@@ -60,7 +60,7 @@
         </el-col>
         <el-col :xs="28" :sm="28" :lg="10">
           <table-wrapper title="漏洞发现" tableHeight="250px">
-              <vulne-discovery :dataList="vulneDiscoveryData"></vulne-discovery>
+              <vulne-discovery :dataList="vulne.list"></vulne-discovery>
           </table-wrapper>
         </el-col>
       </el-row>
@@ -132,6 +132,10 @@
           low: 0,
           active: 0,
           list: []
+        },
+        vulne: {
+          total: 0,
+          list: []
         }
       }
     },
@@ -185,7 +189,10 @@
         keyopApi.fetchKeyopEvent({range: 'LAST_YEAR'}).then(res => {
           const data = res.data.data.data
           this.event.list = data
-          console.log('this.event.list', this.event.list)
+          this.event.total = 0
+          this.event.high = 0
+          this.event.medium = 0
+          this.event.low = 0
           data.forEach((item, index, array) => {
             this.event.total += item.count.count
             if (item.rule.severity === constants.SEVERITY.HIGH) {
@@ -198,6 +205,22 @@
               this.event.low += item.count.count
             }
           })
+          this.vulne.total = 13
+          this.vulne.list = [
+            {timestamp: '2018/6/6 01:12:16', name: 'CNVD-2017-29999', src: 'gushenxing-eth0'},
+            {timestamp: '2018/6/6 06:43:21', name: 'CNVD-2017-25719', src: 'gushenxing-eth0'},
+            {timestamp: '2018/6/6 17:39:15', name: 'CNVD-2017-25718', src: 'gushenxing-eth0'},
+            {timestamp: '2018/6/7 09:35:53', name: 'CNVD-2017-24364', src: 'gushenxing-eth0'},
+            {timestamp: '2018/6/7 12:15:15', name: 'CNVD-2017-25716', src: 'gushenxing-eth0'},
+            {timestamp: '2018/6/6 17:01:31', name: 'CNVD-2017-22840', src: 'master-eth0'},
+            {timestamp: '2018/6/6 10:05:44', name: 'CNVD-2017-22841', src: 'airport-eth0'},
+            {timestamp: '2018/6/6 10:15:43', name: 'CNVD-2017-22843', src: 'iot-eth0'},
+            {timestamp: '2018/6/7 07:11:24', name: 'CNVD-2017-10575', src: 'iot-eth0'},
+            {timestamp: '2018/6/7 01:19:11', name: 'CNVD-2017-08714', src: 'iot-eth0'},
+            {timestamp: '2018/6/7 07:21:19', name: 'CNVD-2017-08712', src: 'iot-eth0'},
+            {timestamp: '2018/6/7 11:19:31', name: 'CNVD-2017-05939', src: 'cnc-eth0'},
+            {timestamp: '2018/6/7 12:11:59', name: 'CNVD-2017-05940', src: 'cnc-eth0'}
+          ]
         })
       },
       getNetEventData() {
@@ -237,8 +260,8 @@
       // 中间，5个图表的数据
       setInterval(() => {
         this.getFlowData({eventId: 'ui-flows-summary'})
-      }, 1000)
-      this.getKeyopData()
+        this.getKeyopData()
+      }, 3000)
       // 底部，3个列表的数据
       this.getNetEventData()
       this.getAssetDiscoveryData()
