@@ -346,3 +346,33 @@ export function vulneMock() {
     ]
   }
 }
+
+export function vulneDetailMock() {
+  return {
+    'gushenxing': [
+      {timestamp: '2018/6/6 01:12:16', name: 'CNVD-2017-29999', src: 'gushenxing-eth0'},
+      {timestamp: '2018/6/6 06:43:21', name: 'CNVD-2017-25719', src: 'gushenxing-eth0'},
+      {timestamp: '2018/6/6 17:39:15', name: 'CNVD-2017-25718', src: 'gushenxing-eth0'},
+      {timestamp: '2018/6/7 09:35:53', name: 'CNVD-2017-24364', src: 'gushenxing-eth0'},
+      {timestamp: '2018/6/7 12:15:15', name: 'CNVD-2017-25716', src: 'gushenxing-eth0'}
+    ],
+    'master': [
+      {timestamp: '2018/6/6 17:01:31', name: 'CNVD-2017-22840', src: 'master-eth0'}
+    ],
+    'airport': [
+      {timestamp: '2018/6/6 10:05:44', name: 'CNVD-2017-22841', src: 'airport-eth0'}
+    ],
+    'iot': [
+      {timestamp: '2018/6/6 10:15:43', name: 'CNVD-2017-22843', src: 'iot-eth0'},
+      {timestamp: '2018/6/7 07:11:24', name: 'CNVD-2017-10575', src: 'iot-eth0'}
+    ],
+    'medical': [
+      {timestamp: '2018/6/7 01:19:11', name: 'CNVD-2017-08714', src: 'iot-eth0'},
+      {timestamp: '2018/6/7 07:21:19', name: 'CNVD-2017-08712', src: 'iot-eth0'}
+    ],
+    'cnc': [
+      {timestamp: '2018/6/7 11:19:31', name: 'CNVD-2017-05939', src: 'cnc-eth0'},
+      {timestamp: '2018/6/7 12:11:59', name: 'CNVD-2017-05940', src: 'cnc-eth0'}
+    ]
+  }
+}

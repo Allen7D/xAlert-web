@@ -80,7 +80,7 @@
         </el-col>
         <el-col :xs="24" :sm="24" :lg="10">
           <table-wrapper title="漏洞发现" tableHeight="350px" wrapperHeight="450px">
-            <vulne-discovery :dataList="vulneDiscoveryData"></vulne-discovery>
+            <vulne-discovery :dataList="vulneDetail"></vulne-discovery>
           </table-wrapper>
         </el-col>
       </el-row>
@@ -115,8 +115,9 @@
   import flowApi from '@/api/flow'
   import keyopApi from '@/api/keyop'
   import constants from '@/utils/constants'
-  import { vulneMock } from '@/utils/index'
+  import { vulneMock, vulneDetailMock } from '@/utils/index'
   const vulneMockData = vulneMock()
+  const vulneDetailMockData = vulneDetailMock()
   export default {
     components: {
       Indicator,
@@ -154,6 +155,7 @@
         },
         evnetDistributionData: [],
         vulne: [],
+        vulneDetail: [],
         additionalAssetData: [],
         vulneDiscoveryData: []
       }
@@ -174,6 +176,7 @@
       '$store.state.app.currentAgent': {
           handler: function(cur, pre) {
             this.vulne = vulneMockData[cur.probe]
+            this.vulneDetail = vulneDetailMockData[cur.probe]
             this.getAssetData('/reload')
             this.getKeyopEventData()
             this.getFlowData()
@@ -331,6 +334,7 @@
       this.getAdditionalAssetData()
       this.getVulneDiscoveryData()
       this.vulne = vulneMockData['master']
+      this.vulneDetail = vulneDetailMockData['master']
     }
   }
 </script>

@@ -6,7 +6,7 @@
       </el-table-column>
       <el-table-column label="MAC地址" prop="mac" header-align="center" align="center">
       </el-table-column>
-      <el-table-column label="业务网络" :formatter="splice" width="110" header-align="center" align="center" sortable>
+      <el-table-column label="业务网络" :formatter="splice" header-align="center" align="center" sortable>
       </el-table-column>
     </el-table>
 </template>
