@@ -223,31 +223,31 @@
           "number": "1",
           "eventType": "事件类型1",
           "time": "2018-5-21 13：11：23",
-          "count": "888"
+          "count": "8"
         },
         {
           "number": "2",
           "eventType": "事件类型2",
           "time": "2018-5-21 13：11：23",
-          "count": "888"
+          "count": "11"
         },
         {
           "number": "3",
           "eventType": "事件类型3",
           "time": "2018-5-21 13：11：23",
-          "count": "888"
+          "count": "6"
         },
         {
           "number": "4",
           "eventType": "事件类型4",
           "time": "2018-5-21 13：11：23",
-          "count": "888"
+          "count": "7"
         },
         {
           "number": "5",
           "eventType": "事件类型5",
           "time": "2018-5-21 13：11：23",
-          "count": "888"
+          "count": "12"
         }
       ],
       "eveStyCenter": [
@@ -255,31 +255,31 @@
           "number": "1",
           "eventType": "事件类型1",
           "time": "2018-5-21 13：11：23",
-          "count": "888"
+          "count": "9"
         },
         {
           "number": "2",
           "eventType": "事件类型2",
           "time": "2018-5-21 13：11：23",
-          "count": "888"
+          "count": "11"
         },
         {
           "number": "3",
           "eventType": "事件类型3",
           "time": "2018-5-21 13：11：23",
-          "count": "888"
+          "count": "3"
         },
         {
           "number": "4",
           "eventType": "事件类型4",
           "time": "2018-5-21 13：11：23",
-          "count": "888"
+          "count": "7"
         },
         {
           "number": "5",
           "eventType": "事件类型5",
           "time": "2018-5-21 13：11：23",
-          "count": "888"
+          "count": "14"
         }
       ],
       "eveStyRight": [
@@ -287,31 +287,31 @@
           "number": "1",
           "eventType": "事件类型1",
           "time": "2018-5-21 13：11：23",
-          "count": "888"
+          "count": "6"
         },
         {
           "number": "2",
           "eventType": "事件类型2",
           "time": "2018-5-21 13：11：23",
-          "count": "888"
+          "count": "10"
         },
         {
           "number": "3",
           "eventType": "事件类型3",
           "time": "2018-5-21 13：11：23",
-          "count": "888"
+          "count": "9"
         },
         {
           "number": "4",
           "eventType": "事件类型4",
           "time": "2018-5-21 13：11：23",
-          "count": "888"
+          "count": "14"
         },
         {
           "number": "5",
           "eventType": "事件类型5",
           "time": "2018-5-21 13：11：23",
-          "count": "888"
+          "count": "13"
         }
       ]
     },

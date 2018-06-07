@@ -5,49 +5,49 @@
       "assetsAll": [
         {
           "key": "总资产",
-          "value": "8888"
+          "value": "19"
         },
         {
           "key": "未知资产",
-          "value": "8888"
+          "value": "5"
         },
         {
           "key": "可疑资产",
-          "value": "8888"
+          "value": "3"
         },
         {
           "key": "漏洞资产",
-          "value": "8888"
+          "value": "1"
         },
         {
           "key": "事件资产",
-          "value": "8888"
+          "value": "4"
         },
         {
           "key": "在线资产",
-          "value": "8888"
+          "value": "6"
         }
       ],
       "assetsGrade": [
         {
           "key": "很高",
-          "value": "8888"
+          "value": "2"
         },
         {
           "key": "高",
-          "value": "8888"
+          "value": "3"
         },
         {
           "key": "中",
-          "value": "8888"
+          "value": "5"
         },
         {
           "key": "低",
-          "value": "8888"
+          "value": "1"
         },
         {
           "key": "很低",
-          "value": "8888"
+          "value": "6"
         }
       ]
     }
