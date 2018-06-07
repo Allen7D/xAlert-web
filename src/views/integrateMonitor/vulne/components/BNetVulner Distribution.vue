@@ -18,7 +18,7 @@
           xAxis: [
             {
               type: 'category',
-              data: ['master-eth0', 'airport-eth0', 'lot-eth0', 'medical-eth0', 'cnc-eth0'],
+              data: ['gushenxing-eth0', 'master-eth0', 'airport-eth0', 'lot-eth0', 'medical-eth0', 'cnc-eth0'],
               axisTick: {
                 alignWithLabel: true
               },
@@ -46,7 +46,7 @@
               name: '业务网络漏洞分布',
               type: 'bar',
               barWidth: '60%',
-              data: [1, 1, 3, 2, 1]
+              data: [5, 1, 1, 3, 2, 1]
             }
           ]
         }

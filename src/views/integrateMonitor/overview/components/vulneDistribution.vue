@@ -57,7 +57,7 @@
           },
           yAxis: {
             type: 'category',
-            data: ['master-eth0', 'airport-eth0', 'iot-eth0', 'madical-eth0', 'cnc-eth0'],
+            data: ['gushenxing-eth0', 'master-eth0', 'airport-eth0', 'iot-eth0', 'madical-eth0', 'cnc-eth0'],
             splitLine: {show: false},
             axisLine: {
               lineStyle: {
@@ -83,35 +83,28 @@
               type: 'bar',
               stack: '总量',
               label: label,
-              data: [320, 302, 301, 334, 390]
+              data: [1, 0, 0, 0, 0, 0]
             },
             {
               name: '高危',
               type: 'bar',
               stack: '总量',
               label: label,
-              data: [320, 302, 301, 334, 390]
+              data: [1, 0, 0, 1, 0, 0]
             },
             {
               name: '中危',
               type: 'bar',
               stack: '总量',
               label: label,
-              data: [120, 132, 101, 134, 90]
+              data: [2, 0, 1, 1, 1, 0]
             },
             {
               name: '低危',
               type: 'bar',
               stack: '总量',
               label: label,
-              data: [220, 182, 191, 234, 290]
-            },
-            {
-              name: '信息',
-              type: 'bar',
-              stack: '总量',
-              label: label,
-              data: [150, 212, 201, 154, 190]
+              data: [1, 1, 0, 0, 1, 2]
             }
           ]
         }

@@ -65,11 +65,11 @@
                 }
               },
               data: [
-                {value: 235, name: '高危'},
-                {value: 178, name: '中危'},
-                {value: 243, name: '低危'},
-                {value: 135, name: '信息'},
-                {value: 335, name: '未定义'}]
+                {value: 2, name: '高危'},
+                {value: 5, name: '中危'},
+                {value: 5, name: '低危'},
+                {value: 7, name: '信息'},
+                {value: 0, name: '未定义'}]
             }
           ]
         })

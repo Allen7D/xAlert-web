@@ -14,7 +14,7 @@
           },
           legend: {
             show: false,
-            data: ['master-eth0', 'airport-eth0', 'lot-eth0', 'medical-eth0', 'cnc-eth0']
+            data: ['gushenxing-eth0', 'master-eth0', 'airport-eth0', 'lot-eth0', 'medical-eth0', 'cnc-eth0']
           },
           series: [
             {
@@ -23,6 +23,7 @@
               radius: '60%',
               center: ['50%', '50%'],
               data: [
+                {value: 5, name: 'gushenxing-eth0'},
                 {value: 1, name: 'master-eth0'},
                 {value: 1, name: 'airport-eth0'},
                 {value: 3, name: 'lot-eth0'},
