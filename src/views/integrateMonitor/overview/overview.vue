@@ -39,7 +39,7 @@
     <div class="chart-wrapper">
       <el-row :gutter="40">
         <el-col :xs="24" :sm="24" :lg="12">
-          <vulne-distribution id="vulnerabilityDistribution" title="漏洞分布"></vulne-distribution>
+          <vulne-distribution id="vulnerabilityDistribution" title="漏洞分布" :data="vulneDiscoveryData" :data2="vulneDiscoveryData2"></vulne-distribution>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="12">
           <event-distribution id="eventDistribution" title="安全事件分布" :data="eventChartData" titleType="simple" width="50%" float="left">
@@ -69,7 +69,7 @@
     <div class="table-wrapper">
       <el-row :gutter="20">
         <el-col :xs="24" :sm="24" :lg="24">
-          <table-wrapper title="网络事件" tableHeight="250px">
+          <table-wrapper title="网络事件" tableHeight="350px" wrapperHeight="450px">
             <net-event :dataList="this.event.list"></net-event>
           </table-wrapper>
         </el-col>
@@ -122,6 +122,7 @@
         NetFlowTabList: [],
         TotalOutByL7: [],
         vulneDiscoveryData: [],
+        vulneDiscoveryData2: [],
         asset: {
           total: 0
         },
@@ -221,6 +222,57 @@
             {timestamp: '2018/6/7 11:19:31', name: 'CNVD-2017-05939', src: 'cnc-eth0'},
             {timestamp: '2018/6/7 12:11:59', name: 'CNVD-2017-05940', src: 'cnc-eth0'}
           ]
+          this.vulneDiscoveryData = [
+            {
+              name: '严重',
+              type: 'bar',
+              stack: '总量',
+              label: {
+                normal: {
+                  show: true,
+                  position: 'insideRight'
+                }
+              },
+              data: [1, 0, 0, 0, 0, 0]
+            },
+            {
+              name: '高危',
+              type: 'bar',
+              stack: '总量',
+              label: {
+                normal: {
+                  show: true,
+                  position: 'insideRight'
+                }
+              },
+              data: [1, 0, 0, 1, 0, 0]
+            },
+            {
+              name: '中危',
+              type: 'bar',
+              stack: '总量',
+              label: {
+                normal: {
+                  show: true,
+                  position: 'insideRight'
+                }
+              },
+              data: [2, 0, 1, 1, 1, 0]
+            },
+            {
+              name: '低危',
+              type: 'bar',
+              stack: '总量',
+              label: {
+                normal: {
+                  show: true,
+                  position: 'insideRight'
+                }
+              },
+              data: [1, 1, 0, 0, 1, 2]
+            }
+          ]
+          this.vulneDiscoveryData2 = ['gushenxing-eth0', 'master-eth0', 'airport-eth0', 'iot-eth0', 'madical-eth0', 'cnc-eth0']
         })
       },
       getNetEventData() {
@@ -239,17 +291,11 @@
           this.asset.total = data.length
         })
         // 资产活动数量
-        assetApi.fetchActiveAssets({range: '1y'}).then(res => {
-          this.event.active = res.data.data.length
+        assetApi.fetchActiveAssets({range: '1h'}).then(res => {
+          const data = res.data.data
+          this.event.active = data.length
+          this.assetDiscoveryData = data.slice(0, 10)
         })
-
-        // 轮巡 发现最新的前10资产
-        setInterval(() => {
-          assetApi.fetchActiveAssets({range: '1h'}).then(res => {
-            const data = res.data.data
-            this.assetDiscoveryData = data.slice(0, 10)
-          })
-        }, 10000)
       },
       getVulneDiscoveryData() {
         this.assetDiscoveryData = []
@@ -261,10 +307,13 @@
       setInterval(() => {
         this.getFlowData({eventId: 'ui-flows-summary'})
         this.getKeyopData()
-      }, 3000)
+      }, 5000)
       // 底部，3个列表的数据
       this.getNetEventData()
       this.getAssetDiscoveryData()
+      setInterval(() => {
+        this.getAssetDiscoveryData()
+      }, 10000)
       this.getVulneDiscoveryData()
     }
   }

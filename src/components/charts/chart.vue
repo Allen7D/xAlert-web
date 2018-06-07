@@ -69,7 +69,7 @@
       $route(to, from) {
         setTimeout(() => {
           this.chart.resize()
-        }, 1000)
+        }, 500)
       }
     },
     methods: {
@@ -83,6 +83,7 @@
         }
         const sidebarElm = document.getElementsByClassName('sidebar')[0]
         sidebarElm.removeEventListener('transitionend', this.__resizeHanlder)
+        window.removeEventListener('resize', this.__resizeHanlder)
         this.chart.dispose()
         this.chart = null
       }

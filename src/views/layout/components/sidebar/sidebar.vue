@@ -134,6 +134,9 @@
     min-width: 55px
     width: 120px
     text-align center
+  .el-menu-item.is-active
+    background-color: white!important
+    opacity: 1
   .el-menu-item-group__title
     padding: 0
   .el-tooltip__popper.is-dark
@@ -146,7 +149,7 @@
       width: 0
       overflow: hidden
       visibility: hidden
-      transition: opacity .3s cubic-bezier(.55, 0, .1, 1)
+      transition: opacity .1s cubic-bezier(.55, 0, .1, 1)
       opacity: 0
       display: inline-block
     &:hover

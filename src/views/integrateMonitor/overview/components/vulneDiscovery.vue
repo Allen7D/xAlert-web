@@ -23,8 +23,8 @@
 <!--</style>-->
 
 <template>
-  <el-table :data="dataList" border style="width: 100%" height="230">
-    <el-table-column label="时间" prop="timestamp" header-align="center" align="center" sortable>
+  <el-table :data="dataList" border style="width: 100%" height="250">
+    <el-table-column label="时间" prop="timestamp" header-align="center" align="center" sortable width="220">
     </el-table-column>
     <el-table-column label="漏洞名称" prop="name" header-align="center" align="center">
     </el-table-column>

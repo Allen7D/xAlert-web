@@ -14,6 +14,8 @@
   import {initFirewallRule} from '@/api/firewall'
   import {fetchSeverity} from '@/api/severity'
   import constants from '@/utils/constants'
+  var count = 0
+  const set = new Set()
   export default {
     data() {
       return {
@@ -40,16 +42,59 @@
           eventId: 'ui-monitor-traffic-summary',
           probe: 'gushenxing',
           iface: 'eth0'
-        }
+        },
+        time: null
       }
     },
     methods: {
+      notify(lable) {
+        setTimeout(() => {
+          this.$notify({
+            title: '警告',
+            dangerouslyUseHTMLString: true,
+            message: lable,
+            type: 'warning',
+            duration: 0
+          })
+        }, 100)
+      },
       getAgentsData() {
         agentApi.fetchAgents().then(res => {
-          console.log('fetchAgents', res.data)
           const agents = res.data.data
           this.$store.dispatch('fetchAgentsAsync', agents)
         })
+      },
+      getEventNotifyData() {
+        keyopApi.fetchKeyopEvent({range: 'LAST_MINUTE'}).then(res => {
+          const data = res.data.data.data
+          data.forEach((item, index, array) => {
+            if (item.count.count) {
+              for (let i = 0; i < item.count.count; i++) {
+                set.add(`${item.rule.name}${item.rule.probe}${item.count.timestamps[i]}`)
+              }
+            }
+          })
+        })
+        console.log('set', set)
+        this.time = setInterval(() => {
+          keyopApi.fetchKeyopEvent({range: 'LAST_MINUTE'}).then(res => {
+            const data = res.data.data.data
+            data.forEach((item, index, array) => {
+              if (item.count.count) {
+                for (let i = 0; i < item.count.count; i++) {
+                  let lable = `${item.rule.name}${item.rule.probe}${item.count.timestamps[i]}`
+                  if (!set.has(lable)) {
+                    set.add(lable)
+                    let new_lable = `${item.rule.name}<br>${item.rule.probe}-${item.rule.iface}<br>${item.count.timestamps[i]}<br><br><strong>请及时处理</strong>`
+                    this.notify(new_lable)
+                    count++
+                  }
+                }
+              }
+            })
+            console.log('发送的数量', count, '轮询的set', set)
+          })
+        }, 5000)
       },
       initCurrentAgentRule() {
         flowApi.initFlowRule(this.currentAgent).then(res => {
@@ -125,7 +170,6 @@
             }
           })
           const key = query.probe + '-' + query.iface
-          console.log(key, record)
           this.$store.dispatch('addRecordAsync', {key: key, record: record})
         })
       },
@@ -154,8 +198,6 @@
             }
           })
           this.$store.commit('fetchKeyopRule', widget[uiKey])
-          console.log('getKeyopData', data)
-          console.log('getKeyopData-widget', widget)
         })
       },
       getKeyopList() {
@@ -193,20 +235,23 @@
             }
           })
           this.$store.commit('fetchSecurity', widget[uiKey])
-          console.log('getSeverityData', data)
-          console.log('getSeverityData-widget', widget)
-          console.log(widget[uiKey].summaryTotal)
         })
       }
     },
     created() {
       this.getAgentsData()
+      this.getEventNotifyData()
 //      this.getSummaryData(this.summaryParams)
 //      this.getKeyopData(this.keyopParams, this.keyopParams.eventId)
 //      console.log(this.$t(`base.${constants.ELASTIC_TIMEFRAME_OPTION[0]}`))
 //      this.getKeyopList()
 //      this.initCurrentAgentRule()
 //      this.getSeverityData(this.severityParams, this.severityParams.eventId)
+    },
+    beforeDestroy() {
+      if (this.timer) { // 如果定时器还在运行 或者直接关闭，不用判断
+        clearInterval(this.timer) // 关闭
+      }
     }
   }
 </script>

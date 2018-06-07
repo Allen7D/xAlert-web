@@ -1,19 +1,27 @@
 <script type="text/ecmascript-6">
   // http://echarts.baidu.com/examples/editor.html?c=bar-y-category-stack
   import Chart from 'components/charts/chart'
-  import { getColor } from '@/utils/index'
-  const label = {
-    normal: {
-      show: true,
-      position: 'insideRight'
-    }
-  }
+  import {getColor} from '@/utils/index'
+//  const label = {
+//    normal: {
+//      show: true,
+//      position: 'insideRight'
+//    }
+//  }
   export default {
     extends: Chart,
+    props: {
+      data: Array,
+      data2: Array
+    },
     data() {
       return {
-        chart: null,
-        option: {
+        chart: null
+      }
+    },
+    computed: {
+      option() {
+        return {
           tooltip: {
             trigger: 'axis',
             axisPointer: {
@@ -57,7 +65,7 @@
           },
           yAxis: {
             type: 'category',
-            data: ['gushenxing-eth0', 'master-eth0', 'airport-eth0', 'iot-eth0', 'madical-eth0', 'cnc-eth0'],
+            data: this.data2,
             splitLine: {show: false},
             axisLine: {
               lineStyle: {
@@ -77,40 +85,9 @@
             }
           },
           color: getColor(),
-          series: [
-            {
-              name: '严重',
-              type: 'bar',
-              stack: '总量',
-              label: label,
-              data: [1, 0, 0, 0, 0, 0]
-            },
-            {
-              name: '高危',
-              type: 'bar',
-              stack: '总量',
-              label: label,
-              data: [1, 0, 0, 1, 0, 0]
-            },
-            {
-              name: '中危',
-              type: 'bar',
-              stack: '总量',
-              label: label,
-              data: [2, 0, 1, 1, 1, 0]
-            },
-            {
-              name: '低危',
-              type: 'bar',
-              stack: '总量',
-              label: label,
-              data: [1, 1, 0, 0, 1, 2]
-            }
-          ]
+          series: this.data
         }
-      }
-    },
-    computed: {
+      },
       params() {
         let i = 0
         return this.option.series.map((item) => {
