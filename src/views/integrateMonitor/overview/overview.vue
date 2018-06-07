@@ -19,12 +19,28 @@
 
     <div class="chart-wrapper">
       <el-row :gutter="40">
-        <el-col :xs="24" :sm="24" :lg="12">
-          <security-trend id="securityTrend" title="安全趋势"></security-trend>
-        </el-col>
+        <!--<el-col :xs="24" :sm="24" :lg="12">-->
+          <!--<security-trend id="securityTrend" title="安全趋势"></security-trend>-->
+        <!--</el-col>-->
         <!--<el-col :xs="24" :sm="24" :lg="12">-->
           <!--<asset-distribution id="assetDistribution" title="资产分布"></asset-distribution>-->
         <!--</el-col>-->
+        <el-col :xs="24" :sm="24" :lg="24">
+          <net-flow id="netFlow" title="应用层流量统计" :data="TotalInByL7" width="50%" float="left">
+            <div style="padding: 20px 19px 0">
+              <NetFlowTab :dataList="NetFlowTabList"></NetFlowTab>
+            </div>
+          </net-flow>
+        </el-col>
+
+      </el-row>
+    </div>
+
+    <div class="chart-wrapper">
+      <el-row :gutter="40">
+        <el-col :xs="24" :sm="24" :lg="12">
+          <vulne-distribution id="vulnerabilityDistribution" title="漏洞分布"></vulne-distribution>
+        </el-col>
         <el-col :xs="24" :sm="24" :lg="12">
           <event-distribution id="eventDistribution" title="安全事件分布" :data="eventChartData" titleType="simple" width="50%" float="left">
             <div style="padding: 45px 19px 0">
@@ -35,40 +51,31 @@
       </el-row>
     </div>
 
-    <div class="chart-wrapper">
-      <el-row :gutter="40">
-        <el-col :xs="24" :sm="24" :lg="12">
-          <vulne-distribution id="vulnerabilityDistribution" title="漏洞分布"></vulne-distribution>
-        </el-col>
-        <el-col :xs="24" :sm="24" :lg="12">
-          <net-flow id="netFlow" title="应用层流量统计" :data="TotalInByL7" width="50%" float="left">
-            <div style="padding: 20px 19px 0">
-              <NetFlowTab :dataList="NetFlowTabList"></NetFlowTab>
-            </div>
-          </net-flow>
-        </el-col>
-      </el-row>
-    </div>
-
     <div class="table-wrapper">
       <el-row :gutter="20">
-        <el-col :xs="30" :sm="30" :lg="10">
-          <table-wrapper title="网络事件" tableHeight="250px">
-              <net-event :dataList="netEventData"></net-event>
-          </table-wrapper>
-        </el-col>
-        <el-col :xs="30" :sm="30" :lg="6">
+        <el-col :xs="28" :sm="28" :lg="14">
           <table-wrapper title="资产发现" tableHeight="250px">
               <asset-discovery :dataList="assetDiscoveryData"></asset-discovery>
           </table-wrapper>
         </el-col>
-        <el-col :xs="30" :sm="30" :lg="8">
+        <el-col :xs="28" :sm="28" :lg="10">
           <table-wrapper title="漏洞发现" tableHeight="250px">
               <vulne-discovery :dataList="vulneDiscoveryData"></vulne-discovery>
           </table-wrapper>
         </el-col>
       </el-row>
     </div>
+
+    <div class="table-wrapper">
+      <el-row :gutter="20">
+        <el-col :xs="24" :sm="24" :lg="24">
+          <table-wrapper title="网络事件" tableHeight="250px">
+            <net-event :dataList="this.event.list"></net-event>
+          </table-wrapper>
+        </el-col>
+      </el-row>
+    </div>
+
 
   </div>
 </template>
@@ -93,7 +100,6 @@
   import keyopApi from '@/api/keyop'
   import assetApi from '@/api/asset'
   import constants from '@/utils/constants'
-
   export default {
     components: {
       Indicator,
@@ -125,7 +131,8 @@
           high: 0,
           medium: 0,
           low: 0,
-          active: 0
+          active: 0,
+          list: []
         }
       }
     },
@@ -178,7 +185,8 @@
         // 最近一年的数据
         keyopApi.fetchKeyopEvent({range: 'LAST_YEAR'}).then(res => {
           const data = res.data.data.data
-          console.log('网络事件', data)
+          this.event.list = data
+          console.log('this.event.list', this.event.list)
           data.forEach((item, index, array) => {
             this.event.total += item.count.count
             if (item.rule.severity === constants.SEVERITY.HIGH) {

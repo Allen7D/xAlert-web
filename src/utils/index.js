@@ -305,3 +305,44 @@ export function timeInterval() {
   }
   return arr
 }
+
+export function vulneMock() {
+  return {
+    'gushenxing': [
+      {name: '严重', value: 1},
+      {name: '高危', value: 1},
+      {name: '中危', value: 2},
+      {name: '低危', value: 1}
+    ],
+    'master': [
+      {name: '严重', value: 0},
+      {name: '高危', value: 0},
+      {name: '中危', value: 0},
+      {name: '低危', value: 1}
+    ],
+    'airport': [
+      {name: '严重', value: 0},
+      {name: '高危', value: 0},
+      {name: '中危', value: 1},
+      {name: '低危', value: 0}
+    ],
+    'iot': [
+      {name: '严重', value: 0},
+      {name: '高危', value: 1},
+      {name: '中危', value: 1},
+      {name: '低危', value: 0}
+    ],
+    'medical': [
+      {name: '严重', value: 0},
+      {name: '高危', value: 0},
+      {name: '中危', value: 1},
+      {name: '低危', value: 1}
+    ],
+    'cnc': [
+      {name: '严重', value: 0},
+      {name: '高危', value: 0},
+      {name: '中危', value: 0},
+      {name: '低危', value: 2}
+    ]
+  }
+}

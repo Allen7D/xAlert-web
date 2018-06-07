@@ -116,44 +116,8 @@
   import flowApi from '@/api/flow'
   import keyopApi from '@/api/keyop'
   import constants from '@/utils/constants'
-  const vulneMockData = {
-    'gushenxing': [
-      {name: '严重', value: 1},
-      {name: '高危', value: 1},
-      {name: '中危', value: 2},
-      {name: '低危', value: 1}
-    ],
-    'master': [
-      {name: '严重', value: 0},
-      {name: '高危', value: 0},
-      {name: '中危', value: 0},
-      {name: '低危', value: 1}
-    ],
-    'airport': [
-      {name: '严重', value: 0},
-      {name: '高危', value: 0},
-      {name: '中危', value: 1},
-      {name: '低危', value: 0}
-    ],
-    'iot': [
-      {name: '严重', value: 0},
-      {name: '高危', value: 1},
-      {name: '中危', value: 1},
-      {name: '低危', value: 0}
-    ],
-    'medical': [
-      {name: '严重', value: 0},
-      {name: '高危', value: 0},
-      {name: '中危', value: 1},
-      {name: '低危', value: 1}
-    ],
-    'cnc': [
-      {name: '严重', value: 0},
-      {name: '高危', value: 0},
-      {name: '中危', value: 0},
-      {name: '低危', value: 2}
-    ]
-  }
+  import { vulneMock } from '@/utils/index'
+  const vulneMockData = vulneMock()
   export default {
     components: {
       Indicator,
@@ -366,6 +330,7 @@
       this.getNetEventData()
       this.getAdditionalAssetData()
       this.getVulneDiscoveryData()
+      this.vulne = vulneMockData['master']
     }
   }
 </script>
