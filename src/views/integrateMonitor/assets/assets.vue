@@ -102,6 +102,7 @@
               stat[`${item.probe}-${item.iface}`] = 1
             }
           })
+          this.assetStatData = []
           for (let key in stat) {
             this.assetStatData.push({name: key, value: stat[key]})
           }
@@ -193,8 +194,8 @@
       }
     },
     created() {
-      this.getAssetData()
-      this.getAssetsSummaryData()
+        this.getAssetData()
+        this.getAssetsSummaryData()
 //      this.getTotalAssetData()
 //      this.getRecentWeekData()
 //      this.getConfirmAssetData()

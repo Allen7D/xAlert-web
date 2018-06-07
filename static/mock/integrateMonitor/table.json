@@ -307,26 +307,26 @@
       ]
     },
     "vulne": {
-      "vulneTotal": "8",
-      "noRepaired": "8",
+      "vulneTotal": "13",
+      "noRepaired": "13",
       "Repaired": "0",
       "recentWeek": "5",
       "vulneData": [
         {
           "title": "严重:",
-          "data": "0"
-        },
-        {
-          "title": "高危:",
           "data": "1"
         },
         {
+          "title": "高危:",
+          "data": "2"
+        },
+        {
           "title": "中危:",
-          "data": "3"
+          "data": "5"
         },
         {
           "title": "低危:",
-          "data": "4"
+          "data": "5"
         },
         {
           "title": "消息:",
@@ -372,6 +372,10 @@
       ],
       "assetVulner": [
         {
+          "busNet":"gushenxing-eth0",
+          "count":"5"
+        },
+        {
           "busNet":"master-eth0",
           "count":"1"
         },
@@ -395,19 +399,19 @@
       "assetVulGrade": [
         {
           "vulGrade":"严重",
-          "count":"0"
-        },
-        {
-          "vulGrade":"高危",
           "count":"1"
         },
         {
+          "vulGrade":"高危",
+          "count":"2"
+        },
+        {
           "vulGrade":"中危",
-          "count":"3"
+          "count":"5"
         },
         {
           "vulGrade":"低危",
-          "count":"4"
+          "count":"5"
         },
         {
           "vulGrade":"信息",

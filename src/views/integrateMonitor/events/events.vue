@@ -12,10 +12,13 @@
     </div>
     <div class="chart-wrapper">
       <el-row :gutter="40">
-        <el-col :xs="24" :sm="24" :lg="12">
-          <event-trend id="eventTrend" title="事件趋势" titleType="simple"></event-trend>
+        <!--<el-col :xs="24" :sm="24" :lg="12">-->
+          <!--<event-trend id="eventTrend" title="事件趋势" titleType="simple"></event-trend>-->
+        <!--</el-col>-->
+        <el-col :xs="32" :sm="32" :lg="8">
+          <level-dist id="levelDist" :data="pieChartData" title="事件等级分布" titleType="simple"></level-dist>
         </el-col>
-        <el-col :xs="24" :sm="24" :lg="12">
+        <el-col :xs="32" :sm="32" :lg="16">
           <num-rank id="numRank" :data="event.statData" title="事件数量排名" titleType="simple"></num-rank>
         </el-col>
       </el-row>
@@ -23,10 +26,7 @@
 
     <div class="chart-wrapper">
       <el-row :gutter="20">
-        <el-col :xs="32" :sm="32" :lg="8">
-          <level-dist id="levelDist" :data="pieChartData" title="事件等级分布" titleType="simple"></level-dist>
-        </el-col>
-        <el-col :xs="32" :sm="32" :lg="16">
+        <el-col :xs="24" :sm="24" :lg="24">
           <genre-rank id="genreRank" title="事件类型排名" titleType="simple"></genre-rank>
         </el-col>
       </el-row>
@@ -34,7 +34,7 @@
     <div class="table-wrapper">
       <el-row :gutter="20">
         <el-col :xs="24" :sm="24" :lg="24">
-          <table-wrapper title="事件列表" tableHeight="250px">
+          <table-wrapper title="事件列表" tableHeight="350px" wrapperHeight="450px">
             <event-list :dataList="eventListData"></event-list>
           </table-wrapper>
         </el-col>
@@ -87,7 +87,8 @@
             medium: 0,
             low: 0
           },
-          statData: []
+          statData: [],
+          list: []
         },
         totalIndex: [
           {key: '数量', value: 999}
@@ -118,6 +119,7 @@
         // 最近一年的数据
         keyopApi.fetchKeyopEvent({range: 'LAST_YEAR'}).then(res => {
           const data = res.data.data.data
+          this.eventListData = data
           const stat = {}
           let set = new Set()
           data.forEach((item, index, array) => {
