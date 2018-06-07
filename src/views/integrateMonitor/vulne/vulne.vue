@@ -6,10 +6,10 @@
         <el-col :span="17">
           <el-row :gutter="40">
             <el-col :xs="24" :sm="12" :lg="6">
-              <vulneIndicator title="漏洞总数" icon="icon-totalAssets" :data="8" ></vulneIndicator>
+              <vulneIndicator title="漏洞总数" icon="icon-totalAssets" :data="13" ></vulneIndicator>
             </el-col>
             <el-col :xs="24" :sm="12" :lg="6">
-              <vulneIndicator title="未修复" icon="icon-totalAssets" :data="8" ></vulneIndicator>
+              <vulneIndicator title="未修复" icon="icon-totalAssets" :data="13" ></vulneIndicator>
             </el-col>
             <el-col :xs="24" :sm="12" :lg="6">
               <vulneIndicator title="已修复" icon="icon-totalAssets" :data="0"></vulneIndicator>
