@@ -17,30 +17,34 @@
       </el-row>
     </div>
 
-    <div class="wrapper">
-      <el-row :gutter="40">
-        <el-col :xs="24" :sm="24" :lg="24">
-          <security-trend id="securityTrend" title="安全趋势"></security-trend>
-        </el-col>
+    <!--<div class="wrapper">-->
+      <!--<el-row :gutter="40">-->
+        <!--<el-col :xs="24" :sm="24" :lg="24">-->
+          <!--<security-trend id="securityTrend" title="安全趋势"></security-trend>-->
+        <!--</el-col>-->
         <!--<el-col :xs="24" :sm="24" :lg="12">-->
           <!--<asset-online id="assetOnline" title="在线资产"></asset-online>-->
         <!--</el-col>-->
-      </el-row>
-    </div>
+      <!--</el-row>-->
+    <!--</div>-->
 
     <div class="wrapper">
       <el-row :gutter="40">
-        <el-col :xs="24" :sm="24" :lg="12">
+        <el-col :xs="24" :sm="24" :lg="14">
           <protocol-chart id="protocolDistribution" title="TOP 20 应用层协议" titleType="simple" :data="flowData.totalInByL7" :height="350" width="50%" float="left">
             <div style="padding: 30px 19px 0">
               <protoco-table :dataList="flowData.totalInByL7"></protoco-table>
             </div>
           </protocol-chart>
         </el-col>
-        <el-col :xs="24" :sm="24" :lg="12">
-          <table-wrapper title="TOP 20 网络会话" tableHeight="250px">
-            <net-session :dataList="netSessionData"></net-session>
+        <el-col :xs="24" :sm="24" :lg="10">
+          <!--<table-wrapper title="TOP 20 网络会话" tableHeight="250px">-->
+            <!--<net-session :dataList="netSessionData"></net-session>-->
+          <!--</table-wrapper>-->
+          <table-wrapper title="新增资产" tableHeight="250px">
+            <additional-asset :dataList="additionalAssetData"></additional-asset>
           </table-wrapper>
+
         </el-col>
       </el-row>
     </div>
@@ -68,19 +72,14 @@
     </div>
 
     <div class="wrapper">
-      <el-row :gutter="20">
-        <el-col :xs="27" :sm="27" :lg="9">
-          <table-wrapper title="网络事件" tableHeight="250px">
+      <el-row :gutter="40">
+        <el-col :xs="24" :sm="24" :lg="14">
+          <table-wrapper title="网络事件" tableHeight="350px" wrapperHeight="450px">
             <net-event :dataList="netEventData"></net-event>
           </table-wrapper>
         </el-col>
-        <el-col :xs="27" :sm="27" :lg="6">
-          <table-wrapper title="新增资产" tableHeight="250px">
-            <additional-asset :dataList="additionalAssetData"></additional-asset>
-          </table-wrapper>
-        </el-col>
-        <el-col :xs="27" :sm="27" :lg="9">
-          <table-wrapper title="漏洞发现" tableHeight="250px">
+        <el-col :xs="24" :sm="24" :lg="10">
+          <table-wrapper title="漏洞发现" tableHeight="350px" wrapperHeight="450px">
             <vulne-discovery :dataList="vulneDiscoveryData"></vulne-discovery>
           </table-wrapper>
         </el-col>
@@ -216,6 +215,7 @@
         // 事件序列的集合
         keyopApi.fetchKeyopEvent(params2).then(res => {
           const data = res.data.data.data
+          this.netEventData = data
           data.forEach((item, index) => {
             this.event.timelist = this.event.timelist.concat(item.count.timestamps)
           })
@@ -289,16 +289,16 @@
             }
           })
       },
-      getNetEventData() {
-        axios.get('/api/customMonitor/table.json')
-          .then(res => {
-            res = res.data
-            if (res.ret && res.data) {
-              const data = res.data
-              this.netEventData = data.netEvent
-            }
-          })
-      },
+//      getNetEventData() {
+//        axios.get('/api/customMonitor/table.json')
+//          .then(res => {
+//            res = res.data
+//            if (res.ret && res.data) {
+//              const data = res.data
+//              this.netEventData = data.netEvent
+//            }
+//          })
+//      },
       getAdditionalAssetData() {
         axios.get('/api/customMonitor/table.json')
           .then(res => {
@@ -327,7 +327,7 @@
       this.getKeyopData()
       this.getProtocolData()
       this.getNetSessionData()
-      this.getNetEventData()
+//      this.getNetEventData()
       this.getAdditionalAssetData()
       this.getVulneDiscoveryData()
       this.vulne = vulneMockData['master']
