@@ -36,7 +36,6 @@ Vue.prototype.timeConvert = function (row) {
 }
 
 Vue.prototype.flowConvert = function (row) {
-  console.log(row)
   let flow = row.value
   if (!flow) {
     return '0 b'

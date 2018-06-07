@@ -6,7 +6,7 @@
           <indicator title="安全事件" icon="icon-log" link="/event-dynamic/event-list" :data="event.total"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
-          <indicator title="漏洞数量" icon="icon-webloudongjiance" link="/vulne-dynamic/vulne-list" :data="6"></indicator>
+          <indicator title="漏洞数量" icon="icon-webloudongjiance" link="/vulne-dynamic/vulne-list" :data="13"></indicator>
         </el-col>
         <el-col :xs="24" :sm="12" :lg="6">
           <indicator title="网络资产" icon="icon-network-assets" link="/asset-dynamic/asset-list" :data="asset.total"></indicator>
@@ -235,7 +235,9 @@
     created() {
       // 顶部，4个指标的数据
       // 中间，5个图表的数据
-      this.getFlowData({eventId: 'ui-flows-summary'})
+      setInterval(() => {
+        this.getFlowData({eventId: 'ui-flows-summary'})
+      }, 1000)
       this.getKeyopData()
       // 底部，3个列表的数据
       this.getNetEventData()
