@@ -4,7 +4,6 @@
       <el-col :span="5">
         <span>{{title}}</span>
       </el-col>
-
       <template v-if="title === '安全趋势'">
         <el-col :span="9">
           <line-legends :params="params" :chart="chart"></line-legends>
@@ -18,7 +17,9 @@
       </template>
 
       <template v-else>
+        <el-col :span="4">
         <legend-wrappers :chart="chart" :params="params" v-if="params.length"></legend-wrappers>
+        </el-col>
       </template>
     </el-row>
   </div>

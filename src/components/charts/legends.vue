@@ -67,6 +67,7 @@
         height: 7px
         cursor: pointer
       .text
+        width 70px
         font-size: 12px
         line-height 25px
         margin-left 2px
