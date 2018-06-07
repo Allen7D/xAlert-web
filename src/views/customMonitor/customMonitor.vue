@@ -19,12 +19,12 @@
 
     <div class="wrapper">
       <el-row :gutter="40">
-        <el-col :xs="24" :sm="24" :lg="12">
+        <el-col :xs="24" :sm="24" :lg="24">
           <security-trend id="securityTrend" title="安全趋势"></security-trend>
         </el-col>
-        <el-col :xs="24" :sm="24" :lg="12">
-          <asset-online id="assetOnline" title="在线资产"></asset-online>
-        </el-col>
+        <!--<el-col :xs="24" :sm="24" :lg="12">-->
+          <!--<asset-online id="assetOnline" title="在线资产"></asset-online>-->
+        <!--</el-col>-->
       </el-row>
     </div>
 
@@ -186,7 +186,8 @@
           totalOutByL7: []
         },
         event: {
-          data: []
+          data: [],
+          timelist: []
         },
         evnetDistributionData: [],
         vulne: [],
@@ -242,6 +243,19 @@
         keyopApi.fetchKeyopEvent(params).then(res => {
           this.securityEvent = res.data.data.data
           this.securityEventNum = this.securityEvent.length
+        })
+        const params2 = {
+          probe: this.currentAgent.probe,
+          iface: this.currentAgent.iface,
+          range: 'LAST_YEAR'
+        }
+        // 事件序列的集合
+        keyopApi.fetchKeyopEvent(params2).then(res => {
+          const data = res.data.data.data
+          data.forEach((item, index) => {
+            this.event.timelist = this.event.timelist.concat(item.count.timestamps)
+          })
+          console.log('this.event.timelist', this.event.timelist)
         })
       },
       getFlowData() {

@@ -1,7 +1,7 @@
 <script type="text/ecmascript-6">
   // http://echarts.baidu.com/examples/editor.html?c=multiple-x-axis
   import Chart from 'components/charts/chart'
-  import { getColor } from '@/utils/index'
+  import { getColor, timeInterval } from '@/utils/index'
   export default {
     extends: Chart,
     props: {
@@ -48,7 +48,7 @@
             xAxis: {
             type: 'category',
               boundaryGap: false,
-              data: ['2018-05-28', '2018-05-29', '2018-05-30', '2018-05-31', '2018-06-01', '2018-06-02', '2018-06-03', '2018-06-04', '2018-06-05', '2018-06-06', '2018-06-07', '2018-06-08'],
+              data: timeInterval(),
               splitLine: {show: false},
             axisLine: {
               lineStyle: {
