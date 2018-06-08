@@ -30,11 +30,11 @@
               {{$t('系统设置')}}
             </el-dropdown-item>
           </router-link>
-          <a target='_blank' href="https://github.com/bodanli159951/xAlert-web">
-            <el-dropdown-item>
-              {{$t('navbar.github')}}
-            </el-dropdown-item>
-          </a>
+          <!--<a target='_blank' href="https://github.com/bodanli159951/xAlert-web">-->
+            <!--<el-dropdown-item>-->
+              <!--{{$t('navbar.github')}}-->
+            <!--</el-dropdown-item>-->
+          <!--</a>-->
           <el-dropdown-item divided>
             <span @click="isShow = true" style="display:block"><i class="icon-signOut"></i>  {{$t('navbar.logOut')}}</span>
           </el-dropdown-item>
