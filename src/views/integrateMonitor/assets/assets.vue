@@ -24,11 +24,26 @@
     <div class="wrapper">
       <el-row :gutter="40">
         <el-col :xs="24" :sm="24" :lg="12">
-          <assetStat id="assetStat" title="在线资产统计" :data="assetStatData" titleType="simple" :height="330" width="50%" float="left">
+          <!--<assetStat id="assetStat" title="在线资产统计" :data="assetStatData" titleType="simple" :height="330" width="50%" float="left">-->
+            <!--<div style="padding: 20px 19px 0">-->
+              <!--<assetStatTable :dataList="assetStatData"></assetStatTable>-->
+            <!--</div>-->
+          <!--</assetStat>-->
+          <pie-charts id="assetStat"
+                      title="在线资产统计"
+                      :data="assetStatData"
+                      titleType="simple"
+                      width="48%"
+                      float="left"
+                      seriesName="资产来源"
+                      pieSize="65%"
+                      :piePosition="pieCenter"
+                      labelFontSize="11"
+                      chartStyle="pie">
             <div style="padding: 20px 19px 0">
               <assetStatTable :dataList="assetStatData"></assetStatTable>
             </div>
-          </assetStat>
+          </pie-charts>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="12">
           <assetTrend id="assetTrend" title="在线资产趋势"></assetTrend>
@@ -54,12 +69,14 @@
   import Indicator from 'components/indicator/indicator'
   import TableWrapper from 'components/table/tableWrapper'
   import assetStatTable from './components/assetStatTable'
+  import pieCharts from 'components/charts/piecharts'
   import axios from 'axios'
 //  import {mapGetters} from 'vuex'
   import assetApi from '@/api/asset'
   import constants from '@/utils/constants'
   export default {
     components: {
+      pieCharts,
       Indicator,
       assetStat,
       assetTrend,
@@ -78,7 +95,8 @@
           totalNewAssets: 0
         },
         assetStatData: [],
-        assetOnlineData: []
+        assetOnlineData: [],
+        pieCenter: ['53%', '50%']
       }
     },
 //    computed: {

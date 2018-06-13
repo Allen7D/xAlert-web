@@ -31,12 +31,6 @@
             formatter: '{a} <br/>{b}协议 : {c}  ({d}%)'
           },
           calculable: true,
-          // grid: {
-          //   left: '5%',
-          //   width: '50%',
-          //   height: '70%',
-          //   bottom: '15%'
-          // },
           title: [
             {
               text: '应用层协议统计',

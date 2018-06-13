@@ -33,25 +33,67 @@
     <div class="chart-wrapper">
       <el-row :gutter="40">
         <el-col :xs="24" :sm="24" :lg="12">
-          <assetVulneDistribution id="assetVulneDistribution" title="资产漏洞分布" titleType="simple" :height="330" width="50%" float="left">
+          <!--<assetVulneDistribution id="assetVulneDistribution" title="资产漏洞分布" titleType="simple" :height="330" width="50%" float="left">-->
+            <!--<div style="padding: 20px 19px 0">-->
+              <!--<assetVulnerTable :dataList="assetVulData"></assetVulnerTable>-->
+            <!--</div>-->
+          <!--</assetVulneDistribution>-->
+          <pie-charts id="assetVulneDistribution"
+                      title="资产漏洞分布"
+                      :data="assetVulChartData"
+                      titleType="simple"
+                      width="50%"
+                      float="left"
+                      seriesName="资产漏洞分布"
+                      pieSize="60%"
+                      :piePosition="pieCenter"
+                      labelFontSize="12"
+                      chartStyle="pie">
             <div style="padding: 20px 19px 0">
               <assetVulnerTable :dataList="assetVulData"></assetVulnerTable>
             </div>
-          </assetVulneDistribution>
+          </pie-charts>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="12">
-          <BNetVulnerDistribution id="BNetVulnerDistribution" title="业务网络漏洞分布" titleType="simple"></BNetVulnerDistribution>
+          <!--<BNetVulnerDistribution id="BNetVulnerDistribution" title="业务网络漏洞分布" titleType="simple"></BNetVulnerDistribution>-->
+          <pie-charts id="BNetVulnerDistribution"
+                      title="业务网络漏洞分布"
+                      :data="BNetVulData"
+                      titleType="simple"
+                      seriesName="业务网络漏洞分布"
+                      chartStyle="bar"
+                      barWidth="45%"
+                      gridLeft="3%"
+                      gridRight="4%"
+                      gridBottom="8%"
+                      gridTop="10%">
+          </pie-charts>
         </el-col>
       </el-row>
     </div>
     <div class="chartList-wrapper">
       <el-row :gutter="40">
         <el-col :xs="24" :sm="24" :lg="12">
-          <assetVulnerGrade id="assetVulnerGrade" title="资产漏洞分布" titleType="simple" :height="330" width="50%" float="left">
+          <!--<assetVulnerGrade id="assetVulnerGrade" title="资产漏洞分布" titleType="simple" :height="330" width="50%" float="left">-->
+            <!--<div style="padding: 20px 19px 0">-->
+              <!--<assetVulGradeTable :dataList="assetVulGradeData"></assetVulGradeTable>-->
+            <!--</div>-->
+          <!--</assetVulnerGrade>-->
+          <pie-charts id="assetVulnerGrade"
+                      title="资产漏洞分布"
+                      :data="assetVulGradeChartData"
+                      titleType="simple"
+                      width="50%"
+                      float="left"
+                      seriesName="漏洞等级分布"
+                      pieSize="70%"
+                      :piePosition="pieCenter"
+                      labelFontSize="15"
+                      chartStyle="pie">
             <div style="padding: 20px 19px 0">
               <assetVulGradeTable :dataList="assetVulGradeData"></assetVulGradeTable>
             </div>
-          </assetVulnerGrade>
+          </pie-charts>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="12">
           <table-Wrapper title="最新发现漏洞列表" wrapperHeight="330px" tableHeight="230px">
@@ -63,6 +105,7 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
+  import pieCharts from 'components/charts/piecharts'
   import vulneIndicator from './components/vulneIndicator'
   import VulneStatistic from './components/VulneStatistic'
   import ringDiagram from './components/ringDiagram'
@@ -77,6 +120,7 @@
 
   export default {
     components: {
+      pieCharts,
       vulneIndicator,
       VulneStatistic,
       ringDiagram,
@@ -90,6 +134,7 @@
     },
     data() {
       return {
+        pieCenter: ['52%', '50%'],
         vulneTotalData: 0,
         noRepairedData: 0,
         RepairedData: 0,
@@ -97,7 +142,28 @@
         vulneDataList: [],
         newDiscoverVulneData: [],
         assetVulData: [],
-        assetVulGradeData: []
+        assetVulGradeData: [],
+        assetVulChartData: [
+          {value: 1, name: 'master-eth0'},
+          {value: 1, name: 'airport-eth0'},
+          {value: 3, name: 'lot-eth0'},
+          {value: 2, name: 'medical-eth0'},
+          {value: 1, name: 'cnc-eth0'}
+        ],
+        BNetVulData: [
+          {value: 1, name: 'master-eth0'},
+          {value: 1, name: 'airport-eth0'},
+          {value: 3, name: 'lot-eth0'},
+          {value: 2, name: 'medical-eth0'},
+          {value: 1, name: 'cnc-eth0'}
+        ],
+        assetVulGradeChartData: [
+          {value: 0, name: '高危'},
+          {value: 1, name: '中危'},
+          {value: 3, name: '低危'},
+          {value: 4, name: '严重'},
+          {value: 7, name: '信息'}
+        ]
       }
     },
     methods: {

@@ -16,7 +16,18 @@
           <event-trend id="eventTrend" title="事件趋势" titleType="simple"></event-trend>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="12">
-          <num-rank id="numRank" :data="event.statData" title="事件数量排名" titleType="simple"></num-rank>
+          <!--<num-rank id="numRank" :data="event.statData" title="事件数量排名" titleType="simple"></num-rank>-->
+          <pie-charts id="numRank"
+                      title="事件数量排名"
+                      :data="event.statData"
+                      titleType="simple"
+                      seriesName="事件数量排名"
+                      chartStyle="bar"
+                      gridLeft="3%"
+                      gridRight="4%"
+                      gridTop="10%"
+                      gridBottom="3%">
+          </pie-charts>
         </el-col>
       </el-row>
     </div>
@@ -24,10 +35,35 @@
     <div class="chart-wrapper">
       <el-row :gutter="20">
         <el-col :xs="32" :sm="32" :lg="8">
-          <level-dist id="levelDist" :data="pieChartData" title="事件等级分布" titleType="simple"></level-dist>
+          <!--<level-dist id="levelDist" :data="pieChartData" title="事件等级分布" titleType="simple"></level-dist>-->
+          <pie-charts id="levelDist"
+                      title="事件等级分布"
+                      :data="pieChartData"
+                      titleType="simple"
+                      seriesName="事件等级分布"
+                      pieSize="75%"
+                      :piePosition="pieCenter"
+                      labelFontSize="18"
+                      chartStyle="pie">
+          </pie-charts>
         </el-col>
         <el-col :xs="32" :sm="32" :lg="16">
-          <genre-rank id="genreRank" title="事件类型排名" titleType="simple"></genre-rank>
+          <!--<genre-rank id="genreRank" title="事件类型排名" titleType="simple"></genre-rank>-->
+          <pie-charts id="genreRank"
+                      title="事件类型排名"
+                      :data="ChartData"
+                      titleType="simple"
+                      seriesName="事件类型排名"
+                      pieSize="65%"
+                      :piePosition="pieBarCenter"
+                      labelFontSize="11"
+                      chartStyle="pieBar"
+                      barWidth="30%"
+                      gridLeft="30%"
+                      gridTop="10%"
+                      gridBottom="3%"
+                      gridWidth="65%">
+          </pie-charts>
         </el-col>
       </el-row>
     </div>
@@ -45,6 +81,7 @@
 
 <script type="text/ecmascript-6">
   import Indicator from 'components/indicator/indicator'
+  import pieCharts from 'components/charts/piecharts'
   import LongIndicator from 'components/indicator/longIndicator'
 
   import EventTrend from './components/eventTrend'
@@ -63,6 +100,7 @@
 
   export default {
     components: {
+      pieCharts,
       Indicator,
       LongIndicator,
       EventTrend,
@@ -75,6 +113,8 @@
     },
     data() {
       return {
+        pieCenter: ['50%', '50%'],
+        pieBarCenter: ['16%', '50%'],
         event: {
           count: 0,
           data: {
@@ -92,7 +132,13 @@
         totalIndex: [
           {key: '数量', value: 999}
         ],
-        eventListData: []
+        eventListData: [],
+        ChartData: [
+          {value: 4, name: '访问行为'},
+          {value: 5, name: '流量'},
+          {value: 17, name: '关键操作'},
+          {value: 1, name: '其他'}
+        ]
       }
     },
     computed: {

@@ -26,11 +26,26 @@
           <!--<asset-distribution id="assetDistribution" title="资产分布"></asset-distribution>-->
         <!--</el-col>-->
         <el-col :xs="24" :sm="24" :lg="12">
-          <event-distribution id="eventDistribution" title="安全事件分布" :data="eventChartData" titleType="simple" width="50%" float="left">
+          <!--<event-distribution id="eventDistribution" title="安全事件分布" :data="eventChartData" titleType="simple" width="50%" float="left">-->
+            <!--<div style="padding: 45px 19px 0">-->
+              <!--<EventDistributionTab :dataList="eventDistributionList"></EventDistributionTab>-->
+            <!--</div>-->
+          <!--</event-distribution>-->
+          <pie-charts id="eventDistribution"
+                      title="安全事件分布"
+                      :data="eventChartData"
+                      titleType="simple"
+                      width="48%"
+                      float="left"
+                      seriesName="事件等级分布"
+                      pieSize="70%"
+                      piePosition="50%"
+                      labelFontSize="18"
+                      chartStyle="pie">
             <div style="padding: 45px 19px 0">
               <EventDistributionTab :dataList="eventDistributionList"></EventDistributionTab>
             </div>
-          </event-distribution>
+          </pie-charts>
         </el-col>
       </el-row>
     </div>
@@ -74,7 +89,7 @@
 </template>
 <script type="text/ecmascript-6">
   import Indicator from 'components/indicator/indicator'
-
+  import pieCharts from 'components/charts/piecharts'
   import SecurityTrend from './components/securityTrend'
   import VulneDistribution from './components/vulneDistribution'
   import AssetDistribution from './components/assetDistribution'
@@ -96,6 +111,7 @@
 
   export default {
     components: {
+      pieCharts,
       Indicator,
       SecurityTrend,
       VulneDistribution,

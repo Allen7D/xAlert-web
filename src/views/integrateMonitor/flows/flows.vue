@@ -3,32 +3,98 @@
     <div class="indicator">
       <el-row>
         <el-col ::xs="24" :sm="24" :lg="24">
-          <IPStat title="Top 10 IP资产流量统计（流入）" id="IPStatIn" :data="totalFlow.totalInBySrcIp" titleType="simple" :height="330" width="80%" float="left">
+          <!--<IPStat title="Top 10 IP资产流量统计（流入）" id="IPStatIn" :data="totalFlow.totalInBySrcIp" titleType="simple" :height="330" width="80%" float="left">-->
+            <!--<div style="padding: 20px 5px 0">-->
+              <!--<IPStatTable :dataList="totalFlow.totalInBySrcIp"></IPStatTable>-->
+            <!--</div>-->
+          <!--</IPStat>-->
+          <pie-charts id="IPStatIn"
+                      title="Top 10 IP资产流量统计（流入）"
+                      :data="ChartData"
+                      titleType="simple"
+                      seriesName="流量统计"
+                      width="80%"
+                      float="left"
+                      pieSize="70%"
+                      :piePosition="pieCenter"
+                      labelFontSize="11"
+                      chartStyle="barPie"
+                      barWidth="40%"
+                      gridLeft="7%"
+                      gridWidth="60%"
+                      gridHeight="70%"
+                      gridBottom="15%">
             <div style="padding: 20px 5px 0">
-              <IPStatTable :dataList="totalFlow.totalInBySrcIp"></IPStatTable>
+              <IPStatTable :dataList="ChartData"></IPStatTable>
             </div>
-          </IPStat>
+          </pie-charts>
         </el-col>
       </el-row>
     </div>
     <div class="indicator">
       <el-row>
         <el-col ::xs="24" :sm="24" :lg="24">
-          <IPStat title="Top 10 IP资产流量统计（流出）" id="IPStatOut" :data="totalFlow.totalOutBySrcIp" titleType="simple" :height="330" width="80%" float="left">
+          <!--<IPStat title="Top 10 IP资产流量统计（流出）" id="IPStatOut" :data="totalFlow.totalOutBySrcIp" titleType="simple" :height="330" width="80%" float="left">-->
+            <!--<div style="padding: 20px 5px 0">-->
+              <!--<IPStatTable :dataList="totalFlow.totalOutBySrcIp"></IPStatTable>-->
+            <!--</div>-->
+          <!--</IPStat>-->
+          <pie-charts id="IPStatOut"
+                      title="Top 10 IP资产流量统计（流出）"
+                      :data="ChartData"
+                      titleType="simple"
+                      seriesName="流量统计"
+                      width="80%"
+                      float="left"
+                      pieSize="70%"
+                      :piePosition="pieCenter"
+                      labelFontSize="11"
+                      chartStyle="barPie"
+                      barWidth="40%"
+                      gridLeft="7%"
+                      gridWidth="60%"
+                      gridHeight="70%"
+                      gridBottom="15%">
             <div style="padding: 20px 5px 0">
-              <IPStatTable :dataList="totalFlow.totalOutBySrcIp"></IPStatTable>
+              <IPStatTable :dataList="ChartData"></IPStatTable>
             </div>
-          </IPStat>
+          </pie-charts>
         </el-col>
       </el-row>
     </div>
     <div class="chart-wrapper">
       <el-row :gutter="60">
         <el-col :xs="24" :sm="24" :lg="12">
-          <appTranStat title="Top 5 协议统计(流入)" id="appTranStatIn" :data="totalFlow.totalInByL4" :data2="totalFlow.totalInByL7" titleType="simple"></appTranStat>
+          <!--<appTranStat title="Top 5 协议统计(流入)" id="appTranStatIn" :data="totalFlow.totalInBySrcIp" :data2="ChartData" titleType="simple"></appTranStat>-->
+          <pie-charts id="appTranStatIn"
+                      title="Top 5 协议统计(流入)"
+                      :data="ChartData"
+                      :data2="ChartData"
+                      titleType="simple"
+                      seriesName="应用层协议统计"
+                      seriesName2="传输层协议统计"
+                      pieSize="60%"
+                      :piePosition="DoupieCenter"
+                      :piePosition2="DoupieCenter2"
+                      labelFontSize="11"
+                      chartStyle="doublePie">
+          </pie-charts>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="12">
-          <appTranStat title="Top 5 协议统计(流出)" id="appTranStatOut" :data="totalFlow.totalOutByL4" :data2="totalFlow.totalOutByL7" titleType="simple"></appTranStat>
+          <!--<appTranStat title="Top 5 协议统计(流出)" id="appTranStatOut" :data="totalFlow.totalOutBySrcIp" :data2="totalFlow.totalOutByDstIp" titleType="simple"></appTranStat>-->
+          <pie-charts id="appTranStatOut"
+                      title="Top 5 协议统计(流出)"
+                      :data="ChartData"
+                      :data2="ChartData"
+                      titleType="simple"
+                      seriesName="应用层协议统计"
+                      seriesName2="传输层协议统计"
+                      pieSize="60%"
+                      :piePosition="DoupieCenter"
+                      :piePosition2="DoupieCenter2"
+                      labelFontSize="11"
+                      chartStyle="doublePie">
+          </pie-charts>
         </el-col>
       </el-row>
     </div>
@@ -44,6 +110,7 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
+  import pieCharts from 'components/charts/piecharts'
   import IPStat from './components/IPStat'
   import IPStatTable from './components/IPStatTable'
   import appTranStat from './components/appTranStat'
@@ -55,6 +122,7 @@
 
   export default {
     components: {
+      pieCharts,
       IPStat,
       IPStatTable,
       appTranStat,
@@ -74,7 +142,16 @@
           totalOutByDstIp: []
         },
         sessRankData: [],
-        IPStatData: []
+        IPStatData: [],
+        pieCenter: ['80%', '50%'],
+        DoupieCenter: ['25%', '50%'],
+        DoupieCenter2: ['75%', '50%'],
+        ChartData: [
+          {value: 4, name: '访问行为'},
+          {value: 5, name: '流量'},
+          {value: 17, name: '关键操作'},
+          {value: 1, name: '其他'}
+        ]
       }
     },
     methods: {
