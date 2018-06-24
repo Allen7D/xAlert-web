@@ -35,35 +35,35 @@
     <div class="chart-wrapper">
       <el-row :gutter="20">
         <el-col :xs="32" :sm="32" :lg="8">
-          <!--<level-dist id="levelDist" :data="pieChartData" title="事件等级分布" titleType="simple"></level-dist>-->
-          <pie-charts id="levelDist"
-                      title="事件等级分布"
-                      :data="pieChartData"
-                      titleType="simple"
-                      seriesName="事件等级分布"
-                      pieSize="75%"
-                      :piePosition="pieCenter"
-                      labelFontSize="18"
-                      chartStyle="pie">
-          </pie-charts>
+          <level-dist id="levelDist" :data="pieChartData" title="事件等级分布" titleType="simple"></level-dist>
+          <!--<pie-charts id="levelDist"-->
+                      <!--title="事件等级分布"-->
+                      <!--:data="pieChartData"-->
+                      <!--titleType="simple"-->
+                      <!--seriesName="事件等级分布"-->
+                      <!--pieSize="75%"-->
+                      <!--:piePosition="pieCenter"-->
+                      <!--labelFontSize="18"-->
+                      <!--chartStyle="pie">-->
+          <!--</pie-charts>-->
         </el-col>
         <el-col :xs="32" :sm="32" :lg="16">
-          <!--<genre-rank id="genreRank" title="事件类型排名" titleType="simple"></genre-rank>-->
-          <pie-charts id="genreRank"
-                      title="事件类型排名"
-                      :data="ChartData"
-                      titleType="simple"
-                      seriesName="事件类型排名"
-                      pieSize="65%"
-                      :piePosition="pieBarCenter"
-                      labelFontSize="11"
-                      chartStyle="pieBar"
-                      barWidth="30%"
-                      gridLeft="30%"
-                      gridTop="10%"
-                      gridBottom="3%"
-                      gridWidth="65%">
-          </pie-charts>
+          <genre-rank id="genreRank" title="事件类型排名" titleType="simple"></genre-rank>
+          <!--<pie-charts id="genreRank"-->
+                      <!--title="事件类型排名"-->
+                      <!--:data="ChartData"-->
+                      <!--titleType="simple"-->
+                      <!--seriesName="事件类型排名"-->
+                      <!--pieSize="65%"-->
+                      <!--:piePosition="pieBarCenter"-->
+                      <!--labelFontSize="11"-->
+                      <!--chartStyle="pieBar"-->
+                      <!--barWidth="30%"-->
+                      <!--gridLeft="30%"-->
+                      <!--gridTop="10%"-->
+                      <!--gridBottom="3%"-->
+                      <!--gridWidth="65%">-->
+          <!--</pie-charts>-->
         </el-col>
       </el-row>
     </div>

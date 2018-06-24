@@ -22,9 +22,6 @@
         <el-col :xs="24" :sm="24" :lg="12">
           <security-trend id="securityTrend" title="安全趋势"></security-trend>
         </el-col>
-        <!--<el-col :xs="24" :sm="24" :lg="12">-->
-          <!--<asset-distribution id="assetDistribution" title="资产分布"></asset-distribution>-->
-        <!--</el-col>-->
         <el-col :xs="24" :sm="24" :lg="12">
           <!--<event-distribution id="eventDistribution" title="安全事件分布" :data="eventChartData" titleType="simple" width="50%" float="left">-->
             <!--<div style="padding: 45px 19px 0">-->

@@ -18,11 +18,9 @@
     },
     data() {
       return {
-        legendList: []
       }
     },
     mounted() {
-      this.legendList = this.params
     },
     methods: {
       legendToggle(item) {

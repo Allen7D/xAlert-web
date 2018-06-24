@@ -2,9 +2,7 @@
   <div class="legend-wrappers">
     <div class="legends" :span="24" v-for="(item,index) in params" :key="index"
          @mouseout="donwplay(item)" @mouseover="highlight(item)">
-      <div class="legend" @click="legendToggle(item)" :style="{backgroundColor: item.select ? item.color: '#A0B9FF'}">
-        <div class="round" :style="{borderColor: item.select ? item.color: '#A0B9FF'}"></div>
-      </div>
+      <div class="legend" @click="legendToggle(item)" :style="{backgroundColor: item.select ? item.color: '#A0B9FF'}"></div>
       <div class="text" @click="legendToggle(item)" :style="{color: item.select ? item.color: '#A0B9FF'}">{{item.name}}</div>
     </div>
   </div>
@@ -18,11 +16,9 @@
     },
     data() {
       return {
-        legendList: []
       }
     },
     mounted() {
-      this.legendList = this.params
     },
     methods: {
       legendToggle(item) {
@@ -68,19 +64,11 @@
       height: 25px
       .legend
         border-radius: 1px
-        width: 40px
-        height: 1px
+        width: 24px
+        height: 7px
         cursor: pointer
-        .round
-          background white
-          position relative
-          margin auto
-          bottom: 6px
-          width: 12px
-          height: 12px
-          border-radius: 50%
-          border 1px solid
       .text
+        width 70px
         font-size: 12px
         line-height 25px
         margin-left 2px
