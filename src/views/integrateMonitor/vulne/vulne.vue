@@ -6,16 +6,16 @@
         <el-col :span="17">
           <el-row :gutter="40">
             <el-col :xs="24" :sm="12" :lg="6">
-              <vulneIndicator title="漏洞总数" icon="icon-totalAssets" :data="13" ></vulneIndicator>
+              <indicator title="漏洞总数" icon="icon-totalAssets" :data="13" ></indicator>
             </el-col>
             <el-col :xs="24" :sm="12" :lg="6">
-              <vulneIndicator title="未修复" icon="icon-totalAssets" :data="13" ></vulneIndicator>
+              <indicator title="未修复" icon="icon-totalAssets" :data="13" ></indicator>
             </el-col>
             <el-col :xs="24" :sm="12" :lg="6">
-              <vulneIndicator title="已修复" icon="icon-totalAssets" :data="0"></vulneIndicator>
+              <indicator title="已修复" icon="icon-totalAssets" :data="0"></indicator>
             </el-col>
             <el-col :xs="24" :sm="12" :lg="6">
-              <vulneIndicator title="近一周发现" icon="icon-totalAssets" :data="5"></vulneIndicator>
+              <indicator title="近一周发现" icon="icon-totalAssets" :data="5"></indicator>
             </el-col>
           </el-row>
           <el-row>
@@ -47,7 +47,7 @@
     <div class="chartList-wrapper">
       <el-row :gutter="40">
         <el-col :xs="24" :sm="24" :lg="12">
-          <assetVulnerGrade id="assetVulnerGrade" title="资产漏洞分布" titleType="simple" :height="330" width="50%" float="left">
+          <assetVulnerGrade id="assetVulnerGrade" title="漏洞等级分布" titleType="simple" :height="330" width="50%" float="left">
             <div style="padding: 20px 19px 0">
               <assetVulGradeTable :dataList="assetVulGradeData"></assetVulGradeTable>
             </div>
@@ -63,6 +63,8 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
+  import Indicator from 'components/indicator/indicator'
+
   import vulneIndicator from './components/vulneIndicator'
   import VulneStatistic from './components/VulneStatistic'
   import ringDiagram from './components/ringDiagram'
@@ -77,6 +79,7 @@
 
   export default {
     components: {
+      Indicator,
       vulneIndicator,
       VulneStatistic,
       ringDiagram,

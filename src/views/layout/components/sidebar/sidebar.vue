@@ -3,7 +3,7 @@
 
     <el-menu mode="vertical" unique-opened :default-active="$route.path" class="el-menu-vertical-demo" :collapse="isCollapse">
       <div class="top" v-show="!isCollapse">
-        <img class="logo" :src="logo_w_s" alt="北京立思辰">
+        <img class="logo" :src="logo_w_s" alt="谷逸网络科技">
         <div class="title">
           <i class="icon icon-menu"></i>
           <span>网络安全监控平台</span>
@@ -134,6 +134,9 @@
     min-width: 55px
     width: 120px
     text-align center
+  .el-menu-item.is-active
+    background-color: white!important
+    opacity: 1
   .el-menu-item-group__title
     padding: 0
   .el-tooltip__popper.is-dark
@@ -146,7 +149,7 @@
       width: 0
       overflow: hidden
       visibility: hidden
-      transition: opacity .3s cubic-bezier(.55, 0, .1, 1)
+      transition: opacity .1s cubic-bezier(.55, 0, .1, 1)
       opacity: 0
       display: inline-block
     &:hover

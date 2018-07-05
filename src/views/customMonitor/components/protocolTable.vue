@@ -2,7 +2,7 @@
     <el-table :data="dataList" border style="width: 50%" height="250" v-if="dataList">
       <el-table-column label="应用协议" prop="name" sortable header-align="center" align="center" width="180"></el-table-column>
       <el-table-column label="百分比" :formatter="precentConvert" header-align="center" align="center" width="140"></el-table-column>
-      <el-table-column label="流量" prop="value" sortable header-align="center" align="center"></el-table-column>
+      <el-table-column label="流量" prop="value" :formatter="flowConvert" sortable header-align="center" align="center"></el-table-column>
     </el-table>
 </template>
 

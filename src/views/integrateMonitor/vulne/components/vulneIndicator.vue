@@ -46,7 +46,7 @@
       text-align: center
       line-height: 26px
     .content
-      font-size: 30px
+      font-size: 40px
       font-weight: bold
       text-align center
       line-height: 100px
