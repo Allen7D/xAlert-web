@@ -39,6 +39,7 @@
       </template>
 
     </el-menu>
+
     <button :class="isCollapse ? 'button-r' : 'button-l'" @click="toggleClick">
       <i :class="isCollapse ? 'icon-dbArrowR' : 'icon-dbArrowL'"></i>
     </button>
@@ -156,7 +157,6 @@
       span
         display: block
         border-radius: 2px
-        z-index: 1048
         width: 120px
         height: 56px
         visibility: visible

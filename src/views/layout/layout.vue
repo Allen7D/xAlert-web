@@ -1,5 +1,5 @@
 <template>
-  <div class="app" :class="{hideSiddbar:sidebar.opened}">
+  <div class="app" :class="{hideSidebar:sidebar.opened}">
     <sidebar class="sidebar"></sidebar>
     <div class="main">
       <navbar></navbar>
@@ -65,7 +65,7 @@
       background-size: cover
       background-repeat: no-repeat
       background-image: url(./bg.jpg)
-  .hideSiddbar
+  .hideSidebar
     .main
       margin-left: 97px
 </style>
